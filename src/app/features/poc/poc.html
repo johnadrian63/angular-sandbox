@@ -1,0 +1,16 @@
+<h1 class="mx-4 mt-3">
+    <span class="font-bold mr-2">Proof of Concepts</span>
+</h1>
+<div class="flex gap-x-3 py-3 justify-center items-center">
+    <a
+        routerLink="nested-handler"
+        [relativeTo]="activatedRoute.parent"
+        routerLinkActive="underline"
+        class="font-semibold hover:underline"
+        >Nested Handler</a
+    >
+</div>
+
+<div class="p-4">
+    <router-outlet></router-outlet>
+</div>

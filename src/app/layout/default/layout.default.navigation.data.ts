@@ -33,6 +33,11 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
         path: "/design-patterns"
     },
     {
+        label: "poc",
+        text: "POC",
+        path: "/poc"
+    },
+    {
         label: "basic_layout",
         text: "Basic Layout",
         path: "/example",

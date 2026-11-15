@@ -1,0 +1,7 @@
+<div class="flex gap-x-1">
+    @for (menu of menus; track menu.label) {
+        <app-poc-nested-handler-navigation-resolver
+            [menu]="menu"
+        ></app-poc-nested-handler-navigation-resolver>
+    }
+</div>

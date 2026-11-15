@@ -8,6 +8,7 @@ import { exampleRoutes } from "./features/example/example.routes";
 import { materialRoutes } from "./features/material/material.routes";
 import { designPatternRoutes } from "./features/design-patterns/design.patterns.routes";
 import { ngRoutes } from "./features/ng/ng.routes";
+import { pocRoutes } from "./features/poc/poc.routes";
 
 export const routes: Routes = [
     {
@@ -59,6 +60,12 @@ export const routes: Routes = [
                 path: "design-patterns",
                 children: [
                     ...designPatternRoutes
+                ]
+            },
+            {
+                path: "poc",
+                children: [
+                    ...pocRoutes
                 ]
             },
             {
