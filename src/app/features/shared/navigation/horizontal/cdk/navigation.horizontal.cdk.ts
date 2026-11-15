@@ -1,6 +1,7 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, input } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatMenuModule } from "@angular/material/menu";
+import { NgClass } from "@angular/common";
 
 import { IMenuItem } from "../../navigation.model";
 import { NavigationHorizontalCdkService } from "./navigation.horizontal.cdk.service";
@@ -16,6 +17,7 @@ import { NavigationHorizontalCdkBaseResolverService } from "./resolver/navigatio
         MatButtonModule,
         MatMenuModule,
         NavigationHorizontalCdkResolver,
+        NgClass,
     ],
     providers: [
         NavigationHorizontalCdkResolverService,
@@ -26,9 +28,11 @@ import { NavigationHorizontalCdkBaseResolverService } from "./resolver/navigatio
     ],
 })
 export class NavigationHorizontalCdk {
-    public readonly navigationMenuService: NavigationHorizontalCdkService = inject<NavigationHorizontalCdkService>(NavigationHorizontalCdkService);
-
     public get menus(): IMenuItem[] {
         return this.navigationMenuService.menus();
     }
+
+    public readonly navigationMenuService: NavigationHorizontalCdkService = inject<NavigationHorizontalCdkService>(NavigationHorizontalCdkService);
+    public readonly classes = input<string>("");
+
 }

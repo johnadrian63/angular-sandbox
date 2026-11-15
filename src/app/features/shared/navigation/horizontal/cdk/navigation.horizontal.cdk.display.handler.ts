@@ -53,8 +53,6 @@ export class NavigationHorizontalCdkDisplayHandlerVisitor implements INavigation
         componentRef.instance.menu.set(handler.menu);
         componentRef.instance.classes = "px-3 py-1 flex";
 
-        componentRef.location.nativeElement.classList.add("w-full");
-
         componentRef.changeDetectorRef.detectChanges();
     }
 

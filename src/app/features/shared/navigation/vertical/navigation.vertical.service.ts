@@ -54,7 +54,7 @@ export abstract class NavigationVerticalService implements INavigationHandlerSer
 
         setTimeout(() => {
             this.isVisible.set(true);
-        }, 100);
+        }, 90);
     }
 
     public reset(): void {
