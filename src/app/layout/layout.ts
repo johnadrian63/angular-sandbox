@@ -1,29 +1,29 @@
-import { Component, inject, DOCUMENT, OnInit } from "@angular/core";
+import { Component, inject, DOCUMENT } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+
+import { LayoutDefaultThemeSwitcherService, LayoutTheme } from "./default/display/theme-switcher/layout.default.theme.switcher.service";
 
 @Component({
     template: "",
     imports: [RouterModule],
 })
-export abstract class Layout implements OnInit {
+export abstract class Layout {
     protected readonly document: Document = inject<Document>(DOCUMENT);
     protected readonly themeKey: string = "theme";
     protected theme: string = "theme";
 
-    public ngOnInit(): void {
-        const themeKey = "theme";
-        const defaultTheme = "system";
+    private readonly themeSwitcherService: LayoutDefaultThemeSwitcherService = inject<LayoutDefaultThemeSwitcherService>(LayoutDefaultThemeSwitcherService);
 
-        let theme = localStorage.getItem(themeKey);
+    constructor() {
+        this.themeSwitcherService.getTheme()
+            .pipe(takeUntilDestroyed())
+            .subscribe((theme: LayoutTheme) => {
+                this.document.documentElement.classList.remove("light", "dark");
 
-        if (theme === null) {
-            theme = defaultTheme;
-
-            localStorage.setItem(themeKey, defaultTheme);
-        }
-
-        this.theme = theme;
-
-        this.document.documentElement.classList.add(theme);
+                if (theme) {
+                    this.document.documentElement.classList.add(theme);
+                }
+            });
     }
 }

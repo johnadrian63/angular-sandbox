@@ -1,25 +1,21 @@
 import { Service } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 
-export type LayoutTheme = "system" | "light" | "dark";
+export type LayoutTheme = "" | "light" | "dark";
 
 @Service()
 export class LayoutDefaultThemeSwitcherService {
-    private readonly subject: BehaviorSubject<LayoutTheme> = new BehaviorSubject<LayoutTheme>("system");
+    private readonly subject: BehaviorSubject<LayoutTheme> = new BehaviorSubject<LayoutTheme>("");
 
     private readonly themeKey: string = "theme";
 
     public getTheme(): Observable<LayoutTheme> {
-        const defaultTheme: LayoutTheme = "system";
-
         let theme = <LayoutTheme>localStorage.getItem(this.themeKey);
 
         if (theme) {
             this.subject.next(theme);
         } else {
-            localStorage.setItem(this.themeKey, defaultTheme);
-
-            this.subject.next(defaultTheme);
+            this.subject.next("");
         }
 
         return this.subject.asObservable();

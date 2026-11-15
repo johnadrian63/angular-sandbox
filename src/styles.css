@@ -16,7 +16,7 @@
 
 /* System preference */
 @media (prefers-color-scheme: dark) {
-    :root:not(.dark):not(.light):not(.system) {
+    :root:not(.dark):not(.light) {
         color-scheme: dark;
         --surface: #202124;
         --foreground: #ffffff;
