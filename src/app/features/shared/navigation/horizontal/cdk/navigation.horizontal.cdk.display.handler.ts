@@ -7,9 +7,6 @@ export interface INavigationHorizontalCdkDisplayHandlerVisitor<T> extends INavig
     visitCdkDropdown(handler: NavigationHorizontalCdkDropdownDisplayHandler): T;
 }
 
-// TODO: Refactor this code to call the component directly instead of using
-// an additional display handler class (NavigationDisplayHandler).
-// Currently encountering a type override issue with the "renderer" property.
 export class NavigationHorizontalCdkDropdownDisplayHandler extends NavigationDisplayHandler {
     public readonly renderer: Type<NavigationHorizontalCdkDropdown> = NavigationHorizontalCdkDropdown;
 

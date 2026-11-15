@@ -16,6 +16,14 @@ export interface INavigationDisplayHandlerVisitor<T> {
     visitText(handler: NavigationDisplayTextHandler): T;
 }
 
+/**
+ * TODO: Refactor this code to call the component directly instead of using
+ * an additional display handler class (NavigationDisplayHandler).
+ * Main issue:
+ * Extending NavigationDisplayHandler currently causes a type incompatibility issue
+ * with the renderer property, especially when this class is inherited
+ * by a subclass with a different renderer type.
+ */
 export abstract class NavigationDisplayHandler {
     constructor(public readonly menu: IMenuItem) { }
 
