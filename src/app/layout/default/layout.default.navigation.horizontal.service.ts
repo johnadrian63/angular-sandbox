@@ -1,7 +1,7 @@
-import { inject, Injectable, ViewContainerRef } from "@angular/core";
+import { Injectable, ViewContainerRef } from "@angular/core";
 
-import { LayoutDefaultDisplayHandlerVisitor } from "./layout.default.display.handler";
 import { NavigationDisplayHandler } from "../../features/shared/navigation/navigation.display.handler";
+import { LayoutDefaultDisplayHandlerVisitor } from "./layout.default.navigation.horizontal.display.handler";
 import { NavigationHorizontalCdkService } from "../../features/shared/navigation/horizontal/cdk/navigation.horizontal.cdk.service";
 
 @Injectable()

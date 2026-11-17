@@ -4,9 +4,9 @@ import { faMobileAlt, faArrowUpRightFromSquare } from "@fortawesome/free-solid-s
 
 import { IMenuItem } from "../../features/shared/navigation/navigation.model";
 import { LayoutDefaultThemeSwitcher } from "./display/theme-switcher/layout.default.theme.switcher";
-import { INavigationHorizontalCdkDisplayHandlerVisitor, NavigationHorizontalCdkDisplayHandlerVisitor, NavigationHorizontalCdkDropdownDisplayHandler } from "../../features/shared/navigation/horizontal/cdk/navigation.horizontal.cdk.display.handler";
-import { NavigationDisplayHandler, NavigationDisplayLinkHandler } from "../../features/shared/navigation/navigation.display.handler";
 import { NavigationDisplayLink } from "../../features/shared/navigation/display/link/navigation.display.link";
+import { NavigationDisplayHandler, NavigationDisplayLinkHandler } from "../../features/shared/navigation/navigation.display.handler";
+import { INavigationHorizontalCdkDisplayHandlerVisitor, NavigationHorizontalCdkDisplayHandlerVisitor, NavigationHorizontalCdkDropdownLinkDisplayHandler } from "../../features/shared/navigation/horizontal/cdk/navigation.horizontal.cdk.display.handler";
 
 export interface ILayoutDefaultDisplayHandlerVisitor<T> extends INavigationHorizontalCdkDisplayHandlerVisitor<T> {
     visitThemeSwitcher(handler: LayoutDisplayThemeSwitcherHandler): T;
@@ -47,8 +47,18 @@ export class LayoutDisplayResponsiveLinkHandler extends NavigationDisplayHandler
     }
 }
 
-
 export class LayoutDefaultDisplayHandlerVisitor extends NavigationHorizontalCdkDisplayHandlerVisitor implements ILayoutDefaultDisplayHandlerVisitor<void> {
+    public override visitCdkDropdownLink(handler: NavigationHorizontalCdkDropdownLinkDisplayHandler): void {
+        const componentRef = this.vcr.createComponent(handler.renderer, {
+            injector: this.vcr.injector
+        });
+
+        componentRef.instance.menu.set(handler.menu);
+        componentRef.instance.menuClass = "mt-4";
+        componentRef.instance.classes = "flex font-semibold";
+
+        componentRef.changeDetectorRef.detectChanges();
+    }
 
     public override visitLink(handler: NavigationDisplayLinkHandler): void {
         const componentRef = this.vcr.createComponent(handler.renderer, {

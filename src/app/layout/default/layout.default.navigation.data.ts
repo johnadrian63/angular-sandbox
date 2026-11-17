@@ -1,5 +1,6 @@
+import { NavigationHorizontalCdkDropdownLinkDisplayHandler } from "../../features/shared/navigation/horizontal/cdk/navigation.horizontal.cdk.display.handler";
 import { IMenuItem } from "../../features/shared/navigation/navigation.model";
-import { LayoutDisplayGitHubLinkHandler, LayoutDisplayOpenLinkHandler, LayoutDisplayResponsiveLinkHandler, LayoutDisplayThemeSwitcherHandler } from "./layout.default.display.handler";
+import { LayoutDisplayGitHubLinkHandler, LayoutDisplayOpenLinkHandler, LayoutDisplayResponsiveLinkHandler, LayoutDisplayThemeSwitcherHandler } from "./layout.default.navigation.horizontal.display.handler";
 
 export const layoutDefaultNavigationData: IMenuItem[] = [
     {
@@ -10,12 +11,30 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
     {
         label: "flex_child",
         text: "Flex (Child)",
-        path: "/flex/child"
+        path: "/flex/child",
     },
     {
         label: "grid",
         text: "Grid",
-        path: "/grid"
+        path: "/grid",
+        handler: NavigationHorizontalCdkDropdownLinkDisplayHandler,
+        children: [
+            {
+                label: "grid",
+                text: "Grid Column",
+                path: "/grid/grid-column",
+            },
+            {
+                label: "grid",
+                text: "Grid Row",
+                path: "/grid/grid-row",
+            },
+            {
+                label: "grid",
+                text: "Grid Flow",
+                path: "/grid/grid-flow",
+            }
+        ]
     },
     {
         label: "material",

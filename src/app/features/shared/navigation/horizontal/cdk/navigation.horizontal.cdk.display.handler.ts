@@ -2,11 +2,21 @@ import { Type, ViewContainerRef } from "@angular/core";
 
 import { NavigationDisplayLink } from "../../display/link/navigation.display.link";
 import { NavigationHorizontalCdkDropdown } from "./dropdown/navigation.horizontal.cdk.dropdown";
+import { NavigationHorizontalCdkDropdownLink } from "./dropdown/link/navigation.horizontal.cdk.dropdown.link";
 import { NavigationDisplayHandler, INavigationDisplayHandlerVisitor, NavigationDisplayButtonHandler, NavigationDisplayExpandHandler, NavigationDisplayLinkHandler, NavigationDisplayMenuDropdownHandler, NavigationDisplayTextHandler } from "../../navigation.display.handler";
 
 export interface INavigationHorizontalCdkDisplayHandlerVisitor<T> extends INavigationDisplayHandlerVisitor<T> {
+    visitCdkDropdownLink(handler: NavigationHorizontalCdkDropdownDisplayHandler): T;
     visitCdkDropdown(handler: NavigationHorizontalCdkDropdownDisplayHandler): T;
     visitCdkDropdownItem(handler: NavigationHorizontalCdkDropdownItemDisplayHandler): T;
+}
+
+export class NavigationHorizontalCdkDropdownLinkDisplayHandler extends NavigationDisplayHandler {
+    public readonly renderer: Type<NavigationHorizontalCdkDropdown> = NavigationHorizontalCdkDropdownLink;
+
+    public accept<T>(visitor: INavigationHorizontalCdkDisplayHandlerVisitor<T>): T {
+        return visitor.visitCdkDropdownLink(this);
+    }
 }
 
 export class NavigationHorizontalCdkDropdownDisplayHandler extends NavigationDisplayHandler {
@@ -27,6 +37,16 @@ export class NavigationHorizontalCdkDropdownItemDisplayHandler extends Navigatio
 
 export class NavigationHorizontalCdkDisplayHandlerVisitor implements INavigationHorizontalCdkDisplayHandlerVisitor<void> {
     constructor(protected readonly vcr: ViewContainerRef) { }
+
+    public visitCdkDropdownLink(handler: NavigationHorizontalCdkDropdownLinkDisplayHandler): void {
+        const componentRef = this.vcr.createComponent(handler.renderer, {
+            injector: this.vcr.injector
+        });
+
+        componentRef.instance.menu.set(handler.menu);
+
+        componentRef.changeDetectorRef.detectChanges();
+    }
 
     public visitCdkDropdown(handler: NavigationHorizontalCdkDropdownDisplayHandler): void {
         const componentRef = this.vcr.createComponent(handler.renderer, {
