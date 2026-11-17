@@ -1,6 +1,10 @@
+import { ViewContainerRef } from "@angular/core";
+
 import { INavigationDisplayHandlerVisitor, NavigationDisplayButtonHandler, NavigationDisplayExpandHandler, NavigationDisplayLinkHandler, NavigationDisplayMenuDropdownHandler, NavigationDisplayTextHandler } from "../../navigation.display.handler";
 
-export class NavigationHorizontalCdkDisplayHandlerVisitor implements INavigationDisplayHandlerVisitor<void> {
+export class NavigationHorizontalMenuDisplayHandlerVisitor implements INavigationDisplayHandlerVisitor<void> {
+    constructor(private readonly vcr: ViewContainerRef) { }
+
     public visitButton(handler: NavigationDisplayButtonHandler): void {
         throw new Error("Method not implemented.");
     }
@@ -10,11 +14,23 @@ export class NavigationHorizontalCdkDisplayHandlerVisitor implements INavigation
     }
 
     public visitLink(handler: NavigationDisplayLinkHandler): void {
-        throw new Error("Method not implemented.");
+        const componentRef = this.vcr.createComponent(handler.renderer, {
+            injector: this.vcr.injector
+        });
+
+        componentRef.instance.menu.set(handler.menu);
+
+        componentRef.changeDetectorRef.detectChanges();
     }
 
     public visitMenuDropdown(handler: NavigationDisplayMenuDropdownHandler): void {
-        throw new Error("Method not implemented.");
+        const componentRef = this.vcr.createComponent(handler.renderer, {
+            injector: this.vcr.injector
+        });
+
+        componentRef.instance.menu.set(handler.menu);
+
+        componentRef.changeDetectorRef.detectChanges();
     }
 
     public visitText(handler: NavigationDisplayTextHandler): void {
