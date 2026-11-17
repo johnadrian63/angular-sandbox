@@ -1,4 +1,4 @@
-import { Injectable, ViewContainerRef } from "@angular/core";
+import { inject, Injectable, ViewContainerRef } from "@angular/core";
 
 import { LayoutDefaultDisplayHandlerVisitor } from "./layout.default.display.handler";
 import { NavigationDisplayHandler } from "../../features/shared/navigation/navigation.display.handler";

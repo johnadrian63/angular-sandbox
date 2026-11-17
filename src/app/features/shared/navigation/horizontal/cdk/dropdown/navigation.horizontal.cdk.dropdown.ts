@@ -3,6 +3,7 @@ import { NgClass } from "@angular/common";
 import { CdkMenuTrigger } from "@angular/cdk/menu";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
+import { RouterModule } from "@angular/router";
 
 import { NavigationDisplay } from "../../../display/navigation.display";
 import { NavigationHorizontalCdkDropdownItem } from "./item/navigation.horizontal.cdk.dropdown.item";
@@ -12,6 +13,7 @@ import { NavigationHorizontalCdkDropdownItem } from "./item/navigation.horizonta
     styleUrl: "./navigation.horizontal.cdk.dropdown.css",
     templateUrl: "./navigation.horizontal.cdk.dropdown.html",
     imports: [
+        RouterModule,
         CdkMenuTrigger,
         NgClass,
         FaIconComponent,

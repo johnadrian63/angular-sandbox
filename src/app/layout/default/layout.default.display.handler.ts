@@ -1,15 +1,16 @@
 import { ComponentRef, Type } from "@angular/core";
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faMobileAlt } from "@fortawesome/free-solid-svg-icons";
+import { faMobileAlt, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 import { IMenuItem } from "../../features/shared/navigation/navigation.model";
 import { LayoutDefaultThemeSwitcher } from "./display/theme-switcher/layout.default.theme.switcher";
-import { NavigationHorizontalCdkDisplayHandlerVisitor } from "../../features/shared/navigation/horizontal/cdk/navigation.horizontal.cdk.display.handler";
-import { INavigationDisplayHandlerVisitor, NavigationDisplayHandler, NavigationDisplayLinkHandler } from "../../features/shared/navigation/navigation.display.handler";
+import { INavigationHorizontalCdkDisplayHandlerVisitor, NavigationHorizontalCdkDisplayHandlerVisitor, NavigationHorizontalCdkDropdownDisplayHandler } from "../../features/shared/navigation/horizontal/cdk/navigation.horizontal.cdk.display.handler";
+import { NavigationDisplayHandler, NavigationDisplayLinkHandler } from "../../features/shared/navigation/navigation.display.handler";
 import { NavigationDisplayLink } from "../../features/shared/navigation/display/link/navigation.display.link";
 
-export interface ILayoutDefaultDisplayHandlerVisitor<T> extends INavigationDisplayHandlerVisitor<T> {
+export interface ILayoutDefaultDisplayHandlerVisitor<T> extends INavigationHorizontalCdkDisplayHandlerVisitor<T> {
     visitThemeSwitcher(handler: LayoutDisplayThemeSwitcherHandler): T;
+    visitOpenLink(handler: LayoutDisplayOpenLinkHandler): T;
     visitGitHubLink(handler: LayoutDisplayGitHubLinkHandler): T;
     visitResponsiveLink(handler: LayoutDisplayResponsiveLinkHandler): T;
 }
@@ -19,6 +20,14 @@ export class LayoutDisplayThemeSwitcherHandler extends NavigationDisplayHandler 
 
     public override accept<T>(visitor: ILayoutDefaultDisplayHandlerVisitor<T>): T {
         return visitor.visitThemeSwitcher(this);
+    }
+}
+
+export class LayoutDisplayOpenLinkHandler extends NavigationDisplayHandler {
+    public override readonly renderer: Type<NavigationDisplayLink> = NavigationDisplayLink;
+
+    public override accept<T>(visitor: ILayoutDefaultDisplayHandlerVisitor<T>): T {
+        return visitor.visitOpenLink(this);
     }
 }
 
@@ -38,11 +47,23 @@ export class LayoutDisplayResponsiveLinkHandler extends NavigationDisplayHandler
     }
 }
 
+
 export class LayoutDefaultDisplayHandlerVisitor extends NavigationHorizontalCdkDisplayHandlerVisitor implements ILayoutDefaultDisplayHandlerVisitor<void> {
+
     public override visitLink(handler: NavigationDisplayLinkHandler): void {
         const componentRef = this.vcr.createComponent(handler.renderer, {
             injector: this.vcr.injector
         });
+
+        this.renderLink(componentRef, handler.menu);
+    }
+
+    public visitOpenLink(handler: LayoutDisplayOpenLinkHandler): void {
+        const componentRef = this.vcr.createComponent(handler.renderer, {
+            injector: this.vcr.injector
+        });
+
+        componentRef.instance.iconLeft = faArrowUpRightFromSquare;
 
         this.renderLink(componentRef, handler.menu);
     }

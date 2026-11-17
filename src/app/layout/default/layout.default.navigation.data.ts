@@ -1,5 +1,5 @@
 import { IMenuItem } from "../../features/shared/navigation/navigation.model";
-import { LayoutDisplayGitHubLinkHandler, LayoutDisplayResponsiveLinkHandler, LayoutDisplayThemeSwitcherHandler } from "./layout.default.display.handler";
+import { LayoutDisplayGitHubLinkHandler, LayoutDisplayOpenLinkHandler, LayoutDisplayResponsiveLinkHandler, LayoutDisplayThemeSwitcherHandler } from "./layout.default.display.handler";
 
 export const layoutDefaultNavigationData: IMenuItem[] = [
     {
@@ -41,7 +41,8 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
         label: "basic_layout",
         text: "Basic Layout",
         path: "/example",
-        target: "_blank"
+        target: "_blank",
+        handler: LayoutDisplayOpenLinkHandler
     },
     {
         label: "responsive_layout",
