@@ -1,7 +1,7 @@
 
 import { IMenuItem } from "../../navigation.model";
 import { INavigationMenuResolverVisitor } from "../../navigation.menu.resolver.visitor";
-import { NavigationHorizontalCdkDropdownDisplayHandler } from "./navigation.horizontal.cdk.display.handler";
+import { NavigationHorizontalCdkDropdownDisplayHandler, NavigationHorizontalCdkDropdownItemDisplayHandler } from "./navigation.horizontal.cdk.display.handler";
 import { NavigationDisplayExpandHandler, NavigationDisplayHandler, NavigationDisplayLinkHandler } from "../../navigation.display.handler";
 
 export class NavigationHorizontalCdkResolverVisitor implements INavigationMenuResolverVisitor<NavigationDisplayHandler> {
@@ -20,7 +20,7 @@ export class NavigationHorizontalCdkResolverVisitor implements INavigationMenuRe
     }
 
     public visitSubSingle(): NavigationDisplayHandler {
-        return new NavigationDisplayLinkHandler(this.menu);
+        return new NavigationHorizontalCdkDropdownItemDisplayHandler(this.menu);
     }
 
     public visitCustom(): NavigationDisplayHandler {

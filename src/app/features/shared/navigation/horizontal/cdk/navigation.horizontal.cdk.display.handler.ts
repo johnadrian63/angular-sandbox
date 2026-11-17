@@ -1,10 +1,12 @@
 import { Type, ViewContainerRef } from "@angular/core";
 
+import { NavigationDisplayLink } from "../../display/link/navigation.display.link";
 import { NavigationHorizontalCdkDropdown } from "./dropdown/navigation.horizontal.cdk.dropdown";
 import { NavigationDisplayHandler, INavigationDisplayHandlerVisitor, NavigationDisplayButtonHandler, NavigationDisplayExpandHandler, NavigationDisplayLinkHandler, NavigationDisplayMenuDropdownHandler, NavigationDisplayTextHandler } from "../../navigation.display.handler";
 
 export interface INavigationHorizontalCdkDisplayHandlerVisitor<T> extends INavigationDisplayHandlerVisitor<T> {
     visitCdkDropdown(handler: NavigationHorizontalCdkDropdownDisplayHandler): T;
+    visitCdkDropdownItem(handler: NavigationHorizontalCdkDropdownItemDisplayHandler): T;
 }
 
 export class NavigationHorizontalCdkDropdownDisplayHandler extends NavigationDisplayHandler {
@@ -12,6 +14,14 @@ export class NavigationHorizontalCdkDropdownDisplayHandler extends NavigationDis
 
     public accept<T>(visitor: INavigationHorizontalCdkDisplayHandlerVisitor<T>): T {
         return visitor.visitCdkDropdown(this);
+    }
+}
+
+export class NavigationHorizontalCdkDropdownItemDisplayHandler extends NavigationDisplayHandler {
+    public readonly renderer: Type<NavigationDisplayLink> = NavigationDisplayLink;
+
+    public accept<T>(visitor: INavigationHorizontalCdkDisplayHandlerVisitor<T>): T {
+        return visitor.visitCdkDropdownItem(this);
     }
 }
 
@@ -24,6 +34,19 @@ export class NavigationHorizontalCdkDisplayHandlerVisitor implements INavigation
         });
 
         componentRef.instance.menu.set(handler.menu);
+
+        componentRef.changeDetectorRef.detectChanges();
+    }
+
+    public visitCdkDropdownItem(handler: NavigationHorizontalCdkDropdownItemDisplayHandler): void {
+        const componentRef = this.vcr.createComponent(handler.renderer, {
+            injector: this.vcr.injector
+        });
+
+        componentRef.instance.menu.set(handler.menu);
+        componentRef.instance.classes = "px-3 py-1 flex";
+
+        componentRef.location.nativeElement.classList.add("w-full");
 
         componentRef.changeDetectorRef.detectChanges();
     }
