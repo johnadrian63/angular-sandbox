@@ -12,7 +12,7 @@ import {
 import {
     IDataCollatorRowData,
     IDataCollatorService
-} from "./data-collator.interface";
+} from "./data.collator.interface";
 
 @Injectable()
 export abstract class DataCollatorService implements IDataCollatorService {

@@ -4,7 +4,7 @@ import {
     Router
 } from "@angular/router";
 
-import { DataCollatorPaginationService } from "./data-collator.pagination.service";
+import { DataCollatorPaginationService } from "./data.collator.pagination.service";
 
 @Injectable()
 export abstract class DataCollatorPaginationRouteService extends DataCollatorPaginationService {

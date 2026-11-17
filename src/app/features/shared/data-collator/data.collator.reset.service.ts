@@ -7,9 +7,9 @@ import {
     Subject
 } from "rxjs";
 
-import { DataCollatorSearchService } from "./data-collator.search.service";
-import { DataCollatorPaginationService } from "./data-collator.pagination.service";
-import { DataCollatorSortService } from "./data-collator.sort.service";
+import { DataCollatorSearchService } from "./data.collator.search.service";
+import { DataCollatorPaginationService } from "./data.collator.pagination.service";
+import { DataCollatorSortService } from "./data.collator.sort.service";
 
 @Injectable()
 export abstract class DataCollatorResetService {

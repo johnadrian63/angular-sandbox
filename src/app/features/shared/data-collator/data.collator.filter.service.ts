@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 
 import { FilterBuilderService } from "../filter-builder";
-import { IDataCollatorFilterLoader } from "./data-collator.interface";
+import { IDataCollatorFilterLoader } from "./data.collator.interface";
 
 @Injectable()
 export abstract class DataCollatorFilterService<T> extends FilterBuilderService<T> {

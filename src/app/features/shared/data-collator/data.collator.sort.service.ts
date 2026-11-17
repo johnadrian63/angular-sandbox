@@ -4,7 +4,7 @@ import {
     Subject
 } from "rxjs";
 
-import { IDataCollatorService } from "./data-collator.interface";
+import { IDataCollatorService } from "./data.collator.interface";
 
 export type SortDirection = "asc" | "desc";
 

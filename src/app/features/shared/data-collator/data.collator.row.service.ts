@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { IDataCollatorRowData } from "./data-collator.interface";
+import { IDataCollatorRowData } from "./data.collator.interface";
 
 interface IDataCollatorRow {
     handleClick(row: IDataCollatorRowData): void;

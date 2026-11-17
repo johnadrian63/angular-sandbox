@@ -4,7 +4,7 @@ import {
     Subject
 } from "rxjs";
 
-import { IDataCollatorSelection } from "./data-collator.interface";
+import { IDataCollatorSelection } from "./data.collator.interface";
 
 interface IDataCollatorRowSelection {
     selection$: Observable<IDataCollatorSelection>;

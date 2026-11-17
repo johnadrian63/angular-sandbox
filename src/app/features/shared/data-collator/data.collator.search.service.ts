@@ -8,7 +8,7 @@ import {
     Subject
 } from "rxjs";
 
-import { IDataCollatorService } from "./data-collator.interface";
+import { IDataCollatorService } from "./data.collator.interface";
 
 @Injectable()
 export abstract class DataCollatorSearchService implements IDataCollatorService {

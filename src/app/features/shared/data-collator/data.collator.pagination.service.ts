@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 
 
-import { IDataCollatorService } from "./data-collator.interface";
-import { PageSizeOptions } from "./data-collator.model";
+import { IDataCollatorService } from "./data.collator.interface";
+import { PageSizeOptions } from "./data.collator.model";
 import { NumberUtil } from "../util/number.util";
 
 @Injectable()

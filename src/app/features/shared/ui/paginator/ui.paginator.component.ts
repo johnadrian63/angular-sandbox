@@ -8,7 +8,7 @@ import {
     MatPaginatorModule,
     PageEvent
 } from "@angular/material/paginator";
-import { PageSizeOptions } from "../../data-collator/data-collator.model";
+import { PageSizeOptions } from "../../data-collator/data.collator.model";
 
 @Component({
     selector: "app-ui-paginator",
