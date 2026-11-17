@@ -1,6 +1,7 @@
 import { ReactiveFormsModule } from "@angular/forms";
 import { Component, inject, OnInit, signal, WritableSignal } from "@angular/core";
 import { NavigationEnd, NavigationStart, Router, RouterModule, RouterOutlet } from "@angular/router";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 
 import { Layout } from "../layout";
 import { layoutDefaultNavigationData } from "./layout.default.navigation.data";
@@ -16,6 +17,7 @@ import { NavigationHorizontalCdkService } from "../../features/shared/navigation
         RouterModule,
         RouterOutlet,
         ReactiveFormsModule,
+        MatProgressBarModule,
         NavigationHorizontalCdk
     ],
     providers: [
