@@ -6,6 +6,7 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
     {
         label: "flex",
         text: "Flex",
+        path: "/flex",
         handler: NavigationHorizontalCdkDropdownLinkDisplayHandler,
         children: [
             {
@@ -70,6 +71,7 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
     {
         label: "grid",
         text: "Grid",
+        path: "/grid",
         handler: NavigationHorizontalCdkDropdownLinkDisplayHandler,
         children: [
             {

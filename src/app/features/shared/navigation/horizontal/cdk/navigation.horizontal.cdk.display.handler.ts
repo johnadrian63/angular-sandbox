@@ -12,7 +12,7 @@ export interface INavigationHorizontalCdkDisplayHandlerVisitor<T> extends INavig
 }
 
 export class NavigationHorizontalCdkDropdownLinkDisplayHandler extends NavigationDisplayHandler {
-    public readonly renderer: Type<NavigationHorizontalCdkDropdown> = NavigationHorizontalCdkDropdownLink;
+    public readonly renderer: Type<NavigationHorizontalCdkDropdownLink> = NavigationHorizontalCdkDropdownLink;
 
     public accept<T>(visitor: INavigationHorizontalCdkDisplayHandlerVisitor<T>): T {
         return visitor.visitCdkDropdownLink(this);

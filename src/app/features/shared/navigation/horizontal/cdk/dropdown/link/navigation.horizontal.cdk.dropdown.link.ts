@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, computed, inject } from "@angular/core";
 import { NgClass } from "@angular/common";
 import { CdkMenuTrigger } from "@angular/cdk/menu";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
@@ -21,19 +21,41 @@ import { NavigationHorizontalCdkDropdownItem } from "../item/navigation.horizont
     ],
 })
 export class NavigationHorizontalCdkDropdownLink extends NavigationDisplay {
+
+    public get currentClasses(): string {
+        let classes = this.classes;
+
+        if (this.isSettingsActive()) {
+            classes += ` ${this.activeClass}`;
+        }
+
+        return classes;
+    }
+
     public expandIcon = faAngleDown;
 
     public menuClass: string = "";
 
+    public activeClass: string = "underline";
+
     private readonly router: Router = inject<Router>(Router);
 
+    public readonly isSettingsActive = computed(() => {
+        const path = this.menu().path;
 
-    public get isSettingsActive() {
-        return isActive(this.menu().path as string, this.router, {
+        const processedPath = path && Array.isArray(path) ? this.router.createUrlTree(path) : path;
+
+        if (!processedPath) {
+            return false;
+        }
+
+        const active = isActive(processedPath, this.router, {
             paths: 'subset',
             queryParams: 'ignored',
             fragment: 'ignored',
             matrixParams: 'ignored',
         });
-    }
+
+        return active();
+    });
 }

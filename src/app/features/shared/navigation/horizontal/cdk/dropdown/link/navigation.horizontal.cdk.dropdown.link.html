@@ -1,7 +1,6 @@
 <app-navigation-horizontal-cdk-dropdown-item #dropdown [menu]="menu()" [menuClass]="menuClass">
     <span
-        [ngClass]="classes"
-        [class.underline]="isSettingsActive()"
+        [ngClass]="currentClasses"
         class="cursor-pointer flex items-center"
         [cdkMenuTriggerFor]="dropdown.menuItem()!"
     >
