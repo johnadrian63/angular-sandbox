@@ -32,7 +32,9 @@ import { NavigationHorizontalCdkService } from "../../features/shared/navigation
 export class LayoutDefault extends Layout implements OnInit {
     public readonly loading: WritableSignal<boolean> = signal<boolean>(false);
     public readonly router: Router = inject<Router>(Router);
-    public readonly navigationHorizontalCdkService: LayoutDefaultNavigationHorizontalCdkService = inject<LayoutDefaultNavigationHorizontalCdkService>(LayoutDefaultNavigationHorizontalCdkService);
+    public readonly navigationHorizontalCdkService: LayoutDefaultNavigationHorizontalCdkService = inject<LayoutDefaultNavigationHorizontalCdkService>(LayoutDefaultNavigationHorizontalCdkService, {
+        self: true
+    });
 
     public ngOnInit(): void {
         this.navigationHorizontalCdkService.menus.set(layoutDefaultNavigationData);

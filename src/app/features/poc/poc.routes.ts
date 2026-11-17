@@ -7,8 +7,12 @@ export const pocRoutes: Routes = [
         children: [
             {
                 path: "",
-                redirectTo: "nested-handler",
+                redirectTo: "dynamic-navigation",
                 pathMatch: "full"
+            },
+            {
+                path: "dynamic-navigation",
+                loadComponent: () => import("./dynamic-navigation/poc.dynamic.navigation").then((c) => c.PocDynamicNavigation),
             },
             {
                 path: "nested-handler",

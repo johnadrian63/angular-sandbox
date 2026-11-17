@@ -1,7 +1,14 @@
 <h1 class="mx-4 mt-3">
-    <span class="font-bold mr-2">Proof of Concepts</span>
+    <span class="font-bold mr-2">Proof of Concept</span>
 </h1>
 <div class="flex gap-x-3 py-3 justify-center items-center">
+    <a
+        routerLink="dynamic-navigation"
+        [relativeTo]="activatedRoute.parent"
+        routerLinkActive="underline"
+        class="font-semibold hover:underline"
+        >Dynamic Navigation</a
+    >
     <a
         routerLink="nested-handler"
         [relativeTo]="activatedRoute.parent"
