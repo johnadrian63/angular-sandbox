@@ -20,17 +20,47 @@
                         class="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-500"
                     />
                 </div>
+                <div>
+                    <label class="mb-2 block text-sm font-medium text-gray-700">Email</label>
+                    <input
+                        type="email"
+                        [formField]="formModel.email"
+                        class="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-500"
+                    />
+                </div>
                 <button
+                    [ngClass]="{ 'bg-gray-400 cursor-default': formModel().invalid() }"
+                    [disabled]="formModel().invalid()"
                     type="submit"
-                    class="w-full cursor-pointer rounded-md bg-blue-600 p-2 text-white hover:bg-blue-700"
+                    class="w-full cursor-default rounded-md bg-blue-600 p-2 text-white hover:not-[disabled]::bg-blue-700"
                 >
                     Submit
                 </button>
             </form>
         </div>
     </div>
-    <div class="p-5 rounded-lg whitespace-pre-wrap wrap-break-word">
-        <h2>Output:</h2>
-        <pre>{{ registrationModel() | json }}</pre>
+    <div class="p-5 rounded-lg whitespace-pre-wrap wrap-break-word min-w-96">
+        <div class="w-full overflow-x-auto rounded-lg border border-gray-200 mb-2">
+            <table class="w-full text-left text-sm text-gray-600">
+                <thead class="bg-gray-50 text-xs uppercase text-gray-700">
+                    <tr>
+                        <th class="px-6 py-3">Prop</th>
+                        <th class="px-6 py-3">Value</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr class="border-t border-gray-200 hover:bg-gray-50">
+                        <td class="px-6 py-4 font-medium text-gray-900">Form Valid</td>
+                        <td class="px-6 py-4" [ngClass]="{ 'text-red-600': formModel().invalid(),'text-green-600': formModel().valid() }">
+                            {{ formModel().valid() }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <pre
+            class="text-sm border border-dashed border-gray-300 rounded p-3 shadow"
+        ><h3>Output:</h3>{{ registrationModel() | json }}</pre>
     </div>
 </div>

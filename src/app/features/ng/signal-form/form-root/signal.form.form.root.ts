@@ -27,12 +27,4 @@ export class SignalFormFormRoot {
             }
         }
     });
-
-    public onSubmit(event: Event): void {
-        event.preventDefault();
-
-        const registrationData = this.registrationModel();
-
-        console.log("registration data", registrationData);
-    }
 }
