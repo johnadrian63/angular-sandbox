@@ -5,12 +5,12 @@ import {
     ViewContainerRef
 } from "@angular/core";
 
-import { TableBuilderColumnHeaderService } from "../../service";
 import { ITableBuilderHeaderCellData } from "../../model";
+import { TableBuilderColumnHeaderService } from "../../service";
 import { DataDisplayResolverAbstractComponent } from "../../../data-display/data-display.resolver.abstract.component";
 
 @Component({
-    selector: "app-table-builder-data-display-header-resolver-component",
+    selector: "app-table-builder-data-display-header-resolver",
     template: ""
 })
 export class TableBuilderDataDisplayHeaderResolverComponent extends DataDisplayResolverAbstractComponent implements OnInit {

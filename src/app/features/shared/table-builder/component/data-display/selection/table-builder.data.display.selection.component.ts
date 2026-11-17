@@ -10,7 +10,7 @@ import { DataDisplayAbstractComponent } from "../../../../data-display/data-disp
 import { DataDisplayCheckboxComponent } from "../../../../data-display/checkbox/data-display.checkbox.component";
 
 @Component({
-    selector: "app-table-builder-data-display-selection-component",
+    selector: "app-table-builder-data-display-selection",
     templateUrl: "./table-builder.data.display.selection.component.html",
     imports: [
         DataDisplayCheckboxComponent

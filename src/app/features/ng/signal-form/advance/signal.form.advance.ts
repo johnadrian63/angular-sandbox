@@ -9,7 +9,7 @@ export interface IMyRegistration extends IRegistration {
 }
 
 @Component({
-    selector: "app-signal.form.advance",
+    selector: "app-signal-form-advance",
     styleUrl: "./signal.form.advance.css",
     templateUrl: "./signal.form.advance.html",
     imports: [FormField, JsonPipe, FormRoot, NgClass],

@@ -3,6 +3,13 @@
 </h1>
 <div class="flex gap-x-3 py-3 justify-center items-center">
     <a
+        routerLink="table-builder"
+        [relativeTo]="activatedRoute.parent"
+        routerLinkActive="underline"
+        class="font-semibold hover:underline"
+        >Table Builder</a
+    >
+    <a
         routerLink="dynamic-navigation"
         [relativeTo]="activatedRoute.parent"
         routerLinkActive="underline"

@@ -1,25 +1,18 @@
-import {
-    ChangeDetectorRef,
-    Component,
-    OnInit
-} from "@angular/core";
+import { ChangeDetectorRef, Component } from "@angular/core";
 import { MatCheckboxChange } from "@angular/material/checkbox";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
-import {
-    TableBuilderPaginationService,
-    TableBuilderSelectionService
-} from "../../service";
+import { TableBuilderPaginationService, TableBuilderSelectionService } from "../../service";
 import { DataDisplayCheckboxComponent } from "../../../data-display/checkbox/data-display.checkbox.component";
 
 @Component({
-    selector: "app-table-builder-master-selection-component",
-    templateUrl: "./table-builder.master.selection.component.html",
+    selector: "app-table-builder-master-selection",
+    templateUrl: "./table.builder.master.selection.component.html",
     imports: [
         DataDisplayCheckboxComponent
     ]
 })
-export class TableBuilderMasterSelectionComponent implements OnInit {
+export class TableBuilderMasterSelectionComponent {
 
     public get checked(): boolean {
         return this.tableBuilderSelectionService.allSelected;
@@ -41,9 +34,7 @@ export class TableBuilderMasterSelectionComponent implements OnInit {
         private readonly tableBuilderSelectionService: TableBuilderSelectionService,
         private readonly tableBuilderPaginationService: TableBuilderPaginationService,
         private readonly cdr: ChangeDetectorRef
-    ) { }
-
-    public ngOnInit(): void {
+    ) {
         this.tableBuilderSelectionService.selection$
             .pipe(takeUntilDestroyed())
             .subscribe(() => {

@@ -8,7 +8,7 @@ import { IDataDisplayVisitor } from "../../../../data-display/data-display.visit
 import { DataDisplayAbstractComponent } from "../../../../data-display/data-display.abstract.component";
 
 @Component({
-    selector: "app-data-display-header-component",
+    selector: "app-data-display-header",
     templateUrl: "./table-builder.data-display.header.component.html"
 })
 export class TableBuilderDataDisplayHeaderComponent extends DataDisplayAbstractComponent {

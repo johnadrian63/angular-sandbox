@@ -10,7 +10,7 @@ import { TableBuilderColumnService } from "../../service";
 import { DataDisplayResolverAbstractComponent } from "../../../data-display/data-display.resolver.abstract.component";
 
 @Component({
-    selector: "app-table-builder-data-display-resolver-component",
+    selector: "app-table-builder-data-display-resolver",
     template: "",
     styles: [
         `

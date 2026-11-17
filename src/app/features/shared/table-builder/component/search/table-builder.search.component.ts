@@ -10,7 +10,7 @@ import {
 } from "../../service";
 
 @Component({
-    selector: "app-table-builder-search-component",
+    selector: "app-table-builder-search",
     templateUrl: "./table-builder.search.component.html",
     styleUrl: "./table-builder.search.component.css",
     imports: [

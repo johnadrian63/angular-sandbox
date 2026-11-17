@@ -6,7 +6,7 @@ import {
 import { TableBuilderResetService } from "../../service/table-builder.reset.service";
 
 @Component({
-    selector: "app-table-builder-reset-component",
+    selector: "app-table-builder-reset",
     templateUrl: "./table-builder.reset.component.html",
     styleUrl: "./table-builder.reset.component.css"
 })

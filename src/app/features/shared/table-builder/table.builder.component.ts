@@ -1,11 +1,14 @@
 import {
     Component,
+    inject,
     OnDestroy,
     OnInit,
     Optional,
+    signal,
     Signal,
     ViewChild,
-    ViewContainerRef
+    ViewContainerRef,
+    WritableSignal
 } from "@angular/core";
 import { NgClass } from "@angular/common";
 import { PageEvent } from "@angular/material/paginator";
@@ -36,12 +39,12 @@ import {
 } from "./service";
 import { SortDirection } from "../data-collator";
 import { UiPaginatorComponent } from "../ui/paginator/ui.paginator.component";
-import { TableBuilderMasterSelectionComponent } from "./component/selection/table-builder.master.selection.component";
+import { TableBuilderMasterSelectionComponent } from "./component/selection/table.builder.master.selection.component";
 import { TableBuilderDataDisplayHeaderResolverComponent } from "./component/data-display/table-builder.data-display.header.resolver.component";
 import { TableBuilderDataDisplayResolverComponent } from "./component/data-display/table-builder.data-display.resolver.component";
 
 @Component({
-    selector: "app-table-builder-component",
+    selector: "app-table-builder",
     templateUrl: "./table.builder.component.html",
     styleUrl: "./table.builder.component.css",
     imports: [
@@ -55,8 +58,8 @@ import { TableBuilderDataDisplayResolverComponent } from "./component/data-displ
         NgClass,
         UiPaginatorComponent,
         TableBuilderMasterSelectionComponent,
+        TableBuilderDataDisplayResolverComponent,
         TableBuilderDataDisplayHeaderResolverComponent,
-        TableBuilderDataDisplayResolverComponent
     ]
 })
 export class TableBuilderComponent implements OnInit, OnDestroy {
@@ -113,36 +116,27 @@ export class TableBuilderComponent implements OnInit, OnDestroy {
 
 
     // FIXME refactor this! use signals
-    public dataSource!: ITableBuilderRowData[];
+    public dataSource: WritableSignal<ITableBuilderRowData[]> = signal<ITableBuilderRowData[]>([]);
 
-    constructor(
-        private readonly tableBuilderService: TableBuilderService,
-        private readonly tableBuilderPaginationService: TableBuilderPaginationService,
-        private readonly tableBuilderColumnHeaderService: TableBuilderColumnHeaderService,
-        private readonly tableBuilderSortService: TableBuilderSortService,
-        private readonly tableBuilderSelectionService: TableBuilderSelectionService,
-        @Optional() private readonly tableBuilderRowService: TableBuilderRowService
-    ) { }
+    private readonly tableBuilderService: TableBuilderService = inject<TableBuilderService>(TableBuilderService);
+    private readonly tableBuilderPaginationService: TableBuilderPaginationService = inject<TableBuilderPaginationService>(TableBuilderPaginationService);
+    private readonly tableBuilderColumnHeaderService: TableBuilderColumnHeaderService = inject<TableBuilderColumnHeaderService>(TableBuilderColumnHeaderService);
+    private readonly tableBuilderSortService: TableBuilderSortService = inject<TableBuilderSortService>(TableBuilderSortService);
+    private readonly tableBuilderSelectionService: TableBuilderSelectionService = inject<TableBuilderSelectionService>(TableBuilderSelectionService);
+    private readonly tableBuilderRowService: TableBuilderRowService | null = inject<TableBuilderRowService>(TableBuilderRowService, {
+        optional: true
+    });
 
-    public async ngOnInit(): Promise<void> {
+    constructor() {
         this.tableBuilderService.onRefresh
             .pipe(takeUntilDestroyed())
             .subscribe(() => {
                 this.updateSource();
             });
+    }
 
+    public async ngOnInit(): Promise<void> {
         this.tableBuilderService.init();
-
-        // if (this.tableBuilderFilterServiceProvided) {
-        //     this.tableBuilderFilterService.filterApplied
-        //         .pipe(takeUntilDestroyed(this))
-        //         .subscribe(() => {
-        //             this.tableBuilderSelectionService.clearSelection();
-        //             this.tableBuilderSelectionService.reset();
-        //         });
-
-        //     await this.tableBuilderFilterService.initialize();
-        // }
 
         await this.updateSource();
 
@@ -154,11 +148,11 @@ export class TableBuilderComponent implements OnInit, OnDestroy {
     }
 
     public handRowClick(rowData: ITableBuilderRowData, columnKey: string): void {
-        this.tableBuilderRowService.rowClick(rowData, columnKey);
+        this.tableBuilderRowService?.rowClick(rowData, columnKey);
     }
 
     public handleRowClass(rowData: ITableBuilderRowData): string {
-        return this.tableBuilderRowService.handleClass(rowData);
+        return this.tableBuilderRowService?.handleClass(rowData) ?? "";
     }
 
     public handlePageChanged(pageEvent: PageEvent): void {
@@ -184,6 +178,8 @@ export class TableBuilderComponent implements OnInit, OnDestroy {
     }
 
     private async updateSource(): Promise<void> {
-        this.dataSource = await this.tableBuilderService.getData();
+        const dataSource = await this.tableBuilderService.getData();
+
+        this.dataSource.set(dataSource);
     }
 }

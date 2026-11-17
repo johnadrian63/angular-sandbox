@@ -4,7 +4,7 @@
             <div class="flex flex-1 items-center justify-between">
                 @if (masterSelectionEnabled) {
                     <div class="flex-1 flex items-center">
-                        <app-table-builder-master-selection-component></app-table-builder-master-selection-component>
+                        <app-table-builder-master-selection></app-table-builder-master-selection>
                     </div>
                 }
                 @if (paginationEnabled) {
@@ -29,7 +29,7 @@
     </div>
     <div class="flex-1 relative overflow-auto">
         <mat-table
-            [dataSource]="dataSource"
+            [dataSource]="dataSource()"
             class="table"
             [class.table-loading]="loading()"
             cdkDropListLockAxis="x"
@@ -50,8 +50,8 @@
                         cdkDrag
                         *matHeaderCellDef
                     >
-                        <app-table-builder-data-display-header-resolver-component [column]="column">
-                        </app-table-builder-data-display-header-resolver-component>
+                        <app-table-builder-data-display-header-resolver [column]="column">
+                        </app-table-builder-data-display-header-resolver>
                     </mat-header-cell>
                     <mat-cell
                         class="py-1.5"
@@ -59,11 +59,11 @@
                         (click)="handRowClick(rowData, column.key)"
                         *matCellDef="let rowData; let rowIndex = index"
                     >
-                        <app-table-builder-data-display-resolver-component
+                        <app-table-builder-data-display-resolver
                             [columnKey]="column.key"
                             [rowData]="rowData"
                             [rowIndex]="rowIndex"
-                        ></app-table-builder-data-display-resolver-component>
+                        ></app-table-builder-data-display-resolver>
                     </mat-cell>
                 </ng-container>
             }

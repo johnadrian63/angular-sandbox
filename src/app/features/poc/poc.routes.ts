@@ -7,8 +7,12 @@ export const pocRoutes: Routes = [
         children: [
             {
                 path: "",
-                redirectTo: "dynamic-navigation",
+                redirectTo: "table-builder",
                 pathMatch: "full"
+            },
+            {
+                path: "table-builder",
+                loadComponent: () => import("./table-builder/poc.table.builder").then((c) => c.PocTableBuilder),
             },
             {
                 path: "dynamic-navigation",
