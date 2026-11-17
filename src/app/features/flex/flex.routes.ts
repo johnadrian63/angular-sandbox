@@ -38,11 +38,6 @@ export const flexRoutes: Routes = [
                     {
                         path: "basis",
                         loadComponent: () => import("./basis/flex.basis").then((c) => c.FlexBasis),
-                    },
-                    {
-                        path: "",
-                        outlet: "flex-nav",
-                        loadComponent: () => import("./flex-parent/nav/flex.parent.nav").then((c) => c.FlexParentNav),
                     }
                 ]
             },
@@ -70,11 +65,6 @@ export const flexRoutes: Routes = [
                     {
                         path: "shrink",
                         loadComponent: () => import("./shrink/flex.shrink").then((c) => c.FlexShrink),
-                    },
-                    {
-                        path: "",
-                        outlet: "flex-nav",
-                        loadComponent: () => import("./flex-child/nav/flex.child.nav").then((c) => c.FlexChildNav),
                     }
                 ]
             }
