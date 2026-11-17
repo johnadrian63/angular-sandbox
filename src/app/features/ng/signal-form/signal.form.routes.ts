@@ -14,4 +14,8 @@ export const signalFormRoutes: Routes = [
         path: "using-form-root",
         loadComponent: () => import("./form-root/signal.form.form.root").then((c) => c.SignalFormFormRoot),
     },
+    {
+        path: "advance",
+        loadComponent: () => import("./advance/signal.form.advance").then((c) => c.SignalFormAdvance),
+    },
 ];

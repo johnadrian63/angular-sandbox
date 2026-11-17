@@ -1,49 +1,9 @@
 <h1 class="mx-4 mt-3">
     <span class="font-bold mr-2">Material</span>
 </h1>
-<div class="flex gap-x-3 py-3 justify-center items-center">
-    <a
-        routerLink="menu-static"
-        [relativeTo]="activatedRoute.parent"
-        routerLinkActive="underline"
-        class="font-semibold hover:underline"
-        >Static Menu</a
-    >
-    <a
-        routerLink="menu-dynamic"
-        [relativeTo]="activatedRoute.parent"
-        routerLinkActive="underline"
-        class="font-semibold hover:underline"
-        >Dynamic Menu</a
-    >
-    <a
-        routerLink="cdk-menu-static"
-        [relativeTo]="activatedRoute.parent"
-        routerLinkActive="underline"
-        class="font-semibold hover:underline"
-        >Static CDK Menu</a
-    >
-    <a
-        routerLink="cdk-menu-dynamic"
-        [relativeTo]="activatedRoute.parent"
-        routerLinkActive="underline"
-        class="font-semibold hover:underline"
-        >Dynamic CDK Menu</a
-    >
-    <a
-        routerLink="bottom-sheet"
-        [relativeTo]="activatedRoute.parent"
-        routerLinkActive="underline"
-        class="font-semibold hover:underline"
-        >Bottom Sheet</a
-    >
-    <a
-        routerLink="template-portal"
-        [relativeTo]="activatedRoute.parent"
-        routerLinkActive="underline"
-        class="font-semibold hover:underline"
-        >Template Portal</a
-    >
+
+<div class="flex py-3 justify-center items-center">
+    <app-navigation-horizontal-cdk></app-navigation-horizontal-cdk>
 </div>
 
 <div class="p-4">

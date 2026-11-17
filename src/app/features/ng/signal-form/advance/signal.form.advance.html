@@ -1,0 +1,36 @@
+<h3 class="text-center font-bold mb-3">Advance Form</h3>
+
+<div class="flex items-start justify-center bg-gray-100 p-4 gap-x-2">
+    <div class="min-w-96">
+        <div class="w-full max-w-sm rounded-lg bg-white p-6 shadow">
+            <form [formRoot]="formModel" class="space-y-4">
+                <div>
+                    <label class="mb-2 block text-sm font-medium text-gray-700">First name</label>
+                    <input
+                        type="text"
+                        [formField]="formModel.firstName"
+                        class="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-500"
+                    />
+                </div>
+                <div>
+                    <label class="mb-2 block text-sm font-medium text-gray-700">Last name</label>
+                    <input
+                        type="text"
+                        [formField]="formModel.lastName"
+                        class="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-500"
+                    />
+                </div>
+                <button
+                    type="submit"
+                    class="w-full cursor-pointer rounded-md bg-blue-600 p-2 text-white hover:bg-blue-700"
+                >
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="p-5 rounded-lg whitespace-pre-wrap wrap-break-word">
+        <h2>Output:</h2>
+        <pre>{{ registrationModel() | json }}</pre>
+    </div>
+</div>
