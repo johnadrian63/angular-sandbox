@@ -2,7 +2,8 @@
     <nav class="bg-neutral-primary fixed w-full z-20 top-0 inset-s-0 border-b border-default">
         <div class="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-1.5">
             <a routerLink="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <span class="self-center text-xl text-heading font-semibold whitespace-nowrap text-shadow-lg  bg-amber-400 text-wh1ite px-3 py-1.5 rounded-3xl italic border-orange-600 border-2 shadow-2xl"
+                <span
+                    class="self-center text-xl text-heading font-semibold whitespace-nowrap text-shadow-lg bg-amber-400 text-wh1ite px-3 py-1.5 rounded-3xl italic border-orange-600 border-2 shadow-2xl"
                     >NG Sandbox</span
                 >
             </a>
@@ -43,26 +44,9 @@
         </div>
     </nav>
 
-    <div class="mt-11 min-h-0 flex-1 w-full">
+    <div class="mt-11 min-h-0 flex-1 w-full pt-3">
         @if (loading()) {
-            <div
-                class="flex gap-2 absolute w-full justify-center -top-4"
-                role="status"
-                aria-label="Loading"
-            >
-                <span
-                    class="size-3 animate-pulse rounded-full bg-indigo-600"
-                    aria-hidden="true"
-                ></span>
-                <span
-                    class="size-3 animate-pulse rounded-full bg-indigo-600 [animation-delay:0.2s]"
-                    aria-hidden="true"
-                ></span>
-                <span
-                    class="size-3 animate-pulse rounded-full bg-indigo-600 [animation-delay:0.4s]"
-                    aria-hidden="true"
-                ></span>
-            </div>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
         }
         <router-outlet></router-outlet>
     </div>
