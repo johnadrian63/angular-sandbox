@@ -4,7 +4,7 @@ import { FormField, FormRoot, email, form, required } from "@angular/forms/signa
 
 import { IRegistration } from "../signal.form.model";
 
-interface IMyRegistration extends IRegistration {
+export interface IMyRegistration extends IRegistration {
     email: string;
 }
 

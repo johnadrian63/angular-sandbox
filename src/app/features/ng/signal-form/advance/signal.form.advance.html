@@ -52,8 +52,50 @@
                 <tbody>
                     <tr class="border-t border-gray-200 hover:bg-gray-50">
                         <td class="px-6 py-4 font-medium text-gray-900">Form Valid</td>
-                        <td class="px-6 py-4" [ngClass]="{ 'text-red-600': formModel().invalid(),'text-green-600': formModel().valid() }">
+                        <td
+                            class="px-6 py-4"
+                            [ngClass]="{
+                                'text-red-600': formModel().invalid(),
+                                'text-green-600': formModel().valid(),
+                            }"
+                        >
                             {{ formModel().valid() }}
+                        </td>
+                    </tr>
+                    <tr class="border-t border-gray-200 hover:bg-gray-50">
+                        <td class="px-6 py-4 font-medium text-gray-900">First name valid</td>
+                        <td
+                            class="px-6 py-4"
+                            [ngClass]="{
+                                'text-red-600': formModel.firstName().invalid(),
+                                'text-green-600': formModel.firstName().valid(),
+                            }"
+                        >
+                            {{ formModel.firstName().valid() }}
+                        </td>
+                    </tr>
+                    <tr class="border-t border-gray-200 hover:bg-gray-50">
+                        <td class="px-6 py-4 font-medium text-gray-900">Last name valid</td>
+                        <td
+                            class="px-6 py-4"
+                            [ngClass]="{
+                                'text-red-600': formModel.lastName().invalid(),
+                                'text-green-600': formModel.lastName().valid(),
+                            }"
+                        >
+                            {{ formModel.lastName().valid() }}
+                        </td>
+                    </tr>
+                    <tr class="border-t border-gray-200 hover:bg-gray-50">
+                        <td class="px-6 py-4 font-medium text-gray-900">Email valid</td>
+                        <td
+                            class="px-6 py-4"
+                            [ngClass]="{
+                                'text-red-600': formModel.email().invalid(),
+                                'text-green-600': formModel.email().valid(),
+                            }"
+                        >
+                            {{ formModel.email().valid() }}
                         </td>
                     </tr>
                 </tbody>

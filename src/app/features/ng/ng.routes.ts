@@ -9,12 +9,8 @@ export const ngRoutes: Routes = [
         children: [
             {
                 path: "",
-                redirectTo: "vcr",
+                redirectTo: "signal-form",
                 pathMatch: "full"
-            },
-            {
-                path: "vcr",
-                loadComponent: () => import("./vcr/ng.vcr").then((c) => c.NgVcr),
             },
             {
                 path: "signal-form",
@@ -22,7 +18,11 @@ export const ngRoutes: Routes = [
                 children: [
                     ...signalFormRoutes
                 ]
-            }
+            },
+            {
+                path: "vcr",
+                loadComponent: () => import("./vcr/ng.vcr").then((c) => c.NgVcr),
+            },
         ]
     }
 ];
