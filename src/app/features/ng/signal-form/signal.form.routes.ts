@@ -3,15 +3,15 @@ import { Routes } from "@angular/router";
 export const signalFormRoutes: Routes = [
     {
         path: "",
-        redirectTo: "basic",
+        redirectTo: "using-submit",
         pathMatch: "full"
     },
     {
-        path: "basic",
-        loadComponent: () => import("./basic/signal.form.basic").then((c) => c.SignalFormBasic),
+        path: "using-submit",
+        loadComponent: () => import("./submit/signal.form.submit").then((c) => c.SignalFormSubmit),
     },
     {
-        path: "advance",
-        loadComponent: () => import("./advance/signal.form.advance").then((c) => c.SignalFormAdvance),
+        path: "using-form-root",
+        loadComponent: () => import("./form-root/signal.form.form.root").then((c) => c.SignalFormFormRoot),
     },
 ];

@@ -5,12 +5,12 @@ import { JsonPipe } from "@angular/common";
 import { IRegistration } from "../signal.form.model";
 
 @Component({
-    selector: "app-signal-form-advance",
-    styleUrl: "./signal.form.advance.css",
-    templateUrl: "./signal.form.advance.html",
+    selector: "app-signal-form-root",
+    styleUrl: "./signal.form.form.root.css",
+    templateUrl: "./signal.form.form.root.html",
     imports: [FormField, JsonPipe, FormRoot],
 })
-export class SignalFormAdvance {
+export class SignalFormFormRoot {
     public readonly registrationModel = signal<IRegistration>({
         firstName: "",
         lastName: ""
