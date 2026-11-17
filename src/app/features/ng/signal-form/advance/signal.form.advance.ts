@@ -1,6 +1,7 @@
 import { JsonPipe } from "@angular/common";
 import { Component, signal } from "@angular/core";
 import { FormField, FormRoot, form, required } from "@angular/forms/signals";
+
 import { IRegistration } from "../signal.form.model";
 
 @Component({
