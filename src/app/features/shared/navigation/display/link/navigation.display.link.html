@@ -1,4 +1,18 @@
-<a [routerLink]="menu().path" routerLinkActive="underline" [target]="target()" [ngClass]="classes">
+@if (!isExternal) {
+    <a
+        [routerLink]="menu().path"
+        routerLinkActive="underline"
+        [target]="target()"
+        [ngClass]="classes"
+    >
+        <ng-container *ngTemplateOutlet="linkContent"></ng-container>
+    </a>
+} @else {
+    <a [href]="menu().path" [target]="target()" [ngClass]="classes">
+        <ng-container *ngTemplateOutlet="linkContent"></ng-container>
+    </a>
+}
+<ng-template #linkContent>
     @if (iconLeft) {
         <fa-icon class="mr-1" [icon]="iconLeft"></fa-icon>
     }
@@ -6,4 +20,4 @@
     @if (iconRight) {
         <fa-icon class="ml-1" [icon]="iconRight"></fa-icon>
     }
-</a>
+</ng-template>

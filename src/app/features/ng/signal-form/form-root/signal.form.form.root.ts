@@ -23,7 +23,7 @@ export class SignalFormFormRoot {
         }, {
         submission: {
             action: async (field) => {
-                console.log(">>>>>", field().value());
+                console.log("registration data", field().value());
             }
         }
     });

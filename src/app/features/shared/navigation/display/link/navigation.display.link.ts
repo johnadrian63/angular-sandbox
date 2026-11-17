@@ -1,4 +1,4 @@
-import { NgClass } from "@angular/common";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 import { Component, model } from "@angular/core";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
@@ -10,11 +10,17 @@ import { IMenuItemTarget } from "../../navigation.model";
 @Component({
     selector: "app-navigation-display-link",
     templateUrl: "./navigation.display.link.html",
-    imports: [RouterLink, RouterLinkActive, NgClass, FaIconComponent]
+    imports: [RouterLink, RouterLinkActive, NgClass, FaIconComponent, NgTemplateOutlet]
 })
 export class NavigationDisplayLink extends NavigationDisplay {
-    public readonly iconRight: IconDefinition | null = null;
-    public readonly iconLeft: IconDefinition | null = null;
+    public iconRight: IconDefinition | null = null;
+    public iconLeft: IconDefinition | null = null;
 
     public readonly target = model<IMenuItemTarget>("_self");
+
+    get isExternal(): boolean {
+        const path = this.menu().path;
+
+        return !!path && typeof path === "string" && /^https?:\/\//i.test(path);
+    }
 }

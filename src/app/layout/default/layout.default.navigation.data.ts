@@ -1,5 +1,5 @@
 import { IMenuItem } from "../../features/shared/navigation/navigation.model";
-import { LayoutDisplayThemeSwitcherHandler } from "./layout.default.display.handler";
+import { LayoutDisplayGitHubLinkHandler, LayoutDisplayResponsiveLinkHandler, LayoutDisplayThemeSwitcherHandler } from "./layout.default.display.handler";
 
 export const layoutDefaultNavigationData: IMenuItem[] = [
     {
@@ -47,7 +47,15 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
         label: "responsive_layout",
         text: "Responsive Layout",
         path: "/example/responsive",
-        target: "_blank"
+        target: "_blank",
+        handler: LayoutDisplayResponsiveLinkHandler
+    },
+    {
+        label: "github",
+        text: "Github",
+        path: "https://github.com/johnadrian63/angular-sandbox",
+        target: "_blank",
+        handler: LayoutDisplayGitHubLinkHandler
     },
     {
         label: "",

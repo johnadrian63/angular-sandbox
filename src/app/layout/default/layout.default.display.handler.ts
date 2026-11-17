@@ -1,11 +1,17 @@
-import { Type } from "@angular/core";
+import { ComponentRef, Type } from "@angular/core";
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faMobileAlt } from "@fortawesome/free-solid-svg-icons";
 
+import { IMenuItem } from "../../features/shared/navigation/navigation.model";
 import { LayoutDefaultThemeSwitcher } from "./display/theme-switcher/layout.default.theme.switcher";
 import { NavigationHorizontalCdkDisplayHandlerVisitor } from "../../features/shared/navigation/horizontal/cdk/navigation.horizontal.cdk.display.handler";
 import { INavigationDisplayHandlerVisitor, NavigationDisplayHandler, NavigationDisplayLinkHandler } from "../../features/shared/navigation/navigation.display.handler";
+import { NavigationDisplayLink } from "../../features/shared/navigation/display/link/navigation.display.link";
 
 export interface ILayoutDefaultDisplayHandlerVisitor<T> extends INavigationDisplayHandlerVisitor<T> {
     visitThemeSwitcher(handler: LayoutDisplayThemeSwitcherHandler): T;
+    visitGitHubLink(handler: LayoutDisplayGitHubLinkHandler): T;
+    visitResponsiveLink(handler: LayoutDisplayResponsiveLinkHandler): T;
 }
 
 export class LayoutDisplayThemeSwitcherHandler extends NavigationDisplayHandler {
@@ -16,24 +22,49 @@ export class LayoutDisplayThemeSwitcherHandler extends NavigationDisplayHandler 
     }
 }
 
-export class LayoutDefaultDisplayHandlerVisitor extends NavigationHorizontalCdkDisplayHandlerVisitor implements ILayoutDefaultDisplayHandlerVisitor<void> {
+export class LayoutDisplayGitHubLinkHandler extends NavigationDisplayHandler {
+    public override readonly renderer: Type<NavigationDisplayLink> = NavigationDisplayLink;
 
+    public override accept<T>(visitor: ILayoutDefaultDisplayHandlerVisitor<T>): T {
+        return visitor.visitGitHubLink(this);
+    }
+}
+
+export class LayoutDisplayResponsiveLinkHandler extends NavigationDisplayHandler {
+    public override readonly renderer: Type<NavigationDisplayLink> = NavigationDisplayLink;
+
+    public override accept<T>(visitor: ILayoutDefaultDisplayHandlerVisitor<T>): T {
+        return visitor.visitResponsiveLink(this);
+    }
+}
+
+export class LayoutDefaultDisplayHandlerVisitor extends NavigationHorizontalCdkDisplayHandlerVisitor implements ILayoutDefaultDisplayHandlerVisitor<void> {
     public override visitLink(handler: NavigationDisplayLinkHandler): void {
         const componentRef = this.vcr.createComponent(handler.renderer, {
             injector: this.vcr.injector
         });
 
-        const menu = handler.menu;
+        this.renderLink(componentRef, handler.menu);
+    }
 
-        componentRef.instance.menu.set(menu);
-        componentRef.instance.classes = "flex font-semibold";
-        componentRef.location.nativeElement.classList.add("mr-2");
+    public visitGitHubLink(handler: LayoutDisplayGitHubLinkHandler): void {
+        const componentRef = this.vcr.createComponent(handler.renderer, {
+            injector: this.vcr.injector
+        });
 
-        if (menu.target) {
-            componentRef.instance.target.set(menu.target);
-        }
+        componentRef.instance.iconLeft = faGithub;
 
-        componentRef.changeDetectorRef.detectChanges();
+        this.renderLink(componentRef, handler.menu);
+    }
+
+    public visitResponsiveLink(handler: LayoutDisplayResponsiveLinkHandler): void {
+        const componentRef = this.vcr.createComponent(handler.renderer, {
+            injector: this.vcr.injector
+        });
+
+        componentRef.instance.iconLeft = faMobileAlt;
+
+        this.renderLink(componentRef, handler.menu);
     }
 
     public visitThemeSwitcher(handler: LayoutDisplayThemeSwitcherHandler): void {
@@ -45,6 +76,19 @@ export class LayoutDefaultDisplayHandlerVisitor extends NavigationHorizontalCdkD
 
         instance.menu.set(handler.menu);
         instance.classes = "font-semibold";
+
+        componentRef.changeDetectorRef.detectChanges();
+    }
+
+    private renderLink(componentRef: ComponentRef<NavigationDisplayLink>, menu: IMenuItem): void {
+        componentRef.instance.menu.set(menu);
+        componentRef.instance.classes = "flex font-semibold";
+
+        componentRef.location.nativeElement.classList.add("mr-1");
+
+        if (menu.target) {
+            componentRef.instance.target.set(menu.target);
+        }
 
         componentRef.changeDetectorRef.detectChanges();
     }
