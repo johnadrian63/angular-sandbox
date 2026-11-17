@@ -1,5 +1,20 @@
 <h3 class="text-center font-bold mb-3">Advance Form</h3>
-
+<div class="w-100 py-2">
+    <button
+        type="button"
+        (click)="setValue()"
+        class="cursor-pointer rounded-md bg-blue-500 px-2 py-1 mr-2 text-white hover:not-[disabled]::bg-blue-700"
+    >
+        Set Value
+    </button>
+    <button
+        type="button"
+        (click)="resetValue()"
+        class="cursor-pointer rounded-md bg-amber-500 px-2 py-1 text-white hover:not-[disabled]::bg-blue-700"
+    >
+        Reset Value
+    </button>
+</div>
 <div class="flex items-start justify-center bg-gray-100 p-4 gap-x-2">
     <div class="min-w-96">
         <div class="w-full max-w-sm rounded-lg bg-white p-6 shadow">
@@ -39,16 +54,9 @@
             </form>
         </div>
     </div>
-    <div class="p-5 rounded-lg whitespace-pre-wrap wrap-break-word min-w-96">
+    <div class="p-5 rounded-lg whitespace-pre-wrap wrap-break-word flex-1">
         <div class="w-full overflow-x-auto rounded-lg border border-gray-200 mb-2">
             <table class="w-full text-left text-sm text-gray-600">
-                <thead class="bg-gray-50 text-xs uppercase text-gray-700">
-                    <tr>
-                        <th class="px-6 py-3">Prop</th>
-                        <th class="px-6 py-3">Value</th>
-                    </tr>
-                </thead>
-
                 <tbody>
                     <tr class="border-t border-gray-200 hover:bg-gray-50">
                         <td class="px-6 py-4 font-medium text-gray-900">Form Valid</td>
@@ -61,6 +69,7 @@
                         >
                             {{ formModel().valid() }}
                         </td>
+                        <td>-</td>
                     </tr>
                     <tr class="border-t border-gray-200 hover:bg-gray-50">
                         <td class="px-6 py-4 font-medium text-gray-900">First name valid</td>
@@ -72,6 +81,13 @@
                             }"
                         >
                             {{ formModel.firstName().valid() }}
+                        </td>
+                        <td>
+                            @for (error of formModel.firstName().errors(); track $index) {
+                                {{ error.message }}
+                            } @empty {
+                                -
+                            }
                         </td>
                     </tr>
                     <tr class="border-t border-gray-200 hover:bg-gray-50">
@@ -85,6 +101,13 @@
                         >
                             {{ formModel.lastName().valid() }}
                         </td>
+                        <td>
+                            @for (error of formModel.lastName().errors(); track $index) {
+                                {{ error.message }}
+                            } @empty {
+                                -
+                            }
+                        </td>
                     </tr>
                     <tr class="border-t border-gray-200 hover:bg-gray-50">
                         <td class="px-6 py-4 font-medium text-gray-900">Email valid</td>
@@ -96,6 +119,13 @@
                             }"
                         >
                             {{ formModel.email().valid() }}
+                        </td>
+                        <td>
+                            @for (error of formModel.email().errors(); track $index) {
+                                {{ error.message }}
+                            } @empty {
+                                -
+                            }
                         </td>
                     </tr>
                 </tbody>

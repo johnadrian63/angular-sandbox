@@ -23,11 +23,17 @@ export class SignalFormAdvance {
 
     public readonly formModel = form(this.registrationModel,
         (path) => {
-            required(path.firstName);
-            required(path.lastName);
+            required(path.firstName, {
+                message: "First name is required."
+            });
+            required(path.lastName, {
+                message: "Last name is required."
+            });
             required(path.email);
 
-            email(path.email);
+            email(path.email, {
+                message: "Invalid email format."
+            });
         }, {
         submission: {
             action: async (field) => {
@@ -36,4 +42,18 @@ export class SignalFormAdvance {
             }
         }
     });
+
+    public setValue(): void {
+        this.formModel.firstName().value.set("John");
+        this.formModel.lastName().value.set("Doe");
+        this.formModel.email().value.set("john.doe@abc.com");
+    }
+
+    public resetValue(): void {
+        this.formModel().reset({
+            firstName: "",
+            lastName: "",
+            email: ""
+        });
+    }
 }
