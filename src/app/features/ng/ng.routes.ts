@@ -1,5 +1,7 @@
 import { Routes } from "@angular/router";
 
+import { signalFormRoutes } from "./signal-form/signal.form.routes";
+
 export const ngRoutes: Routes = [
     {
         path: "",
@@ -13,6 +15,13 @@ export const ngRoutes: Routes = [
             {
                 path: "vcr",
                 loadComponent: () => import("./vcr/ng.vcr").then((c) => c.NgVcr),
+            },
+            {
+                path: "signal-form",
+                loadComponent: () => import("./signal-form/signal.form").then((c) => c.SignalForm),
+                children: [
+                    ...signalFormRoutes
+                ]
             }
         ]
     }
