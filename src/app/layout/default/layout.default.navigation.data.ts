@@ -92,24 +92,24 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
         ]
     },
     {
-        label: "material",
-        text: "Material",
-        path: "/material"
-    },
-    {
         label: "ng",
         text: "NG",
         path: "/ng"
     },
     {
-        label: "design_patterns",
-        text: "Design Patterns",
-        path: "/design-patterns"
+        label: "material",
+        text: "Material",
+        path: "/material"
     },
     {
         label: "poc",
         text: "POC",
         path: "/poc"
+    },
+    {
+        label: "design_patterns",
+        text: "Design Patterns",
+        path: "/design-patterns"
     },
     {
         label: "basic_layout",
