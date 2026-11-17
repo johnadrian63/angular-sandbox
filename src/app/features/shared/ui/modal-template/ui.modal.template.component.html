@@ -1,0 +1,16 @@
+<div
+    class="border !flex justify-between items-center !m-0 !py-2 !px-4"
+    [ngClass]="headerClass"
+    mat-dialog-title
+>
+    <div class="w-full mr-5">
+        <ng-content select="[header]"></ng-content>
+    </div>
+    <span (click)="close()" class="fa-solid fa-xmark cursor-pointer"></span>
+</div>
+<div #modalBodyRef class="!p-0" [ngClass]="bodyClass" mat-dialog-content>
+    <ng-content select="[body]"></ng-content>
+</div>
+<div [ngClass]="footerClass" mat-dialog-actions>
+    <ng-content select="[footer]"></ng-content>
+</div>

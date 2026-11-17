@@ -1,0 +1,86 @@
+<div class="table-builder-wrapper flex flex-col h-full relative">
+    <div class="relative px-3 bg-white">
+
+        <div class="flex">
+            <div class="flex flex-1 items-center justify-between">
+                @if (masterSelectionEnabled) {
+                    <div class="flex-1 flex items-center">
+                        <app-table-builder-master-selection-component></app-table-builder-master-selection-component>
+                    </div>
+                }
+                @if (paginationEnabled) {
+                    <app-ui-paginator
+                        class="ml-auto"
+                        [pageSizeOptions]="pageSizeOptions"
+                        [pageIndex]="page"
+                        [pageSize]="pageSize"
+                        [count]="count"
+                        [disabled]="loading() === true"
+                        [showFirstLastButtons]="firstAndLastButtonsEnabled"
+                        (page)="handlePageChanged($event)"
+                    ></app-ui-paginator>
+                }
+            </div>
+        </div>
+        @if (loading()) {
+            <div class="paginator-wrapper">
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </div>
+        }
+    </div>
+    <div class="flex-1 relative overflow-auto">
+        <mat-table
+            [dataSource]="dataSource"
+            class="table"
+            [class.table-loading]="loading()"
+            cdkDropListLockAxis="x"
+            cdkDropListOrientation="horizontal"
+            (cdkDropListDropped)="handleColumnDrop($event)"
+            (matSortChange)="handleSort($event)"
+            cdkDropList
+            matSort
+        >
+            <ng-container
+                *ngFor="let column of columns; let i = index"
+                [matColumnDef]="column.key"
+                [sticky]="column.freeze"
+            >
+                <mat-header-cell
+                    [cdkDragDisabled]="column.movable === false"
+                    [style.maxWidth]="column.width"
+                    [disableClear]="true"
+                    [disabled]="column.sortable === false"
+                    mat-sort-header
+                    cdkDrag
+                    *matHeaderCellDef
+                >
+                    <app-table-builder-data-display-header-resolver-component [column]="column">
+                    </app-table-builder-data-display-header-resolver-component>
+                </mat-header-cell>
+                <mat-cell
+                    class="py-1.5"
+                    [style.maxWidth]="column.width"
+                    (click)="handRowClick(rowData, column.key)"
+                    *matCellDef="let rowData; let rowIndex = index"
+                >
+                    <app-table-builder-data-display-resolver-component
+                        [columnKey]="column.key"
+                        [rowData]="rowData"
+                        [rowIndex]="rowIndex"
+                    ></app-table-builder-data-display-resolver-component>
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></mat-header-row>
+            <mat-row
+                *matRowDef="let row; columns: columnsToDisplay"
+                [ngClass]="handleRowClass(row)"
+            ></mat-row>
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell text-center py-3 border" [colSpan]="columns.length">
+                    <ng-container *ngIf="loading(); else noRecordsTmpl"> Loading... </ng-container>
+                    <ng-template #noRecordsTmpl> No records found. </ng-template>
+                </td>
+            </tr>
+        </mat-table>
+    </div>
+</div>
