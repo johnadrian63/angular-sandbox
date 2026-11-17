@@ -29,15 +29,16 @@ export class SignalFormAdvance {
             required(path.lastName, {
                 message: "Last name is required."
             });
-            required(path.email);
 
+            required(path.email, {
+                message: "Email is required."
+            });
             email(path.email, {
                 message: "Invalid email format."
             });
         }, {
         submission: {
             action: async (field) => {
-                alert("form submitted!");
                 console.log("registration data", field().value());
             }
         }
