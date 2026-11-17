@@ -12,7 +12,7 @@ import { DataDisplayCheckboxComponent } from "../checkbox/data-display.checkbox.
 @Component({
     selector: "app-data-display-selection-component",
     templateUrl: "./data-display.selection.component.html",
-    styleUrl: "./data-display.selection.component.scss",
+    styleUrl: "./data-display.selection.component.css",
     imports: [
         DataDisplayCheckboxComponent
     ]

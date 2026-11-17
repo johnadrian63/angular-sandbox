@@ -6,7 +6,7 @@ import { UiButtonComponent } from "../../../ui/button/ui.button.component";
 @Component({
     selector: "app-modal-builder-footer-component",
     templateUrl: "./modal.builder.footer.component.html",
-    styleUrl: "./modal.builder.footer.component.scss",
+    styleUrl: "./modal.builder.footer.component.css",
     imports: [UiButtonComponent]
 })
 export class ModalBuilderFooterComponent {

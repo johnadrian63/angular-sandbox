@@ -14,7 +14,7 @@ import { UiButtonLinkComponent } from "../../ui/button-link/ui.button.link.compo
 @Component({
     selector: "app-data-display-button-component",
     templateUrl: "./data-display.button.component.html",
-    styleUrl: "./data-display.button.component.scss",
+    styleUrl: "./data-display.button.component.css",
     imports: [
         UiButtonLinkComponent
     ]

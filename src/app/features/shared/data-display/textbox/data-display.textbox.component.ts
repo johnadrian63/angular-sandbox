@@ -9,7 +9,7 @@ import { DataDisplayAbstractComponent } from "../data-display.abstract.component
 @Component({
     selector: "app-data-display-textbox-component",
     templateUrl: "./data-display.textbox.component.html",
-    styleUrl: "./data-display.textbox.component.scss",
+    styleUrl: "./data-display.textbox.component.css",
 })
 export class DataDisplayTextboxComponent extends DataDisplayAbstractComponent {
     // FIXME refactor this!

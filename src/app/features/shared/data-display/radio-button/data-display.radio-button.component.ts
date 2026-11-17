@@ -15,7 +15,7 @@ import { DataDisplayAbstractComponent } from "../data-display.abstract.component
 @Component({
     selector: "app-data-display-radio-button-component",
     templateUrl: "./data-display.radio-button.component.html",
-    styleUrl: "./data-display.radio-button.component.scss",
+    styleUrl: "./data-display.radio-button.component.css",
     imports: [
         MatRadioModule
     ]

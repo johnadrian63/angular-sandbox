@@ -12,7 +12,7 @@ import {
 @Component({
     selector: "app-table-builder-search-component",
     templateUrl: "./table-builder.search.component.html",
-    styleUrl: "./table-builder.search.component.scss",
+    styleUrl: "./table-builder.search.component.css",
     imports: [
         ReactiveFormsModule
     ]

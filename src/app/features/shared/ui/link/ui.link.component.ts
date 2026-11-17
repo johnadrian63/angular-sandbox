@@ -4,15 +4,17 @@ import {
     OnInit
 } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { NgClass } from "@angular/common";
 
 import { Ui } from "../ui.theme";
 
 @Component({
     selector: "app-ui-link",
     templateUrl: "./ui.link.component.html",
-    styleUrl: "./ui.link.component.scss",
+    styleUrl: "./ui.link.component.css",
     imports: [
-        RouterModule
+        RouterModule,
+        NgClass
     ]
 })
 export class UiLinkComponent implements OnInit {

@@ -33,7 +33,8 @@ export abstract class ModalBuilderService implements IModalBuilderService {
         return "";
     }
 
-    private modalBuilderHandlerRef: IModalBuilderHandlerRef;
+    // FIXME refactor this!
+    private modalBuilderHandlerRef!: IModalBuilderHandlerRef;
 
     constructor(
         protected readonly modalBuilderHandlerService: ModalBuilderHandlerService

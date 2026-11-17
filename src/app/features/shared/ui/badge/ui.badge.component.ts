@@ -3,12 +3,16 @@ import {
     Input,
     OnInit,
 } from "@angular/core";
+import { NgClass } from "@angular/common";
 
 import { Ui } from "../ui.theme";
 
 @Component({
     selector: "app-ui-badge",
-    templateUrl: "./ui.badge.component.html"
+    templateUrl: "./ui.badge.component.html",
+    imports: [
+        NgClass
+    ]
 })
 export class UiBadgeComponent implements OnInit {
     // FIXME refactor this!

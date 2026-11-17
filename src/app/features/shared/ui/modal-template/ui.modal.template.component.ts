@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import {
     Component,
     ElementRef,
@@ -12,9 +13,10 @@ import {
 @Component({
     selector: "app-ui-modal-template",
     templateUrl: "./ui.modal.template.component.html",
-    styleUrl: "./ui.modal.template.component.scss",
+    styleUrl: "./ui.modal.template.component.css",
     imports: [
-        MatDialogModule
+        MatDialogModule,
+        NgClass
     ]
 })
 export class UiModalTemplateComponent {

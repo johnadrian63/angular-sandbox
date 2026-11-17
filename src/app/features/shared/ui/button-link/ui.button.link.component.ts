@@ -12,8 +12,8 @@ import { Ui } from "../ui.theme";
     selector: "app-ui-button-link",
     templateUrl: "./ui.button.link.component.html",
     styleUrls: [
-        "../button/ui.button.component.scss",
-        "./ui.button.link.component.scss"
+        "../button/ui.button.component.css",
+        "./ui.button.link.component.css"
     ],
     imports: [
         RouterModule,

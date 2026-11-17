@@ -13,7 +13,7 @@ import { PageSizeOptions } from "../../data-collator/data-collator.model";
 @Component({
     selector: "app-ui-paginator",
     templateUrl: "./ui.paginator.component.html",
-    styleUrl: "./ui.paginator.component.scss",
+    styleUrl: "./ui.paginator.component.css",
     imports: [
         MatPaginatorModule
     ]

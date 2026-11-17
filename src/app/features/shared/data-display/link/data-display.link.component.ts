@@ -9,7 +9,7 @@ import { DataDisplayAbstractComponent } from "../data-display.abstract.component
 @Component({
     selector: "app-data-display-link-component",
     templateUrl: "./data-display.link.component.html",
-    styleUrl: "./data-display.link.component.scss"
+    styleUrl: "./data-display.link.component.css"
 })
 export class DataDisplayLinkComponent extends DataDisplayAbstractComponent {
     // FIXME refactor this!

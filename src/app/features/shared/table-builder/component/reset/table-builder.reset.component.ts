@@ -8,7 +8,7 @@ import { TableBuilderResetService } from "../../service/table-builder.reset.serv
 @Component({
     selector: "app-table-builder-reset-component",
     templateUrl: "./table-builder.reset.component.html",
-    styleUrl: "./table-builder.reset.component.scss"
+    styleUrl: "./table-builder.reset.component.css"
 })
 export class TableBuilderResetComponent implements OnInit {
 

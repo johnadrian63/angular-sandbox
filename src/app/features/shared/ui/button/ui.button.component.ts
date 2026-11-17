@@ -6,7 +6,7 @@ import { UiButtonAbstractComponent } from "./ui.button.abstract.component";
 @Component({
     selector: "app-ui-button",
     templateUrl: "./ui.button.component.html",
-    styleUrl: "./ui.button.component.scss",
+    styleUrl: "./ui.button.component.css",
     imports: [
         NgClass
     ]
