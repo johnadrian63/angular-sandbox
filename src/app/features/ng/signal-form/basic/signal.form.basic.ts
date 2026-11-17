@@ -1,5 +1,6 @@
 import { Component, signal } from "@angular/core";
 import { form, FormField } from "@angular/forms/signals";
+import { JsonPipe } from "@angular/common";
 
 import { IRegistration } from "../signal.form.model";
 
@@ -7,7 +8,7 @@ import { IRegistration } from "../signal.form.model";
     selector: "app-signal-form-basic",
     styleUrl: "./signal.form.basic.css",
     templateUrl: "./signal.form.basic.html",
-    imports: [FormField],
+    imports: [FormField, JsonPipe],
 })
 export class SignalFormBasic {
     public readonly registrationModel = signal<IRegistration>({
