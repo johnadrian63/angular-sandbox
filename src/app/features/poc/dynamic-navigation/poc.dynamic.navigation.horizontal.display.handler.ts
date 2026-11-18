@@ -139,7 +139,7 @@ export class PocDynamicNavigationDisplayHandlerVisitor extends NavigationHorizon
 
         componentRef.instance.menu.set(handler.menu);
 
-        componentRef.instance.classes = "px-3 py-1 flex justify-center border border-gray-200";
+        componentRef.instance.classes = "px-3 py-1 flex justify-center cursor-pointer border border-gray-200";
 
         componentRef.location.nativeElement.classList.add("w-full");
     }
