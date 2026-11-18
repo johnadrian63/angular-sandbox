@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { TableBuilderSortService } from "../../../shared/table-builder";
+import { TableBuilderSortService } from "../../../../shared/table-builder";
 
 @Injectable()
 export class PocTableBuilderSortService extends TableBuilderSortService {

@@ -1,8 +1,8 @@
-import { IUserAdapter } from "./poc.table.builder.model";
-import { DataDisplayTextComponent } from "../../shared/data-display/text";
-import { DataDisplayThumbnailComponent } from "../../shared/data-display/thumbnail";
-import { ITableBuilderColumnConfig, ITableBuilderColumnHeaderConfig } from "../../shared/table-builder";
-import { TableBuilderDataDisplayHeaderComponent } from "../../shared/table-builder/component/data-display/header";
+import { IUserAdapter } from "../../poc.table.builder.model";
+import { DataDisplayTextComponent } from "../../../../shared/data-display/text";
+import { DataDisplayThumbnailComponent } from "../../../../shared/data-display/thumbnail";
+import { ITableBuilderColumnConfig, ITableBuilderColumnHeaderConfig } from "../../../../shared/table-builder";
+import { TableBuilderDataDisplayHeaderComponent } from "../../../../shared/table-builder/component/data-display/header";
 
 export const pocTableBuilderHeaderMapper: Map<keyof IUserAdapter, ITableBuilderColumnHeaderConfig>
     = new Map<keyof IUserAdapter, ITableBuilderColumnHeaderConfig>([

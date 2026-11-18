@@ -6,12 +6,13 @@ import { faBars, faTableColumns } from "@fortawesome/free-solid-svg-icons";
 
 import { getRange } from "../../shared/util/range.generator";
 import { ExampleResponsiveNavigation } from "./navigation/example.responsive.navigation";
+import { PocTableBuilderBasic } from "../../poc/table-builder/basic/poc.table.builder.basic";
 
 @Component({
     selector: "app-example-responsive",
     styleUrl: "./example.responsive.css",
     templateUrl: "./example.responsive.html",
-    imports: [RouterModule, ExampleResponsiveNavigation],
+    imports: [RouterModule, ExampleResponsiveNavigation, PocTableBuilderBasic],
 })
 export class ExampleResponsive {
     // public readonly faSearchIcon = faSearch;
