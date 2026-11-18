@@ -19,24 +19,31 @@ export class PocTableBuilderService extends TableBuilderService {
     }
 
     public async getData(): Promise<IUserAdapter[]> {
-        const apiUrl = "https://dummyjson.com/users";
+        try {
+            this.setLoading(true);
 
-        const result = await lastValueFrom(this.httpClient.get<IUserCollection>(apiUrl, {
-            params: {
-                skip: this.tableBuilderPaginationService.page,
-                limit: this.tableBuilderPaginationService.pageSize
+            const apiUrl = "https://dummyjson.com/users";
+            const result = await lastValueFrom(this.httpClient.get<IUserCollection>(apiUrl, {
+                params: {
+                    skip: this.tableBuilderPaginationService.page,
+                    limit: this.tableBuilderPaginationService.pageSize
+                }
+            }));
+
+            this.tableBuilderPaginationService.setCount(result.total);
+
+            const users: IUserAdapter[] = [];
+
+            for (let user of result.users) {
+                users.push(new UserAdapter(user));
             }
-        }));
 
-        this.tableBuilderPaginationService.setCount(result.total);
-
-        const users: IUserAdapter[] = [];
-
-        for (let user of result.users) {
-            users.push(new UserAdapter(user));
+            return users;
+        } catch (error) {
+            return [];
+        } finally {
+            this.setLoading(false);
         }
-
-        return users;
     }
 
     public override reset(): void {
