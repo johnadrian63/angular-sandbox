@@ -4,7 +4,7 @@ import {
     Subject
 } from "rxjs";
 
-import { TableBuilderDataDisplaySelectionComponent } from "../component/data-display/selection/table-builder.data.display.selection.component";
+import { TableBuilderDataDisplaySelectionComponent } from "../component/data-display/selection/table.builder.data.display.selection.component";
 
 export interface ITableBuilderSelection {
     selected: string[];

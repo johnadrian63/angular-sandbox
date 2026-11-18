@@ -7,7 +7,7 @@ import {
     ITableBuilderRowData,
     ITableBuilderColumnConfig
 } from "../model";
-import { TableBuilderColumnCellDataVisitor } from "../model/table-builder.column-cell-data.visitor";
+import { TableBuilderColumnCellDataVisitor } from "../model/table.builder.column.cell.data.visitor";
 
 interface ITableBuilderColumn {
     handle(

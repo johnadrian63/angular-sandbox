@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 
 import { ITableBuilderHeaderCellData } from "../model";
-import { TableBuilderHeaderCellData } from "../model/table-builder.header-cell-data";
+import { TableBuilderHeaderCellData } from "../model/table.builder.header.cell.data";
 import { TableBuilderDataDisplayHeaderComponent } from "../component/data-display/header";
 
 interface ITableBuilderColumnHeader {

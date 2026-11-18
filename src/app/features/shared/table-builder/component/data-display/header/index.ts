@@ -1,1 +1,1 @@
-export * from "./table-builder.data-display.header.component";
+export * from "./table.builder.data.display.header.component";

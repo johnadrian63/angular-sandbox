@@ -40,8 +40,8 @@ import {
 } from "./service";
 import { UiPaginatorComponent } from "../ui/paginator/ui.paginator.component";
 import { TableBuilderMasterSelectionComponent } from "./component/selection/table.builder.master.selection.component";
-import { TableBuilderDataDisplayHeaderRendererComponent } from "./component/data-display/table-builder.data-display.header.renderer.component";
-import { TableBuilderDataDisplayRendererComponent } from "./component/data-display/table-builder.data-display.renderer.component";
+import { TableBuilderDataDisplayHeaderRendererComponent } from "./component/data-display/table.builder.data.display.header.renderer.component";
+import { TableBuilderDataDisplayRendererComponent } from "./component/data-display/table.builder.data.display.renderer.component";
 
 @Component({
     selector: "app-table-builder",

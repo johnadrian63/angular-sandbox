@@ -3,7 +3,7 @@ import { Injectable, ViewContainerRef } from "@angular/core";
 import { TableBuilderColumnService } from "../../../shared/table-builder";
 import { IPostAdapter } from "../poc.table.builder.model";
 import { pocTableBuilderMapper } from "../poc.table.builder.config";
-import { TableBuilderColumnCellDataVisitor } from "../../../shared/table-builder/model/table-builder.column-cell-data.visitor";
+import { TableBuilderColumnCellDataVisitor } from "../../../shared/table-builder/model/table.builder.column.cell.data.visitor";
 import { DataDisplayTextComponent } from "../../../shared/data-display/text";
 
 @Injectable()

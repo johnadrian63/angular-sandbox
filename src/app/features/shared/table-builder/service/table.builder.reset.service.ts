@@ -4,8 +4,8 @@ import {
 } from "@angular/core";
 import { Observable, Subject } from "rxjs";
 
-import { TableBuilderSortService } from "./table-builder.sort.service";
-import { TableBuilderPaginationService } from "./table-builder.pagination.service";
+import { TableBuilderSortService } from "./table.builder.sort.service";
+import { TableBuilderPaginationService } from "./table.builder.pagination.service";
 
 @Injectable()
 export abstract class TableBuilderResetService {
