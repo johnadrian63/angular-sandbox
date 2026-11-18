@@ -1,5 +1,5 @@
 import { IMenuItem } from "../../shared/navigation/navigation.model";
-import { PocDynamicNavigationDisplayAnimalHandler, PocDynamicNavigationDisplayColorHandler, PocDynamicNavigationDisplayImageHandler } from "./poc.dynamic.navigation.horizontal.display.handler";
+import { PocDynamicNavigationDisplayAnimalHandler, PocDynamicNavigationDisplayColorHandler, PocDynamicNavigationDisplayImageHandler, PocDynamicNavigationDisplaySelectDropdownHandler } from "./poc.dynamic.navigation.horizontal.display.handler";
 
 export const pocDynamicNavigationData: IMenuItem[] = [
     {
@@ -92,6 +92,21 @@ export const pocDynamicNavigationData: IMenuItem[] = [
                 text: "Cow",
                 handler: PocDynamicNavigationDisplayAnimalHandler
             },
+        ]
+    },
+    {
+        label: "select_dropdown",
+        text: "Select Dropdown",
+        handler: PocDynamicNavigationDisplaySelectDropdownHandler,
+        children: [
+            {
+                label: "select_dropdown_value1",
+                text: "Value 1",
+            },
+            {
+                label: "select_dropdown_value1",
+                text: "Value 2",
+            }
         ]
     },
     {

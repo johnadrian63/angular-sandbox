@@ -6,11 +6,13 @@ import { NavigationDisplayHandler } from "../../shared/navigation/navigation.dis
 import { NavigationDisplayLink } from "../../shared/navigation/display/link/navigation.display.link";
 import { INavigationHorizontalCdkDisplayHandlerVisitor, NavigationHorizontalCdkDisplayHandlerVisitor } from "../../shared/navigation/horizontal/cdk/navigation.horizontal.cdk.display.handler";
 import { NavigationDisplayImage } from "../../shared/navigation/display/image/navigation.display.image";
+import { PocDynamicNavigationDisplaySelectDropdown } from "./display/select/poc.dynamic.navigation.display.select.dropdown";
 
 export interface IPocDynamicNavigationDisplayHandlerVisitor<T> extends INavigationHorizontalCdkDisplayHandlerVisitor<T> {
     visitColor(handler: PocDynamicNavigationDisplayColorHandler): T;
     visitAnimal(handler: PocDynamicNavigationDisplayAnimalHandler): T;
     visitImage(handler: PocDynamicNavigationDisplayImageHandler): T;
+    visitSelectDropdown(handler: PocDynamicNavigationDisplaySelectDropdownHandler): T;
 }
 
 export class PocDynamicNavigationDisplayColorHandler extends NavigationDisplayHandler {
@@ -34,6 +36,14 @@ export class PocDynamicNavigationDisplayImageHandler extends NavigationDisplayHa
 
     public accept<T>(visitor: IPocDynamicNavigationDisplayHandlerVisitor<T>): T {
         return visitor.visitImage(this);
+    }
+}
+
+export class PocDynamicNavigationDisplaySelectDropdownHandler extends NavigationDisplayHandler {
+    public override readonly renderer: Type<PocDynamicNavigationDisplaySelectDropdown> = PocDynamicNavigationDisplaySelectDropdown;
+
+    public accept<T>(visitor: IPocDynamicNavigationDisplayHandlerVisitor<T>): T {
+        return visitor.visitSelectDropdown(this);
     }
 }
 
@@ -69,7 +79,6 @@ const imageMapper = new Map<string, string>([
 ]);
 
 export class PocDynamicNavigationDisplayHandlerVisitor extends NavigationHorizontalCdkDisplayHandlerVisitor implements IPocDynamicNavigationDisplayHandlerVisitor<void> {
-
     public visitColor(handler: PocDynamicNavigationDisplayColorHandler): void {
         const componentRef = this.vcr.createComponent(handler.renderer, {
             injector: this.vcr.injector
@@ -119,6 +128,18 @@ export class PocDynamicNavigationDisplayHandlerVisitor extends NavigationHorizon
         componentRef.instance.height.set("60");
 
         componentRef.instance.classes = "px-3 py-1 flex justify-center";
+
+        componentRef.location.nativeElement.classList.add("w-full");
+    }
+
+    public visitSelectDropdown(handler: PocDynamicNavigationDisplaySelectDropdownHandler): void {
+        const componentRef = this.vcr.createComponent(handler.renderer, {
+            injector: this.vcr.injector
+        });
+
+        componentRef.instance.menu.set(handler.menu);
+
+        componentRef.instance.classes = "px-3 py-1 flex justify-center border border-gray-200";
 
         componentRef.location.nativeElement.classList.add("w-full");
     }

@@ -1,0 +1,5 @@
+<select [ngClass]="classes">
+    @for (option of menu().children; track $index) {
+        <option>{{ option.text }}</option>
+    }
+</select>
