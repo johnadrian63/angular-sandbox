@@ -11,7 +11,7 @@ import { LayoutDefaultThemeSwitcherService, LayoutTheme } from "./layout.default
     templateUrl: "./layout.default.theme.switcher.html",
     imports: [
         ReactiveFormsModule,
-        NgClass,
+        NgClass
     ],
 })
 export class LayoutDefaultThemeSwitcher extends NavigationDisplay implements OnInit {

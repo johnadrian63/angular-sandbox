@@ -10,7 +10,7 @@ import { MatBottomSheet, MatBottomSheetModule } from "@angular/material/bottom-s
 
 import { getRange } from "../../../shared/util/range.generator";
 import { IMenuItem } from "../../../shared/navigation/navigation.model";
-import { navigationData } from "../../../shared/navigation/navigation.data";
+import { exampleResponsiveNavigationData } from "./example.responsive.navigation.data";
 import { ExampleResponsiveNavigationVerticalMenu } from "./vertical-menu/example.responsive.navigation.vertical.menu";
 import { ExampleResponsiveNavigationHorizontalMenu } from "./horizontal-menu/example.responsive.navigation.horizontal.menu";
 import { ExampleResponsiveNavigationHorizontalProfile } from "./horizontal-profile/example.responsive.navigation.horizontal.profile";
@@ -19,7 +19,6 @@ import { ExampleResponsiveNavigationHorizontalMenuCdkService } from "./horizonta
 import { ExampleResponsiveNavigationHorizontalProfileCdkService } from "./horizontal-profile/example.responsive.navigation.horizontal.profile.service";
 import { ExampleResponsiveNavigationVerticalMenuService } from "./vertical-menu/example.responsive.navigation.vertical.menu.service";
 import { ExampleResponsiveNavigationVerticalProfileMenuService } from "./vertical-profile/example.responsive.navigation.vertical.profile.menu.service";
-import { ExampleResponsiveNavigationHorizontalProfileDropdown } from "./horizontal-profile/dropdown/example.responsive.navigation.horizontal.profile.dropdown";
 import { ExampleResponsiveNavigationHorizontalProfileDisplayHandler } from "./horizontal-profile/example.responsive.navigation.horizontal.profile.display.handler";
 
 @Component({
@@ -72,8 +71,8 @@ export class ExampleResponsiveNavigation implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.navigationHorizontalMenuCdkService.menus.set(navigationData);
-        this.navigationVerticalMenuService.menus.set(navigationData);
+        this.navigationHorizontalMenuCdkService.menus.set(exampleResponsiveNavigationData);
+        this.navigationVerticalMenuService.menus.set(exampleResponsiveNavigationData);
 
         const profileNavigationData: IMenuItem[] = [
             {

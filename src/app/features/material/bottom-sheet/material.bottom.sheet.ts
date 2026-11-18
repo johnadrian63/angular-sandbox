@@ -3,12 +3,11 @@ import { MatListModule } from "@angular/material/list";
 import { MatButtonModule } from "@angular/material/button";
 import { MatBottomSheetModule, MatBottomSheet } from "@angular/material/bottom-sheet";
 
-
 import { MaterialBottomSheetPanel } from "./panel/material.bottom.sheet.panel";
-import { MaterialBottomSheetNavigationVerticalService } from "./material.bottom.sheet.vertical.menu.service";
 import { navigationData } from "../../shared/navigation/navigation.data";
 import { NavigationVertical } from "../../shared/navigation/vertical/navigation.vertical";
 import { NavigationVerticalService } from "../../shared/navigation/vertical/navigation.vertical.service";
+import { MaterialBottomSheetNavigationVerticalService } from "./material.bottom.sheet.vertical.menu.service";
 
 @Component({
     selector: "app-material-bottom-sheet",

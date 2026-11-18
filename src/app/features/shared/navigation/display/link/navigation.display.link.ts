@@ -13,14 +13,14 @@ import { IMenuItemTarget } from "../../navigation.model";
     imports: [RouterLink, RouterLinkActive, NgClass, FaIconComponent, NgTemplateOutlet]
 })
 export class NavigationDisplayLink extends NavigationDisplay {
-    public iconRight: IconDefinition | null = null;
-    public iconLeft: IconDefinition | null = null;
-
-    public readonly target = model<IMenuItemTarget>("_self");
-
-    get isExternal(): boolean {
+    public get isExternal(): boolean {
         const path = this.menu().path;
 
         return !!path && typeof path === "string" && /^https?:\/\//i.test(path);
     }
+
+    public iconRight: IconDefinition | null = null;
+    public iconLeft: IconDefinition | null = null;
+
+    public readonly target = model<IMenuItemTarget>("_self");
 }
