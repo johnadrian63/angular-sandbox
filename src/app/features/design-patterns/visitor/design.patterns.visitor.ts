@@ -5,10 +5,10 @@ import { designPattersVisitorData } from "./design.patterns.visitor.data";
 import { DesignPatternsVisitorResolver } from "./design.patterns.visitor.resolver";
 
 @Component({
-    imports: [DesignPatternsVisitorResolver],
     selector: "app-design-patterns-visitor",
     styleUrl: "./design.patterns.visitor.css",
     templateUrl: "./design.patterns.visitor.html",
+    imports: [DesignPatternsVisitorResolver],
 })
 export class DesignPatternsVisitor implements OnInit {
     public readonly elements = signal<IHtmlElement[]>([]);

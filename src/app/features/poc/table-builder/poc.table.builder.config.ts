@@ -1,5 +1,6 @@
 import { IUserAdapter } from "./poc.table.builder.model";
 import { DataDisplayTextComponent } from "../../shared/data-display/text";
+import { DataDisplayThumbnailComponent } from "../../shared/data-display/thumbnail";
 import { ITableBuilderColumnConfig, ITableBuilderColumnHeaderConfig } from "../../shared/table-builder";
 import { TableBuilderDataDisplayHeaderComponent } from "../../shared/table-builder/component/data-display/header";
 
@@ -98,7 +99,7 @@ export const pocTableBuilderMapper: Map<keyof IUserAdapter, ITableBuilderColumnC
         [
             "image",
             {
-                renderer: DataDisplayTextComponent
+                renderer: DataDisplayThumbnailComponent
             }
         ],
     ]);

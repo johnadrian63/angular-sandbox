@@ -76,7 +76,10 @@ class BadgeManagerListTableBuilderColumnDataVisitor implements IDataDisplayVisit
     }
 
     public visitThumbnail(component: DataDisplayThumbnailComponent): void {
-        throw new Error("Method not implemented.");
-    }
+        const value = <string>this.row[this.columnKey];
 
+        component.thumbnailUrl.set(value);
+        component.height.set("110");
+        component.width.set("110");
+    }
 }
