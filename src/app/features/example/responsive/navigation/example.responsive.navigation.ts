@@ -20,6 +20,7 @@ import { ExampleResponsiveNavigationHorizontalProfileCdkService } from "./horizo
 import { ExampleResponsiveNavigationVerticalMenuService } from "./vertical-menu/example.responsive.navigation.vertical.menu.service";
 import { ExampleResponsiveNavigationVerticalProfileMenuService } from "./vertical-profile/example.responsive.navigation.vertical.profile.menu.service";
 import { ExampleResponsiveNavigationHorizontalProfileDisplayHandler } from "./horizontal-profile/example.responsive.navigation.horizontal.profile.display.handler";
+import { LayoutDisplayThemeSwitcherHandler } from "../../../../layout/default/layout.default.navigation.horizontal.display.handler";
 
 @Component({
     selector: "app-example-responsive-navigation",
@@ -75,6 +76,11 @@ export class ExampleResponsiveNavigation implements OnInit {
         this.navigationVerticalMenuService.menus.set(exampleResponsiveNavigationData);
 
         const profileNavigationData: IMenuItem[] = [
+            {
+                label: "",
+                text: "",
+                handler: LayoutDisplayThemeSwitcherHandler
+            },
             {
                 label: "john",
                 text: "John",

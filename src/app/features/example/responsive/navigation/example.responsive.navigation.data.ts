@@ -37,10 +37,5 @@ export const exampleResponsiveNavigationData: IMenuItem[] = [
     {
         label: "analytics",
         text: "Analytics",
-    },
-    {
-        label: "",
-        text: "",
-        handler: LayoutDisplayThemeSwitcherHandler
     }
 ];
