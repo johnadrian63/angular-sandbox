@@ -9,6 +9,7 @@ import { materialRoutes } from "./features/material/material.routes";
 import { designPatternRoutes } from "./features/design-patterns/design.patterns.routes";
 import { ngRoutes } from "./features/ng/ng.routes";
 import { pocRoutes } from "./features/poc/poc.routes";
+import { demoAppRoutes } from "./features/demo-app/demo.app.routes";
 
 export const routes: Routes = [
     {
@@ -48,6 +49,12 @@ export const routes: Routes = [
                 path: "material",
                 children: [
                     ...materialRoutes
+                ]
+            },
+            {
+                path: "demo-app",
+                children: [
+                    ...demoAppRoutes
                 ]
             },
             {
