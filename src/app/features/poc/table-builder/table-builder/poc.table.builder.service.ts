@@ -2,8 +2,8 @@ import { inject, Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { lastValueFrom } from "rxjs";
 
-import { TableBuilderService } from "../../shared/table-builder";
-import { IPost, IPostAdapter, PostAdapter } from "./poc.table.builder.model";
+import { TableBuilderService } from "../../../shared/table-builder";
+import { IPost, IPostAdapter, PostAdapter } from "../poc.table.builder.model";
 
 @Injectable()
 export class PocTableBuilderService extends TableBuilderService {

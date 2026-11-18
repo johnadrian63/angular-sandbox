@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 
-import { TableBuilderColumnHeaderService, TableBuilderHeaderCellData } from "../../shared/table-builder";
-import { pocTableBuilderHeaderMapper } from "./poc.table.builder.config";
+import { TableBuilderColumnHeaderService, TableBuilderHeaderCellData } from "../../../shared/table-builder";
+import { pocTableBuilderHeaderMapper } from "../poc.table.builder.config";
 
 @Injectable()
 export class PocTableBuilderColumnHeaderService extends TableBuilderColumnHeaderService {

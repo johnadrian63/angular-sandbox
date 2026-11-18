@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
 
-import { PocTableBuilderService } from "./poc.table.builder.service";
-import { PocTableBuilderSortService } from "./poc.table.builder.sort.service";
-import { PocTableBuilderColumnService } from "./poc.table.builder.column.service";
-import { PocTableBuilderSelectionService } from "./poc.table.builder.selection.service";
-import { PocTableBuilderPaginationService } from "./poc.table.builder.pagination.service";
-import { PocTableBuilderColumnHeaderService } from "./poc.table.builder.column.header.service";
+import { PocTableBuilderService } from "./table-builder/poc.table.builder.service";
+import { PocTableBuilderSortService } from "./table-builder/poc.table.builder.sort.service";
+import { PocTableBuilderColumnService } from "./table-builder/poc.table.builder.column.service";
+import { PocTableBuilderSelectionService } from "./table-builder/poc.table.builder.selection.service";
+import { PocTableBuilderPaginationService } from "./table-builder/poc.table.builder.pagination.service";
+import { PocTableBuilderColumnHeaderService } from "./table-builder/poc.table.builder.column.header.service";
 import { TableBuilderColumnHeaderService, TableBuilderColumnService, TableBuilderComponent, TableBuilderPaginationService, TableBuilderSelectionService, TableBuilderService, TableBuilderSortService } from "../../shared/table-builder";
 
 @Component({

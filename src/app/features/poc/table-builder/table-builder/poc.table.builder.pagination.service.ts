@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { TableBuilderPaginationService } from "../../shared/table-builder";
+import { TableBuilderPaginationService } from "../../../shared/table-builder";
 
 @Injectable()
 export class PocTableBuilderPaginationService extends TableBuilderPaginationService {
