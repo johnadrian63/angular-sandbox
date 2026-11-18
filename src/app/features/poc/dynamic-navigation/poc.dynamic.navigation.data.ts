@@ -126,8 +126,8 @@ export const pocDynamicNavigationData: IMenuItem[] = [
         ]
     },
     {
-        label: "assorted",
-        text: "Assorted",
+        label: "mixed",
+        text: "Mixed",
         children: [
             {
                 label: "green",
@@ -176,7 +176,29 @@ export const pocDynamicNavigationData: IMenuItem[] = [
             {
                 label: "pink",
                 text: "Pink",
-                handler: PocDynamicNavigationDisplayColorHandler
+                handler: PocDynamicNavigationDisplayColorHandler,
+                children: [
+                    {
+                        label: "black",
+                        text: "Black",
+                        handler: PocDynamicNavigationDisplayColorHandler
+                    },
+                    {
+                        label: "green",
+                        text: "Green",
+                        handler: PocDynamicNavigationDisplayColorHandler
+                    },
+                    {
+                        label: "yellow",
+                        text: "Yellow",
+                        handler: PocDynamicNavigationDisplayColorHandler
+                    },
+                    {
+                        label: "gray",
+                        text: "Gray",
+                        handler: PocDynamicNavigationDisplayColorHandler
+                    },
+                ]
             }
         ]
     }
