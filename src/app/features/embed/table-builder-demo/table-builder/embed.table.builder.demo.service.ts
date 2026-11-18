@@ -23,10 +23,13 @@ export class PocTableBuilderService extends TableBuilderService {
             this.setLoading(true);
 
             const apiUrl = "https://dummyjson.com/users";
+
+            const pageSize = this.tableBuilderPaginationService.pageSize;
+            const page = this.tableBuilderPaginationService.page;
             const result = await lastValueFrom(this.httpClient.get<IUserCollection>(apiUrl, {
                 params: {
-                    skip: this.tableBuilderPaginationService.page,
-                    limit: this.tableBuilderPaginationService.pageSize
+                    skip: pageSize * page,
+                    limit: pageSize
                 }
             }));
 
