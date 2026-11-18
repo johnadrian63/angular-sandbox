@@ -1,1 +1,1 @@
-export * from "./data-display.textbox.component";
+export * from "./data.display.textbox.component";

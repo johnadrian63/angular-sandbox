@@ -1,1 +1,1 @@
-export * from "./data-display.thumbnail.component";
+export * from "./data.display.thumbnail.component";

@@ -4,7 +4,6 @@ import {
     Input,
     Output
 } from "@angular/core";
-import { CommonModule } from "@angular/common";
 import {
     MatCheckboxChange,
     MatCheckboxModule
@@ -14,10 +13,9 @@ import { IDataDisplayVisitor } from "../data-display.visitor.interface";
 import { DataDisplayAbstractComponent } from "../data-display.abstract.component";
 
 @Component({
-    selector: "app-data-display-checkbox-component",
-    templateUrl: "./data-display.checkbox.component.html",
+    selector: "app-data-display-checkbox",
+    templateUrl: "./data.display.checkbox.component.html",
     imports: [
-        CommonModule,
         MatCheckboxModule
     ]
 })
@@ -34,10 +32,6 @@ export class DataDisplayCheckboxComponent extends DataDisplayAbstractComponent {
     }
 
     public override accept<T>(visitor: IDataDisplayVisitor<T>): T {
-        if (visitor.visitCheckbox) {
-            return visitor.visitCheckbox(this);
-        }
-
-        throw new Error("refactor this visitor.visitCheckbox!");
+        return visitor.visitCheckbox(this);
     }
 }

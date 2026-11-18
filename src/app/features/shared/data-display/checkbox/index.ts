@@ -1,1 +1,1 @@
-export * from "./data-display.checkbox.component";
+export * from "./data.display.checkbox.component";

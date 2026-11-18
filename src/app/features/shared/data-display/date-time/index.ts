@@ -1,1 +1,1 @@
-export * from "./data-display.date-time.component";
+export * from "./data.display.date.time.component";

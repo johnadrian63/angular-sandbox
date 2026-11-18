@@ -12,9 +12,8 @@ import { DataDisplayAbstractComponent } from "../data-display.abstract.component
 import { UiButtonLinkComponent } from "../../ui/button-link/ui.button.link.component";
 
 @Component({
-    selector: "app-data-display-button-component",
-    templateUrl: "./data-display.button.component.html",
-    styleUrl: "./data-display.button.component.css",
+    selector: "app-data-display-button",
+    templateUrl: "./data.display.button.component.html",
     imports: [
         UiButtonLinkComponent
     ]
@@ -36,10 +35,6 @@ export class DataDisplayButtonComponent extends DataDisplayAbstractComponent {
     }
 
     public accept<T>(visitor: IDataDisplayVisitor<T>): T {
-        if (visitor.visitButton) {
-            return visitor.visitButton(this);
-        }
-
-        throw new Error("refactor this visitor.visitButton!");
+        return visitor.visitButton(this);
     }
 }

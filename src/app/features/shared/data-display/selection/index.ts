@@ -1,1 +1,1 @@
-export * from "./data-display.selection.component";
+export * from "./data.display.selection.component";

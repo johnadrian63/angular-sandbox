@@ -13,9 +13,8 @@ import { IDataDisplayVisitor } from "../data-display.visitor.interface";
 import { DataDisplayAbstractComponent } from "../data-display.abstract.component";
 
 @Component({
-    selector: "app-data-display-radio-button-component",
-    templateUrl: "./data-display.radio-button.component.html",
-    styleUrl: "./data-display.radio-button.component.css",
+    selector: "app-data-display-radio-button",
+    templateUrl: "./data.display.radio.button.component.html",
     imports: [
         MatRadioModule
     ]
@@ -23,7 +22,6 @@ import { DataDisplayAbstractComponent } from "../data-display.abstract.component
 export class DataDisplayRadioButtonComponent extends DataDisplayAbstractComponent {
     // FIXME refactor this!
     @Input() public name!: string;
-
     // FIXME refactor this!
     @Input() public value!: string;
     @Input() public checked: boolean = false;
@@ -31,10 +29,6 @@ export class DataDisplayRadioButtonComponent extends DataDisplayAbstractComponen
     @Output() public handleChange: EventEmitter<MatRadioChange> = new EventEmitter<MatRadioChange>();
 
     public override accept<T>(visitor: IDataDisplayVisitor<T>): T {
-        if (visitor.visitRadioButton) {
-            return visitor.visitRadioButton(this);
-        }
-
-        throw new Error("refactor this visitor.visitRadioButton");
+        return visitor.visitRadioButton(this);
     }
 }

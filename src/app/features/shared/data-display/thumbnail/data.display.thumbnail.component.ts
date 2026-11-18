@@ -8,18 +8,13 @@ import { DataDisplayAbstractComponent } from "../data-display.abstract.component
 
 @Component({
     selector: "app-data-display-thumbnail-component",
-    templateUrl: "./data-display.thumbnail.component.html",
-    styleUrl: "./data-display.thumbnail.component.css"
+    templateUrl: "./data.display.thumbnail.component.html"
 })
 export class DataDisplayThumbnailComponent extends DataDisplayAbstractComponent {
     // FIXME refactor this!
     @Input() public thumbnailUrl!: string;
 
     public accept<T>(visitor: IDataDisplayVisitor<T>): T {
-        if (visitor.visitThumbnail) {
-            return visitor.visitThumbnail(this);
-        }
-
-        throw new Error("refactor thisvisitor.visitThumbnail!");
+        return visitor.visitThumbnail(this);
     }
 }

@@ -3,7 +3,7 @@ import { MatCheckboxChange } from "@angular/material/checkbox";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 import { TableBuilderPaginationService, TableBuilderSelectionService } from "../../service";
-import { DataDisplayCheckboxComponent } from "../../../data-display/checkbox/data-display.checkbox.component";
+import { DataDisplayCheckboxComponent } from "../../../data-display/checkbox/data.display.checkbox.component";
 
 @Component({
     selector: "app-table-builder-master-selection",

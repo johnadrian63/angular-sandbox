@@ -1,8 +1,8 @@
 <div class="flex items-center">
-    <app-data-display-checkbox-component
+    <app-data-display-checkbox
         [checked]="checked"
         [indeterminate]="partiallySelected"
         (handleSelect)="handleSelect($event)"
-    ></app-data-display-checkbox-component>
+    ></app-data-display-checkbox>
     <span>{{ selectedCount }} selected / {{ totalCount }} total</span>
 </div>
