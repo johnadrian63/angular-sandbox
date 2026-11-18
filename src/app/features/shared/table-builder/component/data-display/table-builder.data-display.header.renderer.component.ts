@@ -1,6 +1,7 @@
 import {
     Component,
-    Input,
+    model,
+    ModelSignal,
     OnInit,
     ViewContainerRef
 } from "@angular/core";
@@ -10,12 +11,11 @@ import { TableBuilderColumnHeaderService } from "../../service";
 import { DataDisplayResolverAbstractComponent } from "../../../data-display/data-display.resolver.abstract.component";
 
 @Component({
-    selector: "app-table-builder-data-display-header-resolver",
+    selector: "app-table-builder-data-display-header-renderer",
     template: ""
 })
-export class TableBuilderDataDisplayHeaderResolverComponent extends DataDisplayResolverAbstractComponent implements OnInit {
-    // FIXME refactor this and use signal!
-    @Input() public column!: ITableBuilderHeaderCellData;
+export class TableBuilderDataDisplayHeaderRendererComponent extends DataDisplayResolverAbstractComponent implements OnInit {
+    public readonly column: ModelSignal<ITableBuilderHeaderCellData> = model.required<ITableBuilderHeaderCellData>();
 
     constructor(
         private readonly columnHeaderService: TableBuilderColumnHeaderService,
@@ -25,6 +25,6 @@ export class TableBuilderDataDisplayHeaderResolverComponent extends DataDisplayR
     }
 
     public ngOnInit(): void {
-        this.columnHeaderService.handle(this.vcr, this.column);
+        this.columnHeaderService.handle(this.vcr, this.column());
     }
 }

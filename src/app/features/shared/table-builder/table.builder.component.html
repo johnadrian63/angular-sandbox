@@ -51,8 +51,8 @@
                         cdkDrag
                         *matHeaderCellDef
                     >
-                        <app-table-builder-data-display-header-resolver [column]="column">
-                        </app-table-builder-data-display-header-resolver>
+                        <app-table-builder-data-display-header-renderer [column]="column">
+                        </app-table-builder-data-display-header-renderer>
                     </mat-header-cell>
                     <mat-cell
                         class="py-1.5"
@@ -60,11 +60,11 @@
                         (click)="handRowClick(rowData, column.key)"
                         *matCellDef="let rowData; let rowIndex = index"
                     >
-                        <app-table-builder-data-display-resolver
+                        <app-table-builder-data-display-renderer
                             [columnKey]="column.key"
                             [rowData]="rowData"
                             [rowIndex]="rowIndex"
-                        ></app-table-builder-data-display-resolver>
+                        ></app-table-builder-data-display-renderer>
                     </mat-cell>
                 </ng-container>
             }

@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, signal, WritableSignal } from "@angular/core";
 
 import { NumberUtil } from "../../util/number.util";
 
@@ -16,19 +16,19 @@ export enum PageSizeOptions {
 export abstract class TableBuilderPaginationService {
 
     public get page(): number {
-        return this._page;
+        return this._page();
     }
 
     public get pageSize(): number {
-        return this._pageSize;
+        return this._pageSize();
     }
 
     public get count(): number {
-        return this._count;
+        return this._count();
     }
 
     public get totalPages(): number {
-        return this._totalPages;
+        return this._totalPages();
     }
 
     public get pageSizeOptions(): Array<PageSizeOptions> {
@@ -56,10 +56,12 @@ export abstract class TableBuilderPaginationService {
         return true;
     }
 
-    private _pageSize: number = PageSizeOptions.SIZE_25;
-    private _page: number = 0;
-    private _totalPages: number = 0;
-    private _count: number = 0;
+    // private _pageSize: number = PageSizeOptions.SIZE_25;
+    private readonly _pageSize: WritableSignal<number> = signal<number>(PageSizeOptions.SIZE_25);
+
+    private readonly _page: WritableSignal<number> = signal<number>(0);
+    private readonly _totalPages: WritableSignal<number> = signal<number>(0);
+    private readonly _count: WritableSignal<number> = signal<number>(0);
 
     public abstract reset(): void;
     public abstract handlePageChange(page: number, pageSize: number): void;
@@ -67,8 +69,8 @@ export abstract class TableBuilderPaginationService {
     public init(): void { }
 
     public setPaging(page: number, pageSize: number): void {
-        this._page = NumberUtil.isPositive(page) ? page : 0;
-        this._pageSize = NumberUtil.isPositive(pageSize) && this.pageSizeOptions.includes(pageSize) ? pageSize : PageSizeOptions.SIZE_25;
+        this._page.set(NumberUtil.isPositive(page) ? page : 0);
+        this._pageSize.set(NumberUtil.isPositive(pageSize) && this.pageSizeOptions.includes(pageSize) ? pageSize : PageSizeOptions.SIZE_25);
     }
 
     public resetPage(): void {
@@ -76,7 +78,7 @@ export abstract class TableBuilderPaginationService {
     }
 
     public setCount(count: number): void {
-        this._count = NumberUtil.isPositive(count) ? count : 0;;
-        this._totalPages = Math.ceil(this._count / this.pageSize);
+        this._count.set(NumberUtil.isPositive(count) ? count : 0);
+        this._totalPages.update(() => Math.ceil(this._count() / this.pageSize));
     }
 }

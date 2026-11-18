@@ -1,6 +1,8 @@
 import {
     Injectable,
-    ViewContainerRef
+    signal,
+    ViewContainerRef,
+    WritableSignal
 } from "@angular/core";
 
 import { ITableBuilderHeaderCellData } from "../model";
@@ -18,8 +20,8 @@ interface ITableBuilderColumnHeader {
 @Injectable()
 export abstract class TableBuilderColumnHeaderService implements ITableBuilderColumnHeader {
     public abstract headers: TableBuilderHeaderCellData[];
-    // FIXME convert this to signal()
-    public columnsToDisplay: string[] = [];
+
+    public readonly columnsToDisplay: WritableSignal<string[]> = signal<string[]>([]);
 
     public abstract register(): void;
     public abstract reset(): void;
@@ -31,13 +33,15 @@ export abstract class TableBuilderColumnHeaderService implements ITableBuilderCo
             throw new Error("column headers are not defined");
         }
 
-        this.columnsToDisplay = this.headers.map((column: TableBuilderHeaderCellData) => column.key);
+        const columnsToDisplay = this.headers.map((column: TableBuilderHeaderCellData) => column.key);
+
+        this.columnsToDisplay.set(columnsToDisplay);
     }
 
     public handle(vcr: ViewContainerRef, column: ITableBuilderHeaderCellData): void {
         const componentRef = vcr.createComponent(TableBuilderDataDisplayHeaderComponent);
 
-        componentRef.instance.column = column;
+        componentRef.instance.column.set(column);
 
         componentRef.changeDetectorRef.detectChanges();
     }

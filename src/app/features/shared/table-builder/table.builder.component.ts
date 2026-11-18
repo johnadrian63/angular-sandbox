@@ -40,8 +40,8 @@ import {
 } from "./service";
 import { UiPaginatorComponent } from "../ui/paginator/ui.paginator.component";
 import { TableBuilderMasterSelectionComponent } from "./component/selection/table.builder.master.selection.component";
-import { TableBuilderDataDisplayHeaderResolverComponent } from "./component/data-display/table-builder.data-display.header.resolver.component";
-import { TableBuilderDataDisplayResolverComponent } from "./component/data-display/table-builder.data-display.resolver.component";
+import { TableBuilderDataDisplayHeaderRendererComponent } from "./component/data-display/table-builder.data-display.header.renderer.component";
+import { TableBuilderDataDisplayRendererComponent } from "./component/data-display/table-builder.data-display.renderer.component";
 
 @Component({
     selector: "app-table-builder",
@@ -58,28 +58,18 @@ import { TableBuilderDataDisplayResolverComponent } from "./component/data-displ
         NgClass,
         UiPaginatorComponent,
         TableBuilderMasterSelectionComponent,
-        TableBuilderDataDisplayResolverComponent,
-        TableBuilderDataDisplayHeaderResolverComponent,
+        TableBuilderDataDisplayRendererComponent,
+        TableBuilderDataDisplayHeaderRendererComponent,
     ]
 })
 export class TableBuilderComponent implements OnInit, OnDestroy {
-    // FIXME refactor this! use viewChild()
-    @ViewChild("filterMainSectionVcr", {
-        read: ViewContainerRef,
-        static: true
-    }) private readonly filterMainSectionVcr!: ViewContainerRef;
-    // FIXME refactor this! use viewChild()
-    @ViewChild("filterActionSectionVcr", {
-        read: ViewContainerRef,
-        static: true
-    }) private readonly filterActionSectionVcr!: ViewContainerRef;
 
     public get columns(): TableBuilderHeaderCellData[] {
         return this.tableBuilderColumnHeaderService.headers;
     }
 
     public get columnsToDisplay(): string[] {
-        return this.tableBuilderColumnHeaderService.columnsToDisplay;
+        return this.tableBuilderColumnHeaderService.columnsToDisplay();
     }
 
     public get pageSizeOptions(): number[] {
@@ -114,9 +104,7 @@ export class TableBuilderComponent implements OnInit, OnDestroy {
         return this.tableBuilderService.loading;
     }
 
-
-    // FIXME refactor this! use signals
-    public dataSource: WritableSignal<ITableBuilderRowData[]> = signal<ITableBuilderRowData[]>([]);
+    public readonly dataSource: WritableSignal<ITableBuilderRowData[]> = signal<ITableBuilderRowData[]>([]);
 
     private readonly tableBuilderService: TableBuilderService = inject<TableBuilderService>(TableBuilderService);
     private readonly tableBuilderPaginationService: TableBuilderPaginationService = inject<TableBuilderPaginationService>(TableBuilderPaginationService);

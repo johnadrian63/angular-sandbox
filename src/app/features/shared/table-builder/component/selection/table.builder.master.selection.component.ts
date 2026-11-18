@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from "@angular/core";
+import { ChangeDetectorRef, Component, inject } from "@angular/core";
 import { MatCheckboxChange } from "@angular/material/checkbox";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
@@ -30,11 +30,11 @@ export class TableBuilderMasterSelectionComponent {
         return this.tableBuilderSelectionService.partiallySelected;
     }
 
-    constructor(
-        private readonly tableBuilderSelectionService: TableBuilderSelectionService,
-        private readonly tableBuilderPaginationService: TableBuilderPaginationService,
-        private readonly cdr: ChangeDetectorRef
-    ) {
+    private readonly tableBuilderSelectionService: TableBuilderSelectionService = inject<TableBuilderSelectionService>(TableBuilderSelectionService);
+    private readonly tableBuilderPaginationService: TableBuilderPaginationService = inject<TableBuilderPaginationService>(TableBuilderPaginationService);
+    private readonly cdr: ChangeDetectorRef = inject<ChangeDetectorRef>(ChangeDetectorRef);
+
+    constructor() {
         this.tableBuilderSelectionService.selection$
             .pipe(takeUntilDestroyed())
             .subscribe(() => {

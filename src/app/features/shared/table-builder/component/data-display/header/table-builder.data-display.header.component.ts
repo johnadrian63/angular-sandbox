@@ -1,6 +1,7 @@
 import {
     Component,
-    Input
+    model,
+    ModelSignal
 } from "@angular/core";
 
 import { ITableBuilderHeaderCellData } from "../../../model";
@@ -12,8 +13,7 @@ import { DataDisplayAbstractComponent } from "../../../../data-display/data-disp
     templateUrl: "./table-builder.data-display.header.component.html"
 })
 export class TableBuilderDataDisplayHeaderComponent extends DataDisplayAbstractComponent {
-    // FIXME refactor this!
-    @Input() public column!: ITableBuilderHeaderCellData;
+    public readonly column: ModelSignal<ITableBuilderHeaderCellData> = model.required<ITableBuilderHeaderCellData>();
 
     public override accept<T>(visitor: ITableBuilderDataDisplayHeaderVisitor<T>): T {
         return visitor.visitHeader(this);
