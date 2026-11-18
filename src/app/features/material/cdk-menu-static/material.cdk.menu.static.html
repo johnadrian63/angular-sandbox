@@ -1,5 +1,10 @@
 <h2 class="text-center font-bold my-3">Static CDK Menu</h2>
-<button [cdkMenuTriggerFor]="menu" class="example-standalone-trigger">Click me!</button>
+<button
+    [cdkMenuTriggerFor]="menu"
+    class="border border-gray-200 rounded-lg px-3 py-2 font-semibold shadow cursor-pointer"
+>
+    Click me!
+</button>
 
 <ng-template #menu>
     <div class="example-menu" cdkMenu>
