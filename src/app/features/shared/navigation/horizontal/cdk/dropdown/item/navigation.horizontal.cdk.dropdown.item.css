@@ -7,5 +7,9 @@
 .dropdown-menu-item {
     @apply flex items-center flex-1 flex-row cursor-pointer border-none outline-none select-none min-w-16 leading-9;
     background-color: var(--surface);
-    color: var(--foreground);
+    /* color: var(--foreground); */
+
+    &:hover {
+        background-color: var(--row-hover);
+    }
 }

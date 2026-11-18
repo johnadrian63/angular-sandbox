@@ -16,13 +16,11 @@ table {
 }
 
 .mat-mdc-row {
-    &:nth-child(odd) {
-        @apply bg-gray-100;
-    }
+    background-color: var(--surface);
 
     &:hover {
         .mat-mdc-cell {
-            @apply bg-slate-100;
+            background-color: var(--row-hover);
         }
     }
 }

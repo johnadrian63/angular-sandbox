@@ -1,6 +1,7 @@
 @reference "tailwindcss";
 
 header {
+    background-color: var(--surface);
     @media (width >=theme(--breakpoint-md)) {
         & {
             @apply sticky top-0 z-10;

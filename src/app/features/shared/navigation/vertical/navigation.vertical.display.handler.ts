@@ -20,7 +20,7 @@ export class NavigationVerticalDisplayHandler implements INavigationDisplayHandl
         });
 
         componentRef.instance.menu.set(handler.menu);
-        componentRef.instance.classes = "p-2 hover:bg-gray-100 flex cursor-pointer";
+        componentRef.instance.classes = "p-2 flex cursor-pointer";
 
         componentRef.instance
             .onExpand
@@ -37,7 +37,7 @@ export class NavigationVerticalDisplayHandler implements INavigationDisplayHandl
         });
 
         componentRef.instance.menu.set(handler.menu);
-        componentRef.instance.classes = "p-2 hover:bg-gray-100 flex cursor-pointer";
+        componentRef.instance.classes = "p-2 flex cursor-pointer";
 
         componentRef.changeDetectorRef.detectChanges();
     }

@@ -1,10 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
 
+:root,
 :root.light {
     color-scheme: light;
     --surface: #ffffff;
     --foreground: #202124;
+    --row-hover: #ddd;
 }
 
 /* Dark mode */
@@ -12,6 +14,7 @@
     color-scheme: dark;
     --surface: #202124;
     --foreground: #ffffff;
+    --row-hover: #000;
 }
 
 /* System preference */
@@ -20,6 +23,7 @@
         color-scheme: dark;
         --surface: #202124;
         --foreground: #ffffff;
+        --row-hover: #000;
     }
 }
 

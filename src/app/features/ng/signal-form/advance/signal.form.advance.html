@@ -3,24 +3,24 @@
     <button
         type="button"
         (click)="setValue()"
-        class="cursor-pointer rounded-md bg-blue-500 px-2 py-1 mr-2 text-white hover:not-[disabled]::bg-blue-700"
+        class="cursor-pointer rounded-md text-white bg-blue-500 px-2 py-1 mr-2 hover:not-[disabled]::bg-blue-700"
     >
         Set Value
     </button>
     <button
         type="button"
         (click)="resetValue()"
-        class="cursor-pointer rounded-md bg-amber-500 px-2 py-1 text-white hover:not-[disabled]::bg-blue-700"
+        class="cursor-pointer rounded-md text-white bg-amber-500 px-2 py-1 hover:not-[disabled]::bg-blue-700"
     >
         Reset Value
     </button>
 </div>
-<div class="flex items-start justify-center bg-gray-100 p-4 gap-x-2">
+<div class="flex items-start justify-center p-4 gap-x-2">
     <div class="min-w-96">
-        <div class="w-full max-w-sm rounded-lg bg-white p-6 shadow">
+        <div class="w-full max-w-sm rounded-lg p-6 shadow">
             <form [formRoot]="formModel" class="space-y-4">
                 <div>
-                    <label class="mb-2 block text-sm font-medium text-gray-700">First name</label>
+                    <label class="mb-2 block text-sm font-medium">First name</label>
                     <input
                         type="text"
                         [formField]="formModel.firstName"
@@ -28,7 +28,7 @@
                     />
                 </div>
                 <div>
-                    <label class="mb-2 block text-sm font-medium text-gray-700">Last name</label>
+                    <label class="mb-2 block text-sm font-medium">Last name</label>
                     <input
                         type="text"
                         [formField]="formModel.lastName"
@@ -36,7 +36,7 @@
                     />
                 </div>
                 <div>
-                    <label class="mb-2 block text-sm font-medium text-gray-700">Email</label>
+                    <label class="mb-2 block text-sm font-medium">Email</label>
                     <input
                         type="email"
                         [formField]="formModel.email"
@@ -47,7 +47,7 @@
                     [ngClass]="{ 'bg-gray-400 cursor-default': formModel().invalid() }"
                     [disabled]="formModel().invalid()"
                     type="submit"
-                    class="w-full cursor-default rounded-md bg-blue-600 p-2 text-white hover:not-[disabled]::bg-blue-700"
+                    class="w-full cursor-default rounded-md text-white bg-blue-600 p-2 hover:not-[disabled]::bg-blue-700"
                 >
                     Submit
                 </button>
@@ -58,8 +58,8 @@
         <div class="w-full overflow-x-auto rounded-lg border border-gray-200 mb-2">
             <table class="w-full text-left text-sm text-gray-600">
                 <tbody>
-                    <tr class="border-t border-gray-200 hover:bg-gray-50">
-                        <td class="px-6 py-4 font-medium text-gray-900">Form Valid</td>
+                    <tr class="border-t border-gray-200">
+                        <td class="px-6 py-4 font-medium">Form Valid</td>
                         <td
                             class="px-6 py-4"
                             [ngClass]="{
@@ -71,8 +71,8 @@
                         </td>
                         <td>-</td>
                     </tr>
-                    <tr class="border-t border-gray-200 hover:bg-gray-50">
-                        <td class="px-6 py-4 font-medium text-gray-900">First name valid</td>
+                    <tr class="border-t border-gray-200">
+                        <td class="px-6 py-4 font-medium">First name valid</td>
                         <td
                             class="px-6 py-4"
                             [ngClass]="{
@@ -90,8 +90,8 @@
                             }
                         </td>
                     </tr>
-                    <tr class="border-t border-gray-200 hover:bg-gray-50">
-                        <td class="px-6 py-4 font-medium text-gray-900">Last name valid</td>
+                    <tr class="border-t border-gray-200">
+                        <td class="px-6 py-4 font-medium">Last name valid</td>
                         <td
                             class="px-6 py-4"
                             [ngClass]="{
@@ -109,8 +109,8 @@
                             }
                         </td>
                     </tr>
-                    <tr class="border-t border-gray-200 hover:bg-gray-50">
-                        <td class="px-6 py-4 font-medium text-gray-900">Email valid</td>
+                    <tr class="border-t border-gray-200">
+                        <td class="px-6 py-4 font-medium">Email valid</td>
                         <td
                             class="px-6 py-4"
                             [ngClass]="{

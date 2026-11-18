@@ -1,11 +1,11 @@
 <h3 class="text-center font-bold mb-3">Form using FormRoot</h3>
 
-<div class="flex items-start justify-center bg-gray-100 p-4 gap-x-2">
+<div class="flex items-start justify-center p-4 gap-x-2">
     <div class="min-w-96">
-        <div class="w-full max-w-sm rounded-lg bg-white p-6 shadow">
+        <div class="w-full max-w-sm rounded-lg p-6 shadow">
             <form [formRoot]="formModel" class="space-y-4">
                 <div>
-                    <label class="mb-2 block text-sm font-medium text-gray-700">First name</label>
+                    <label class="mb-2 block text-sm font-medium ">First name</label>
                     <input
                         type="text"
                         [formField]="formModel.firstName"
@@ -13,7 +13,7 @@
                     />
                 </div>
                 <div>
-                    <label class="mb-2 block text-sm font-medium text-gray-700">Last name</label>
+                    <label class="mb-2 block text-sm font-medium ">Last name</label>
                     <input
                         type="text"
                         [formField]="formModel.lastName"
