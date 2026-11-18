@@ -8,6 +8,15 @@ import { getRange } from "../../shared/util/range.generator";
 import { ExampleResponsiveNavigation } from "./navigation/example.responsive.navigation";
 import { PocTableBuilderBasic } from "../../poc/table-builder/basic/poc.table.builder.basic";
 
+interface FilterOption {
+    value: string;
+    label: string;
+}
+
+interface CategoryOption extends FilterOption {
+    count: number;
+}
+
 @Component({
     selector: "app-example-responsive",
     styleUrl: "./example.responsive.css",
@@ -28,6 +37,20 @@ export class ExampleResponsive {
     public toggleProfileElem: Signal<ElementRef<any> | undefined> = viewChild("toggleProfileIcon", {
         read: ElementRef
     });
+
+    public readonly statuses: FilterOption[] = [
+        { value: 'all', label: 'All statuses' },
+        { value: 'active', label: 'Active' },
+        { value: 'inactive', label: 'Inactive' },
+        { value: 'pending', label: 'Pending' }
+    ];
+
+    public readonly categories: CategoryOption[] = [
+        { value: 'design', label: 'Design', count: 12 },
+        { value: 'development', label: 'Development', count: 24 },
+        { value: 'marketing', label: 'Marketing', count: 8 },
+        { value: 'support', label: 'Support', count: 6 }
+    ];
 
     constructor() {
         this.breakpointObserver.observe([

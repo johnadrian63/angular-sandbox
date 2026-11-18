@@ -12,18 +12,83 @@
             [class.translate-x-0]="sidebarOpen()"
             class="sidebar"
         >
-            <ul class="flex flex-col">
-                @for (item of getRange(34); track $index) {
-                    <li>
-                        <a
-                            routerLink="responsive"
-                            [relativeTo]="activatedRoute.parent"
-                            class="py-1 px-2 block"
-                            >Link {{ $index + 1 }}</a
-                        >
-                    </li>
-                }
-            </ul>
+            <div class="px-3">
+                <!-- Header -->
+                <div class="mb-6 flex items-center justify-between">
+                    <h2 class="text-lg font-semibold">Filters</h2>
+
+                    <button class="text-sm text-blue-600 hover:text-blue-700">Clear all</button>
+                </div>
+
+                <!-- Search -->
+                <div class="mb-6">
+                    <label class="mb-2 block text-sm font-medium"> Search </label>
+
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                    />
+                </div>
+
+                <!-- Status -->
+                <div class="mb-6">
+                    <h3 class="mb-3 text-sm font-semibold">Status</h3>
+
+                    <div class="space-y-3">
+                        @for (status of statuses; track status.value) {
+                            <label class="flex cursor-pointer items-center gap-3 text-sm">
+                                <input
+                                    type="radio"
+                                    name="status"
+                                    [value]="status.value"
+                                    class="h-4 w-4 accent-blue-600"
+                                />
+                                {{ status.label }}
+                            </label>
+                        }
+                    </div>
+                </div>
+
+                <!-- Category -->
+                <div class="mb-6">
+                    <h3 class="mb-3 text-sm font-semibold">Category</h3>
+
+                    <div class="space-y-3">
+                        @for (category of categories; track category.value) {
+                            <label class="flex cursor-pointer items-center justify-between text-sm">
+                                <span class="flex items-center gap-3">
+                                    <input
+                                        type="checkbox"
+                                        [value]="category.value"
+                                        class="h-4 w-4 rounded accent-blue-600"
+                                    />
+                                    {{ category.label }}
+                                </span>
+
+                                <span class="text-xs">
+                                    {{ category.count }}
+                                </span>
+                            </label>
+                        }
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex gap-2 border-t border-gray-100 pt-4">
+                    <button
+                        class="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm font-medium hover:bg-gray-50"
+                    >
+                        Reset
+                    </button>
+
+                    <button
+                        class="flex-1 rounded-md bg-blue-600 px-3 py-2 text-sm font-medium hover:bg-blue-700"
+                    >
+                        Apply filters
+                    </button>
+                </div>
+            </div>
         </aside>
         <main class="flex flex-col min-w-0 min-h-0 overflow-y-auto px-3">
             <div class="mb-2">
