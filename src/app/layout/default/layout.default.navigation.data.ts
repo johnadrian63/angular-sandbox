@@ -112,15 +112,8 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
         path: "/design-patterns"
     },
     {
-        label: "basic_layout",
-        text: "Basic Layout",
-        path: "/example",
-        target: "_blank",
-        handler: LayoutDisplayOpenLinkHandler
-    },
-    {
         label: "responsive_layout",
-        text: "Responsive Layout",
+        text: "CMS Layout",
         path: "/example/responsive",
         target: "_blank",
         handler: LayoutDisplayResponsiveLinkHandler
