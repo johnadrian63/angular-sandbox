@@ -1,8 +1,36 @@
 import { IMenuItem } from "../../features/shared/navigation/navigation.model";
 import { NavigationHorizontalCdkDropdownLinkDisplayHandler } from "../../features/shared/navigation/horizontal/cdk/navigation.horizontal.cdk.display.handler";
-import { LayoutDisplayGitHubLinkHandler, LayoutDisplayOpenLinkHandler, LayoutDisplayResponsiveLinkHandler, LayoutDisplayThemeSwitcherHandler } from "./layout.default.navigation.horizontal.display.handler";
+import { LayoutDisplayGitHubLinkHandler, LayoutDisplayResponsiveLinkHandler, LayoutDisplayThemeSwitcherHandler } from "./layout.default.navigation.horizontal.display.handler";
 
 export const layoutDefaultNavigationData: IMenuItem[] = [
+    {
+        label: "poc",
+        text: "POC",
+        path: "/poc",
+        handler: NavigationHorizontalCdkDropdownLinkDisplayHandler,
+        children: [
+            {
+                label: "table_builder_basic",
+                text: "Table Builder (Basic)",
+                path: "/poc/table-builder"
+            },
+            // {
+            //     label: "table_builder_advance",
+            //     text: "Table Builder (Advance)",
+            //     path: "/poc/table-builder"
+            // },
+            {
+                label: "dynamic_navigation",
+                text: "Dynamic Navigation",
+                path: "/poc/dynamic-navigation"
+            },
+            {
+                label: "nested_handler",
+                text: "Nested Handler",
+                path: "/poc/nested-handler"
+            }
+        ]
+    },
     {
         label: "flex",
         text: "Flex",
@@ -90,11 +118,6 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
                 path: "/grid/grid-flow",
             }
         ]
-    },
-    {
-        label: "poc",
-        text: "POC",
-        path: "/poc"
     },
     {
         label: "ng",

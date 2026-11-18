@@ -18,7 +18,7 @@ export const routes: Routes = [
             {
                 path: "",
                 pathMatch: "full",
-                redirectTo: "/flex"
+                redirectTo: "/poc"
             },
             {
                 path: "flex",
