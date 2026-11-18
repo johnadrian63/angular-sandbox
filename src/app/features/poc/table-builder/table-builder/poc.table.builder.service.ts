@@ -3,28 +3,40 @@ import { HttpClient } from "@angular/common/http";
 import { lastValueFrom } from "rxjs";
 
 import { TableBuilderService } from "../../../shared/table-builder";
-import { IPost, IPostAdapter, PostAdapter } from "../poc.table.builder.model";
+import { IUserAdapter, IUserCollection, UserAdapter } from "../poc.table.builder.model";
+import { PocTableBuilderPaginationService } from "./poc.table.builder.pagination.service";
 
 @Injectable()
 export class PocTableBuilderService extends TableBuilderService {
     private readonly httpClient: HttpClient = inject<HttpClient>(HttpClient);
+    private readonly tableBuilderPaginationService: PocTableBuilderPaginationService = inject<PocTableBuilderPaginationService>(PocTableBuilderPaginationService);
 
     public override init(): void {
-        // throw new Error("Method not implemented.");
+        this.tableBuilderPaginationService.queryParamsChange
+            .subscribe(async () => {
+                this.refresh();
+            });
     }
 
-    public async getData(): Promise<IPostAdapter[]> {
-        const apiUrl = "https://jsonplaceholder.typicode.com/posts?_page=1&_limit=50";
-        const result = await lastValueFrom(this.httpClient.get<IPost[]>(apiUrl))
+    public async getData(): Promise<IUserAdapter[]> {
+        const apiUrl = "https://dummyjson.com/users";
 
+        const result = await lastValueFrom(this.httpClient.get<IUserCollection>(apiUrl, {
+            params: {
+                skip: this.tableBuilderPaginationService.page,
+                limit: this.tableBuilderPaginationService.pageSize
+            }
+        }));
 
-        const posts: IPostAdapter[] = [];
+        this.tableBuilderPaginationService.setCount(result.total);
 
-        for (let post of result) {
-            posts.push(new PostAdapter(post));
+        const users: IUserAdapter[] = [];
+
+        for (let user of result.users) {
+            users.push(new UserAdapter(user));
         }
 
-        return posts;
+        return users;
     }
 
     public override reset(): void {

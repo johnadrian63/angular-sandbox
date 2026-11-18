@@ -2,7 +2,8 @@ import { ChangeDetectorRef, Component, inject } from "@angular/core";
 import { MatCheckboxChange } from "@angular/material/checkbox";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
-import { TableBuilderPaginationService, TableBuilderSelectionService } from "../../service";
+import { TableBuilderSelectionService } from "../../service";
+import { TableBuilderPaginationBaseService } from "../../service/table.builder.pagination.base.service";
 import { DataDisplayCheckboxComponent } from "../../../data-display/checkbox/data.display.checkbox.component";
 
 @Component({
@@ -31,7 +32,7 @@ export class TableBuilderMasterSelectionComponent {
     }
 
     private readonly tableBuilderSelectionService: TableBuilderSelectionService = inject<TableBuilderSelectionService>(TableBuilderSelectionService);
-    private readonly tableBuilderPaginationService: TableBuilderPaginationService = inject<TableBuilderPaginationService>(TableBuilderPaginationService);
+    private readonly tableBuilderPaginationService: TableBuilderPaginationBaseService = inject<TableBuilderPaginationBaseService>(TableBuilderPaginationBaseService);
     private readonly cdr: ChangeDetectorRef = inject<ChangeDetectorRef>(ChangeDetectorRef);
 
     constructor() {

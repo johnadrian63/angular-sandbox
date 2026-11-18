@@ -15,14 +15,14 @@
                         [pageIndex]="page"
                         [pageSize]="pageSize"
                         [count]="count"
-                        [disabled]="loading() === true"
+                        [disabled]="loading === true"
                         [showFirstLastButtons]="firstAndLastButtonsEnabled"
                         (page)="handlePageChanged($event)"
                     ></app-ui-paginator>
                 }
             </div>
         </div>
-        @if (loading()) {
+        @if (loading) {
             <div class="paginator-wrapper">
                 <mat-progress-bar mode="indeterminate"></mat-progress-bar>
             </div>
@@ -32,7 +32,7 @@
         <mat-table
             [dataSource]="dataSource()"
             class="table"
-            [class.table-loading]="loading()"
+            [class.table-loading]="loading"
             cdkDropListLockAxis="x"
             cdkDropListOrientation="horizontal"
             (cdkDropListDropped)="handleColumnDrop($event)"
@@ -75,7 +75,7 @@
             ></mat-row>
             <tr class="mat-row" *matNoDataRow>
                 <td class="mat-cell text-center py-3 border" [colSpan]="columns.length">
-                    @if (loading()) {
+                    @if (loading) {
                         <div>Loading...</div>
                     } @else {
                         <div>No records found.</div>

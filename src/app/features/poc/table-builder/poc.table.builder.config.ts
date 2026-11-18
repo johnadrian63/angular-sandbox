@@ -1,50 +1,102 @@
-import { IPostAdapter } from "./poc.table.builder.model";
+import { IUserAdapter } from "./poc.table.builder.model";
 import { DataDisplayTextComponent } from "../../shared/data-display/text";
 import { ITableBuilderColumnConfig, ITableBuilderColumnHeaderConfig } from "../../shared/table-builder";
 import { TableBuilderDataDisplayHeaderComponent } from "../../shared/table-builder/component/data-display/header";
 
-export const pocTableBuilderHeaderMapper: Map<keyof IPostAdapter, ITableBuilderColumnHeaderConfig>
-    = new Map<keyof IPostAdapter, ITableBuilderColumnHeaderConfig>([
+export const pocTableBuilderHeaderMapper: Map<keyof IUserAdapter, ITableBuilderColumnHeaderConfig>
+    = new Map<keyof IUserAdapter, ITableBuilderColumnHeaderConfig>([
         [
-            "userId",
+            "id",
             {
                 label: "User ID",
                 renderer: TableBuilderDataDisplayHeaderComponent
             }
         ],
         [
-            "title",
+            "firstName",
             {
-                label: "Title",
+                label: "First name",
                 renderer: TableBuilderDataDisplayHeaderComponent
             }
         ],
         [
-            "body",
+            "lastName",
             {
-                label: "Body",
+                label: "Last name",
+                renderer: TableBuilderDataDisplayHeaderComponent
+            }
+        ],
+        [
+            "age",
+            {
+                label: "Age",
+                renderer: TableBuilderDataDisplayHeaderComponent
+            }
+        ],
+        [
+            "gender",
+            {
+                label: "Gender",
+                renderer: TableBuilderDataDisplayHeaderComponent
+            }
+        ],
+        [
+            "email",
+            {
+                label: "Email",
+                renderer: TableBuilderDataDisplayHeaderComponent
+            }
+        ],
+        [
+            "image",
+            {
+                label: "Image",
                 renderer: TableBuilderDataDisplayHeaderComponent
             }
         ],
     ]);
 
 
-export const pocTableBuilderMapper: Map<keyof IPostAdapter, ITableBuilderColumnConfig>
-    = new Map<keyof IPostAdapter, ITableBuilderColumnConfig>([
+export const pocTableBuilderMapper: Map<keyof IUserAdapter, ITableBuilderColumnConfig>
+    = new Map<keyof IUserAdapter, ITableBuilderColumnConfig>([
         [
-            "userId",
+            "id",
             {
                 renderer: DataDisplayTextComponent
             }
         ],
         [
-            "title",
+            "firstName",
             {
                 renderer: DataDisplayTextComponent
             }
         ],
         [
-            "body",
+            "lastName",
+            {
+                renderer: DataDisplayTextComponent
+            }
+        ],
+        [
+            "age",
+            {
+                renderer: DataDisplayTextComponent
+            }
+        ],
+        [
+            "gender",
+            {
+                renderer: DataDisplayTextComponent
+            }
+        ],
+        [
+            "email",
+            {
+                renderer: DataDisplayTextComponent
+            }
+        ],
+        [
+            "image",
             {
                 renderer: DataDisplayTextComponent
             }

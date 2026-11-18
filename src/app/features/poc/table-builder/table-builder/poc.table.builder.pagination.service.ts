@@ -1,14 +1,11 @@
 import { Injectable } from "@angular/core";
 
-import { TableBuilderPaginationService } from "../../../shared/table-builder";
+import { TableBuilderPaginationRouteService } from "../../../shared/table-builder/service/table.builder.pagination.route.service";
 
 @Injectable()
-export class PocTableBuilderPaginationService extends TableBuilderPaginationService {
-    public override handlePageChange(page: number, pageSize: number): void {
-        throw new Error("Method not implemented.");
-    }
-
+export class PocTableBuilderPaginationService extends TableBuilderPaginationRouteService {
+    
     public override reset(): void {
-        throw new Error("Method not implemented.");
+        // cleanup logic here
     }
 }

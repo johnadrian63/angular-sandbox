@@ -6,7 +6,8 @@ import { PocTableBuilderColumnService } from "./table-builder/poc.table.builder.
 import { PocTableBuilderSelectionService } from "./table-builder/poc.table.builder.selection.service";
 import { PocTableBuilderPaginationService } from "./table-builder/poc.table.builder.pagination.service";
 import { PocTableBuilderColumnHeaderService } from "./table-builder/poc.table.builder.column.header.service";
-import { TableBuilderColumnHeaderService, TableBuilderColumnService, TableBuilderComponent, TableBuilderPaginationService, TableBuilderSelectionService, TableBuilderService, TableBuilderSortService } from "../../shared/table-builder";
+import { TableBuilderColumnHeaderService, TableBuilderColumnService, TableBuilderComponent, TableBuilderSelectionService, TableBuilderService, TableBuilderSortService } from "../../shared/table-builder";
+import { TableBuilderPaginationBaseService } from "../../shared/table-builder/service/table.builder.pagination.base.service";
 
 @Component({
     selector: "app-poc-table-builder",
@@ -23,7 +24,7 @@ import { TableBuilderColumnHeaderService, TableBuilderColumnService, TableBuilde
         },
         PocTableBuilderPaginationService,
         {
-            provide: TableBuilderPaginationService,
+            provide: TableBuilderPaginationBaseService,
             useExisting: PocTableBuilderPaginationService
         },
         PocTableBuilderColumnHeaderService,

@@ -1,13 +1,10 @@
 import {
     Component,
+    DestroyRef,
     inject,
     OnDestroy,
     OnInit,
-    Optional,
     signal,
-    Signal,
-    ViewChild,
-    ViewContainerRef,
     WritableSignal
 } from "@angular/core";
 import { NgClass } from "@angular/common";
@@ -32,13 +29,13 @@ import {
 import {
     TableBuilderService,
     TableBuilderColumnHeaderService,
-    TableBuilderPaginationService,
     TableBuilderRowService,
     TableBuilderSortService,
     TableBuilderSelectionService,
     SortDirection
 } from "./service";
 import { UiPaginatorComponent } from "../ui/paginator/ui.paginator.component";
+import { TableBuilderPaginationBaseService } from "./service/table.builder.pagination.base.service";
 import { TableBuilderMasterSelectionComponent } from "./component/selection/table.builder.master.selection.component";
 import { TableBuilderDataDisplayHeaderRendererComponent } from "./component/data-display/table.builder.data.display.header.renderer.component";
 import { TableBuilderDataDisplayRendererComponent } from "./component/data-display/table.builder.data.display.renderer.component";
@@ -100,14 +97,14 @@ export class TableBuilderComponent implements OnInit, OnDestroy {
         return this.tableBuilderSelectionService.masterSelectionEnabled;
     }
 
-    public get loading(): Signal<boolean> {
-        return this.tableBuilderService.loading;
+    public get loading(): boolean {
+        return this.tableBuilderService.loading();
     }
 
     public readonly dataSource: WritableSignal<ITableBuilderRowData[]> = signal<ITableBuilderRowData[]>([]);
 
     private readonly tableBuilderService: TableBuilderService = inject<TableBuilderService>(TableBuilderService);
-    private readonly tableBuilderPaginationService: TableBuilderPaginationService = inject<TableBuilderPaginationService>(TableBuilderPaginationService);
+    private readonly tableBuilderPaginationService: TableBuilderPaginationBaseService = inject<TableBuilderPaginationBaseService>(TableBuilderPaginationBaseService);
     private readonly tableBuilderColumnHeaderService: TableBuilderColumnHeaderService = inject<TableBuilderColumnHeaderService>(TableBuilderColumnHeaderService);
     private readonly tableBuilderSortService: TableBuilderSortService = inject<TableBuilderSortService>(TableBuilderSortService);
     private readonly tableBuilderSelectionService: TableBuilderSelectionService = inject<TableBuilderSelectionService>(TableBuilderSelectionService);
@@ -115,15 +112,16 @@ export class TableBuilderComponent implements OnInit, OnDestroy {
         optional: true
     });
 
-    constructor() {
+    private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
+
+    public async ngOnInit(): Promise<void> {
         this.tableBuilderService.onRefresh
-            .pipe(takeUntilDestroyed())
+            .pipe(takeUntilDestroyed(this.destroyRef))
             .subscribe(() => {
                 this.updateSource();
             });
-    }
 
-    public async ngOnInit(): Promise<void> {
+        this.tableBuilderPaginationService.init();
         this.tableBuilderService.init();
 
         await this.updateSource();

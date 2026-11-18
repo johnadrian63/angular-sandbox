@@ -5,7 +5,7 @@ import {
 import { Observable, Subject } from "rxjs";
 
 import { TableBuilderSortService } from "./table.builder.sort.service";
-import { TableBuilderPaginationService } from "./table.builder.pagination.service";
+import { TableBuilderPaginationBaseService } from "./table.builder.pagination.base.service";
 
 @Injectable()
 export abstract class TableBuilderResetService {
@@ -16,7 +16,7 @@ export abstract class TableBuilderResetService {
 
     private readonly resetSubject: Subject<boolean> = new Subject<boolean>();
 
-    protected readonly tableBuilderPaginationService: TableBuilderPaginationService = inject<TableBuilderPaginationService>(TableBuilderPaginationService);
+    protected readonly tableBuilderPaginationService: TableBuilderPaginationBaseService = inject<TableBuilderPaginationBaseService>(TableBuilderPaginationBaseService);
     protected readonly tableBuilderSortService: TableBuilderSortService = inject<TableBuilderSortService>(TableBuilderSortService);
 
     public reset(): void {

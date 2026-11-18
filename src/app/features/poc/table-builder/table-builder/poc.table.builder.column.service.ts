@@ -1,7 +1,7 @@
 import { Injectable, ViewContainerRef } from "@angular/core";
 
 import { TableBuilderColumnService } from "../../../shared/table-builder";
-import { IPostAdapter } from "../poc.table.builder.model";
+import { IUserAdapter } from "../poc.table.builder.model";
 import { pocTableBuilderMapper } from "../poc.table.builder.config";
 import { DataDisplayTextComponent } from "../../../shared/data-display/text";
 import { IDataDisplayVisitor } from "../../../shared/data-display/data.display.visitor.interface";
@@ -17,7 +17,7 @@ import { DataDisplayThumbnailComponent } from "../../../shared/data-display/thum
 
 @Injectable()
 export class PocTableBuilderColumnService extends TableBuilderColumnService {
-    public handle(vcr: ViewContainerRef, columnKey: keyof IPostAdapter, row: IPostAdapter): void {
+    public handle(vcr: ViewContainerRef, columnKey: keyof IUserAdapter, row: IUserAdapter): void {
         const mapper = pocTableBuilderMapper.get(columnKey);
 
         this.render(
@@ -33,8 +33,8 @@ export class PocTableBuilderColumnService extends TableBuilderColumnService {
 
 class BadgeManagerListTableBuilderColumnDataVisitor implements IDataDisplayVisitor<void> {
     constructor(
-        private readonly columnKey: keyof IPostAdapter,
-        private readonly row: IPostAdapter
+        private readonly columnKey: keyof IUserAdapter,
+        private readonly row: IUserAdapter
     ) { }
 
     public visitText(component: DataDisplayTextComponent): void {
