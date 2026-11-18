@@ -1,3 +1,8 @@
+@if (loading()) {
+    <div class="w-full absolute z-30">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+}
 <div class="flex h-screen flex-col overflow-hi1dden">
     <nav class="fixed w-full z-20 top-0 inset-s-0 border-b border-default">
         <div class="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-1.5">
@@ -46,9 +51,6 @@
     </nav>
 
     <div class="mt-11 min-h-0 flex-1 w-full pt-3">
-        @if (loading()) {
-            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-        }
         <router-outlet></router-outlet>
     </div>
 </div>
