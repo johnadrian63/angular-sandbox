@@ -1,8 +1,6 @@
 @reference "tailwindcss";
 
 header {
-    @apply bg-neutral-100;
-
     @media (width >=theme(--breakpoint-md)) {
         & {
             @apply sticky top-0 z-10;
