@@ -6,7 +6,7 @@ import { faBars, faTableColumns } from "@fortawesome/free-solid-svg-icons";
 
 import { getRange } from "../../shared/util/range.generator";
 import { ExampleResponsiveNavigation } from "./navigation/example.responsive.navigation";
-import { PocTableBuilderBasic } from "../../poc/table-builder/basic/poc.table.builder.basic";
+import { EmbedTableBuilderDemo } from "../../embed/table-builder-demo/embed.table.builder.demo";
 
 interface FilterOption {
     value: string;
@@ -21,7 +21,7 @@ interface CategoryOption extends FilterOption {
     selector: "app-example-responsive",
     styleUrl: "./example.responsive.css",
     templateUrl: "./example.responsive.html",
-    imports: [RouterModule, ExampleResponsiveNavigation, PocTableBuilderBasic],
+    imports: [RouterModule, ExampleResponsiveNavigation, EmbedTableBuilderDemo],
 })
 export class ExampleResponsive {
     // public readonly faSearchIcon = faSearch;

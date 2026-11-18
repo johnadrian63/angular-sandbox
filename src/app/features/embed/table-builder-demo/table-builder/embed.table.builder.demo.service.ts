@@ -2,9 +2,9 @@ import { inject, Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { lastValueFrom } from "rxjs";
 
-import { TableBuilderService } from "../../../../shared/table-builder";
-import { IUserAdapter, IUserCollection, UserAdapter } from "../../poc.table.builder.model";
-import { PocTableBuilderPaginationService } from "./poc.table.builder.pagination.service";
+import { TableBuilderService } from "../../../shared/table-builder";
+import { IUserAdapter, IUserCollection, UserAdapter } from "../../../poc/table-builder/poc.table.builder.model";
+import { PocTableBuilderPaginationService } from "./embed.table.builder.demo.pagination.service";
 
 @Injectable()
 export class PocTableBuilderService extends TableBuilderService {

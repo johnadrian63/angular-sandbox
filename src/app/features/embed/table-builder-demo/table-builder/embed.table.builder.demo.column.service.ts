@@ -1,19 +1,19 @@
 import { Injectable, ViewContainerRef } from "@angular/core";
 
-import { TableBuilderColumnService } from "../../../../shared/table-builder";
-import { IUserAdapter } from "../../poc.table.builder.model";
-import { pocTableBuilderMapper } from "./poc.table.builder.config";
-import { DataDisplayTextComponent } from "../../../../shared/data-display/text";
-import { IDataDisplayVisitor } from "../../../../shared/data-display/data.display.visitor.interface";
-import { DataDisplayButtonComponent } from "../../../../shared/data-display/button";
-import { DataDisplayCheckboxComponent } from "../../../../shared/data-display/checkbox";
-import { DataDisplayDateTimeComponent } from "../../../../shared/data-display/date-time";
-import { DataDisplayLinkComponent } from "../../../../shared/data-display/link";
-import { DataDisplayNumberComponent } from "../../../../shared/data-display/number";
-import { DataDisplayRadioButtonComponent } from "../../../../shared/data-display/radio-button";
-import { DataDisplaySelectionComponent } from "../../../../shared/data-display/selection";
-import { DataDisplayTextboxComponent } from "../../../../shared/data-display/textbox";
-import { DataDisplayThumbnailComponent } from "../../../../shared/data-display/thumbnail";
+import { TableBuilderColumnService } from "../../../shared/table-builder";
+import { IUserAdapter } from "../../../poc/table-builder/poc.table.builder.model";
+import { pocTableBuilderMapper } from "./embed.table.builder.demo.config";
+import { DataDisplayTextComponent } from "../../../shared/data-display/text";
+import { IDataDisplayVisitor } from "../../../shared/data-display/data.display.visitor.interface";
+import { DataDisplayButtonComponent } from "../../../shared/data-display/button";
+import { DataDisplayCheckboxComponent } from "../../../shared/data-display/checkbox";
+import { DataDisplayDateTimeComponent } from "../../../shared/data-display/date-time";
+import { DataDisplayLinkComponent } from "../../../shared/data-display/link";
+import { DataDisplayNumberComponent } from "../../../shared/data-display/number";
+import { DataDisplayRadioButtonComponent } from "../../../shared/data-display/radio-button";
+import { DataDisplaySelectionComponent } from "../../../shared/data-display/selection";
+import { DataDisplayTextboxComponent } from "../../../shared/data-display/textbox";
+import { DataDisplayThumbnailComponent } from "../../../shared/data-display/thumbnail";
 
 @Injectable()
 export class PocTableBuilderColumnService extends TableBuilderColumnService {

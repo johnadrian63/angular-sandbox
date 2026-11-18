@@ -1,13 +1,13 @@
 import { Component } from "@angular/core";
 
-import { PocTableBuilderBasic } from "./basic/poc.table.builder.basic";
+import { EmbedTableBuilderDemo } from "../../embed/table-builder-demo/embed.table.builder.demo";
 
 @Component({
     selector: "app-poc-table-builder",
     styleUrl: "./poc.table.builder.css",
     templateUrl: "./poc.table.builder.html",
     imports: [
-        PocTableBuilderBasic
+        EmbedTableBuilderDemo
     ],
 })
 export class PocTableBuilder { }
