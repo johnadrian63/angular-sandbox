@@ -1,21 +1,33 @@
 import {
-    Injectable,
-    Optional
+    inject,
+    Injectable
 } from "@angular/core";
+import { Observable, Subject } from "rxjs";
 
-import { DataCollatorResetService } from "../../data-collator";
-import { TableBuilderSearchService } from "./table-builder.search.service";
 import { TableBuilderSortService } from "./table-builder.sort.service";
+import { TableBuilderSearchService } from "./table-builder.search.service";
 import { TableBuilderPaginationService } from "./table-builder.pagination.service";
 
 @Injectable()
-export abstract class TableBuilderResetService extends DataCollatorResetService {
+export abstract class TableBuilderResetService {
 
-    constructor(
-        dataCollatorPaginationService: TableBuilderPaginationService,
-        dataCollatorSortService: TableBuilderSortService,
-        @Optional() dataCollatorSearchService: TableBuilderSearchService,
-    ) {
-        super(dataCollatorPaginationService, dataCollatorSortService, dataCollatorSearchService);
+    public get reset$(): Observable<boolean> {
+        return this.resetSubject.asObservable();
+    }
+
+    private readonly resetSubject: Subject<boolean> = new Subject<boolean>();
+
+    protected readonly tableBuilderPaginationService: TableBuilderPaginationService = inject<TableBuilderPaginationService>(TableBuilderPaginationService);
+    protected readonly tableBuilderSortService: TableBuilderSortService = inject<TableBuilderSortService>(TableBuilderSortService);
+    protected readonly tableBuilderSearchService: TableBuilderSearchService | null = inject<TableBuilderSearchService>(TableBuilderSearchService, {
+        optional: true
+    });
+
+    public reset(): void {
+        this.tableBuilderSearchService?.reset();
+        this.tableBuilderPaginationService.reset();
+        this.tableBuilderSortService.reset();
+
+        this.resetSubject.next(true);
     }
 }

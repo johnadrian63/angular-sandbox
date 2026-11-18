@@ -35,9 +35,9 @@ import {
     TableBuilderPaginationService,
     TableBuilderRowService,
     TableBuilderSortService,
-    TableBuilderSelectionService
+    TableBuilderSelectionService,
+    SortDirection
 } from "./service";
-import { SortDirection } from "../data-collator";
 import { UiPaginatorComponent } from "../ui/paginator/ui.paginator.component";
 import { TableBuilderMasterSelectionComponent } from "./component/selection/table.builder.master.selection.component";
 import { TableBuilderDataDisplayHeaderResolverComponent } from "./component/data-display/table-builder.data-display.header.resolver.component";

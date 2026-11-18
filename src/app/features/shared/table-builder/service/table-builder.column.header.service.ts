@@ -4,20 +4,21 @@ import {
 } from "@angular/core";
 
 import { ITableBuilderHeaderCellData } from "../model";
-import { ITableBuilderService } from "./table-builder.interface";
 import { TableBuilderHeaderCellData } from "../model/table-builder.header-cell-data";
 import { TableBuilderDataDisplayHeaderComponent } from "../component/data-display/header";
 
-interface ITableBuilderColumnHeader extends ITableBuilderService {
+interface ITableBuilderColumnHeader {
     headers: TableBuilderHeaderCellData[];
 
     register(): void;
     handle(vcr: ViewContainerRef, column: TableBuilderHeaderCellData): void;
+    reset(): void;
 }
 
 @Injectable()
 export abstract class TableBuilderColumnHeaderService implements ITableBuilderColumnHeader {
     public abstract headers: TableBuilderHeaderCellData[];
+    // FIXME convert this to signal()
     public columnsToDisplay: string[] = [];
 
     public abstract register(): void;

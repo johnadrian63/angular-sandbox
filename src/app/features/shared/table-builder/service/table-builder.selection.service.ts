@@ -4,11 +4,68 @@ import {
     Subject
 } from "rxjs";
 
-import { DataCollatorSelectionService } from "../../data-collator";
 import { TableBuilderDataDisplaySelectionComponent } from "../component/data-display/selection/table-builder.data.display.selection.component";
 
+export interface ITableBuilderSelection {
+    selected: string[];
+    unselected: string[];
+}
+
 @Injectable()
-export class TableBuilderSelectionService extends DataCollatorSelectionService {
+export class TableBuilderSelectionService {
+
+    public get selection$(): Observable<ITableBuilderSelection> {
+        return this.selectionSubject.asObservable();
+    }
+
+    public get selectedCount(): number {
+        return this.selectedSet.size;
+    }
+
+    protected get selectionSet(): ITableBuilderSelection {
+        return {
+            selected: Array.from(this.selectedSet.values()),
+            unselected: Array.from(this.unselectedSet.values())
+        };
+    }
+
+    protected readonly selectionSubject: Subject<ITableBuilderSelection> = new Subject<ITableBuilderSelection>();
+    protected readonly unselectedSet: Set<string> = new Set<string>();
+
+    private readonly selectedSet: Set<string> = new Set<string>();
+    private readonly selectAllSubject: Subject<boolean> = new Subject<boolean>();
+    private readonly selectionComponentMapper: Map<string, TableBuilderDataDisplaySelectionComponent> = new Map<string, TableBuilderDataDisplaySelectionComponent>();
+    private readonly currentRenderedSelectionSet: Set<string> = new Set<string>();
+    private readonly currentSelectedIdsSet: Set<string> = new Set<string>();
+
+    public isSelected(id: string): boolean {
+        return this.selectedSet.has(id);
+    }
+
+    public clearSelection(): void {
+        this.selectedSet.clear();
+        this.unselectedSet.clear();
+    }
+
+    protected handleSelection(
+        ids: string[],
+        selected: boolean
+    ): void {
+        for (let index = 0; index < ids.length; index++) {
+            const id = ids[index];
+
+            if (selected) {
+                this.selectedSet.add(id);
+            } else {
+
+                if (this.selectedSet.has(id)) {
+                    this.unselectedSet.add(id);
+                }
+
+                this.selectedSet.delete(id);
+            }
+        }
+    }
 
     public get selectAll$(): Observable<boolean> {
         return this.selectAllSubject.asObservable();
@@ -26,11 +83,6 @@ export class TableBuilderSelectionService extends DataCollatorSelectionService {
         return this.currentSelectedIdsSet.size > 0 && this.currentSelectedIdsSet.size < this.currentRenderedSelectionSet.size;
     }
 
-    private readonly selectAllSubject: Subject<boolean> = new Subject<boolean>();
-    private readonly selectionComponentMapper: Map<string, TableBuilderDataDisplaySelectionComponent> = new Map<string, TableBuilderDataDisplaySelectionComponent>();
-    private readonly currentRenderedSelectionSet: Set<string> = new Set<string>();
-    private readonly currentSelectedIdsSet: Set<string> = new Set<string>();
-
     public register(id: string, component: TableBuilderDataDisplaySelectionComponent): void {
         this.selectionComponentMapper.set(id, component);
 
@@ -39,7 +91,7 @@ export class TableBuilderSelectionService extends DataCollatorSelectionService {
         this.trackSelectionChange([id]);
     }
 
-    public override select(
+    public select(
         ids: string[],
         selected: boolean,
         emitValue: boolean = true
