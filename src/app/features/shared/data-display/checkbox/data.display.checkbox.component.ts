@@ -1,7 +1,9 @@
 import {
     Component,
     EventEmitter,
-    Input,
+    InputSignal,
+    model,
+    ModelSignal,
     Output
 } from "@angular/core";
 import {
@@ -9,8 +11,8 @@ import {
     MatCheckboxModule
 } from "@angular/material/checkbox";
 
-import { IDataDisplayVisitor } from "../data-display.visitor.interface";
-import { DataDisplayAbstractComponent } from "../data-display.abstract.component";
+import { IDataDisplayVisitor } from "../data.display.visitor.interface";
+import { DataDisplayAbstractComponent } from "../data.display.abstract.component";
 
 @Component({
     selector: "app-data-display-checkbox",
@@ -20,11 +22,11 @@ import { DataDisplayAbstractComponent } from "../data-display.abstract.component
     ]
 })
 export class DataDisplayCheckboxComponent extends DataDisplayAbstractComponent {
-    // FIXME refactor this!
-    @Input() public id!: string;
-    @Input() public checked: boolean = false;
-    @Input() public indeterminate: boolean = false;
+    public readonly id: InputSignal<string> = model<string>("");
+    public readonly checked: ModelSignal<boolean> = model<boolean>(false);
+    public readonly indeterminate: ModelSignal<boolean> = model<boolean>(false);
 
+    // FIXME refactor this and align with model()
     @Output() public handleSelect: EventEmitter<MatCheckboxChange> = new EventEmitter<MatCheckboxChange>();
 
     public select(event: MatCheckboxChange): void {

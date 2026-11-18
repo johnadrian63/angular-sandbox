@@ -5,8 +5,8 @@ import {
 } from "@angular/core";
 
 import { ITableBuilderHeaderCellData } from "../../../model";
-import { IDataDisplayVisitor } from "../../../../data-display/data-display.visitor.interface";
-import { DataDisplayAbstractComponent } from "../../../../data-display/data-display.abstract.component";
+import { IDataDisplayVisitor } from "../../../../data-display/data.display.visitor.interface";
+import { DataDisplayAbstractComponent } from "../../../../data-display/data.display.abstract.component";
 
 @Component({
     selector: "app-table-builder-data-display-header",

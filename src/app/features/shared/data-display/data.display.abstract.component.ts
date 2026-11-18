@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 
-import { IDataDisplayVisitor } from "./data-display.visitor.interface";
+import { IDataDisplayVisitor } from "./data.display.visitor.interface";
 
 @Component({
     template: ""

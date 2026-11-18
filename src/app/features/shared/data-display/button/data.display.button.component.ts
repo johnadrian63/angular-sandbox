@@ -2,30 +2,29 @@ import {
     Component,
     EventEmitter,
     HostListener,
-    Input,
+    model,
+    ModelSignal,
     Output
 } from "@angular/core";
 
 import { Ui } from "../../ui/ui.theme";
-import { IDataDisplayVisitor } from "../data-display.visitor.interface";
-import { DataDisplayAbstractComponent } from "../data-display.abstract.component";
+import { IDataDisplayVisitor } from "../data.display.visitor.interface";
+import { DataDisplayAbstractComponent } from "../data.display.abstract.component";
 import { UiButtonLinkComponent } from "../../ui/button-link/ui.button.link.component";
 
 @Component({
     selector: "app-data-display-button",
     templateUrl: "./data.display.button.component.html",
     imports: [
-        UiButtonLinkComponent
+        UiButtonLinkComponent,
     ]
 })
 export class DataDisplayButtonComponent extends DataDisplayAbstractComponent {
-    // FIXME refactor this!
-    @Input() public text!: string;
+    public readonly text: ModelSignal<string> = model<string>("");
+    public readonly className: ModelSignal<string> = model<string>("");
+    public readonly theme: ModelSignal<keyof typeof Ui.Theme> = model<keyof typeof Ui.Theme>(Ui.Theme.DEFAULT);
 
-    // FIXME refactor this!
-    @Input() public className!: string;
-    @Input() public theme: keyof typeof Ui.Theme = Ui.Theme.DEFAULT;
-
+    // FIXME refactor this and align with model()
     @Output() public handleClick: EventEmitter<Event> = new EventEmitter<Event>();
 
     @HostListener("click", ["$event"]) onClick(event: Event) {

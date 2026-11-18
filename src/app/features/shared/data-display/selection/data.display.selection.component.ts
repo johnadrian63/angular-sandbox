@@ -1,12 +1,13 @@
 import {
     Component,
-    Input,
+    model,
+    ModelSignal,
 } from "@angular/core";
 import { MatCheckboxChange } from "@angular/material/checkbox";
 
-import { IDataDisplayVisitor } from "../data-display.visitor.interface";
+import { IDataDisplayVisitor } from "../data.display.visitor.interface";
 import { TableBuilderSelectionService } from "../../table-builder/service";
-import { DataDisplayAbstractComponent } from "../data-display.abstract.component";
+import { DataDisplayAbstractComponent } from "../data.display.abstract.component";
 import { DataDisplayCheckboxComponent } from "../checkbox/data.display.checkbox.component";
 
 @Component({
@@ -17,11 +18,10 @@ import { DataDisplayCheckboxComponent } from "../checkbox/data.display.checkbox.
     ]
 })
 export class DataDisplaySelectionComponent extends DataDisplayAbstractComponent {
-    // FIXME refactor this!
-    @Input() public id!: string;
+    public readonly id: ModelSignal<string> = model<string>("");
 
     public get checked(): boolean {
-        return this.tableBuilderSelectionService.isSelected(this.id);
+        return this.tableBuilderSelectionService.isSelected(this.id());
     }
 
     constructor(
@@ -31,7 +31,7 @@ export class DataDisplaySelectionComponent extends DataDisplayAbstractComponent 
     }
 
     public select(selected: boolean): void {
-        this.tableBuilderSelectionService.select([this.id], selected);
+        this.tableBuilderSelectionService.select([this.id()], selected);
     }
 
     public handleSelect(checkbox: MatCheckboxChange): void {

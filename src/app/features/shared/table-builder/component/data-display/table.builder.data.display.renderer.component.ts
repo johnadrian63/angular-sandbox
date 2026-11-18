@@ -9,7 +9,6 @@ import {
 
 import { ITableBuilderRowData } from "../../model";
 import { TableBuilderColumnService } from "../../service";
-import { DataDisplayResolverAbstractComponent } from "../../../data-display/data-display.resolver.abstract.component";
 
 @Component({
     selector: "app-table-builder-data-display-renderer",
@@ -22,7 +21,7 @@ import { DataDisplayResolverAbstractComponent } from "../../../data-display/data
         `
     ]
 })
-export class TableBuilderDataDisplayRendererComponent extends DataDisplayResolverAbstractComponent implements OnInit {
+export class TableBuilderDataDisplayRendererComponent implements OnInit {
     public readonly rowData: ModelSignal<ITableBuilderRowData> = model.required<ITableBuilderRowData>();
     public readonly rowIndex: ModelSignal<number> = model.required<number>();
     public readonly columnKey: ModelSignal<string> = model.required<string>();

@@ -1,5 +1,6 @@
 import {
     Component,
+    inject,
     model,
     ModelSignal,
     OnInit,
@@ -8,21 +9,16 @@ import {
 
 import { ITableBuilderHeaderCellData } from "../../model";
 import { TableBuilderColumnHeaderService } from "../../service";
-import { DataDisplayResolverAbstractComponent } from "../../../data-display/data-display.resolver.abstract.component";
 
 @Component({
     selector: "app-table-builder-data-display-header-renderer",
     template: ""
 })
-export class TableBuilderDataDisplayHeaderRendererComponent extends DataDisplayResolverAbstractComponent implements OnInit {
+export class TableBuilderDataDisplayHeaderRendererComponent implements OnInit {
     public readonly column: ModelSignal<ITableBuilderHeaderCellData> = model.required<ITableBuilderHeaderCellData>();
 
-    constructor(
-        private readonly columnHeaderService: TableBuilderColumnHeaderService,
-        private readonly vcr: ViewContainerRef
-    ) {
-        super();
-    }
+    private readonly columnHeaderService: TableBuilderColumnHeaderService = inject<TableBuilderColumnHeaderService>(TableBuilderColumnHeaderService);
+    private readonly vcr: ViewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
 
     public ngOnInit(): void {
         this.columnHeaderService.handle(this.vcr, this.column());

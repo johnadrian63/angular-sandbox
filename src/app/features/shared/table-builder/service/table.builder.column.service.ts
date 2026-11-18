@@ -7,7 +7,7 @@ import {
     ITableBuilderRowData,
     ITableBuilderColumnConfig
 } from "../model";
-import { TableBuilderColumnCellDataVisitor } from "../model/table.builder.column.cell.data.visitor";
+import { IDataDisplayVisitor } from "../../data-display/data.display.visitor.interface";
 
 interface ITableBuilderColumn {
     handle(
@@ -27,10 +27,10 @@ export abstract class TableBuilderColumnService implements ITableBuilderColumn {
         rowIndex?: number
     ): void;
 
-    protected render(
+    protected render<T>(
         vcr: ViewContainerRef,
         mapper: ITableBuilderColumnConfig,
-        visitor: TableBuilderColumnCellDataVisitor
+        visitor: IDataDisplayVisitor<T>
     ): void {
         if (mapper === undefined) {
             throw new Error(

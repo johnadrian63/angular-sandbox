@@ -1,7 +1,8 @@
 import {
     Component,
     EventEmitter,
-    Input,
+    model,
+    ModelSignal,
     Output
 } from "@angular/core";
 import {
@@ -9,8 +10,8 @@ import {
     MatRadioModule
 } from "@angular/material/radio";
 
-import { IDataDisplayVisitor } from "../data-display.visitor.interface";
-import { DataDisplayAbstractComponent } from "../data-display.abstract.component";
+import { IDataDisplayVisitor } from "../data.display.visitor.interface";
+import { DataDisplayAbstractComponent } from "../data.display.abstract.component";
 
 @Component({
     selector: "app-data-display-radio-button",
@@ -20,11 +21,9 @@ import { DataDisplayAbstractComponent } from "../data-display.abstract.component
     ]
 })
 export class DataDisplayRadioButtonComponent extends DataDisplayAbstractComponent {
-    // FIXME refactor this!
-    @Input() public name!: string;
-    // FIXME refactor this!
-    @Input() public value!: string;
-    @Input() public checked: boolean = false;
+    public readonly name: ModelSignal<string> = model<string>("");
+    public readonly value: ModelSignal<string> = model<string>("");
+    public readonly checked: ModelSignal<boolean> = model<boolean>(false);
 
     @Output() public handleChange: EventEmitter<MatRadioChange> = new EventEmitter<MatRadioChange>();
 

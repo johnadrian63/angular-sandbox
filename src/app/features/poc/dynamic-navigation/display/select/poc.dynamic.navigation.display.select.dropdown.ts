@@ -6,6 +6,6 @@ import { NavigationDisplay } from "../../../../shared/navigation/display/navigat
 @Component({
     selector: "app-poc-dynamic-navigation-display-select-dropdown",
     templateUrl: "./poc.dynamic.navigation.display.select.dropdown.html",
-    imports: [NgClass],
+    imports: [NgClass]
 })
 export class PocDynamicNavigationDisplaySelectDropdown extends NavigationDisplay { }

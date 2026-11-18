@@ -5,8 +5,8 @@ import {
 import { MatCheckboxChange } from "@angular/material/checkbox";
 
 import { TableBuilderSelectionService } from "../../../service";
-import { IDataDisplayVisitor } from "../../../../data-display/data-display.visitor.interface";
-import { DataDisplayAbstractComponent } from "../../../../data-display/data-display.abstract.component";
+import { IDataDisplayVisitor } from "../../../../data-display/data.display.visitor.interface";
+import { DataDisplayAbstractComponent } from "../../../../data-display/data.display.abstract.component";
 import { DataDisplayCheckboxComponent } from "../../../../data-display/checkbox/data.display.checkbox.component";
 
 @Component({
