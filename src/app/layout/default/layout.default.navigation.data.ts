@@ -28,6 +28,11 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
                 label: "nested_handler",
                 text: "Nested Handler",
                 path: "/poc/nested-handler"
+            },
+            {
+                label: "websocket",
+                text: "WebSocket",
+                path: "/poc/websocket"
             }
         ]
     },
@@ -129,6 +134,11 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
         text: "Material",
         path: "/material"
     },
+    // {
+    //     label: "demo_app",
+    //     text: "Demo App",
+    //     path: "/demo-app"
+    // },
     {
         label: "design_patterns",
         text: "Design Patterns",
