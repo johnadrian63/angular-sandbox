@@ -13,27 +13,27 @@ export class PocWebsocket implements OnInit {
     private readonly httpClient: HttpClient = inject<HttpClient>(HttpClient);
 
     public ngOnInit(): void {
-        // const socketUrl = "https://api-sandbox-pearl.vercel.app";
-        // // const socketUrl = "http://localhost:3000";
+        const socketUrl = "https://api-sandbox-pearl.vercel.app";
+        // const socketUrl = "http://localhost:3000";
 
-        // const socket = io(socketUrl, {
-        //     transports: ['websocket']
-        // });
+        const socket = io(socketUrl, {
+            transports: ['websocket']
+        });
 
-        // socket.on("connect", () => {
-        //     console.log("connect");
-        // });
-        // socket.on("greet", (value) => {
-        //     console.log("greet", value);
-        // });
+        socket.on("connect", () => {
+            console.log("connect");
+        });
+        socket.on("greet", (value) => {
+            console.log("greet", value);
+        });
 
-        // socket.on("events", () => {
-        //     console.log("EEEE");
-        // });
+        socket.on("events", () => {
+            console.log("EEEE");
+        });
 
-        // socket.on("reconnect", () => {
-        //     console.log("reconnect");
-        // });
+        socket.on("reconnect", () => {
+            console.log("reconnect");
+        });
     }
 
     public testCors(): void {
