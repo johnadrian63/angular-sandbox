@@ -9,11 +9,11 @@ import { io } from "socket.io-client";
 })
 export class PocWebsocket implements OnInit {
     public ngOnInit(): void {
-        const socketUrl = "https://api-sandbox-pearl.vercel.app";
-        // const socketUrl = "http://localhost:3000";
+        // const socketUrl = "https://api-sandbox-pearl.vercel.app";
+        const socketUrl = "http://localhost:3000";
 
         const socket = io(socketUrl, {
-            // transports: ['websocket'],
+            transports: ['websocket'],
         });
 
         socket.on("connect", () => {
