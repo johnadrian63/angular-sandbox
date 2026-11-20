@@ -1,12 +1,10 @@
 import { Component, inject, DOCUMENT } from "@angular/core";
-import { RouterModule } from "@angular/router";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 import { LayoutDefaultThemeSwitcherService, LayoutTheme } from "./default/display/theme-switcher/layout.default.theme.switcher.service";
 
 @Component({
-    template: "",
-    imports: [RouterModule],
+    template: ""
 })
 export abstract class Layout {
     protected readonly document: Document = inject<Document>(DOCUMENT);
