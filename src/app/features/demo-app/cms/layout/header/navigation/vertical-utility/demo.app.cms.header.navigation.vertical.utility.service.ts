@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 
-import { IMenuItem } from "../../../../../shared/navigation/navigation.model";
-import { NavigationVerticalService } from "../../../../../shared/navigation/vertical/navigation.vertical.service";
+import { IMenuItem } from "../../../../../../shared/navigation/navigation.model";
+import { NavigationVerticalService } from "../../../../../../shared/navigation/vertical/navigation.vertical.service";
 
 @Injectable()
 export class DemoAppCmsHeaderNavigationVerticalUtilityService extends NavigationVerticalService {

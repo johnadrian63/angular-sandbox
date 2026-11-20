@@ -13,16 +13,16 @@ export const demoAppCmsRoutes: Routes = [
     {
         path: "",
         outlet: "header",
-        loadComponent: () => import("./header/demo.app.cms.header").then((c) => c.DemoAppCmsPostHeader)
+        loadComponent: () => import("./layout/header/demo.app.cms.layout.header").then((c) => c.DemoAppCmsLayoutHeader)
     },
     {
         path: "",
         outlet: "sidebar",
-        loadComponent: () => import("./sidebar/demo.app.cms.sidebar").then((c) => c.DemoAppCmsSidebar)
+        loadComponent: () => import("./layout/sidebar/demo.app.cms.layout.sidebar").then((c) => c.DemoAppCmsLayoutSidebar)
     },
     {
         path: "",
         outlet: "footer",
-        loadComponent: () => import("./footer/demo.app.cms.footer").then((c) => c.DemoAppCmsFooter)
+        loadComponent: () => import("./layout/footer/demo.app.cms.layout.footer").then((c) => c.DemoAppCmsFooter)
     }
 ];

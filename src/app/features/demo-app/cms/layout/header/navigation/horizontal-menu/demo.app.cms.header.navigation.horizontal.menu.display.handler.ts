@@ -1,4 +1,4 @@
-import { NavigationHorizontalCdkDisplayHandlerVisitor, NavigationHorizontalCdkDropdownDisplayHandler } from "../../../../../shared/navigation/horizontal/cdk/navigation.horizontal.cdk.display.handler";
+import { NavigationHorizontalCdkDisplayHandlerVisitor, NavigationHorizontalCdkDropdownDisplayHandler } from "../../../../../../shared/navigation/horizontal/cdk/navigation.horizontal.cdk.display.handler";
 
 export class DemoAppCmsHeaderNavigationHorizontalMenuDisplayHandlerVisitor extends NavigationHorizontalCdkDisplayHandlerVisitor {
     public override visitCdkDropdown(handler: NavigationHorizontalCdkDropdownDisplayHandler): void {
