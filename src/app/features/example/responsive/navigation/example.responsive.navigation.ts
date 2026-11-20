@@ -20,7 +20,7 @@ import { ExampleResponsiveNavigationHorizontalProfileCdkService } from "./horizo
 import { ExampleResponsiveNavigationVerticalMenuService } from "./vertical-menu/example.responsive.navigation.vertical.menu.service";
 import { ExampleResponsiveNavigationVerticalProfileMenuService } from "./vertical-profile/example.responsive.navigation.vertical.profile.menu.service";
 import { ExampleResponsiveNavigationHorizontalProfileDisplayHandler } from "./horizontal-profile/example.responsive.navigation.horizontal.profile.display.handler";
-import { LayoutDisplayThemeSwitcherHandler } from "../../../../layout/default/layout.default.navigation.horizontal.display.handler";
+import { LayoutDisplayThemeSwitcherHandler } from "../../../../layout/shared/display/theme-switcher/layout.display.theme.switcher.handler";
 
 @Component({
     selector: "app-example-responsive-navigation",

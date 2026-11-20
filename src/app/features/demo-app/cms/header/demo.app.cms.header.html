@@ -1,8 +1,8 @@
-<div class="mr-2 flex items-center py-1">
+<div class="mr-2 flex items-center py-1.5">
     <a
         routerLink="responsive"
         [relativeTo]="activatedRoute.parent"
-        class="mr-2 block text-shadow-2xs italic text-lg px-3 py-1.5 rounded-3xl font-bold text-white bg-lime-500"
+        class="mr-2 block text-shadow-2xs italic text-lg px-2 rounded-3xl font-bold text-green-950 border-2 border-lime-400 bg-emerald-500"
         >ABC Corp.</a
     >
     <fa-icon
@@ -13,7 +13,9 @@
 </div>
 <nav>
     <!--main navigation -->
+    <app-demo-app-cms-header-navigation-horizontal-menu></app-demo-app-cms-header-navigation-horizontal-menu>
 </nav>
 <div class="ml-auto flex relative z-40">
     <!-- right navigation -->
+    <app-demo-app-cms-header-navigation-horizontal-utility></app-demo-app-cms-header-navigation-horizontal-utility>
 </div>

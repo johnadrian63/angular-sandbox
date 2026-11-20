@@ -1,6 +1,7 @@
 import { IMenuItem } from "../../features/shared/navigation/navigation.model";
+import { LayoutDisplayThemeSwitcherHandler } from "../shared/display/theme-switcher/layout.display.theme.switcher.handler";
+import { LayoutDisplayGitHubLinkHandler, LayoutDisplayResponsiveLinkHandler } from "./layout.default.navigation.horizontal.display.handler";
 import { NavigationHorizontalCdkDropdownLinkDisplayHandler } from "../../features/shared/navigation/horizontal/cdk/navigation.horizontal.cdk.display.handler";
-import { LayoutDisplayGitHubLinkHandler, LayoutDisplayResponsiveLinkHandler, LayoutDisplayThemeSwitcherHandler } from "./layout.default.navigation.horizontal.display.handler";
 
 export const layoutDefaultNavigationData: IMenuItem[] = [
     {

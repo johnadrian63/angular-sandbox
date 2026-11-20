@@ -3,24 +3,16 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faMobileAlt, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 import { IMenuItem } from "../../features/shared/navigation/navigation.model";
-import { LayoutDefaultThemeSwitcher } from "./display/theme-switcher/layout.default.theme.switcher";
 import { NavigationDisplayLink } from "../../features/shared/navigation/display/link/navigation.display.link";
 import { NavigationDisplayHandler, NavigationDisplayLinkHandler } from "../../features/shared/navigation/navigation.display.handler";
+import { ILayoutDisplayThemeSwitcherDisplayHandlerVisitor, LayoutDisplayThemeSwitcherHandler } from "../shared/display/theme-switcher/layout.display.theme.switcher.handler";
 import { INavigationHorizontalCdkDisplayHandlerVisitor, NavigationHorizontalCdkDisplayHandlerVisitor, NavigationHorizontalCdkDropdownLinkDisplayHandler } from "../../features/shared/navigation/horizontal/cdk/navigation.horizontal.cdk.display.handler";
 
-export interface ILayoutDefaultDisplayHandlerVisitor<T> extends INavigationHorizontalCdkDisplayHandlerVisitor<T> {
+export interface ILayoutDefaultDisplayHandlerVisitor<T> extends INavigationHorizontalCdkDisplayHandlerVisitor<T>, ILayoutDisplayThemeSwitcherDisplayHandlerVisitor<T> {
     visitThemeSwitcher(handler: LayoutDisplayThemeSwitcherHandler): T;
     visitOpenLink(handler: LayoutDisplayOpenLinkHandler): T;
     visitGitHubLink(handler: LayoutDisplayGitHubLinkHandler): T;
     visitResponsiveLink(handler: LayoutDisplayResponsiveLinkHandler): T;
-}
-
-export class LayoutDisplayThemeSwitcherHandler extends NavigationDisplayHandler {
-    public override readonly renderer: Type<LayoutDefaultThemeSwitcher> = LayoutDefaultThemeSwitcher;
-
-    public override accept<T>(visitor: ILayoutDefaultDisplayHandlerVisitor<T>): T {
-        return visitor.visitThemeSwitcher(this);
-    }
 }
 
 export class LayoutDisplayOpenLinkHandler extends NavigationDisplayHandler {
