@@ -1,9 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, inject, signal } from "@angular/core";
-import { lastValueFrom } from "rxjs";
 
 @Component({
-    selector: "app-demo.app.tennis.live.score",
+    selector: "app-demo-app-tennis-live-score",
     styleUrl: "./demo.app.tennis.live.score.css",
     templateUrl: "./demo.app.tennis.live.score.html",
     imports: [],
