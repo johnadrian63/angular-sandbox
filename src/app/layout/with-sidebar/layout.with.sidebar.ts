@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, signal, WritableSignal } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 
 import { Layout } from "../layout";
@@ -9,4 +9,10 @@ import { Layout } from "../layout";
     templateUrl: "./layout.with.sidebar.html",
     imports: [RouterOutlet],
 })
-export class LayoutWithSidebar extends Layout { }
+export class LayoutWithSidebar extends Layout {
+    public readonly sidebarOpen: WritableSignal<boolean | undefined> = signal<boolean | undefined>(false);
+
+    public toggleSidebar(toggled: boolean | undefined): void {
+        this.sidebarOpen.set(toggled);
+    }
+}

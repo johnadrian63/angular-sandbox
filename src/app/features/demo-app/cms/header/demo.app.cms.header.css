@@ -1,0 +1,31 @@
+@reference "tailwindcss";
+
+nav {
+    @apply hidden;
+
+    @media (width >=theme(--breakpoint-md)) {
+        @apply block;
+    }
+}
+
+.menu-toggle {
+    @media (width >=theme(--breakpoint-md)) {
+        @apply hidden;
+    }
+}
+
+.profile-icon {
+    @apply hidden;
+
+    &.mobile {
+        @apply block;
+    }
+
+    @media (width >=theme(--breakpoint-md)) {
+        @apply block;
+
+        &.mobile {
+            @apply hidden;
+        }
+    }
+}

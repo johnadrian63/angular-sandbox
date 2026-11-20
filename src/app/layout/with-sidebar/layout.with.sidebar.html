@@ -1,1 +1,29 @@
-<router-outlet></router-outlet>
+<div class="grid h-screen grid-rows-[auto_minmax(0,1fr)]">
+    <!--header here-->
+    <header>
+        <router-outlet name="header"></router-outlet>
+    </header>
+    <div
+        [class.md:grid-cols-[0_minmax(0,1fr)_auto]]="!sidebarOpen()"
+        [class.md:grid-cols-[250px_minmax(0,1fr)_auto]]="sidebarOpen()"
+        class="grid grid-cols-1 overflow-y-auto transition-[grid-template-columns] duration-300"
+    >
+        <aside
+            [class.-translate-x-full]="!sidebarOpen()"
+            [class.translate-x-0]="sidebarOpen()"
+            class="sidebar"
+        >
+            <!--sidebar here-->
+            <router-outlet name="sidebar"></router-outlet>
+        </aside>
+        <main class="flex flex-col min-w-0 min-h-0 overflow-y-auto px-3">
+            <div class="mb-2">
+                <router-outlet></router-outlet>
+            </div>
+            <footer class="mt-auto">
+                <!--footer here-->
+                <router-outlet name="footer"></router-outlet>
+            </footer>
+        </main>
+    </div>
+</div>

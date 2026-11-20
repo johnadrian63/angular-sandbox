@@ -4,9 +4,9 @@ import { RouterOutlet } from "@angular/router";
 import { Layout } from "../layout";
 
 @Component({
-    imports: [RouterOutlet],
     selector: "app-layout-blank",
     styleUrl: "./layout.blank.css",
-    templateUrl: "./layout.blank.html"
+    templateUrl: "./layout.blank.html",
+    imports: [RouterOutlet],
 })
 export class LayoutBlank extends Layout { }

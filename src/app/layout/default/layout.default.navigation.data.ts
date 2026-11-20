@@ -136,11 +136,19 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
         text: "Material",
         path: "/material"
     },
-    // {
-    //     label: "demo_app",
-    //     text: "Demo App",
-    //     path: "/demo-app"
-    // },
+    {
+        label: "demo_app",
+        text: "Demo App",
+        path: "/demo",
+        handler: NavigationHorizontalCdkDropdownLinkDisplayHandler,
+        children: [
+            {
+                label: "demo_app_cms",
+                text: "CMS",
+                path: "/demo/cms",
+            }
+        ]
+    },
     {
         label: "design_patterns",
         text: "Design Patterns",
