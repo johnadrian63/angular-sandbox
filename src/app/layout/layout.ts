@@ -22,8 +22,6 @@ export abstract class Layout {
                 if (theme) {
                     this.document.documentElement.classList.add(theme);
                 }
-
-                console.log(">>>", theme);
             });
     }
 }

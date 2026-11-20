@@ -5,6 +5,7 @@ import { faTableColumns, IconDefinition } from "@fortawesome/free-solid-svg-icon
 
 import { IMenuItem } from "../../../shared/navigation/navigation.model";
 import { demoAppCmsNavigationData } from "./demo.app.cms.navigation.data";
+import { WithSidebarToggle } from "../../../../layout/with-sidebar/shared/directive/with.sidebar.toggle.directive";
 import { LayoutDisplayThemeSwitcherHandler } from "../../../../layout/shared/display/theme-switcher/layout.display.theme.switcher.handler";
 import { DemoAppCmsHeaderNavigationHorizontalMenu } from "./navigation/horizontal-menu/demo.app.cms.header.navigation.horizontal.menu";
 import { DemoAppCmsHeaderNavigationHorizontalUtility } from "./navigation/horizontal-utility/demo.app.cms.header.navigation.horizontal.utility";
@@ -22,7 +23,8 @@ import { DemoAppCmsHeaderNavigationHorizontalMenuProfileDropdownDisplayHandler }
         FaIconComponent,
         RouterModule,
         DemoAppCmsHeaderNavigationHorizontalMenu,
-        DemoAppCmsHeaderNavigationHorizontalUtility
+        DemoAppCmsHeaderNavigationHorizontalUtility,
+        WithSidebarToggle
     ],
     providers: [
         DemoAppCmsHeaderNavigationHorizontalMenuService,
@@ -39,8 +41,6 @@ export class DemoAppCmsPostHeader {
     private readonly navigationHorizontalUtilityService: DemoAppCmsHeaderNavigationHorizontalUtilityService = inject<DemoAppCmsHeaderNavigationHorizontalUtilityService>(DemoAppCmsHeaderNavigationHorizontalUtilityService);
     private readonly navigationVerticalMenuService: DemoAppCmsHeaderNavigationVerticalMenuService = inject<DemoAppCmsHeaderNavigationVerticalMenuService>(DemoAppCmsHeaderNavigationVerticalMenuService);
     private readonly navigationVerticalUtilityService: DemoAppCmsHeaderNavigationVerticalUtilityService = inject<DemoAppCmsHeaderNavigationVerticalUtilityService>(DemoAppCmsHeaderNavigationVerticalUtilityService);
-
-    public toggle(): void { }
 
     public ngOnInit(): void {
         this.navigationHorizontalMenuService.menus.set(demoAppCmsNavigationData);
