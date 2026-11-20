@@ -5,13 +5,13 @@ import { faTableColumns, IconDefinition } from "@fortawesome/free-solid-svg-icon
 
 import { IMenuItem } from "../../../shared/navigation/navigation.model";
 import { demoAppCmsNavigationData } from "./demo.app.cms.navigation.data";
+import { LayoutDisplayThemeSwitcherHandler } from "../../../../layout/shared/display/theme-switcher/layout.display.theme.switcher.handler";
 import { DemoAppCmsHeaderNavigationHorizontalMenu } from "./navigation/horizontal-menu/demo.app.cms.header.navigation.horizontal.menu";
 import { DemoAppCmsHeaderNavigationHorizontalUtility } from "./navigation/horizontal-utility/demo.app.cms.header.navigation.horizontal.utility";
 import { DemoAppCmsHeaderNavigationHorizontalMenuService } from "./navigation/horizontal-menu/demo.app.cms.header.navigation.horizontal.menu.service";
 import { DemoAppCmsHeaderNavigationHorizontalUtilityService } from "./navigation/horizontal-utility/demo.app.cms.header.navigation.horizontal.utility.service";
 import { DemoAppCmsHeaderNavigationVerticalMenuService } from "./navigation/vertical-menu/demo.app.cms.header.navigation.vertical.menu.service";
 import { DemoAppCmsHeaderNavigationVerticalUtilityService } from "./navigation/vertical-utility/demo.app.cms.header.navigation.vertical.utility.service";
-import { LayoutDisplayThemeSwitcherHandler } from "../../../../layout/shared/display/theme-switcher/layout.display.theme.switcher.handler";
 import { DemoAppCmsHeaderNavigationHorizontalMenuProfileDropdownDisplayHandler } from "./navigation/horizontal-utility/demo.app.cms.header.navigation.horizontal.utility.display.handler";
 
 @Component({
