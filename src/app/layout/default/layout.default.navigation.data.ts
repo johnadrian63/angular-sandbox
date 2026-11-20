@@ -29,11 +29,13 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
                 text: "Nested Handler",
                 path: "/poc/nested-handler"
             },
-            {
-                label: "websocket",
-                text: "WebSocket",
-                path: "/poc/websocket"
-            }
+
+            // TODO: disable for now. Investigate why WebSocket doesn't work on Vercel.
+            // {
+            //     label: "websocket",
+            //     text: "WebSocket",
+            //     path: "/poc/websocket"
+            // }
         ]
     },
     {

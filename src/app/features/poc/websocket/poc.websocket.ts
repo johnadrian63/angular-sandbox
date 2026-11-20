@@ -13,23 +13,22 @@ export class PocWebsocket implements OnInit {
     private readonly httpClient: HttpClient = inject<HttpClient>(HttpClient);
 
     public ngOnInit(): void {
+        // const socketUrl = "https://nestjs-swart-sigma.vercel.app/";
         // const socketUrl = "https://api-sandbox-pearl.vercel.app";
-        const socketUrl = "https://nestjs-swart-sigma.vercel.app/";
-        // const socketUrl = "http://localhost:3000";
+        // const socketUrl = "https://apisandbox-flame.vercel.app";
+        const socketUrl = "http://localhost:3000";
+        // const socketUrl = "https://nestjs-dozk.vercel.app/";
 
         const socket = io(socketUrl, {
-            transports: ['websocket']
+            transports: ["websocket"]
         });
 
         socket.on("connect", () => {
             console.log("connect");
         });
-        socket.on("greet", (value) => {
-            console.log("greet", value);
-        });
 
-        socket.on("events", () => {
-            console.log("EEEE");
+        socket.on("greet", (events) => {
+            console.log("websocket response:", events);
         });
 
         socket.on("reconnect", () => {
