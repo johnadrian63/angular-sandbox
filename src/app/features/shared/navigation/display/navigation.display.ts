@@ -1,4 +1,4 @@
-import { Component, model } from "@angular/core";
+import { Component, Input, model } from "@angular/core";
 
 import { IMenuItem } from "../navigation.model";
 
@@ -8,5 +8,5 @@ import { IMenuItem } from "../navigation.model";
 export abstract class NavigationDisplay {
     public readonly menu = model.required<IMenuItem>();
 
-    public classes: string = "";
+    @Input() public classes: string = "";
 }

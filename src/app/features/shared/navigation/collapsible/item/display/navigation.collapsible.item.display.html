@@ -1,0 +1,8 @@
+<a class="flex p-2 cursor-pointer" (click)="toggle()">
+    <app-navigation-display-text [menu]="menu()"></app-navigation-display-text>
+    <fa-icon
+        [icon]="dropdownIcon"
+        class="ml-auto transition-transform duration-200"
+        [class.rotate-90]="isExpanded()"
+    ></fa-icon>
+</a>

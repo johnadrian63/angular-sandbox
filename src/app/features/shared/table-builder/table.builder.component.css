@@ -20,7 +20,7 @@ table {
 
     &:hover {
         .mat-mdc-cell {
-            background-color: var(--row-hover);
+            background-color: var(--hover-color);
         }
     }
 }

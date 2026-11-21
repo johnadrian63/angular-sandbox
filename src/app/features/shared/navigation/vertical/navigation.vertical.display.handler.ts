@@ -1,6 +1,5 @@
 import { ViewContainerRef } from "@angular/core";
 
-import { IMenuItem } from "../navigation.model";
 import { NavigationVerticalService } from "./navigation.vertical.service";
 import { INavigationDisplayHandlerVisitor, NavigationDisplayButtonHandler, NavigationDisplayExpandHandler, NavigationDisplayLinkHandler, NavigationDisplayMenuDropdownHandler, NavigationDisplayTextHandler } from "../navigation.display.handler";
 
@@ -9,10 +8,6 @@ export class NavigationVerticalDisplayHandler implements INavigationDisplayHandl
         private readonly vcr: ViewContainerRef,
         private readonly navigationVerticalService: NavigationVerticalService
     ) { }
-
-    public visitButton(handler: NavigationDisplayButtonHandler): void {
-        throw new Error("visitButton not implemented.");
-    }
 
     public visitExpand(handler: NavigationDisplayExpandHandler): void {
         const componentRef = this.vcr.createComponent(handler.renderer, {
@@ -23,9 +18,9 @@ export class NavigationVerticalDisplayHandler implements INavigationDisplayHandl
         componentRef.instance.classes = "p-2 flex cursor-pointer";
 
         componentRef.instance
-            .onExpand
-            .subscribe((menu: IMenuItem) => {
-                this.navigationVerticalService.setMenu(menu);
+            .onClick
+            .subscribe(() => {
+                this.navigationVerticalService.setMenu(handler.menu);
             });
 
         componentRef.changeDetectorRef.detectChanges();
@@ -43,10 +38,14 @@ export class NavigationVerticalDisplayHandler implements INavigationDisplayHandl
     }
 
     public visitMenuDropdown(handler: NavigationDisplayMenuDropdownHandler): void {
-        throw new Error("visitMenuDropdown not implemented.");
+        // do nothing
+    }
+
+    public visitButton(handler: NavigationDisplayButtonHandler): void {
+        // do nothing
     }
 
     public visitText(handler: NavigationDisplayTextHandler): void {
-        throw new Error("visitText not implemented.");
+        // do nothing
     }
 }

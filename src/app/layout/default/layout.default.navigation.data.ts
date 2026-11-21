@@ -26,6 +26,11 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
                 path: "/poc/dynamic-navigation"
             },
             {
+                label: "collapsible_navigation",
+                text: "Collapsible Navigation",
+                path: "/poc/collapsible-navigation"
+            },
+            {
                 label: "nested_handler",
                 text: "Nested Handler",
                 path: "/poc/nested-handler"

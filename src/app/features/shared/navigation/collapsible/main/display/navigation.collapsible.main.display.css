@@ -1,0 +1,11 @@
+@reference "tailwindcss";
+
+.nav-head {
+    &:hover {
+        background-color: var(--hover-color);
+    }
+
+    &.selected {
+        background-color: var(--selected-color);
+    }
+}

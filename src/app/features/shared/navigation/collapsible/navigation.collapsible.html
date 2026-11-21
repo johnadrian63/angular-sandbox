@@ -1,0 +1,8 @@
+<div class="block p-0">
+    @for (menu of menus(); track $index) {
+        <app-navigation-collapsible-main
+            [menu]="menu"
+            [index]="$index"
+        ></app-navigation-collapsible-main>
+    }
+</div>

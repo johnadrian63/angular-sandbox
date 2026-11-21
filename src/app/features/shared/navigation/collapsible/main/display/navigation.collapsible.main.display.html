@@ -1,0 +1,15 @@
+<span
+    class="nav-head flex p-2 cursor-pointer border border-gray-200 rounded"
+    [class.selected]="isExpanded()"
+    (click)="toggle()"
+>
+    <app-navigation-display-text
+        [menu]="menu()"
+        [classes]="'font-medium'"
+    ></app-navigation-display-text>
+    <fa-icon
+        [icon]="dropdownIcon"
+        class="ml-auto transition-transform duration-200"
+        [class.rotate-90]="isExpanded()"
+    ></fa-icon>
+</span>

@@ -19,6 +19,10 @@ export const pocRoutes: Routes = [
                 loadComponent: () => import("./dynamic-navigation/poc.dynamic.navigation").then((c) => c.PocDynamicNavigation),
             },
             {
+                path: "collapsible-navigation",
+                loadComponent: () => import("./collapsible-navigation/poc.collapsible.navigation").then((c) => c.PocCollapsibleNavigation),
+            },
+            {
                 path: "nested-handler",
                 loadComponent: () => import("./nested-handler/poc.nested.handler").then((c) => c.PocNestedHandler),
             },
