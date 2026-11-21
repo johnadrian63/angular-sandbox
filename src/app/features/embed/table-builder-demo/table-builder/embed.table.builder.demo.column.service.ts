@@ -2,7 +2,7 @@ import { Injectable, ViewContainerRef } from "@angular/core";
 
 import { TableBuilderColumnService } from "../../../shared/table-builder";
 import { IUserAdapter } from "../../../poc/table-builder/poc.table.builder.model";
-import { pocTableBuilderMapper } from "./embed.table.builder.demo.config";
+import { embedTableBuilderMapper } from "./embed.table.builder.demo.config";
 import { DataDisplayTextComponent } from "../../../shared/data-display/text";
 import { IDataDisplayVisitor } from "../../../shared/data-display/data.display.visitor.interface";
 import { DataDisplayButtonComponent } from "../../../shared/data-display/button";
@@ -16,9 +16,9 @@ import { DataDisplayTextboxComponent } from "../../../shared/data-display/textbo
 import { DataDisplayThumbnailComponent } from "../../../shared/data-display/thumbnail";
 
 @Injectable()
-export class PocTableBuilderColumnService extends TableBuilderColumnService {
+export class EmbedTableBuilderColumnService extends TableBuilderColumnService {
     public handle(vcr: ViewContainerRef, columnKey: keyof IUserAdapter, row: IUserAdapter): void {
-        const mapper = pocTableBuilderMapper.get(columnKey);
+        const mapper = embedTableBuilderMapper.get(columnKey);
 
         this.render(
             vcr,

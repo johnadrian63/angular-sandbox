@@ -4,7 +4,7 @@ import { DataDisplayThumbnailComponent } from "../../../shared/data-display/thum
 import { ITableBuilderColumnConfig, ITableBuilderColumnHeaderConfig } from "../../../shared/table-builder";
 import { TableBuilderDataDisplayHeaderComponent } from "../../../shared/table-builder/component/data-display/header";
 
-export const pocTableBuilderHeaderMapper: Map<keyof IUserAdapter, ITableBuilderColumnHeaderConfig>
+export const embedTableBuilderHeaderMapper: Map<keyof IUserAdapter, ITableBuilderColumnHeaderConfig>
     = new Map<keyof IUserAdapter, ITableBuilderColumnHeaderConfig>([
         [
             "id",
@@ -58,7 +58,7 @@ export const pocTableBuilderHeaderMapper: Map<keyof IUserAdapter, ITableBuilderC
     ]);
 
 
-export const pocTableBuilderMapper: Map<keyof IUserAdapter, ITableBuilderColumnConfig>
+export const embedTableBuilderMapper: Map<keyof IUserAdapter, ITableBuilderColumnConfig>
     = new Map<keyof IUserAdapter, ITableBuilderColumnConfig>([
         [
             "id",

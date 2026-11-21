@@ -1,14 +1,15 @@
 import { Injectable } from "@angular/core";
 
+import { embedTableBuilderHeaderMapper } from "./embed.table.builder.demo.config";
+import { IUserAdapter } from "../../../poc/table-builder/poc.table.builder.model";
 import { TableBuilderColumnHeaderService, TableBuilderHeaderCellData } from "../../../shared/table-builder";
-import { pocTableBuilderHeaderMapper } from "./embed.table.builder.demo.config";
 
 @Injectable()
-export class PocTableBuilderColumnHeaderService extends TableBuilderColumnHeaderService {
-    public override headers: TableBuilderHeaderCellData[] = [];
+export class EmbedTableBuilderColumnHeaderService extends TableBuilderColumnHeaderService<IUserAdapter> {
+    public override headers: Map<keyof IUserAdapter, TableBuilderHeaderCellData> = new Map<keyof IUserAdapter, TableBuilderHeaderCellData>();
 
     public override register(): void {
-        for (const header of pocTableBuilderHeaderMapper.entries()) {
+        for (const header of embedTableBuilderHeaderMapper.entries()) {
             const key = header[0];
             const label = header[1].label;
 
@@ -17,16 +18,14 @@ export class PocTableBuilderColumnHeaderService extends TableBuilderColumnHeader
             let freezed = false;
             let width = "";
 
-            this.headers.push(
-                new TableBuilderHeaderCellData(
-                    key,
-                    label,
-                    sortable,
-                    movable,
-                    freezed,
-                    width
-                )
-            );
+            this.headers.set(key, new TableBuilderHeaderCellData(
+                key,
+                label,
+                sortable,
+                movable,
+                freezed,
+                width
+            ));
         }
     }
 

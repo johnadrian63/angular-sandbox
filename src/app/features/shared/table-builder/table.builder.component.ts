@@ -62,11 +62,11 @@ import { TableBuilderDataDisplayRendererComponent } from "./component/data-displ
 export class TableBuilderComponent implements OnInit, OnDestroy {
 
     public get columns(): TableBuilderHeaderCellData[] {
-        return this.tableBuilderColumnHeaderService.headers;
+        return Array.from(this.tableBuilderColumnHeaderService.headers.values());
     }
 
     public get columnsToDisplay(): string[] {
-        return this.tableBuilderColumnHeaderService.columnsToDisplay();
+        return this.tableBuilderColumnHeaderService.columnsToDisplay;
     }
 
     public get pageSizeOptions(): number[] {
@@ -105,7 +105,7 @@ export class TableBuilderComponent implements OnInit, OnDestroy {
 
     private readonly tableBuilderService: TableBuilderService = inject<TableBuilderService>(TableBuilderService);
     private readonly tableBuilderPaginationService: TableBuilderPaginationBaseService = inject<TableBuilderPaginationBaseService>(TableBuilderPaginationBaseService);
-    private readonly tableBuilderColumnHeaderService: TableBuilderColumnHeaderService = inject<TableBuilderColumnHeaderService>(TableBuilderColumnHeaderService);
+    private readonly tableBuilderColumnHeaderService: TableBuilderColumnHeaderService<ITableBuilderRowData> = inject<TableBuilderColumnHeaderService<ITableBuilderRowData>>(TableBuilderColumnHeaderService);
     private readonly tableBuilderSortService: TableBuilderSortService = inject<TableBuilderSortService>(TableBuilderSortService);
     private readonly tableBuilderSelectionService: TableBuilderSelectionService = inject<TableBuilderSelectionService>(TableBuilderSelectionService);
     private readonly tableBuilderRowService: TableBuilderRowService | null = inject<TableBuilderRowService>(TableBuilderRowService, {
@@ -131,6 +131,7 @@ export class TableBuilderComponent implements OnInit, OnDestroy {
 
     public ngOnDestroy(): void {
         this.tableBuilderService.reset();
+        this.tableBuilderColumnHeaderService.reset();
     }
 
     public handRowClick(rowData: ITableBuilderRowData, columnKey: string): void {

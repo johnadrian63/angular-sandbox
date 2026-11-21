@@ -1,19 +1,26 @@
-import { inject, Injectable } from "@angular/core";
+import { DestroyRef, inject, Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { lastValueFrom } from "rxjs";
+import { ActivatedRoute } from "@angular/router";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { lastValueFrom, skip } from "rxjs";
 
 import { TableBuilderService } from "../../../shared/table-builder";
 import { IUserAdapter, IUserCollection, UserAdapter } from "../../../poc/table-builder/poc.table.builder.model";
-import { PocTableBuilderPaginationService } from "./embed.table.builder.demo.pagination.service";
+import { EmbedTableBuilderPaginationService } from "./embed.table.builder.demo.pagination.service";
 
 @Injectable()
-export class PocTableBuilderService extends TableBuilderService {
+export class EmbedTableBuilderService extends TableBuilderService {
     private readonly httpClient: HttpClient = inject<HttpClient>(HttpClient);
-    private readonly tableBuilderPaginationService: PocTableBuilderPaginationService = inject<PocTableBuilderPaginationService>(PocTableBuilderPaginationService);
+    private readonly tableBuilderPaginationService: EmbedTableBuilderPaginationService = inject<EmbedTableBuilderPaginationService>(EmbedTableBuilderPaginationService);
+    private readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);
+    private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
 
     public override init(): void {
-        this.tableBuilderPaginationService.queryParamsChange
-            .subscribe(async () => {
+        this.activatedRoute.queryParams
+            .pipe(
+                skip(1),
+                takeUntilDestroyed(this.destroyRef)
+            ).subscribe(async () => {
                 this.refresh();
             });
     }
