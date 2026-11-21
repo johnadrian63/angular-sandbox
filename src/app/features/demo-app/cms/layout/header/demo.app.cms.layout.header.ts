@@ -5,7 +5,7 @@ import { faTableColumns, IconDefinition } from "@fortawesome/free-solid-svg-icon
 
 import { IMenuItem } from "../../../../shared/navigation/navigation.model";
 import { demoAppCmsNavigationData } from "./demo.app.cms.layout.navigation.data";
-import { WithSidebarToggle } from "../../../../../layout/with-sidebar/shared/directive/with.sidebar.toggle.directive";
+import { SidebarToggler } from "../../../../../layout/shared/sidebar-toggler/sidebar.toggler.directive";
 import { LayoutDisplayThemeSwitcherHandler } from "../../../../../layout/shared/display/theme-switcher/layout.display.theme.switcher.handler";
 import { DemoAppCmsHeaderNavigationHorizontalMenu } from "./navigation/horizontal-menu/demo.app.cms.header.navigation.horizontal.menu";
 import { DemoAppCmsHeaderNavigationHorizontalUtility } from "./navigation/horizontal-utility/demo.app.cms.header.navigation.horizontal.utility";
@@ -16,15 +16,15 @@ import { DemoAppCmsHeaderNavigationVerticalUtilityService } from "./navigation/v
 import { DemoAppCmsHeaderNavigationHorizontalMenuProfileDropdownDisplayHandler } from "./navigation/horizontal-utility/demo.app.cms.header.navigation.horizontal.utility.display.handler";
 
 @Component({
-    selector: "app-demo-app-cms-layout--header",
+    selector: "app-demo-app-cms-layout-header",
     styleUrl: "./demo.app.cms.layout.header.css",
     templateUrl: "./demo.app.cms.layout.header.html",
     imports: [
         FaIconComponent,
         RouterModule,
+        SidebarToggler,
         DemoAppCmsHeaderNavigationHorizontalMenu,
         DemoAppCmsHeaderNavigationHorizontalUtility,
-        WithSidebarToggle
     ],
     providers: [
         DemoAppCmsHeaderNavigationHorizontalMenuService,

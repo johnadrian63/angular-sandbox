@@ -1,14 +1,14 @@
 import { effect, Service, Signal, signal, WritableSignal } from "@angular/core";
 
 @Service()
-export class SidebarToggleService {
+export class SidebarTogglerService {
 
     public get toggled(): Signal<boolean> {
         return this.toggleSignal.asReadonly();
     }
 
     private readonly toggleSignal: WritableSignal<boolean> = signal<boolean>(true);
-    private readonly sidebarToggleKey: string = "sidebarToggleKey";
+    private readonly toggleKey: string = "sidebarTogglerKey";
 
     constructor() {
         const toggled = this.getToggledCache();
@@ -25,7 +25,7 @@ export class SidebarToggleService {
     }
 
     private getToggledCache(): boolean {
-        const toggledCache = localStorage.getItem(this.sidebarToggleKey);
+        const toggledCache = localStorage.getItem(this.toggleKey);
 
         if (toggledCache !== null) {
             return toggledCache === "true" ? true : false;
@@ -39,6 +39,6 @@ export class SidebarToggleService {
     }
 
     private storeCache(toggled: boolean): void {
-        localStorage.setItem(this.sidebarToggleKey, toggled.toString());
+        localStorage.setItem(this.toggleKey, toggled.toString());
     }
 }

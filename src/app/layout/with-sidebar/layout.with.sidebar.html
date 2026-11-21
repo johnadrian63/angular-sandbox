@@ -7,17 +7,20 @@
         class="grid grid-cols-1 overflow-y-auto transition-[grid-template-columns] duration-300"
         [showClass]="'md:grid-cols-[250px_minmax(0,1fr)_auto]'"
         [hideClass]="'md:grid-cols-[0_minmax(0,1fr)_auto]'"
-        withSidebar
+        sidebarTogglerPanel
     >
         <aside
             [class.-translate-x-full]="!sidebarOpen()"
             [class.translate-x-0]="sidebarOpen()"
+            [hideClass]="'-translate-x-full'"
+            [showClass]="'translate-x-0'"
             class="sidebar"
+            sidebarTogglerPanel
         >
             <!--sidebar here-->
             <router-outlet name="sidebar"></router-outlet>
         </aside>
-        <main class="flex flex-col min-w-0 min-h-0 overflow-y-auto px-3">
+        <main class="flex flex-col min-w-0 min-h-0 overflow-y-auto p-3">
             <div class="mb-2">
                 <router-outlet></router-outlet>
             </div>

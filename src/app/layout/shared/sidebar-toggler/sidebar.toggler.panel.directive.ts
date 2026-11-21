@@ -1,18 +1,18 @@
 import { Directive, effect, ElementRef, inject, input, InputSignal, Renderer2 } from "@angular/core";
 
-import { SidebarToggleService } from "./with.sidebar.toggle.service";
+import { SidebarTogglerService } from "./sidebar.toggler.service";
 
 @Directive({
-    selector: "[withSidebar]"
+    selector: "[sidebarTogglerPanel]"
 })
-export class WithSidebar {
+export class SidebarTogglerPanel {
     public readonly showClass: InputSignal<string> = input<string>("");
     public readonly hideClass: InputSignal<string> = input<string>("");
 
     private readonly elementRef: ElementRef = inject<ElementRef>(ElementRef);
     private readonly renderer: Renderer2 = inject<Renderer2>(Renderer2);
 
-    private readonly sidebarToggleService: SidebarToggleService = inject<SidebarToggleService>(SidebarToggleService);
+    private readonly sidebarToggleService: SidebarTogglerService = inject<SidebarTogglerService>(SidebarTogglerService);
 
     constructor() {
         effect(() => {
