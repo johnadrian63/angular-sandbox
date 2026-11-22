@@ -1,23 +1,16 @@
-
 import { IUserAdapter } from "../../demo.app.user.model";
 import { DataDisplayTextComponent } from "../../../../../shared/data-display/text";
-import { DemoAppCmsUserDisplayRole } from "../../display/view/demo.app.cms.user.display.role";
+import { DemoAppCmsUserDisplayRole } from "../../display/role/demo.app.cms.user.display.role";
+import { DemoAppCmsUserDisplayFullName } from "../../display/full-name/demo.app.cms.user.display.full.name";
 import { ITableBuilderColumnConfig, ITableBuilderColumnHeaderConfig } from "../../../../../shared/table-builder";
 import { TableBuilderDataDisplayHeaderComponent } from "../../../../../shared/table-builder/component/data-display/header";
 
 export const demoAppCmsUserListTableBuilderHeaderMapper: Map<keyof IUserAdapter, ITableBuilderColumnHeaderConfig>
     = new Map<keyof IUserAdapter, ITableBuilderColumnHeaderConfig>([
         [
-            "firstName",
+            "fullName",
             {
-                label: "First name",
-                renderer: TableBuilderDataDisplayHeaderComponent
-            }
-        ],
-        [
-            "lastName",
-            {
-                label: "Last name",
+                label: "Full name",
                 renderer: TableBuilderDataDisplayHeaderComponent
             }
         ],
@@ -47,15 +40,9 @@ export const demoAppCmsUserListTableBuilderHeaderMapper: Map<keyof IUserAdapter,
 export const demoAppCmsUserListTableBuilderMapper: Map<keyof IUserAdapter, ITableBuilderColumnConfig>
     = new Map<keyof IUserAdapter, ITableBuilderColumnConfig>([
         [
-            "firstName",
+            "fullName",
             {
-                renderer: DataDisplayTextComponent
-            }
-        ],
-        [
-            "lastName",
-            {
-                renderer: DataDisplayTextComponent
+                renderer: DemoAppCmsUserDisplayFullName
             }
         ],
         [

@@ -1,0 +1,11 @@
+<div class="flex items-center gap-x-1.5">
+    <app-data-display-thumbnail
+        width="30"
+        height="30"
+        [ngClass]="classes"
+        [url]="imageUrl()"
+    ></app-data-display-thumbnail>
+    <a class="hover:underline" [routerLink]="url()"
+        ><app-data-display-text [text]="name()"></app-data-display-text
+    ></a>
+</div>

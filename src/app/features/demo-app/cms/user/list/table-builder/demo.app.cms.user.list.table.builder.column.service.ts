@@ -14,7 +14,8 @@ import { DataDisplayTextboxComponent } from "../../../../../shared/data-display/
 import { DataDisplayThumbnailComponent } from "../../../../../shared/data-display/thumbnail";
 import { IDataDisplayVisitor } from "../../../../../shared/data-display/data.display.visitor.interface";
 import { demoAppCmsUserListTableBuilderMapper } from "./demo.app.cms.user.list.table.builder.config";
-import { DemoAppCmsUserDisplayRole, IDemoAppCmsUserDisplayRoleVisitor } from "../../display/view/demo.app.cms.user.display.role";
+import { DemoAppCmsUserDisplayRole, IDemoAppCmsUserDisplayRoleVisitor } from "../../display/role/demo.app.cms.user.display.role";
+import { DemoAppCmsUserDisplayFullName, IDemoAppCmsUserDisplayFullNameVisitor } from "../../display/full-name/demo.app.cms.user.display.full.name";
 
 @Injectable()
 export class DemoAppCmsUserListTableBuilderColumnService extends TableBuilderColumnService {
@@ -34,7 +35,9 @@ export class DemoAppCmsUserListTableBuilderColumnService extends TableBuilderCol
 
 class DemoAppCmsUserListTableBuilderDataVisitor implements
     IDataDisplayVisitor<void>,
-    IDemoAppCmsUserDisplayRoleVisitor<void> {
+    IDemoAppCmsUserDisplayRoleVisitor<void>,
+    IDemoAppCmsUserDisplayFullNameVisitor<void> {
+
     constructor(
         private readonly columnKey: keyof IUserAdapter,
         private readonly row: IUserAdapter
@@ -48,6 +51,13 @@ class DemoAppCmsUserListTableBuilderDataVisitor implements
 
     public visitRole(component: DemoAppCmsUserDisplayRole): void {
         component.role.set(this.row.role);
+    }
+
+    public visitFullName(component: DemoAppCmsUserDisplayFullName): void {
+        component.name.set(this.row.fullName);
+        component.imageUrl.set(this.row.image);
+        component.url.set(`../view/${this.row.id}`);
+        component.classes = "rounded-full border-2 overflow-hidden";
     }
 
     public visitRadioButton(component: DataDisplayRadioButtonComponent): void {
@@ -85,7 +95,7 @@ class DemoAppCmsUserListTableBuilderDataVisitor implements
     public visitThumbnail(component: DataDisplayThumbnailComponent): void {
         const value = <string>this.row[this.columnKey];
 
-        component.thumbnailUrl.set(value);
+        component.url.set(value);
         component.height.set("70");
         component.width.set("70");
     }

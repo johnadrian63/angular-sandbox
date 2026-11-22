@@ -106,7 +106,7 @@ class DemoAppCmsPostListTableBuilderColumnDataVisitor
     public visitThumbnail(component: DataDisplayThumbnailComponent): void {
         const value = <string>this.row[this.columnKey];
 
-        component.thumbnailUrl.set(value);
+        component.url.set(value);
         component.height.set("70");
         component.width.set("70");
     }

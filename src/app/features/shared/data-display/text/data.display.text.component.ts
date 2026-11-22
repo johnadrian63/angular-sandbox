@@ -11,7 +11,7 @@ import { DataDisplayAbstractComponent } from "../data.display.abstract.component
     imports: [NgClass]
 })
 export class DataDisplayTextComponent extends DataDisplayAbstractComponent {
-    public readonly text: ModelSignal<string> = model<string>("");
+    public readonly text: ModelSignal<string | number> = model<string | number>("");
 
     public override accept<T>(visitor: IDataDisplayVisitor<T>): T {
         return visitor.visitText(this);

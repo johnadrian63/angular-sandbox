@@ -38,6 +38,10 @@ export const demoAppCmsRoutes: Routes = [
                 path: "",
                 outlet: "footer",
                 loadComponent: () => import("./layout/footer/demo.app.cms.layout.footer").then((c) => c.DemoAppCmsFooter)
+            },
+            {
+                path: "**",
+                loadComponent: () => import("./404/error.404").then((c) => c.Error404)
             }
         ]
     }
