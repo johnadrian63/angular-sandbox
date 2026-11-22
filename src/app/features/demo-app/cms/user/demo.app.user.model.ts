@@ -23,42 +23,42 @@ export interface IUserAdapter extends ITableBuilderRowData, IUser { }
 export class UserAdapter implements IUserAdapter {
 
     public get rowId(): string | number {
-        return this.user.id;
+        return this.data.id;
     }
 
     public get id(): number {
-        return this.user.id;
+        return this.data.id;
     }
 
     public get firstName(): string {
-        return this.user.firstName;
+        return this.data.firstName;
     }
 
     public get lastName(): string {
-        return this.user.lastName;
+        return this.data.lastName;
     }
 
     public get age(): number {
-        return this.user.age;
+        return this.data.age;
     }
 
     public get gender(): string {
-        return this.user.gender;
+        return this.data.gender;
     }
 
     public get email(): string {
-        return this.user.email;
+        return this.data.email;
     }
 
     public get role(): string {
-        return this.user.role;
+        return this.data.role;
     }
 
     public get image(): string {
-        return this.user.image;
+        return this.data.image;
     }
 
     constructor(
-        private readonly user: IUser
+        private readonly data: IUser
     ) { }
 }
