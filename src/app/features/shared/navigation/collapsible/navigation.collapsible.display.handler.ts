@@ -36,7 +36,7 @@ export class NavigationCollapsibleDisplaySubMenuHandler extends NavigationDispla
 }
 
 export class NavigationCollapsibleDisplayHandlerVisitor implements INavigationCollapsibleDisplayHandlerVisitor<void> {
-    constructor(protected readonly vcr: ViewContainerRef, private readonly index: number) { }
+    constructor(protected readonly vcr: ViewContainerRef, protected readonly index: number) { }
 
     public visitMainNestedMenu(handler: NavigationCollapsibleDisplayMainNestedMenuHandler): void {
         const componentRef = this.vcr.createComponent(handler.renderer, {

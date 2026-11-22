@@ -4,6 +4,10 @@ import { NavigationHorizontalCdk } from "../../../../../../shared/navigation/hor
 import { NavigationHorizontalCdkService } from "../../../../../../shared/navigation/horizontal/cdk/navigation.horizontal.cdk.service";
 import { DemoAppCmsHeaderNavigationHorizontalMenuService } from "./demo.app.cms.header.navigation.horizontal.menu.service";
 
+/**
+ * @deprecated
+ * I will be using sidebar instead of header navigation
+ */
 @Component({
     selector: "app-demo-app-cms-header-navigation-horizontal-menu",
     templateUrl: "./demo.app.cms.header.navigation.horizontal.menu.html",

@@ -28,6 +28,7 @@ export class NavigationDisplayLink extends NavigationDisplay {
 
     public iconRight: IconDefinition | null = null;
     public iconLeft: IconDefinition | null = null;
+    public activeClass: string = "underline";
 
     public readonly target = model<IMenuItemTarget>("_self");
 }

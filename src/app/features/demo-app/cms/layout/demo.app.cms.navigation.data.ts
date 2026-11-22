@@ -1,60 +1,47 @@
-import { IMenuItem } from "../../../shared/navigation/navigation.model";
+import { IconDefinition, faUser } from "@fortawesome/free-solid-svg-icons";
 
-export const demoAppCmsNavigationData: IMenuItem[] = [
+import { IMenuItem } from "../../../shared/navigation/navigation.model";
+import { LayoutDisplayThemeSwitcherHandler } from "../../../../layout/shared/display/theme-switcher/layout.display.theme.switcher.handler";
+import { DemoAppCmsHeaderNavigationHorizontalMenuProfileDropdownDisplayHandler } from "./header/navigation/horizontal-utility/demo.app.cms.header.navigation.horizontal.utility.display.handler";
+
+export interface ICmsMenuItem extends IMenuItem {
+    icon?: IconDefinition;
+}
+
+export const demoAppCmsNavigationData: ICmsMenuItem[] = [
     {
-        label: "level1_menu1",
-        text: "User Management(Level1)",
-        children: [
-            {
-                label: "level2_menu1",
-                text: "Sub Menu 1 (Level 2)",
-                children: [
-                    {
-                        label: "level2_menu1",
-                        text: "Sub Menu Menu 12 (Level 2)",
-                    }
-                ]
-            },
-            {
-                label: "level2_menu1",
-                text: "Sub Menu 2 (Level 2)",
-                children: [
-                    {
-                        label: "level2_menu1",
-                        text: "Sub Menu Menu 12 (Level 2)",
-                        children: [
-                            {
-                                label: "level2_menu1",
-                                text: "Sub Menu Menu 12 (Level 2)",
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                label: "level2_menu2",
-                text: "Menu 3 (Level 2)",
-            }
-        ]
+        label: "user",
+        text: "Users",
+        icon: faUser,
+        path: "/demo/cms/users"
     },
     {
-        label: "level1_menu2",
-        text: "Post Management (Level1)",
+        label: "post",
+        text: "Posts",
+        icon: faUser,
+        path: "/demo/cms/posts"
+    }
+];
+
+export const demoAppCmsProfileNavigationData: IMenuItem[] = [
+    {
+        label: "",
+        text: "",
+        handler: LayoutDisplayThemeSwitcherHandler
+    },
+    {
+        label: "john",
+        text: "John",
+        handler: DemoAppCmsHeaderNavigationHorizontalMenuProfileDropdownDisplayHandler,
         children: [
             {
-                label: "level2_menu1",
-                text: "Menu 1 (Level 2)",
+                label: "profile",
+                text: "Profile",
             },
             {
-                label: "level2_menu2",
-                text: "Menu 2 (Level 2)",
-                children: [
-                    {
-                        label: "level2_menu1",
-                        text: "Sub Menu Menu 12 (Level 2)",
-                    }
-                ]
-            }
+                label: "logout",
+                text: "Logout",
+            },
         ]
     }
 ];

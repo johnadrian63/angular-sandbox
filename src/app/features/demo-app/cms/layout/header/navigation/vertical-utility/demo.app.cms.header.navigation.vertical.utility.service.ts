@@ -5,7 +5,7 @@ import { NavigationVerticalService } from "../../../../../../shared/navigation/v
 
 @Injectable()
 export class DemoAppCmsHeaderNavigationVerticalUtilityService extends NavigationVerticalService {
-    public initializeData(menus: IMenuItem[]): void {
+    public setMenus(menus: IMenuItem[]): void {
         this.menus.set(menus[0].children!);
     }
 }

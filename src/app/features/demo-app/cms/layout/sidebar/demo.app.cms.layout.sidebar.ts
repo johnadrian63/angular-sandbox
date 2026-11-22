@@ -3,7 +3,7 @@ import { Component, inject, OnInit } from "@angular/core";
 import { demoAppCmsNavigationData } from "../demo.app.cms.navigation.data";
 import { NavigationCollapsible } from "../../../../shared/navigation/collapsible/navigation.collapsible";
 import { NavigationCollapsibleService } from "../../../../shared/navigation/collapsible/navigation.collapsible.service";
-import { DemoAppCmsLayoutSidebarNavigationCollapsibleResolverService } from "./demo.app.cms.layout.sidebar.navigation.collapsible.service";
+import { DemoAppCmsLayoutSidebarNavigationService } from "./demo.app.cms.layout.sidebar.navigation.service";
 
 @Component({
     selector: "app-demo-app-cms-layout-sidebar",
@@ -11,15 +11,15 @@ import { DemoAppCmsLayoutSidebarNavigationCollapsibleResolverService } from "./d
     templateUrl: "./demo.app.cms.layout.sidebar.html",
     imports: [NavigationCollapsible],
     providers: [
-        DemoAppCmsLayoutSidebarNavigationCollapsibleResolverService,
+        DemoAppCmsLayoutSidebarNavigationService,
         {
             provide: NavigationCollapsibleService,
-            useExisting: DemoAppCmsLayoutSidebarNavigationCollapsibleResolverService
+            useExisting: DemoAppCmsLayoutSidebarNavigationService
         }
     ]
 })
 export class DemoAppCmsLayoutSidebar implements OnInit {
-    private readonly navigationCollapsibleResolverService: DemoAppCmsLayoutSidebarNavigationCollapsibleResolverService = inject<DemoAppCmsLayoutSidebarNavigationCollapsibleResolverService>(DemoAppCmsLayoutSidebarNavigationCollapsibleResolverService);
+    private readonly navigationCollapsibleResolverService: DemoAppCmsLayoutSidebarNavigationService = inject<DemoAppCmsLayoutSidebarNavigationService>(DemoAppCmsLayoutSidebarNavigationService);
 
     public ngOnInit(): void {
         this.navigationCollapsibleResolverService.menus.set(demoAppCmsNavigationData);

@@ -1,5 +1,9 @@
 import { NavigationHorizontalCdkDisplayHandlerVisitor, NavigationHorizontalCdkDropdownDisplayHandler } from "../../../../../../shared/navigation/horizontal/cdk/navigation.horizontal.cdk.display.handler";
 
+/**
+ * @deprecated
+ * I will be using sidebar instead of header navigation
+ */
 export class DemoAppCmsHeaderNavigationHorizontalMenuDisplayHandlerVisitor extends NavigationHorizontalCdkDisplayHandlerVisitor {
     public override visitCdkDropdown(handler: NavigationHorizontalCdkDropdownDisplayHandler): void {
         const componentRef = this.vcr.createComponent(handler.renderer, {

@@ -3,6 +3,10 @@
     [class.selected]="isExpanded()"
     (click)="toggle()"
 >
+    @if (icon) {
+        <fa-icon [icon]="icon"></fa-icon>
+    }
+
     <app-navigation-display-text
         [menu]="menu()"
         [classes]="'font-medium'"

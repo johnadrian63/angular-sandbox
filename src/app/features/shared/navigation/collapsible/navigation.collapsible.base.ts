@@ -1,5 +1,5 @@
 import { Component, effect, inject, model, ModelSignal, Signal } from "@angular/core";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { faAngleRight, IconDefinition } from "@fortawesome/free-solid-svg-icons";
 
 import { NavigationDisplay } from "../display/navigation.display";
 import { NavigationCollapsibleService } from "./navigation.collapsible.service";
@@ -9,6 +9,7 @@ import { NavigationCollapsibleBaseResolverService } from "./resolver/navigation.
     template: ""
 })
 export abstract class NavigationCollapsibleBase extends NavigationDisplay {
+    public icon: IconDefinition | null = null;
     public readonly index: ModelSignal<number> = model.required<number>();
     public readonly dropdownIcon = faAngleRight;
 
