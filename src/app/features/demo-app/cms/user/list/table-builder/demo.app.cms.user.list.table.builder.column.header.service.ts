@@ -14,7 +14,7 @@ export class DemoAppCmsUserListTableBuilderColumnHeaderService extends TableBuil
             const label = header[1].label;
 
             let sortable = false;
-            let movable = false;
+            let movable = true;
             let freezed = false;
             let width = "";
 

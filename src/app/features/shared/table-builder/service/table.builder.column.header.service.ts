@@ -15,12 +15,9 @@ interface ITableBuilderColumnHeader {
 
 @Injectable()
 export abstract class TableBuilderColumnHeaderService<T extends ITableBuilderRowData> implements ITableBuilderColumnHeader {
+    public columnsToDisplay: (keyof T)[] = [];
+
     public abstract headers: Map<keyof T, TableBuilderHeaderCellData>;
-
-    public get columnsToDisplay(): (keyof T)[] {
-        return [...this.headers.keys()];
-    }
-
     public abstract register(): void;
     public abstract reset(): void;
 
@@ -30,6 +27,8 @@ export abstract class TableBuilderColumnHeaderService<T extends ITableBuilderRow
         if (!this.headers) {
             throw new Error("column headers are not defined");
         }
+
+        this.columnsToDisplay = [...this.headers.keys()];
     }
 
     public handle(vcr: ViewContainerRef, column: ITableBuilderHeaderCellData): void {

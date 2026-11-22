@@ -26,7 +26,8 @@ table {
 }
 
 .cdk-drag-preview {
-    @apply flex items-center box-border border-2 border-gray-300 bg-slate-50 border-dashed text-gray-300 font-medium;
+    @apply flex items-center box-border border-3 border-gray-300 border-dashed text-gray-300 font-medium;
+    background-color: var(--hover-color);
 }
 
 .cdk-drag-animating {
