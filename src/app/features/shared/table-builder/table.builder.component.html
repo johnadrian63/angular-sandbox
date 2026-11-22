@@ -3,14 +3,13 @@
         <div class="flex">
             <div class="flex flex-1 items-center justify-between">
                 @if (masterSelectionEnabled) {
-                    <div class="flex-1 flex items-center">
-                        <app-table-builder-master-selection></app-table-builder-master-selection>
-                    </div>
+                    <app-table-builder-master-selection></app-table-builder-master-selection>
                 }
+
+                <ng-content></ng-content>
 
                 @if (paginationEnabled) {
                     <app-ui-paginator
-                        class="ml-auto"
                         [pageSizeOptions]="pageSizeOptions"
                         [pageIndex]="page"
                         [pageSize]="pageSize"

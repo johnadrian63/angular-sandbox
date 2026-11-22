@@ -1,8 +1,9 @@
-import { ActivatedRoute, Params } from "@angular/router";
+import { Params } from "@angular/router";
 import { Observable } from "rxjs";
 
 import { DemoAppUserService } from "../../demo.app.user.service";
 import { IUserCollection } from "../../demo.app.user.model";
+import { SearchFormService } from "../../../../../shared/search-form/search.form.service";
 import { TableBuilderPaginationRouteService } from "../../../../../shared/table-builder/service/table.builder.pagination.route.service";
 
 
@@ -53,7 +54,8 @@ export class DemoAppCmsUserListTableBuilderFilterUsersDataHandler implements IDe
 export class DemoAppCmsUserListTableBuilderGetUsersDataFactory {
     public static create(
         params: Params,
-        tableBuilderPaginationService: TableBuilderPaginationRouteService
+        tableBuilderPaginationService: TableBuilderPaginationRouteService,
+        searchFormService: SearchFormService
     ): IDemoAppCmsUserListTableBuilderDataHandler {
         const searchText = params["search"];
 
@@ -61,6 +63,8 @@ export class DemoAppCmsUserListTableBuilderGetUsersDataFactory {
         const limit = tableBuilderPaginationService.pageSize;
 
         if (searchText) {
+            searchFormService.setValue(searchText);
+
             return new DemoAppCmsUserListTableBuilderSearchUsersDataHandler(searchText, skip, limit);
         }
 

@@ -32,9 +32,9 @@ body {
 }
 
 .mat-mdc-table {
-    --mat-table-header-head-container-color: #fff;
+    --mat-table-header-head-container-color: var(--surface);
 }
 
 .mat-mdc-paginator {
-    --mat-paginator-container-background-color: #fff;
+    --mat-paginator-container-background-color: var(--surface);
 }

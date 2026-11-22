@@ -1,0 +1,10 @@
+<form [formRoot]="searchForm" class="flex w-full max-w-md items-center gap-1">
+    <input
+        type="search"
+        placeholder="Search users..."
+        [formField]="searchForm.searchText"
+        class="min-w-0 flex-1 rounded-lg border border-gray-300 px-4 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+    />
+
+    <button type="submit" class="btn-primary btn-md cursor-pointer">Search</button>
+</form>

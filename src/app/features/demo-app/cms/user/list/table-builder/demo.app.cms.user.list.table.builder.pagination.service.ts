@@ -4,7 +4,6 @@ import { TableBuilderPaginationRouteService } from "../../../../../shared/table-
 
 @Injectable()
 export class DemoAppCmsUserListTableBuilderPaginationService extends TableBuilderPaginationRouteService {
-
     public override reset(): void {
         // cleanup logic here
     }

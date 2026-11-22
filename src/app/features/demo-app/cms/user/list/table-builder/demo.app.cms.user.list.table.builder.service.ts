@@ -6,15 +6,17 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { DemoAppUserService } from "../../demo.app.user.service";
 import { IUserAdapter, UserAdapter } from "../../demo.app.user.model";
 import { TableBuilderService } from "../../../../../shared/table-builder";
+import { DemoAppCmsUserListSearchFormService } from "./demo.app.cms.user.list.search.form.service";
 import { DemoAppCmsUserListTableBuilderPaginationService } from "./demo.app.cms.user.list.table.builder.pagination.service";
 import { DemoAppCmsUserListTableBuilderDataAdapter, DemoAppCmsUserListTableBuilderGetUsersDataFactory } from "./demo.app.cms.user.list.table.builder.adapter";
 
 @Injectable()
 export class DemoAppCmsUserListTableBuilderService extends TableBuilderService {
+    private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
+    private readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);
     private readonly demoAppUserService: DemoAppUserService = inject<DemoAppUserService>(DemoAppUserService);
     private readonly tableBuilderPaginationService: DemoAppCmsUserListTableBuilderPaginationService = inject<DemoAppCmsUserListTableBuilderPaginationService>(DemoAppCmsUserListTableBuilderPaginationService);
-    private readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);
-    private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
+    private readonly searchFormService: DemoAppCmsUserListSearchFormService = inject<DemoAppCmsUserListSearchFormService>(DemoAppCmsUserListSearchFormService);
 
     public override init(): void {
         this.activatedRoute.queryParams
@@ -31,7 +33,8 @@ export class DemoAppCmsUserListTableBuilderService extends TableBuilderService {
             this.setLoading(true);
 
             const params = this.activatedRoute.snapshot.queryParams;
-            const factory = DemoAppCmsUserListTableBuilderGetUsersDataFactory.create(params, this.tableBuilderPaginationService);
+            const factory = DemoAppCmsUserListTableBuilderGetUsersDataFactory
+                .create(params, this.tableBuilderPaginationService, this.searchFormService);
             const visitor = new DemoAppCmsUserListTableBuilderDataAdapter(this.demoAppUserService);
             const result = await lastValueFrom(factory.accept(visitor));
 
