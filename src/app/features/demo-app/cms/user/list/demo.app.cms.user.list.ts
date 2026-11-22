@@ -5,7 +5,7 @@ import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 import { TableBuilderComponent } from "../../../../shared/table-builder";
 import { SearchForm } from "../../../../shared/search-form/search.form";
 import { SearchFormService } from "../../../../shared/search-form/search.form.service";
-import { DemoAppCmsUserListSearchFormService } from "./table-builder/demo.app.cms.user.list.search.form.service";
+import { DemoAppCmsUserListSearchFormService } from "./demo.app.cms.user.list.search.form.service";
 import { getDemoAppCmsUserListTableBuilderProviders } from "./table-builder/demo.app.cms.user.list.table.builder.providers";
 
 @Component({

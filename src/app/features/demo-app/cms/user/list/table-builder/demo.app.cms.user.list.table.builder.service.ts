@@ -6,7 +6,7 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { DemoAppUserService } from "../../demo.app.user.service";
 import { IUserAdapter, UserAdapter } from "../../demo.app.user.model";
 import { TableBuilderService } from "../../../../../shared/table-builder";
-import { DemoAppCmsUserListSearchFormService } from "./demo.app.cms.user.list.search.form.service";
+import { DemoAppCmsUserListSearchFormService } from "../demo.app.cms.user.list.search.form.service";
 import { DemoAppCmsUserListTableBuilderPaginationService } from "./demo.app.cms.user.list.table.builder.pagination.service";
 import { DemoAppCmsUserListTableBuilderDataAdapter, DemoAppCmsUserListTableBuilderGetUsersDataFactory } from "./demo.app.cms.user.list.table.builder.adapter";
 

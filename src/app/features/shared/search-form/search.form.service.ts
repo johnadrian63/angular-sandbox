@@ -8,6 +8,8 @@ export abstract class SearchFormService {
         searchText: ""
     });
 
+    public readonly placeholder = signal<string>("Search");
+
     public abstract handleSearch(searchText: string): void;
 
     public setValue(searchText: string): void {

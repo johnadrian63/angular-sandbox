@@ -1,6 +1,7 @@
 import { Routes } from "@angular/router";
 
 import { demoAppCmsUserRoutes } from "./user/demo.app.user.routes";
+import { demoAppCmsPostRoutes } from "./post/demo.app.post.routes";
 
 export const demoAppCmsRoutes: Routes = [
     {
@@ -19,7 +20,9 @@ export const demoAppCmsRoutes: Routes = [
             },
             {
                 path: "posts",
-                loadComponent: () => import("./post/demo.app.cms.post").then((c) => c.DemoAppCmsPost),
+                children: [
+                    ...demoAppCmsPostRoutes
+                ]
             },
             {
                 path: "",

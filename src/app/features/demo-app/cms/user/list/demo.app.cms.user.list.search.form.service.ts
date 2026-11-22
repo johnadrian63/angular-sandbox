@@ -1,12 +1,8 @@
 import { inject, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { SearchFormService } from "../../../../../shared/search-form/search.form.service";
-import { DemoAppCmsUserListTableBuilderPaginationService } from "./demo.app.cms.user.list.table.builder.pagination.service";
-
-export interface ISearchForm {
-    searchText: string;
-}
+import { SearchFormService } from "../../../../shared/search-form/search.form.service";
+import { DemoAppCmsUserListTableBuilderPaginationService } from "./table-builder/demo.app.cms.user.list.table.builder.pagination.service";
 
 @Injectable()
 export class DemoAppCmsUserListSearchFormService extends SearchFormService {
