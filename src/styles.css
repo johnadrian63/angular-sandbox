@@ -6,8 +6,10 @@
     color-scheme: light;
     --surface: #ffffff;
     --foreground: #202124;
-    --hover-color: #eee;
-    --selected-color: #eee;
+    --hover-color: #dedede;
+    --hover-sub-color: #f1f0f0;
+    --selected-color: #dedede;
+    --selected-sub-color: #f1f0f0;
 }
 
 /* Dark mode */
@@ -16,7 +18,9 @@
     --surface: #202124;
     --foreground: #ffffff;
     --hover-color: #333;
+    --hover-sub-color: #434343;
     --selected-color: #333;
+    --selected-sub-color: #434343;
 }
 
 /* System preference */
@@ -26,8 +30,9 @@
         --surface: #202124;
         --foreground: #ffffff;
         --hover-color: #333;
+        --hover-sub-color: #434343;
         --selected-color: #333;
-
+        --selected-sub-color: #434343;
     }
 }
 

@@ -1,85 +1,107 @@
 import { Type, ViewContainerRef } from "@angular/core";
 
-import { NavigationDisplayLink } from "../display/link/navigation.display.link";
-import { NavigationCollapsibleMainDisplay } from "./main/display/navigation.collapsible.main.display";
-import { NavigationCollapsibleItemDisplay } from "./item/display/navigation.collapsible.item.display";
+import { NavigationCollapsibleMainDisplaySingle } from "./display/single/navigation.collapsible.main.display.single";
+import { NavigationCollapsibleMainDisplayNested } from "./display/nested/navigation.collapsible.main.display.nested";
 import { INavigationDisplayHandlerVisitor, NavigationDisplayButtonHandler, NavigationDisplayExpandHandler, NavigationDisplayHandler, NavigationDisplayLinkHandler, NavigationDisplayMenuDropdownHandler, NavigationDisplayTextHandler } from "../navigation.display.handler";
 
 export interface INavigationCollapsibleDisplayHandlerVisitor<T> extends INavigationDisplayHandlerVisitor<T> {
-    visitMainNestedMenu(handler: NavigationCollapsibleDisplayMainNestedMenuHandler): T;
-    visitMainSingleMenu(handler: NavigationCollapsibleDisplayMainSingleMenuHandler): T;
-    visitSubMenu(handler: NavigationCollapsibleDisplaySubMenuHandler): T;
+    visitMainNested(handler: NavigationCollapsibleDisplayMainNestedHandler): T;
+    visitMainSingle(handler: NavigationCollapsibleDisplayMainSingleHandler): T;
+    visitSubNested(handler: NavigationCollapsibleDisplaySubNestedHandler): T;
+    visitSubSingle(handler: NavigationCollapsibleDisplaySubSingleHandler): T;
 }
 
-export class NavigationCollapsibleDisplayMainNestedMenuHandler extends NavigationDisplayHandler {
-    public readonly renderer: Type<NavigationCollapsibleMainDisplay> = NavigationCollapsibleMainDisplay;
+export class NavigationCollapsibleDisplayMainNestedHandler extends NavigationDisplayHandler {
+    public readonly renderer: Type<NavigationCollapsibleMainDisplayNested> = NavigationCollapsibleMainDisplayNested;
 
     public override accept<T>(visitor: INavigationCollapsibleDisplayHandlerVisitor<T>): T {
-        return visitor.visitMainNestedMenu(this);
+        return visitor.visitMainNested(this);
     }
 }
 
-export class NavigationCollapsibleDisplayMainSingleMenuHandler extends NavigationDisplayHandler {
-    public readonly renderer: Type<NavigationDisplayLink> = NavigationDisplayLink;
+export class NavigationCollapsibleDisplayMainSingleHandler extends NavigationDisplayHandler {
+    public readonly renderer: Type<NavigationCollapsibleMainDisplaySingle> = NavigationCollapsibleMainDisplaySingle;
 
     public override accept<T>(visitor: INavigationCollapsibleDisplayHandlerVisitor<T>): T {
-        return visitor.visitMainSingleMenu(this);
+        return visitor.visitMainSingle(this);
     }
 }
 
-export class NavigationCollapsibleDisplaySubMenuHandler extends NavigationDisplayHandler {
-    public readonly renderer: Type<NavigationCollapsibleItemDisplay> = NavigationCollapsibleItemDisplay;
+export class NavigationCollapsibleDisplaySubNestedHandler extends NavigationDisplayHandler {
+    public readonly renderer: Type<NavigationCollapsibleMainDisplayNested> = NavigationCollapsibleMainDisplayNested;
 
     public override accept<T>(visitor: INavigationCollapsibleDisplayHandlerVisitor<T>): T {
-        return visitor.visitSubMenu(this);
+        return visitor.visitSubNested(this);
+    }
+}
+
+export class NavigationCollapsibleDisplaySubSingleHandler extends NavigationDisplayHandler {
+    public readonly renderer: Type<NavigationCollapsibleMainDisplaySingle> = NavigationCollapsibleMainDisplaySingle;
+
+    public override accept<T>(visitor: INavigationCollapsibleDisplayHandlerVisitor<T>): T {
+        return visitor.visitSubSingle(this);
     }
 }
 
 export class NavigationCollapsibleDisplayHandlerVisitor implements INavigationCollapsibleDisplayHandlerVisitor<void> {
     constructor(protected readonly vcr: ViewContainerRef, protected readonly index: number) { }
 
-    public visitMainNestedMenu(handler: NavigationCollapsibleDisplayMainNestedMenuHandler): void {
+    public visitMainNested(handler: NavigationCollapsibleDisplayMainNestedHandler): void {
         const componentRef = this.vcr.createComponent(handler.renderer, {
             injector: this.vcr.injector
         });
 
-        componentRef.instance.menu.set(handler.menu);
-        componentRef.instance.index.set(this.index);
+        const instance = componentRef.instance;
+
+        instance.menu.set(handler.menu);
+        instance.index.set(this.index);
+        instance.menuClass = "parent-menu";
 
         componentRef.changeDetectorRef.detectChanges();
     }
 
-    public visitMainSingleMenu(handler: NavigationCollapsibleDisplayMainSingleMenuHandler): void {
+    public visitMainSingle(handler: NavigationCollapsibleDisplayMainSingleHandler): void {
         const componentRef = this.vcr.createComponent(handler.renderer, {
             injector: this.vcr.injector
         });
+        const instance = componentRef.instance;
 
-        componentRef.instance.menu.set(handler.menu);
-        componentRef.instance.classes = "nav-head flex p-2 rounded font-medium";
+        instance.menu.set(handler.menu);
+        instance.classes = " flex p-2 rounded font-medium";
+        instance.menuClass = "parent-menu";
 
         componentRef.changeDetectorRef.detectChanges();
     }
 
-    public visitSubMenu(handler: NavigationCollapsibleDisplaySubMenuHandler): void {
+    public visitSubNested(handler: NavigationCollapsibleDisplaySubNestedHandler): void {
         const componentRef = this.vcr.createComponent(handler.renderer, {
             injector: this.vcr.injector
         });
+        const instance = componentRef.instance;
 
-        componentRef.instance.menu.set(handler.menu);
-        componentRef.instance.index.set(this.index);
+        instance.menu.set(handler.menu);
+        instance.index.set(this.index);
+        instance.menuClass = "children-menu";
+        instance.classes = "flex p-2 rounded font-medium";
+
+        componentRef.changeDetectorRef.detectChanges();
+    }
+
+    public visitSubSingle(handler: NavigationCollapsibleDisplaySubSingleHandler): void {
+        const componentRef = this.vcr.createComponent(handler.renderer, {
+            injector: this.vcr.injector
+        });
+        const instance = componentRef.instance;
+
+        instance.menu.set(handler.menu);
+        instance.menuClass = "children-menu";
+        instance.classes = "flex p-2 rounded font-medium";
 
         componentRef.changeDetectorRef.detectChanges();
     }
 
     public visitLink(handler: NavigationDisplayLinkHandler): void {
-        const componentRef = this.vcr.createComponent(handler.renderer, {
-            injector: this.vcr.injector
-        });
-
-        componentRef.instance.menu.set(handler.menu);
-        componentRef.instance.classes = "flex p-2 rounded";
-
-        componentRef.changeDetectorRef.detectChanges();
+        // do nothing
     }
 
     public visitButton(handler: NavigationDisplayButtonHandler): void {

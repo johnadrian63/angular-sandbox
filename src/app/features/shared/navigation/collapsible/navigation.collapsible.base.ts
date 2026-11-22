@@ -8,10 +8,17 @@ import { NavigationCollapsibleBaseResolverService } from "./resolver/navigation.
 @Component({
     template: ""
 })
-export abstract class NavigationCollapsibleBase extends NavigationDisplay {
+export abstract class NavigationCollapsibleSingleBase extends NavigationDisplay {
+    public menuClass: string = "";
     public icon: IconDefinition | null = null;
-    public readonly index: ModelSignal<number> = model.required<number>();
     public readonly dropdownIcon = faAngleRight;
+}
+
+@Component({
+    template: ""
+})
+export abstract class NavigationCollapsibleNestedBase extends NavigationCollapsibleSingleBase {
+    public readonly index: ModelSignal<number> = model.required<number>();
 
     private readonly navigationCollapsibleService: NavigationCollapsibleService = inject<NavigationCollapsibleService>(NavigationCollapsibleService);
     private readonly resolverService: NavigationCollapsibleBaseResolverService = inject<NavigationCollapsibleBaseResolverService>(NavigationCollapsibleBaseResolverService);
@@ -32,7 +39,7 @@ export abstract class NavigationCollapsibleBase extends NavigationDisplay {
     }
 
     public toggle(): void {
-        this.resolverService.toggled.update((toggled) => !toggled)
+        this.resolverService.toggled.update((toggled: boolean) => !toggled)
 
         this.navigationCollapsibleService.setToggleCache(this.getCacheKey(), this.isExpanded());
     }

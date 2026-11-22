@@ -1,0 +1,16 @@
+
+<a
+    class="flex p-2 cursor-pointer rounded"
+    routerLinkActive="selected"
+    [ngClass]="menuClass"
+    [routerLink]="menu().path"
+>
+    @if (icon) {
+        <fa-icon [icon]="icon"></fa-icon>
+    }
+
+    <app-navigation-display-text
+        [menu]="menu()"
+        [classes]="'font-medium'"
+    ></app-navigation-display-text>
+</a>

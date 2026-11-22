@@ -1,6 +1,7 @@
 <span
-    class="nav-head flex p-2 cursor-pointer border border-gray-200 rounded"
-    [class.selected]="isExpanded()"
+    [ngClass]="menuClass"
+    class="parent-menu flex p-2 cursor-pointer rounded"
+    [class.selected]="isExpanded() || isActive()"
     (click)="toggle()"
 >
     @if (icon) {
