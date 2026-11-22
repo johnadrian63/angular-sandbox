@@ -14,6 +14,7 @@ import { DataDisplayTextboxComponent } from "../../../../../shared/data-display/
 import { DataDisplayThumbnailComponent } from "../../../../../shared/data-display/thumbnail";
 import { IDataDisplayVisitor } from "../../../../../shared/data-display/data.display.visitor.interface";
 import { demoAppCmsUserListTableBuilderMapper } from "./demo.app.cms.user.list.table.builder.config";
+import { DemoAppCmsUserDisplayRole, IDemoAppCmsUserDisplayRoleVisitor } from "../../display/view/demo.app.cms.user.display.role";
 
 @Injectable()
 export class DemoAppCmsUserListTableBuilderColumnService extends TableBuilderColumnService {
@@ -23,7 +24,7 @@ export class DemoAppCmsUserListTableBuilderColumnService extends TableBuilderCol
         this.render(
             vcr,
             mapper!,
-            new BadgeManagerListTableBuilderColumnDataVisitor(
+            new DemoAppCmsUserListTableBuilderDataVisitor(
                 columnKey,
                 row
             )
@@ -31,7 +32,9 @@ export class DemoAppCmsUserListTableBuilderColumnService extends TableBuilderCol
     }
 }
 
-class BadgeManagerListTableBuilderColumnDataVisitor implements IDataDisplayVisitor<void> {
+class DemoAppCmsUserListTableBuilderDataVisitor implements
+    IDataDisplayVisitor<void>,
+    IDemoAppCmsUserDisplayRoleVisitor<void> {
     constructor(
         private readonly columnKey: keyof IUserAdapter,
         private readonly row: IUserAdapter
@@ -41,6 +44,10 @@ class BadgeManagerListTableBuilderColumnDataVisitor implements IDataDisplayVisit
         const value = <string>this.row[this.columnKey];
 
         component.text.set(value);
+    }
+
+    public visitRole(component: DemoAppCmsUserDisplayRole): void {
+        component.role.set(this.row.role);
     }
 
     public visitRadioButton(component: DataDisplayRadioButtonComponent): void {

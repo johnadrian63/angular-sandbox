@@ -1,6 +1,7 @@
 
 import { IUserAdapter } from "../../demo.app.user.model";
 import { DataDisplayTextComponent } from "../../../../../shared/data-display/text";
+import { DemoAppCmsUserDisplayRole } from "../../display/view/demo.app.cms.user.display.role";
 import { ITableBuilderColumnConfig, ITableBuilderColumnHeaderConfig } from "../../../../../shared/table-builder";
 import { TableBuilderDataDisplayHeaderComponent } from "../../../../../shared/table-builder/component/data-display/header";
 
@@ -21,9 +22,9 @@ export const demoAppCmsUserListTableBuilderHeaderMapper: Map<keyof IUserAdapter,
             }
         ],
         [
-            "gender",
+            "phone",
             {
-                label: "Gender",
+                label: "Phone",
                 renderer: TableBuilderDataDisplayHeaderComponent
             }
         ],
@@ -58,7 +59,7 @@ export const demoAppCmsUserListTableBuilderMapper: Map<keyof IUserAdapter, ITabl
             }
         ],
         [
-            "gender",
+            "phone",
             {
                 renderer: DataDisplayTextComponent
             }
@@ -72,7 +73,7 @@ export const demoAppCmsUserListTableBuilderMapper: Map<keyof IUserAdapter, ITabl
         [
             "role",
             {
-                renderer: DataDisplayTextComponent
+                renderer: DemoAppCmsUserDisplayRole
             }
         ],
     ]);

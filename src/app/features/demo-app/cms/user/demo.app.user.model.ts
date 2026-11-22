@@ -6,6 +6,7 @@ export interface IUser {
     lastName: string;
     age: number;
     gender: string;
+    phone: string;
     email: string;
     image: string;
     role: string;
@@ -44,6 +45,10 @@ export class UserAdapter implements IUserAdapter {
 
     public get gender(): string {
         return this.data.gender;
+    }
+
+    public get phone(): string {
+        return this.data.phone;
     }
 
     public get email(): string {

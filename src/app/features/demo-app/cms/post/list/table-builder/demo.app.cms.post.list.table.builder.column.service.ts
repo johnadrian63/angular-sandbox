@@ -14,6 +14,10 @@ import { DataDisplayTextboxComponent } from "../../../../../shared/data-display/
 import { DataDisplayThumbnailComponent } from "../../../../../shared/data-display/thumbnail";
 import { IDataDisplayVisitor } from "../../../../../shared/data-display/data.display.visitor.interface";
 import { demoAppCmsPostListTableBuilderMapper } from "./demo.app.cms.post.list.table.builder.config";
+import { DemoAppCmsPostDisplayView, IDemoAppCmsPostDisplayViewVisitor } from "../../display/view/demo.app.cms.post.display.view";
+import { DemoAppCmsPostDisplayTags, IDemoAppCmsPostDisplayTagsVisitor } from "../../display/tags/demo.app.cms.post.display.tags";
+import { DemoAppCmsPostDisplayReaction, IDemoAppCmsPostDisplayReactionVisitor } from "../../display/reaction/demo.app.cms.post.display.reaction";
+import { DemoAppCmsPostDisplayTextPreview, IDemoAppCmsPostDisplayTextPreviewVisitor } from "../../display/text-preview/demo.app.cms.post.display.text.preview";
 
 @Injectable()
 export class DemoAppCmsPostListTableBuilderColumnService extends TableBuilderColumnService {
@@ -23,7 +27,7 @@ export class DemoAppCmsPostListTableBuilderColumnService extends TableBuilderCol
         this.render(
             vcr,
             mapper!,
-            new BadgeManagerListTableBuilderColumnDataVisitor(
+            new DemoAppCmsPostListTableBuilderColumnDataVisitor(
                 columnKey,
                 row
             )
@@ -31,7 +35,12 @@ export class DemoAppCmsPostListTableBuilderColumnService extends TableBuilderCol
     }
 }
 
-class BadgeManagerListTableBuilderColumnDataVisitor implements IDataDisplayVisitor<void> {
+class DemoAppCmsPostListTableBuilderColumnDataVisitor
+    implements IDataDisplayVisitor<void>,
+    IDemoAppCmsPostDisplayReactionVisitor<void>,
+    IDemoAppCmsPostDisplayViewVisitor<void>,
+    IDemoAppCmsPostDisplayTextPreviewVisitor<void>,
+    IDemoAppCmsPostDisplayTagsVisitor<void> {
     constructor(
         private readonly columnKey: keyof IPostAdapter,
         private readonly row: IPostAdapter
@@ -41,6 +50,25 @@ class BadgeManagerListTableBuilderColumnDataVisitor implements IDataDisplayVisit
         const value = <string>this.row[this.columnKey];
 
         component.text.set(value);
+    }
+
+    public visitReaction(component: DemoAppCmsPostDisplayReaction): void {
+        component.reaction.set(this.row.reactions);
+    }
+
+    public visitView(component: DemoAppCmsPostDisplayView) {
+        component.view.set(this.row.views);
+    }
+
+    public visitTextPreview(component: DemoAppCmsPostDisplayTextPreview): void {
+        component.text.set(this.row.body);
+        component.maxLength.set(30);
+
+    }
+
+    public visitTags(component: DemoAppCmsPostDisplayTags): void {
+        component.tags.set(this.row.tags);
+        component.classes = "border border-gray-200  p-2 rounded-3xl mr-1 text-xs";
     }
 
     public visitRadioButton(component: DataDisplayRadioButtonComponent): void {

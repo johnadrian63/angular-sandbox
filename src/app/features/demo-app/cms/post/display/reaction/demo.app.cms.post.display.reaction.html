@@ -1,0 +1,10 @@
+<div class="flex gap-x-2">
+    <div>
+        <fa-icon [icon]="thumbsUpIcon" class="text-green-500"></fa-icon
+        ><span> {{ reaction().likes }}</span>
+    </div>
+    <div>
+        <fa-icon [icon]="thumbsDownIcon" class="text-red-500"></fa-icon>
+        <span>{{ reaction().dislikes }}</span>
+    </div>
+</div>
