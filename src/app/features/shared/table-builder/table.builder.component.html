@@ -73,15 +73,16 @@
                 *matRowDef="let row; columns: columnsToDisplay"
                 [ngClass]="handleRowClass(row)"
             ></mat-row>
-            <tr class="mat-row" *matNoDataRow>
-                <td class="mat-cell text-center py-3 border" [colSpan]="columns.length">
+
+            <ng-container *matNoDataRow>
+                <div class="p-4 text-center">
                     @if (loading) {
                         <div>Loading...</div>
                     } @else {
                         <div>No records found.</div>
                     }
-                </td>
-            </tr>
+                </div>
+            </ng-container>
         </mat-table>
     </div>
 </div>
