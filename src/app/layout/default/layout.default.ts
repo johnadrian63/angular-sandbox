@@ -1,7 +1,7 @@
 import { ReactiveFormsModule } from "@angular/forms";
-import { Component, inject, OnInit, signal, WritableSignal } from "@angular/core";
-import { NavigationEnd, NavigationStart, Router, RouterModule, RouterOutlet } from "@angular/router";
-import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { Component, inject, OnInit } from "@angular/core";
+import { RouterModule, RouterOutlet } from "@angular/router";
+import { MatProgressBar } from "@angular/material/progress-bar";
 
 import { Layout } from "../layout";
 import { layoutDefaultNavigationData } from "./layout.default.navigation.data";
@@ -17,8 +17,8 @@ import { NavigationHorizontalCdkService } from "../../features/shared/navigation
         RouterModule,
         RouterOutlet,
         ReactiveFormsModule,
-        MatProgressBarModule,
-        NavigationHorizontalCdk
+        NavigationHorizontalCdk,
+        MatProgressBar
     ],
     providers: [
         LayoutDefaultNavigationHorizontalCdkService,
@@ -30,25 +30,11 @@ import { NavigationHorizontalCdkService } from "../../features/shared/navigation
     ]
 })
 export class LayoutDefault extends Layout implements OnInit {
-    public readonly loading: WritableSignal<boolean> = signal<boolean>(false);
-    public readonly router: Router = inject<Router>(Router);
     public readonly navigationHorizontalCdkService: LayoutDefaultNavigationHorizontalCdkService = inject<LayoutDefaultNavigationHorizontalCdkService>(LayoutDefaultNavigationHorizontalCdkService, {
         self: true
     });
 
     public ngOnInit(): void {
         this.navigationHorizontalCdkService.menus.set(layoutDefaultNavigationData);
-
-        this.router
-            .events
-            .subscribe((event) => {
-                if (event instanceof NavigationStart) {
-                    this.loading.set(true);
-                }
-
-                if (event instanceof NavigationEnd) {
-                    this.loading.set(false);
-                }
-            });
     }
 }
