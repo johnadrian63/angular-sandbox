@@ -10,6 +10,7 @@ import { designPatternRoutes } from "./features/design-patterns/design.patterns.
 import { ngRoutes } from "./features/ng/ng.routes";
 import { pocRoutes } from "./features/poc/poc.routes";
 import { demoAppRoutes } from "./features/demo-app/demo.app.routes";
+import { demoAppCmsRoutes } from "./features/demo-app/cms/demo.app.cms.routes";
 
 export const routes: Routes = [
     {
@@ -94,6 +95,46 @@ export const routes: Routes = [
                 path: "example",
                 children: [
                     ...exampleRoutes
+                ]
+            }
+        ]
+
+    },
+    {
+        path: "",
+        loadComponent: () => import("./layout/blank/layout.blank").then((c) => c.LayoutBlank),
+        children: [
+            {
+                path: "",
+                pathMatch: "full",
+                redirectTo: "/example",
+            },
+            {
+                path: "example",
+                children: [
+                    ...exampleRoutes
+                ]
+            }
+        ]
+    },
+    {
+        path: "",
+        loadComponent: () => import("./layout/with-sidebar/layout.with.sidebar").then((c) => c.LayoutWithSidebar),
+        children: [
+            {
+                path: "",
+                pathMatch: "full",
+                redirectTo: "/demo",
+            },
+            {
+                path: "demo",
+                children: [
+                    {
+                        path: "cms",
+                        children: [
+                            ...demoAppCmsRoutes
+                        ]
+                    }
                 ]
             }
         ]

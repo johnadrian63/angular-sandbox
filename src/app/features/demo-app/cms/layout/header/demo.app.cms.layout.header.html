@@ -1,0 +1,19 @@
+<div class="flex items-center p-2 shadow-lg">
+    <div class="mr-2 flex items-center py-1.5">
+        <a
+            routerLink="/demo/cms"
+            [relativeTo]="activatedRoute.parent"
+            class="mr-2 block text-white text-shadow-2xs italic text-lg px-2 rounded-3xl font-bold border-2 border-lime-400 bg-emerald-500"
+            >ABC Corp.</a
+        >
+        <fa-icon
+            [icon]="faTableColumnsIcon"
+            class="sidebar-toggle cursor-pointer"
+            sidebarToggler
+        ></fa-icon>
+    </div>
+    <div class="ml-auto flex relative z-40">
+        <!-- right navigation -->
+        <app-demo-app-cms-header-navigation-horizontal-utility></app-demo-app-cms-header-navigation-horizontal-utility>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<app-navigation-collapsible-resolver
+    [menu]="menu()"
+    [index]="index()"
+></app-navigation-collapsible-resolver>
+
+@if (menu().children) {
+    @for (subMenu of menu().children; track $index) {
+        <div
+            class="grid transition-[grid-template-rows] duration-200 ease-in-out"
+            [class.grid-rows-[1fr]]="isExpanded()"
+            [class.grid-rows-[0fr]]="!isExpanded()"
+        >
+            <div class="overflow-hidden">
+                <app-navigation-collapsible-item
+                    [menu]="subMenu"
+                    [index]="$index"
+                ></app-navigation-collapsible-item>
+            </div>
+        </div>
+    }
+}

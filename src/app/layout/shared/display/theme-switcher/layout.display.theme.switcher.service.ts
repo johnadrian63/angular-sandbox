@@ -1,10 +1,12 @@
-import { Service } from "@angular/core";
+import { Injectable, Service } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 
 export type LayoutTheme = "" | "light" | "dark";
 
-@Service()
-export class LayoutDefaultThemeSwitcherService {
+@Injectable({
+    providedIn: "root"
+})
+export class LayoutDisplayThemeSwitcherService {
     private readonly subject: BehaviorSubject<LayoutTheme> = new BehaviorSubject<LayoutTheme>("");
 
     private readonly themeKey: string = "theme";

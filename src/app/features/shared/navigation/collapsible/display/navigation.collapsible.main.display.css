@@ -1,0 +1,22 @@
+@reference "tailwindcss";
+
+.parent-menu {
+    &:hover {
+        background-color: var(--hover-color);
+    }
+
+    &.selected {
+        background-color: var(--selected-color);
+    }
+
+}
+
+.children-menu {
+    &:hover {
+        background-color: var(--hover-sub-color);
+    }
+
+    &.selected {
+        background-color: var(--selected-sub-color);
+    }
+}

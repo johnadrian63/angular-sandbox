@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, Signal, signal, viewChild } from "@angular/core";
+import { Component, ElementRef, inject, Signal, signal, viewChild, WritableSignal } from "@angular/core";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
@@ -27,7 +27,7 @@ export class ExampleResponsive {
     // public readonly faSearchIcon = faSearch;
     public readonly faBarsIcon = faBars;
     public readonly faTableColumnsIcon = faTableColumns;
-    public readonly sidebarOpen = signal<boolean | undefined>(false);
+    public readonly sidebarOpen: WritableSignal<boolean | undefined> = signal<boolean | undefined>(false);
     public readonly navigationOpen = signal<boolean>(false);
 
     public readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);

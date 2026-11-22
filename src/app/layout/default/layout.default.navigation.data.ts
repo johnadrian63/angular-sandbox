@@ -1,6 +1,7 @@
 import { IMenuItem } from "../../features/shared/navigation/navigation.model";
+import { LayoutDisplayThemeSwitcherHandler } from "../shared/display/theme-switcher/layout.display.theme.switcher.handler";
+import { LayoutDisplayGitHubLinkHandler, LayoutDisplayResponsiveLinkHandler } from "./layout.default.navigation.horizontal.display.handler";
 import { NavigationHorizontalCdkDropdownLinkDisplayHandler } from "../../features/shared/navigation/horizontal/cdk/navigation.horizontal.cdk.display.handler";
-import { LayoutDisplayGitHubLinkHandler, LayoutDisplayResponsiveLinkHandler, LayoutDisplayThemeSwitcherHandler } from "./layout.default.navigation.horizontal.display.handler";
 
 export const layoutDefaultNavigationData: IMenuItem[] = [
     {
@@ -23,6 +24,11 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
                 label: "dynamic_navigation",
                 text: "Dynamic Navigation",
                 path: "/poc/dynamic-navigation"
+            },
+            {
+                label: "collapsible_navigation",
+                text: "Collapsible Navigation",
+                path: "/poc/collapsible-navigation"
             },
             {
                 label: "nested_handler",
@@ -136,11 +142,19 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
         text: "Material",
         path: "/material"
     },
-    // {
-    //     label: "demo_app",
-    //     text: "Demo App",
-    //     path: "/demo-app"
-    // },
+    {
+        label: "demo_app",
+        text: "Demo App",
+        path: "/demo",
+        handler: NavigationHorizontalCdkDropdownLinkDisplayHandler,
+        children: [
+            {
+                label: "demo_app_cms",
+                text: "CMS",
+                path: "/demo/cms",
+            }
+        ]
+    },
     {
         label: "design_patterns",
         text: "Design Patterns",

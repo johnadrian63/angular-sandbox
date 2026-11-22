@@ -1,5 +1,7 @@
 import { Routes } from "@angular/router";
 
+import { demoAppCmsRoutes } from "./cms/demo.app.cms.routes";
+
 export const demoAppRoutes: Routes = [
     {
         path: "",
@@ -7,13 +9,15 @@ export const demoAppRoutes: Routes = [
         children: [
             {
                 path: "",
-                redirectTo: "tennis-live-score",
+                redirectTo: "cms",
                 pathMatch: "full"
             },
             {
-                path: "tennis-live-score",
-                loadComponent: () => import("./tennis-live-score/demo.app.tennis.live.score").then((c) => c.DemoAppTennisLiveScore),
-            }
+                path: "cms",
+                children: [
+                    ...demoAppCmsRoutes
+                ]
+            },
         ]
     }
 ];

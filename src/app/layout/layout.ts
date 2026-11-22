@@ -1,19 +1,17 @@
 import { Component, inject, DOCUMENT } from "@angular/core";
-import { RouterModule } from "@angular/router";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
-import { LayoutDefaultThemeSwitcherService, LayoutTheme } from "./default/display/theme-switcher/layout.default.theme.switcher.service";
+import { LayoutDisplayThemeSwitcherService, LayoutTheme } from "./shared/display/theme-switcher/layout.display.theme.switcher.service";
 
 @Component({
-    template: "",
-    imports: [RouterModule],
+    template: ""
 })
 export abstract class Layout {
     protected readonly document: Document = inject<Document>(DOCUMENT);
     protected readonly themeKey: string = "theme";
     protected theme: string = "theme";
 
-    private readonly themeSwitcherService: LayoutDefaultThemeSwitcherService = inject<LayoutDefaultThemeSwitcherService>(LayoutDefaultThemeSwitcherService);
+    private readonly themeSwitcherService: LayoutDisplayThemeSwitcherService = inject<LayoutDisplayThemeSwitcherService>(LayoutDisplayThemeSwitcherService);
 
     constructor() {
         this.themeSwitcherService.getTheme()

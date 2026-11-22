@@ -3,9 +3,10 @@ import { NgClass } from "@angular/common";
 import { CdkMenuTrigger } from "@angular/cdk/menu";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
-import { isActive, Router, RouterModule } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
 
 import { NavigationDisplay } from "../../../../display/navigation.display";
+import { isRouteActive } from "../../../../../util/router.isactive.util";
 import { NavigationHorizontalCdkDropdownItem } from "../item/navigation.horizontal.cdk.dropdown.item";
 
 @Component({
@@ -33,9 +34,7 @@ export class NavigationHorizontalCdkDropdownLink extends NavigationDisplay {
     }
 
     public expandIcon = faAngleDown;
-
     public menuClass: string = "";
-
     public activeClass: string = "underline";
 
     private readonly router: Router = inject<Router>(Router);
@@ -43,19 +42,6 @@ export class NavigationHorizontalCdkDropdownLink extends NavigationDisplay {
     public readonly isSettingsActive = computed(() => {
         const path = this.menu().path;
 
-        const processedPath = path && Array.isArray(path) ? this.router.createUrlTree(path) : path;
-
-        if (!processedPath) {
-            return false;
-        }
-
-        const active = isActive(processedPath, this.router, {
-            paths: 'subset',
-            queryParams: 'ignored',
-            fragment: 'ignored',
-            matrixParams: 'ignored',
-        });
-
-        return active();
+        return path ? isRouteActive(this.router, path) : false;
     });
 }

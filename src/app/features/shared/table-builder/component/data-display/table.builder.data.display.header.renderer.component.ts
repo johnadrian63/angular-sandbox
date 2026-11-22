@@ -7,7 +7,7 @@ import {
     ViewContainerRef
 } from "@angular/core";
 
-import { ITableBuilderHeaderCellData } from "../../model";
+import { ITableBuilderHeaderCellData, ITableBuilderRowData } from "../../model";
 import { TableBuilderColumnHeaderService } from "../../service";
 
 @Component({
@@ -17,7 +17,7 @@ import { TableBuilderColumnHeaderService } from "../../service";
 export class TableBuilderDataDisplayHeaderRendererComponent implements OnInit {
     public readonly column: ModelSignal<ITableBuilderHeaderCellData> = model.required<ITableBuilderHeaderCellData>();
 
-    private readonly columnHeaderService: TableBuilderColumnHeaderService = inject<TableBuilderColumnHeaderService>(TableBuilderColumnHeaderService);
+    private readonly columnHeaderService: TableBuilderColumnHeaderService<ITableBuilderRowData> = inject<TableBuilderColumnHeaderService<ITableBuilderRowData>>(TableBuilderColumnHeaderService);
     private readonly vcr: ViewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
 
     public ngOnInit(): void {

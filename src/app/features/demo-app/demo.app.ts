@@ -9,5 +9,4 @@ import { ActivatedRoute, RouterModule, RouterOutlet } from "@angular/router";
 })
 export class DemoApp {
     public readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);
-
 }

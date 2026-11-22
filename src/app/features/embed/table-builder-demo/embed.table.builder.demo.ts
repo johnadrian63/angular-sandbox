@@ -1,12 +1,12 @@
 import { Component } from "@angular/core";
-import { TableBuilderComponent, TableBuilderService, TableBuilderColumnHeaderService, TableBuilderSortService, TableBuilderSelectionService, TableBuilderColumnService } from "../../shared/table-builder";
+import { EmbedTableBuilderService } from "./table-builder/embed.table.builder.demo.service";
+import { EmbedTableBuilderSortService } from "./table-builder/embed.table.builder.demo.sort.service";
+import { EmbedTableBuilderColumnService } from "./table-builder/embed.table.builder.demo.column.service";
+import { EmbedTableBuilderSelectionService } from "./table-builder/embed.table.builder.demo.selection.service";
+import { EmbedTableBuilderPaginationService } from "./table-builder/embed.table.builder.demo.pagination.service";
+import { EmbedTableBuilderColumnHeaderService } from "./table-builder/embed.table.builder.demo.column.header.service";
 import { TableBuilderPaginationBaseService } from "../../shared/table-builder/service/table.builder.pagination.base.service";
-import { PocTableBuilderColumnHeaderService } from "./table-builder/embed.table.builder.demo.column.header.service";
-import { PocTableBuilderColumnService } from "./table-builder/embed.table.builder.demo.column.service";
-import { PocTableBuilderPaginationService } from "./table-builder/embed.table.builder.demo.pagination.service";
-import { PocTableBuilderSelectionService } from "./table-builder/embed.table.builder.demo.selection.service";
-import { PocTableBuilderService } from "./table-builder/embed.table.builder.demo.service";
-import { PocTableBuilderSortService } from "./table-builder/embed.table.builder.demo.sort.service";
+import { TableBuilderComponent, TableBuilderService, TableBuilderColumnHeaderService, TableBuilderSortService, TableBuilderSelectionService, TableBuilderColumnService } from "../../shared/table-builder";
 
 @Component({
     selector: "app-embed-table-builder-demo",
@@ -16,35 +16,35 @@ import { PocTableBuilderSortService } from "./table-builder/embed.table.builder.
         TableBuilderComponent
     ],
     providers: [
-        PocTableBuilderService,
+        EmbedTableBuilderService,
         {
             provide: TableBuilderService,
-            useExisting: PocTableBuilderService
+            useExisting: EmbedTableBuilderService
         },
-        PocTableBuilderPaginationService,
+        EmbedTableBuilderPaginationService,
         {
             provide: TableBuilderPaginationBaseService,
-            useExisting: PocTableBuilderPaginationService
+            useExisting: EmbedTableBuilderPaginationService
         },
-        PocTableBuilderColumnHeaderService,
+        EmbedTableBuilderColumnHeaderService,
         {
             provide: TableBuilderColumnHeaderService,
-            useExisting: PocTableBuilderColumnHeaderService
+            useExisting: EmbedTableBuilderColumnHeaderService
         },
-        PocTableBuilderSortService,
+        EmbedTableBuilderSortService,
         {
             provide: TableBuilderSortService,
-            useExisting: PocTableBuilderSortService
+            useExisting: EmbedTableBuilderSortService
         },
-        PocTableBuilderSelectionService,
+        EmbedTableBuilderSelectionService,
         {
             provide: TableBuilderSelectionService,
-            useExisting: PocTableBuilderSelectionService,
+            useExisting: EmbedTableBuilderSelectionService,
         },
-        PocTableBuilderColumnService,
+        EmbedTableBuilderColumnService,
         {
             provide: TableBuilderColumnService,
-            useExisting: PocTableBuilderColumnService,
+            useExisting: EmbedTableBuilderColumnService,
         }
     ]
 })

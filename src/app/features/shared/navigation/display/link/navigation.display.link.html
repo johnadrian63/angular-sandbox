@@ -1,7 +1,7 @@
 @if (!isExternal) {
     <a
         [routerLink]="menu().path"
-        routerLinkActive="underline"
+        [routerLinkActive]="activeClass"
         [target]="target()"
         [ngClass]="classes"
     >

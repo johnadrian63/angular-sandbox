@@ -1,4 +1,3 @@
-import { LayoutDisplayThemeSwitcherHandler } from "../../../../layout/default/layout.default.navigation.horizontal.display.handler";
 import { IMenuItem } from "../../../shared/navigation/navigation.model";
 
 export const exampleResponsiveNavigationData: IMenuItem[] = [

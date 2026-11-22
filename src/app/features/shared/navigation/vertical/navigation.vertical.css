@@ -11,7 +11,7 @@
         }
 
         &:hover {
-            background-color: var(--row-hover);
+            background-color: var(--hover-color);
         }
     }
 }

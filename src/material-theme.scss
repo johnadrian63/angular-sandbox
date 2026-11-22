@@ -12,7 +12,7 @@ html {
                 primary: mat.$azure-palette,
                 tertiary: mat.$blue-palette,
             ),
-            typography:"Arial",
+            typography: "Arial",
             density: 0,
         )
     );
@@ -29,4 +29,12 @@ body {
     // variables at https://material.angular.dev/guide/system-variables
     // background-color: var(--mat-sys-surface);
     // color: var(--mat-sys-on-surface);
+}
+
+.mat-mdc-table {
+    --mat-table-header-head-container-color: var(--surface);
+}
+
+.mat-mdc-paginator {
+    --mat-paginator-container-background-color: var(--surface);
 }

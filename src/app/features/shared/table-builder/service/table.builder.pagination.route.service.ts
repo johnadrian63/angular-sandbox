@@ -1,11 +1,5 @@
-import { DestroyRef, inject, Injectable } from "@angular/core";
-import {
-    ActivatedRoute,
-    Params,
-    Router
-} from "@angular/router";
-import { Observable, skip } from "rxjs";
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { inject, Injectable } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { TableBuilderPaginationBaseService } from "./table.builder.pagination.base.service";
 
@@ -20,24 +14,17 @@ export abstract class TableBuilderPaginationRouteService extends TableBuilderPag
         return "pageSize";
     }
 
-    public get queryParamsChange(): Observable<Params> {
-        return this.activatedRoute.queryParams
-            .pipe(
-                takeUntilDestroyed(this.destroyRef),
-                skip(1)
-            );
-    }
-
     protected readonly router: Router = inject<Router>(Router);
 
     private readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);
-    private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
 
     public init(): void {
-        const currentPage = this.activatedRoute.snapshot.queryParamMap.get(this.pageKey)!;
-        const currentPageSize = this.activatedRoute.snapshot.queryParamMap.get(this.pageSizeKey)!;
+        this.activatedRoute.queryParams.subscribe(() => {
+            const currentPage = this.activatedRoute.snapshot.queryParamMap.get(this.pageKey)!;
+            const currentPageSize = this.activatedRoute.snapshot.queryParamMap.get(this.pageSizeKey)!;
 
-        super.setPaging(parseInt(currentPage), parseInt(currentPageSize));
+            super.setPaging(parseInt(currentPage), parseInt(currentPageSize));
+        });
     }
 
     public override handlePageChange(page: number, pageSize: number): void {
@@ -49,5 +36,9 @@ export abstract class TableBuilderPaginationRouteService extends TableBuilderPag
             queryParamsHandling: "merge",
             relativeTo: this.activatedRoute
         });
+    }
+
+    public override setPaging(page: number, pageSize: number): void {
+        // do nothing
     }
 }

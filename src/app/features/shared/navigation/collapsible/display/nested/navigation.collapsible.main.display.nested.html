@@ -1,0 +1,20 @@
+<span
+    [ngClass]="menuClass"
+    class="parent-menu flex p-2 cursor-pointer rounded"
+    [class.selected]="isExpanded() || isActive()"
+    (click)="toggle()"
+>
+    @if (icon) {
+        <fa-icon [icon]="icon"></fa-icon>
+    }
+
+    <app-navigation-display-text
+        [menu]="menu()"
+        [classes]="'font-medium'"
+    ></app-navigation-display-text>
+    <fa-icon
+        [icon]="dropdownIcon"
+        class="ml-auto transition-transform duration-200"
+        [class.rotate-90]="isExpanded()"
+    ></fa-icon>
+</span>
