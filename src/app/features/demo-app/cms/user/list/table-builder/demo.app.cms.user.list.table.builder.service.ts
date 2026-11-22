@@ -1,16 +1,17 @@
 import { DestroyRef, inject, Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute } from "@angular/router";
 import { lastValueFrom, skip } from "rxjs";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
+import { DemoAppUserService } from "../../demo.app.user.service";
+import { IUserAdapter, UserAdapter } from "../../demo.app.user.model";
 import { TableBuilderService } from "../../../../../shared/table-builder";
-import { IUserAdapter, IUserCollection, UserAdapter } from "./user.model";
 import { DemoAppCmsUserListTableBuilderPaginationService } from "./demo.app.cms.user.list.table.builder.pagination.service";
+import { DemoAppCmsUserListTableBuilderDataAdapter, DemoAppCmsUserListTableBuilderGetUsersDataFactory } from "./demo.app.cms.user.list.table.builder.adapter";
 
 @Injectable()
 export class DemoAppCmsUserListTableBuilderService extends TableBuilderService {
-    private readonly httpClient: HttpClient = inject<HttpClient>(HttpClient);
+    private readonly demoAppUserService: DemoAppUserService = inject<DemoAppUserService>(DemoAppUserService);
     private readonly tableBuilderPaginationService: DemoAppCmsUserListTableBuilderPaginationService = inject<DemoAppCmsUserListTableBuilderPaginationService>(DemoAppCmsUserListTableBuilderPaginationService);
     private readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);
     private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
@@ -29,16 +30,10 @@ export class DemoAppCmsUserListTableBuilderService extends TableBuilderService {
         try {
             this.setLoading(true);
 
-            const apiUrl = "https://dummyjson.com/users";
-
-            const pageSize = this.tableBuilderPaginationService.pageSize;
-            const page = this.tableBuilderPaginationService.page;
-            const result = await lastValueFrom(this.httpClient.get<IUserCollection>(apiUrl, {
-                params: {
-                    skip: pageSize * page,
-                    limit: pageSize
-                }
-            }));
+            const params = this.activatedRoute.snapshot.queryParams;
+            const factory = DemoAppCmsUserListTableBuilderGetUsersDataFactory.create(params, this.tableBuilderPaginationService);
+            const visitor = new DemoAppCmsUserListTableBuilderDataAdapter(this.demoAppUserService);
+            const result = await lastValueFrom(factory.accept(visitor));
 
             this.tableBuilderPaginationService.setCount(result.total);
 

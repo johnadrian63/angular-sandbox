@@ -14,15 +14,7 @@ export const demoAppCmsNavigationData: ICmsMenuItem[] = [
         label: "user",
         text: "User Management",
         // icon: faUser,
-        path: "/demo/cms/users",
-        children: [
-            {
-                label: "users",
-                text: "List",
-                path: "/demo/cms/users/list",
-                // icon: faUser,
-            },
-        ]
+        path: "/demo/cms/users"
     },
     {
         label: "post",

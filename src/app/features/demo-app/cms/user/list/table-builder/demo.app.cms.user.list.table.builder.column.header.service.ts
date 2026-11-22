@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { IUserAdapter } from "./user.model";
+import { IUserAdapter } from "../../demo.app.user.model";
 import { demoAppCmsUserListTableBuilderHeaderMapper } from "./demo.app.cms.user.list.table.builder.config";
 import { TableBuilderColumnHeaderService, TableBuilderHeaderCellData } from "../../../../../shared/table-builder";
 

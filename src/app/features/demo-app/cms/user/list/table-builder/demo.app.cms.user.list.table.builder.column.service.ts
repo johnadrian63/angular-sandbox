@@ -1,6 +1,6 @@
 import { Injectable, ViewContainerRef } from "@angular/core";
 
-import { IUserAdapter } from "./user.model";
+import { IUserAdapter } from "../../demo.app.user.model";
 import { TableBuilderColumnService } from "../../../../../shared/table-builder";
 import { DataDisplayTextComponent } from "../../../../../shared/data-display/text";
 import { DataDisplayButtonComponent } from "../../../../../shared/data-display/button";

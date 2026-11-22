@@ -1,4 +1,4 @@
-import { ITableBuilderRowData } from "../../../../../shared/table-builder";
+import { ITableBuilderRowData } from "../../../shared/table-builder";
 
 export interface IUser {
     id: number;

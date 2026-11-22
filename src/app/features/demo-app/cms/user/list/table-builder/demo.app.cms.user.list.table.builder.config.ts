@@ -1,5 +1,5 @@
 
-import { IUserAdapter } from "./user.model";
+import { IUserAdapter } from "../../demo.app.user.model";
 import { DataDisplayTextComponent } from "../../../../../shared/data-display/text";
 import { ITableBuilderColumnConfig, ITableBuilderColumnHeaderConfig } from "../../../../../shared/table-builder";
 import { TableBuilderDataDisplayHeaderComponent } from "../../../../../shared/table-builder/component/data-display/header";
