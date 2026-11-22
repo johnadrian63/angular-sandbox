@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 import { IDataDisplayVisitor } from "./data.display.visitor.interface";
 
@@ -6,5 +6,7 @@ import { IDataDisplayVisitor } from "./data.display.visitor.interface";
     template: ""
 })
 export abstract class DataDisplayAbstractComponent {
+    @Input() public classes: string = "";
+
     public abstract accept<T>(visitor: IDataDisplayVisitor<T>): T;
 }

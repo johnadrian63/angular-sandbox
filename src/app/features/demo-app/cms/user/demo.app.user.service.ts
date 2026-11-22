@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Service } from "@angular/core";
 import { Observable } from "rxjs";
 
-import { IUserCollection } from "./demo.app.user.model";
+import { IUser, IUserCollection } from "./demo.app.user.model";
 
 @Service()
 export class DemoAppUserService {
@@ -36,5 +36,9 @@ export class DemoAppUserService {
                 value
             }
         });
+    }
+
+    public getUser(userId: string): Observable<IUser> {
+        return this.httpClient.get<IUser>(`${this.apiUrl}/${userId}`);
     }
 }

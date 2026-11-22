@@ -1,29 +1,23 @@
-
 import { IUserAdapter } from "../../demo.app.user.model";
 import { DataDisplayTextComponent } from "../../../../../shared/data-display/text";
+import { DemoAppCmsUserDisplayRole } from "../../display/role/demo.app.cms.user.display.role";
+import { DemoAppCmsUserDisplayFullName } from "../../display/full-name/demo.app.cms.user.display.full.name";
 import { ITableBuilderColumnConfig, ITableBuilderColumnHeaderConfig } from "../../../../../shared/table-builder";
 import { TableBuilderDataDisplayHeaderComponent } from "../../../../../shared/table-builder/component/data-display/header";
 
 export const demoAppCmsUserListTableBuilderHeaderMapper: Map<keyof IUserAdapter, ITableBuilderColumnHeaderConfig>
     = new Map<keyof IUserAdapter, ITableBuilderColumnHeaderConfig>([
         [
-            "firstName",
+            "fullName",
             {
-                label: "First name",
+                label: "Full name",
                 renderer: TableBuilderDataDisplayHeaderComponent
             }
         ],
         [
-            "lastName",
+            "phone",
             {
-                label: "Last name",
-                renderer: TableBuilderDataDisplayHeaderComponent
-            }
-        ],
-        [
-            "gender",
-            {
-                label: "Gender",
+                label: "Phone",
                 renderer: TableBuilderDataDisplayHeaderComponent
             }
         ],
@@ -46,19 +40,13 @@ export const demoAppCmsUserListTableBuilderHeaderMapper: Map<keyof IUserAdapter,
 export const demoAppCmsUserListTableBuilderMapper: Map<keyof IUserAdapter, ITableBuilderColumnConfig>
     = new Map<keyof IUserAdapter, ITableBuilderColumnConfig>([
         [
-            "firstName",
+            "fullName",
             {
-                renderer: DataDisplayTextComponent
+                renderer: DemoAppCmsUserDisplayFullName
             }
         ],
         [
-            "lastName",
-            {
-                renderer: DataDisplayTextComponent
-            }
-        ],
-        [
-            "gender",
+            "phone",
             {
                 renderer: DataDisplayTextComponent
             }
@@ -72,7 +60,7 @@ export const demoAppCmsUserListTableBuilderMapper: Map<keyof IUserAdapter, ITabl
         [
             "role",
             {
-                renderer: DataDisplayTextComponent
+                renderer: DemoAppCmsUserDisplayRole
             }
         ],
     ]);

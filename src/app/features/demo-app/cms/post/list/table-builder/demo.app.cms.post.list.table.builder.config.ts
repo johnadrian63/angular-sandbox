@@ -1,7 +1,11 @@
 
 import { IPostAdapter } from "../../demo.app.post.model";
 import { DataDisplayTextComponent } from "../../../../../shared/data-display/text";
+import { DemoAppCmsPostDisplayTags } from "../../display/tags/demo.app.cms.post.display.tags";
+import { DemoAppCmsPostDisplayView } from "../../display/view/demo.app.cms.post.display.view";
+import { DemoAppCmsPostDisplayReaction } from "../../display/reaction/demo.app.cms.post.display.reaction";
 import { ITableBuilderColumnConfig, ITableBuilderColumnHeaderConfig } from "../../../../../shared/table-builder";
+import { DemoAppCmsPostDisplayTextPreview } from "../../display/text-preview/demo.app.cms.post.display.text.preview";
 import { TableBuilderDataDisplayHeaderComponent } from "../../../../../shared/table-builder/component/data-display/header";
 
 export const demoAppCmsPostListTableBuilderHeaderMapper: Map<keyof IPostAdapter, ITableBuilderColumnHeaderConfig>
@@ -21,9 +25,23 @@ export const demoAppCmsPostListTableBuilderHeaderMapper: Map<keyof IPostAdapter,
             }
         ],
         [
+            "reactions",
+            {
+                label: "Reactions",
+                renderer: TableBuilderDataDisplayHeaderComponent
+            }
+        ],
+        [
             "views",
             {
                 label: "Views",
+                renderer: TableBuilderDataDisplayHeaderComponent
+            }
+        ],
+        [
+            "tags",
+            {
+                label: "Tags",
                 renderer: TableBuilderDataDisplayHeaderComponent
             }
         ],
@@ -40,13 +58,25 @@ export const demoAppCmsPostListTableBuilderMapper: Map<keyof IPostAdapter, ITabl
         [
             "body",
             {
-                renderer: DataDisplayTextComponent
+                renderer: DemoAppCmsPostDisplayTextPreview
+            }
+        ],
+        [
+            "reactions",
+            {
+                renderer: DemoAppCmsPostDisplayReaction
             }
         ],
         [
             "views",
             {
-                renderer: DataDisplayTextComponent
+                renderer: DemoAppCmsPostDisplayView
+            }
+        ],
+        [
+            "tags",
+            {
+                renderer: DemoAppCmsPostDisplayTags
             }
         ],
     ]);

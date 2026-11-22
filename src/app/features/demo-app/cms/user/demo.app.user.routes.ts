@@ -1,5 +1,7 @@
 import { Routes } from "@angular/router";
 
+import { userResolver } from "./demo.app.user.resolver";
+
 export const demoAppCmsUserRoutes: Routes = [
     {
         path: "",
@@ -14,9 +16,12 @@ export const demoAppCmsUserRoutes: Routes = [
                 loadComponent: () => import("./list/demo.app.cms.user.list").then((c) => c.DemoAppCmsUserList),
             },
             {
-                path: "view",
+                path: "view/:id",
                 loadComponent: () => import("./view/demo.app.cms.user.view").then((c) => c.DemoAppCmsUserView),
-            },
+                resolve: {
+                    user: userResolver,
+                }
+            }
         ]
     }
 ];
