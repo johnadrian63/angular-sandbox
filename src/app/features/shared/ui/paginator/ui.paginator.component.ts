@@ -22,7 +22,6 @@ export enum PageSizeOptions {
 @Component({
     selector: "app-ui-paginator",
     templateUrl: "./ui.paginator.component.html",
-    styleUrl: "./ui.paginator.component.css",
     imports: [
         MatPaginatorModule
     ]
