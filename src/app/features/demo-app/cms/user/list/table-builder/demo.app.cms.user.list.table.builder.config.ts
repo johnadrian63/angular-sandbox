@@ -8,7 +8,7 @@ import { TableBuilderDataDisplayHeaderComponent } from "../../../../../shared/ta
 export const demoAppCmsUserListTableBuilderHeaderMapper: Map<keyof IUserAdapter, ITableBuilderColumnHeaderConfig>
     = new Map<keyof IUserAdapter, ITableBuilderColumnHeaderConfig>([
         [
-            "fullName",
+            "firstName",
             {
                 label: "Full name",
                 renderer: TableBuilderDataDisplayHeaderComponent
@@ -103,7 +103,7 @@ export const demoAppCmsUserListTableBuilderHeaderMapper: Map<keyof IUserAdapter,
 export const demoAppCmsUserListTableBuilderMapper: Map<keyof IUserAdapter, ITableBuilderColumnConfig>
     = new Map<keyof IUserAdapter, ITableBuilderColumnConfig>([
         [
-            "fullName",
+            "firstName",
             {
                 renderer: DemoAppCmsUserDisplayFullName
             }

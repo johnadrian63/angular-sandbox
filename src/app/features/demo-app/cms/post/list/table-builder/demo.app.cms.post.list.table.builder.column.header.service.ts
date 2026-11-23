@@ -18,6 +18,12 @@ export class DemoAppCmsPostListTableBuilderColumnHeaderService extends TableBuil
             let freezed = false;
             let width = "";
 
+            if (["title", "body"].includes(key)) {
+                width = "320px";
+            } else {
+                width = "100px";
+            }
+
             this.headers.set(key, new TableBuilderHeaderCellData(
                 key,
                 label,

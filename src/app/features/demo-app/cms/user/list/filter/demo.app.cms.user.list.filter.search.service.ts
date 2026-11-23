@@ -12,7 +12,7 @@ export class DemoAppCmsUserListFilterSearchService extends SearchFormService {
     public override handleSearch(searchText: string): void {
         this.router.navigate([], {
             queryParams: {
-                search: searchText,
+                q: searchText ? searchText : undefined,
                 [this.tableBuilderPaginationRouteService.pageKey]: undefined,
                 key: undefined,
                 value: undefined

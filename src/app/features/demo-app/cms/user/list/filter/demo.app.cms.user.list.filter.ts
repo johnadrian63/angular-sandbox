@@ -6,13 +6,12 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { generateRange } from "../../../../../shared/util/range.generator";
 import { DemoAppCmsUserListTableBuilderPaginationService } from "../table-builder/demo.app.cms.user.list.table.builder.pagination.service";
 
-interface IUserFilter {
+interface IUserListFilter {
     role: string;
     gender: string;
     eyeColor: string;
     age: string;
 }
-
 
 @Component({
     selector: "app-demo-app-user-list-filter",
@@ -20,13 +19,13 @@ interface IUserFilter {
     imports: [FormsModule]
 })
 export class DemoAppCmsUserListFilter implements OnInit {
-    public readonly defaultValues: IUserFilter = {
+    public readonly defaultValues: IUserListFilter = {
         role: "",
         gender: "",
         eyeColor: "",
         age: ""
     };
-    public readonly filterModel = signal<IUserFilter>(this.defaultValues);
+    public readonly filterModel = signal<IUserListFilter>(this.defaultValues);
     private readonly activatedRoute = inject<ActivatedRoute>(ActivatedRoute);
     private readonly router = inject<Router>(Router);
     private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
@@ -59,16 +58,16 @@ export class DemoAppCmsUserListFilter implements OnInit {
     }
 
     public setFilterModel(filterKey: string, value: string): void {
-        const filterValues: IUserFilter = { ...this.defaultValues };
+        const filterValues: IUserListFilter = { ...this.defaultValues };
 
         Object.keys(this.defaultValues)
-            .reduce<IUserFilter>((acc: IUserFilter, key) => {
+            .reduce<IUserListFilter>((acc: IUserListFilter, key) => {
                 if ((filterKey && value && filterKey !== key) || !value) {
-                    acc[key as keyof IUserFilter] = "";
+                    acc[key as keyof IUserListFilter] = "";
                 }
 
                 if (filterKey && value && filterKey === key) {
-                    acc[filterKey as keyof IUserFilter] = value;
+                    acc[filterKey as keyof IUserListFilter] = value;
                 }
 
                 return acc;

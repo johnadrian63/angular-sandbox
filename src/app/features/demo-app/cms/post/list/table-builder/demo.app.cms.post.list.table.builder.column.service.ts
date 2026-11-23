@@ -63,12 +63,11 @@ class DemoAppCmsPostListTableBuilderColumnDataVisitor
     public visitTextPreview(component: DemoAppCmsPostDisplayTextPreview): void {
         component.text.set(this.row.body);
         component.maxLength.set(30);
-
     }
 
     public visitTags(component: DemoAppCmsPostDisplayTags): void {
         component.tags.set(this.row.tags);
-        component.classes = "border border-gray-200  p-2 rounded-3xl mr-1 text-xs";
+        component.classes = "border border-gray-200 inline-flex  p-2 rounded-3xl mr-1 text-xs";
     }
 
     public visitRadioButton(component: DataDisplayRadioButtonComponent): void {
