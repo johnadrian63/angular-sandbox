@@ -1,6 +1,6 @@
 import { Injectable, ViewContainerRef } from "@angular/core";
 
-import { IPostAdapter } from "../../demo.app.post.model";
+import { IPostAdapter } from "../../demo.app.cms.post.model";
 import { TableBuilderColumnService } from "../../../../../shared/table-builder";
 import { DataDisplayTextComponent } from "../../../../../shared/data-display/text";
 import { DataDisplayButtonComponent } from "../../../../../shared/data-display/button";
@@ -83,7 +83,10 @@ class DemoAppCmsPostListTableBuilderColumnDataVisitor
     }
 
     public visitLink(component: DataDisplayLinkComponent): void {
-        throw new Error("Method not implemented.");
+        const value = <string>this.row[this.columnKey];
+
+        component.url.set(`../view/${this.row.id}`);
+        component.text.set(value);
     }
 
     public visitButton(component: DataDisplayButtonComponent): void {

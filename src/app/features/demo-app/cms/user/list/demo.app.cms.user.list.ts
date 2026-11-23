@@ -13,7 +13,7 @@ import { getDemoAppCmsUserListTableBuilderProviders } from "./table-builder/demo
     selector: "app-demo-app-cms-user-list",
     templateUrl: "./demo.app.cms.user.list.html",
     imports: [
-        FaIconComponent,
+        // FaIconComponent,
         TableBuilderComponent,
         SearchForm,
         DemoAppCmsUserListFilter

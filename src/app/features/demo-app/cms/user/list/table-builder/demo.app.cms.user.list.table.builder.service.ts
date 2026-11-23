@@ -3,8 +3,8 @@ import { ActivatedRoute } from "@angular/router";
 import { lastValueFrom, skip } from "rxjs";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
-import { DemoAppUserService } from "../../demo.app.user.service";
-import { IUserAdapter, UserAdapter } from "../../demo.app.user.model";
+import { DemoAppCmsUserService } from "../../demo.app.cms.user.service";
+import { IUserAdapter, UserAdapter } from "../../demo.app.cms.user.model";
 import { TableBuilderService } from "../../../../../shared/table-builder";
 import { DemoAppCmsUserListFilterSearchService } from "../filter/demo.app.cms.user.list.filter.search.service";
 import { DemoAppCmsUserListTableBuilderPaginationService } from "./demo.app.cms.user.list.table.builder.pagination.service";
@@ -14,7 +14,7 @@ import { DemoAppCmsUserListTableBuilderDataAdapter, DemoAppCmsUserListTableBuild
 export class DemoAppCmsUserListTableBuilderService extends TableBuilderService {
     private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
     private readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);
-    private readonly demoAppUserService: DemoAppUserService = inject<DemoAppUserService>(DemoAppUserService);
+    private readonly userService: DemoAppCmsUserService = inject<DemoAppCmsUserService>(DemoAppCmsUserService);
     private readonly tableBuilderPaginationService: DemoAppCmsUserListTableBuilderPaginationService = inject<DemoAppCmsUserListTableBuilderPaginationService>(DemoAppCmsUserListTableBuilderPaginationService);
     private readonly searchFormService: DemoAppCmsUserListFilterSearchService = inject<DemoAppCmsUserListFilterSearchService>(DemoAppCmsUserListFilterSearchService);
 
@@ -34,7 +34,7 @@ export class DemoAppCmsUserListTableBuilderService extends TableBuilderService {
 
             const params = this.activatedRoute.snapshot.queryParams;
             const factory = DemoAppCmsUserListTableBuilderGetUsersDataFactory.create(params, this.tableBuilderPaginationService, this.searchFormService);
-            const visitor = new DemoAppCmsUserListTableBuilderDataAdapter(this.demoAppUserService);
+            const visitor = new DemoAppCmsUserListTableBuilderDataAdapter(this.userService);
             const result = await lastValueFrom(factory.accept(visitor));
 
             this.tableBuilderPaginationService.setCount(result.total);

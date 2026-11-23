@@ -1,6 +1,6 @@
 
-import { IPostAdapter } from "../../demo.app.post.model";
-import { DataDisplayTextComponent } from "../../../../../shared/data-display/text";
+import { IPostAdapter } from "../../demo.app.cms.post.model";
+import { DataDisplayLinkComponent } from "../../../../../shared/data-display/link";
 import { DemoAppCmsPostDisplayTags } from "../../display/tags/demo.app.cms.post.display.tags";
 import { DemoAppCmsPostDisplayView } from "../../display/view/demo.app.cms.post.display.view";
 import { DemoAppCmsPostDisplayReaction } from "../../display/reaction/demo.app.cms.post.display.reaction";
@@ -52,7 +52,7 @@ export const demoAppCmsPostListTableBuilderMapper: Map<keyof IPostAdapter, ITabl
         [
             "title",
             {
-                renderer: DataDisplayTextComponent
+                renderer: DataDisplayLinkComponent
             }
         ],
         [

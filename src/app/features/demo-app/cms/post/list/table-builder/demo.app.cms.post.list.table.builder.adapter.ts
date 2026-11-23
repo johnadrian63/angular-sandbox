@@ -1,34 +1,32 @@
 import { Params } from "@angular/router";
 import { Observable } from "rxjs";
 
-import { DemoAppUserService } from "../../demo.app.post.service";
-import { IPostCollection } from "../../demo.app.post.model";
+import { IPostCollection } from "../../demo.app.cms.post.model";
+import { DemoAppCmsPostService } from "../../demo.app.cms.post.service";
 import { SearchFormService } from "../../../../../shared/search-form/search.form.service";
 import { TableBuilderPaginationRouteService } from "../../../../../shared/table-builder/service/table.builder.pagination.route.service";
 
-
 export interface IDemoAppCmsPostListTableBuilderDataAdapter<T> {
-    visitGetUsers(handler: DemoAppCmsPostListTableBuilderGetUsersDataHandler): T;
-    visitSearchUsers(handler: DemoAppCmsPostListTableBuilderSearchUsersDataHandler): T;
-    visitFilterUsers(handler: DemoAppCmsPostListTableBuilderFilterUsersDataHandler): T;
+    visitGetPosts(handler: DemoAppCmsPostListTableBuilderGetPostsDataHandler): T;
+    visitSearchPosts(handler: DemoAppCmsPostListTableBuilderSearchPostsDataHandler): T;
 }
 
 export interface IDemoAppCmsPostListTableBuilderDataHandler {
     accept<T>(visitor: IDemoAppCmsPostListTableBuilderDataAdapter<T>): T;
 }
 
-export class DemoAppCmsPostListTableBuilderGetUsersDataHandler implements IDemoAppCmsPostListTableBuilderDataHandler {
+export class DemoAppCmsPostListTableBuilderGetPostsDataHandler implements IDemoAppCmsPostListTableBuilderDataHandler {
     constructor(
         public readonly skip: number,
         public readonly limit: number
     ) { }
 
     public accept<T>(visitor: IDemoAppCmsPostListTableBuilderDataAdapter<T>): T {
-        return visitor.visitGetUsers(this);
+        return visitor.visitGetPosts(this);
     }
 }
 
-export class DemoAppCmsPostListTableBuilderSearchUsersDataHandler implements IDemoAppCmsPostListTableBuilderDataHandler {
+export class DemoAppCmsPostListTableBuilderSearchPostsDataHandler implements IDemoAppCmsPostListTableBuilderDataHandler {
     constructor(
         public readonly searchText: string,
         public readonly skip: number,
@@ -36,22 +34,11 @@ export class DemoAppCmsPostListTableBuilderSearchUsersDataHandler implements IDe
     ) { }
 
     public accept<T>(visitor: IDemoAppCmsPostListTableBuilderDataAdapter<T>): T {
-        return visitor.visitSearchUsers(this);
+        return visitor.visitSearchPosts(this);
     }
 }
 
-export class DemoAppCmsPostListTableBuilderFilterUsersDataHandler implements IDemoAppCmsPostListTableBuilderDataHandler {
-    constructor(
-        public readonly key: string,
-        public readonly value: string
-    ) { }
-
-    public accept<T>(visitor: IDemoAppCmsPostListTableBuilderDataAdapter<T>): T {
-        return visitor.visitFilterUsers(this);
-    }
-}
-
-export class DemoAppCmsPostListTableBuilderGetUsersDataFactory {
+export class DemoAppCmsPostListTableBuilderGetPostsDataFactory {
     public static create(
         params: Params,
         tableBuilderPaginationService: TableBuilderPaginationRouteService,
@@ -65,34 +52,22 @@ export class DemoAppCmsPostListTableBuilderGetUsersDataFactory {
         if (searchText) {
             searchFormService.setValue(searchText);
 
-            return new DemoAppCmsPostListTableBuilderSearchUsersDataHandler(searchText, skip, limit);
+            return new DemoAppCmsPostListTableBuilderSearchPostsDataHandler(searchText, skip, limit);
         }
 
-        const key = params["key"];
-        const value = params["value"];
-
-        if (key && value) {
-            return new DemoAppCmsPostListTableBuilderFilterUsersDataHandler(key, value);
-        }
-
-        return new DemoAppCmsPostListTableBuilderGetUsersDataHandler(skip, limit);
+        return new DemoAppCmsPostListTableBuilderGetPostsDataHandler(skip, limit);
     }
 }
 
 export class DemoAppCmsPostListTableBuilderDataAdapter implements IDemoAppCmsPostListTableBuilderDataAdapter<Observable<IPostCollection>> {
-    constructor(private readonly demoAppUserService: DemoAppUserService) { }
+    constructor(private readonly postService: DemoAppCmsPostService) { }
 
-    public visitGetUsers(handler: DemoAppCmsPostListTableBuilderGetUsersDataHandler): Observable<IPostCollection> {
-        return this.demoAppUserService.getUsers(handler.skip, handler.limit);
+    public visitGetPosts(handler: DemoAppCmsPostListTableBuilderGetPostsDataHandler): Observable<IPostCollection> {
+        return this.postService.getPosts(handler.skip, handler.limit);
     }
 
-    public visitSearchUsers(handler: DemoAppCmsPostListTableBuilderSearchUsersDataHandler): Observable<IPostCollection> {
-        return this.demoAppUserService.searchUsers(handler.searchText, handler.skip, handler.limit);
-    }
+    public visitSearchPosts(handler: DemoAppCmsPostListTableBuilderSearchPostsDataHandler): Observable<IPostCollection> {
+        return this.postService.searchPosts(handler.searchText, handler.skip, handler.limit);
 
-    public visitFilterUsers(handler: DemoAppCmsPostListTableBuilderFilterUsersDataHandler): Observable<IPostCollection> {
-        return this.demoAppUserService.filterUsers(handler.key, handler.value);
     }
 }
-
-
