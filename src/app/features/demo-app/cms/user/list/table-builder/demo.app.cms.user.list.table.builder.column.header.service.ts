@@ -20,6 +20,13 @@ export class DemoAppCmsUserListTableBuilderColumnHeaderService extends TableBuil
             let freezed = false;
             let width = "";
 
+            if (["fullName", "email", "university", "companyName"].includes(key)) {
+                freezed = true;
+                width = "220px";
+            } else {
+                width = "170px";
+            }
+
             this.headers.set(key, new TableBuilderHeaderCellData(
                 key,
                 label,
@@ -35,10 +42,10 @@ export class DemoAppCmsUserListTableBuilderColumnHeaderService extends TableBuil
         const cachedColumns = localStorage.getItem(this.userListColumnKeys);
 
         if (cachedColumns) {
-            this.columnsToDisplay = JSON.parse(cachedColumns);
+            // this.columnsToDisplay = JSON.parse(cachedColumns);
         } else {
-            this.columnsToDisplay = columnKeys;
         }
+        this.columnsToDisplay = columnKeys;
     }
 
     public override handleColumnOrder(columns: (keyof IUserAdapter)[]): void {

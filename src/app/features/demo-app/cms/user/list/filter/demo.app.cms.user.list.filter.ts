@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router } from "@angular/router";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 import { generateRange } from "../../../../../shared/util/range.generator";
+import { DemoAppCmsUserListTableBuilderPaginationService } from "../table-builder/demo.app.cms.user.list.table.builder.pagination.service";
 
 interface IUserFilter {
     role: string;
@@ -29,6 +30,7 @@ export class DemoAppCmsUserListFilter implements OnInit {
     private readonly activatedRoute = inject<ActivatedRoute>(ActivatedRoute);
     private readonly router = inject<Router>(Router);
     private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
+    private readonly tableBuilderPaginationRouteService: DemoAppCmsUserListTableBuilderPaginationService = inject<DemoAppCmsUserListTableBuilderPaginationService>(DemoAppCmsUserListTableBuilderPaginationService);
 
     public ngOnInit(): void {
 
@@ -40,16 +42,16 @@ export class DemoAppCmsUserListFilter implements OnInit {
             });
     }
 
-    public getAgeValues(): number[] {
-        return generateRange(100);
-    }
+    public selectFilter(filterKey: string | undefined, value: string | undefined): void {
+        const pageKey = this.tableBuilderPaginationRouteService.pageKey;
+        const page = this.activatedRoute.snapshot.queryParamMap.get(pageKey);
 
-    public selectFilter(filterKey: string, value: string): void {
         this.router.navigate([], {
             queryParams: {
-                key: filterKey,
-                value,
-                page: 0
+                key: value ? filterKey : undefined,
+                value: value ? value : undefined,
+                [pageKey]: page ? 0 : undefined,
+                search: undefined
             },
             queryParamsHandling: "merge",
             relativeTo: this.activatedRoute
@@ -61,9 +63,11 @@ export class DemoAppCmsUserListFilter implements OnInit {
 
         Object.keys(this.defaultValues)
             .reduce<IUserFilter>((acc: IUserFilter, key) => {
-                if (filterKey !== key) {
+                if ((filterKey && value && filterKey !== key) || !value) {
                     acc[key as keyof IUserFilter] = "";
-                } else {
+                }
+
+                if (filterKey && value && filterKey === key) {
                     acc[filterKey as keyof IUserFilter] = value;
                 }
 
@@ -71,5 +75,13 @@ export class DemoAppCmsUserListFilter implements OnInit {
             }, filterValues);
 
         this.filterModel.set(filterValues);
+    }
+
+    public clearFilters(): void {
+        this.selectFilter(undefined, undefined);
+    }
+
+    public getAgeValues(): number[] {
+        return generateRange(100);
     }
 }

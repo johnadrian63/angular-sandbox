@@ -25,7 +25,7 @@ export class DemoAppCmsUserDisplayRole extends DataDisplayAbstractComponent {
             const roleColor = this.roleColorMapper.get(role);
 
             if (roleColor) {
-                this.classes += `capitalize block rounded-3xl text-xs p-2 ${roleColor}`;
+                this.classes += `capitalize inline-flex rounded-3xl text-xs p-2 ${roleColor}`;
             }
         })
     }

@@ -1,6 +1,7 @@
 @reference "tailwindcss";
 
 header {
+    z-index: 101;
     background-color: var(--surface);
 
     @media (width >=theme(--breakpoint-md)) {
@@ -11,6 +12,8 @@ header {
 }
 
 .sidebar {
-    @apply bottom-14 fixed md:static z-10 inset-y-0 left-0 min-h-0 overflow-y-auto w-62.5 transition-transform shadow-lg;
+    @apply bottom-14 fixed md:static inset-y-0 left-0 min-h-0 overflow-y-auto w-62.5 transition-transform shadow-lg;
+    z-index: 101;
+
     background-color: var(--surface);
 }

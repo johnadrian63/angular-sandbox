@@ -19,12 +19,14 @@ export abstract class TableBuilderPaginationRouteService extends TableBuilderPag
     private readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);
 
     public init(): void {
-        this.activatedRoute.queryParams.subscribe(() => {
-            const currentPage = this.activatedRoute.snapshot.queryParamMap.get(this.pageKey)!;
-            const currentPageSize = this.activatedRoute.snapshot.queryParamMap.get(this.pageSizeKey)!;
+        this.activatedRoute
+            .queryParams
+            .subscribe(() => {
+                const currentPage = this.activatedRoute.snapshot.queryParamMap.get(this.pageKey)!;
+                const currentPageSize = this.activatedRoute.snapshot.queryParamMap.get(this.pageSizeKey)!;
 
-            super.setPaging(parseInt(currentPage), parseInt(currentPageSize));
-        });
+                super.setPaging(parseInt(currentPage), parseInt(currentPageSize));
+            });
     }
 
     public override handlePageChange(page: number, pageSize: number): void {

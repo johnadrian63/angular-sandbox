@@ -13,7 +13,7 @@ export class DemoAppCmsUserListFilterSearchService extends SearchFormService {
         this.router.navigate([], {
             queryParams: {
                 search: searchText,
-                [this.tableBuilderPaginationRouteService.pageKey]: 0,
+                [this.tableBuilderPaginationRouteService.pageKey]: undefined,
                 key: undefined,
                 value: undefined
             },

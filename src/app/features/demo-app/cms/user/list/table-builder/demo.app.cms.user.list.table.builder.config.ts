@@ -77,6 +77,27 @@ export const demoAppCmsUserListTableBuilderHeaderMapper: Map<keyof IUserAdapter,
                 renderer: TableBuilderDataDisplayHeaderComponent
             }
         ],
+        [
+            "username",
+            {
+                label: "Username",
+                renderer: TableBuilderDataDisplayHeaderComponent
+            }
+        ],
+        [
+            "university",
+            {
+                label: "University",
+                renderer: TableBuilderDataDisplayHeaderComponent
+            }
+        ],
+        [
+            "companyName",
+            {
+                label: "Company name",
+                renderer: TableBuilderDataDisplayHeaderComponent
+            }
+        ],
     ]);
 
 export const demoAppCmsUserListTableBuilderMapper: Map<keyof IUserAdapter, ITableBuilderColumnConfig>
@@ -137,6 +158,24 @@ export const demoAppCmsUserListTableBuilderMapper: Map<keyof IUserAdapter, ITabl
         ],
         [
             "birthDate",
+            {
+                renderer: DataDisplayTextComponent
+            }
+        ],
+        [
+            "username",
+            {
+                renderer: DataDisplayTextComponent
+            }
+        ],
+        [
+            "university",
+            {
+                renderer: DataDisplayTextComponent
+            }
+        ],
+        [
+            "companyName",
             {
                 renderer: DataDisplayTextComponent
             }
