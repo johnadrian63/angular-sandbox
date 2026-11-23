@@ -50,7 +50,7 @@ export class DemoAppCmsUserListFilter implements OnInit {
                 key: value ? filterKey : undefined,
                 value: value ? value : undefined,
                 [pageKey]: page ? 0 : undefined,
-                search: undefined
+                q: undefined
             },
             queryParamsHandling: "merge",
             relativeTo: this.activatedRoute
