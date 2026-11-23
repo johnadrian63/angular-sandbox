@@ -8,7 +8,7 @@ import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 import { faBars, faUser, faTableColumns } from "@fortawesome/free-solid-svg-icons";
 import { MatBottomSheet, MatBottomSheetModule } from "@angular/material/bottom-sheet";
 
-import { getRange } from "../../../shared/util/range.generator";
+import { generateRange } from "../../../shared/util/range.generator";
 import { IMenuItem } from "../../../shared/navigation/navigation.model";
 import { exampleResponsiveNavigationData } from "./example.responsive.navigation.data";
 import { ExampleResponsiveNavigationVerticalMenu } from "./vertical-menu/example.responsive.navigation.vertical.menu";
@@ -103,7 +103,7 @@ export class ExampleResponsiveNavigation implements OnInit {
     }
 
     public getRange(range: number): number[] {
-        return getRange(range);
+        return generateRange(range);
     }
 
     public toggle(): void {

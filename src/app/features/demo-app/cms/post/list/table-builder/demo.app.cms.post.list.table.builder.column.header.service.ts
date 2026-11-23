@@ -29,6 +29,10 @@ export class DemoAppCmsPostListTableBuilderColumnHeaderService extends TableBuil
         }
     }
 
+    public override handleColumnOrder(columns: (keyof IPostAdapter)[]): void {
+        // do nothing
+    }
+
     public override reset(): void {
         // cleanup logic here
     }

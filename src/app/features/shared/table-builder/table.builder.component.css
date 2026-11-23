@@ -1,11 +1,17 @@
 @reference "tailwindcss";
 
-table {
-    @apply border border-zinc-300;
-}
-
 .table-builder-wrapper {
     height: 100%;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+mat-table {
+    width: calc(100vw - 43px);
+    min-width: 0;
 }
 
 .paginator-wrapper {
@@ -26,7 +32,7 @@ table {
 }
 
 .cdk-drag-preview {
-    @apply flex items-center box-border border-3 border-gray-300 border-dashed text-gray-300 font-medium;
+    @apply flex items-center box-border border-3 border-gray-300 border-dashed font-medium;
     background-color: var(--hover-color);
 }
 

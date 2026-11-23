@@ -4,7 +4,7 @@ import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { faBars, faTableColumns } from "@fortawesome/free-solid-svg-icons";
 
-import { getRange } from "../../shared/util/range.generator";
+import { generateRange } from "../../shared/util/range.generator";
 import { ExampleResponsiveNavigation } from "./navigation/example.responsive.navigation";
 import { EmbedTableBuilderDemo } from "../../embed/table-builder-demo/embed.table.builder.demo";
 
@@ -66,7 +66,7 @@ export class ExampleResponsive {
     }
 
     public getRange(range: number): number[] {
-        return getRange(range);
+        return generateRange(range);
     }
 
     public toggleSidebar(toggled: boolean | undefined): void {

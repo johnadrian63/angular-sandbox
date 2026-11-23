@@ -80,6 +80,7 @@ export interface IUserCollection {
 
 export interface IUserAdapter extends ITableBuilderRowData, IUser {
     fullName: string;
+    companyName: string;
 }
 
 export class UserAdapter implements IUserAdapter {
@@ -186,6 +187,10 @@ export class UserAdapter implements IUserAdapter {
 
     public get company(): ICompany {
         return this.data.company;
+    }
+
+    public get companyName(): string {
+        return this.data.company.name;
     }
 
     public get ein(): string {

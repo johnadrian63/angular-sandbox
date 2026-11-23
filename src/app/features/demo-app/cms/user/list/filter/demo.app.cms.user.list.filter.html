@@ -1,0 +1,79 @@
+<!-- Filters -->
+<div class="rounded-xl border border-gray-200 p-5">
+    <div class="flex flex-wrap items-center justify-between gap-4">
+        <h2 class="text-sm font-semibold">Filters</h2>
+
+        <button
+            (click)="clearFilters()"
+            class="text-sm cursor-pointer font-medium text-blue-600 hover:text-blue-700"
+        >
+            Clear filters
+        </button>
+    </div>
+
+    <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- Role -->
+        <div>
+            <label for="role" class="mb-2 block text-sm font-medium">Role</label>
+            <select
+                [value]="filterModel().role"
+                (change)="selectFilter('role', $any($event.target).value)"
+                class="w-full cursor-pointer rounded-lg border border-gray-200 bg-transparent px-3 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                id="role"
+            >
+                <option value="">All roles</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+            </select>
+        </div>
+
+        <!-- Hair Color -->
+        <div>
+            <label for="hair" class="mb-2 block text-sm font-medium">Eye Color</label>
+            <select
+                [value]="filterModel().eyeColor"
+                (change)="selectFilter('eyeColor', $any($event.target).value)"
+                class="w-full cursor-pointer rounded-lg border border-gray-200 bg-transparent px-3 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+            >
+                <option value="">All eye colors</option>
+                <option value="Blue">Blue</option>
+                <option value="Green">Green</option>
+                <option value="Gray">Gray</option>
+                <option value="Red">Red</option>
+                <option value="Brown">Brown</option>
+                <option value="Violet">Violet</option>
+                <option value="Hazel">Hazel</option>
+                <option value="Amber">Amber</option>
+            </select>
+        </div>
+
+        <!-- Gender -->
+        <div>
+            <label for="gender" class="mb-2 block text-sm font-medium">Gender</label>
+            <select
+                [value]="filterModel().gender"
+                (change)="selectFilter('gender', $any($event.target).value)"
+                class="w-full cursor-pointer rounded-lg border border-gray-200 bg-transparent px-3 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+            >
+                <option value="">All genders</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+
+        <!-- Age -->
+        <div>
+            <label for="age" class="mb-2 block text-sm font-medium">Age Range</label>
+            <select
+                [value]="filterModel().age"
+                (change)="selectFilter('age', $any($event.target).value)"
+                class="w-full cursor-pointer rounded-lg border border-gray-200 bg-transparent px-3 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+            >
+                <option value="">All ages</option>
+                @for (age of getAgeValues(); track age) {
+                    <option [value]="age">{{ age }}</option>
+                }
+            </select>
+        </div>
+    </div>
+</div>

@@ -8,6 +8,8 @@ import { TableBuilderColumnHeaderService, TableBuilderHeaderCellData } from "../
 export class DemoAppCmsUserListTableBuilderColumnHeaderService extends TableBuilderColumnHeaderService<IUserAdapter> {
     public override headers: Map<keyof IUserAdapter, TableBuilderHeaderCellData> = new Map<keyof IUserAdapter, TableBuilderHeaderCellData>();
 
+    private readonly userListColumnKeys = "userListColumnKey";
+
     public override register(): void {
         for (const header of demoAppCmsUserListTableBuilderHeaderMapper.entries()) {
             const key = header[0];
@@ -18,6 +20,13 @@ export class DemoAppCmsUserListTableBuilderColumnHeaderService extends TableBuil
             let freezed = false;
             let width = "";
 
+            if (["fullName", "email", "university", "companyName"].includes(key)) {
+                freezed = true;
+                width = "220px";
+            } else {
+                width = "170px";
+            }
+
             this.headers.set(key, new TableBuilderHeaderCellData(
                 key,
                 label,
@@ -27,6 +36,20 @@ export class DemoAppCmsUserListTableBuilderColumnHeaderService extends TableBuil
                 width
             ));
         }
+    }
+
+    protected override resolveColumnKeys(columnKeys: (keyof IUserAdapter)[]): void {
+        const cachedColumns = localStorage.getItem(this.userListColumnKeys);
+
+        if (cachedColumns) {
+            // this.columnsToDisplay = JSON.parse(cachedColumns);
+        } else {
+        }
+        this.columnsToDisplay = columnKeys;
+    }
+
+    public override handleColumnOrder(columns: (keyof IUserAdapter)[]): void {
+        localStorage.setItem(this.userListColumnKeys, JSON.stringify(columns));
     }
 
     public override reset(): void {
