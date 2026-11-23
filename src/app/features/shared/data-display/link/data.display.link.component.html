@@ -1,1 +1,18 @@
-<a [href]="url()" class="hover:text-blue-500 hover:underline" target="_blank">{{ text() }}</a>
+@if (!isExternal) {
+    <a
+        [routerLink]="url()"
+        [routerLinkActive]="activeClass"
+        [target]="target()"
+        class="hover:underline"
+        [ngClass]="classes"
+    >
+        <ng-container *ngTemplateOutlet="linkContent"></ng-container>
+    </a>
+} @else {
+    <a [href]="url()" [target]="target()" [ngClass]="classes" class="hover:underline">
+        <ng-container *ngTemplateOutlet="linkContent"></ng-container>
+    </a>
+}
+<ng-template #linkContent>
+    <span>{{ text() }}</span>
+</ng-template>

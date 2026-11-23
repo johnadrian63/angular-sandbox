@@ -2,11 +2,11 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Service } from "@angular/core";
 import { Observable } from "rxjs";
 
-import { IUser, IUserCollection } from "./demo.app.user.model";
-import { IUserDefaultFilter, IUserFieldFilter, IUserSearchFilter } from "./demo.app.user.filter.model";
+import { IUser, IUserCollection } from "./demo.app.cms.user.model";
+import { IUserDefaultFilter, IUserFieldFilter, IUserSearchFilter } from "./demo.app.cms.user.filter.model";
 
 @Service()
-export class DemoAppUserService {
+export class DemoAppCmsUserService {
     private readonly apiUrl = "https://dummyjson.com/users";
 
     private readonly httpClient: HttpClient = inject<HttpClient>(HttpClient);

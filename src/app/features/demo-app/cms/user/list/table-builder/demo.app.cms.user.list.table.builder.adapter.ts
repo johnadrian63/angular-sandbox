@@ -1,11 +1,11 @@
 import { Params } from "@angular/router";
 import { Observable } from "rxjs";
 
-import { IUserCollection } from "../../demo.app.user.model";
+import { IUserCollection } from "../../demo.app.cms.user.model";
 import { pickDefined } from "../../../../../shared/util/pick";
-import { DemoAppUserService } from "../../demo.app.user.service";
+import { DemoAppCmsUserService } from "../../demo.app.cms.user.service";
 import { SearchFormService } from "../../../../../shared/search-form/search.form.service";
-import { IPaging, IUserDefaultFilter, IUserFieldFilter, IUserSearchFilter } from "../../demo.app.user.filter.model";
+import { IPaging, IUserDefaultFilter, IUserFieldFilter, IUserSearchFilter } from "../../demo.app.cms.user.filter.model";
 import { TableBuilderPaginationRouteService } from "../../../../../shared/table-builder/service/table.builder.pagination.route.service";
 
 export interface IDemoAppCmsUserListTableBuilderDataAdapter<T> {
@@ -82,18 +82,18 @@ export class DemoAppCmsUserListTableBuilderGetUsersDataFactory {
 }
 
 export class DemoAppCmsUserListTableBuilderDataAdapter implements IDemoAppCmsUserListTableBuilderDataAdapter<Observable<IUserCollection>> {
-    constructor(private readonly demoAppUserService: DemoAppUserService) { }
+    constructor(private readonly userService: DemoAppCmsUserService) { }
 
     public visitGetUsers(handler: DemoAppCmsUserListTableBuilderGetUsersDataHandler): Observable<IUserCollection> {
-        return this.demoAppUserService.getUsers(handler.filter);
+        return this.userService.getUsers(handler.filter);
     }
 
     public visitSearchUsers(handler: DemoAppCmsUserListTableBuilderSearchUsersDataHandler): Observable<IUserCollection> {
-        return this.demoAppUserService.searchUsers(handler.filter);
+        return this.userService.searchUsers(handler.filter);
     }
 
     public visitFilterUsers(handler: DemoAppCmsUserListTableBuilderFilterUsersDataHandler): Observable<IUserCollection> {
-        return this.demoAppUserService.filterUsers(handler.filter);
+        return this.userService.filterUsers(handler.filter);
     }
 }
 

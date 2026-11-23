@@ -3,18 +3,18 @@ import { ActivatedRoute } from "@angular/router";
 import { lastValueFrom, skip } from "rxjs";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
-import { DemoAppUserService } from "../../demo.app.post.service";
-import { IPostAdapter, PostAdapter } from "../../demo.app.post.model";
+import { DemoAppCmsPostService } from "../../demo.app.cms.post.service";
+import { IPostAdapter, PostAdapter } from "../../demo.app.cms.post.model";
 import { TableBuilderService } from "../../../../../shared/table-builder";
 import { DemoAppCmsPostListSearchFormService } from "../demo.app.cms.post.list.search.form.service";
 import { DemoAppCmsPostListTableBuilderPaginationService } from "./demo.app.cms.post.list.table.builder.pagination.service";
-import { DemoAppCmsPostListTableBuilderDataAdapter, DemoAppCmsPostListTableBuilderGetUsersDataFactory } from "./demo.app.cms.post.list.table.builder.adapter";
+import { DemoAppCmsPostListTableBuilderDataAdapter, DemoAppCmsPostListTableBuilderGetPostsDataFactory } from "./demo.app.cms.post.list.table.builder.adapter";
 
 @Injectable()
 export class DemoAppCmsPostListTableBuilderService extends TableBuilderService {
     private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
     private readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);
-    private readonly demoAppUserService: DemoAppUserService = inject<DemoAppUserService>(DemoAppUserService);
+    private readonly postService: DemoAppCmsPostService = inject<DemoAppCmsPostService>(DemoAppCmsPostService);
     private readonly tableBuilderPaginationService: DemoAppCmsPostListTableBuilderPaginationService = inject<DemoAppCmsPostListTableBuilderPaginationService>(DemoAppCmsPostListTableBuilderPaginationService);
     private readonly searchFormService: DemoAppCmsPostListSearchFormService = inject<DemoAppCmsPostListSearchFormService>(DemoAppCmsPostListSearchFormService);
 
@@ -33,20 +33,19 @@ export class DemoAppCmsPostListTableBuilderService extends TableBuilderService {
             this.setLoading(true);
 
             const params = this.activatedRoute.snapshot.queryParams;
-            const factory = DemoAppCmsPostListTableBuilderGetUsersDataFactory
-                .create(params, this.tableBuilderPaginationService, this.searchFormService);
-            const visitor = new DemoAppCmsPostListTableBuilderDataAdapter(this.demoAppUserService);
+            const factory = DemoAppCmsPostListTableBuilderGetPostsDataFactory.create(params, this.tableBuilderPaginationService, this.searchFormService);
+            const visitor = new DemoAppCmsPostListTableBuilderDataAdapter(this.postService);
             const result = await lastValueFrom(factory.accept(visitor));
 
             this.tableBuilderPaginationService.setCount(result.total);
 
-            const users: IPostAdapter[] = [];
+            const posts: IPostAdapter[] = [];
 
-            for (let user of result.posts) {
-                users.push(new PostAdapter(user));
+            for (let post of result.posts) {
+                posts.push(new PostAdapter(post));
             }
 
-            return users;
+            return posts;
         } catch (error) {
             return [];
         } finally {

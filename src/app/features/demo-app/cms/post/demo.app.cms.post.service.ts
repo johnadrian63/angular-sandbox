@@ -2,15 +2,15 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Service } from "@angular/core";
 import { Observable } from "rxjs";
 
-import { IPostCollection } from "./demo.app.post.model";
+import { IPost, IPostCollection } from "./demo.app.cms.post.model";
 
 @Service()
-export class DemoAppUserService {
+export class DemoAppCmsPostService {
     private readonly apiUrl = "https://dummyjson.com/posts";
 
     private readonly httpClient: HttpClient = inject<HttpClient>(HttpClient);
 
-    public getUsers(skip: number, limit: number): Observable<IPostCollection> {
+    public getPosts(skip: number, limit: number): Observable<IPostCollection> {
         return this.httpClient.get<IPostCollection>(this.apiUrl, {
             params: {
                 skip: limit * skip,
@@ -19,7 +19,7 @@ export class DemoAppUserService {
         });
     }
 
-    public searchUsers(searchText: string, skip: number, limit: number): Observable<IPostCollection> {
+    public searchPosts(searchText: string, skip: number, limit: number): Observable<IPostCollection> {
         return this.httpClient.get<IPostCollection>(`${this.apiUrl}/search`, {
             params: {
                 q: searchText,
@@ -29,12 +29,7 @@ export class DemoAppUserService {
         });
     }
 
-    public filterUsers(key: string, value: string): Observable<IPostCollection> {
-        return this.httpClient.get<IPostCollection>(`${this.apiUrl}/filter`, {
-            params: {
-                key,
-                value
-            }
-        });
+    public getPost(postId: string): Observable<IPost> {
+        return this.httpClient.get<IPost>(`${this.apiUrl}/${postId}`);
     }
 }

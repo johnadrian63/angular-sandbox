@@ -1,7 +1,7 @@
 import { Routes } from "@angular/router";
 
-import { demoAppCmsUserRoutes } from "./user/demo.app.user.routes";
-import { demoAppCmsPostRoutes } from "./post/demo.app.post.routes";
+import { demoAppCmsUserRoutes } from "./user/demo.app.cms.user.routes";
+import { demoAppCmsPostRoutes } from "./post/demo.app.cms.post.routes";
 
 export const demoAppCmsRoutes: Routes = [
     {
