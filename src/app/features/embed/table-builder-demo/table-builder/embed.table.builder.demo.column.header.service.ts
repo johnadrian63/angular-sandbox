@@ -29,6 +29,10 @@ export class EmbedTableBuilderColumnHeaderService extends TableBuilderColumnHead
         }
     }
 
+    public override handleColumnOrder(columnKeys: (keyof IUserAdapter)[]): void {
+        // do nothing
+    }
+
     public override reset(): void {
         // reset logic here
     }

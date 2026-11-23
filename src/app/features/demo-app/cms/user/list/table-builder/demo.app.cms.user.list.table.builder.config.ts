@@ -35,6 +35,48 @@ export const demoAppCmsUserListTableBuilderHeaderMapper: Map<keyof IUserAdapter,
                 renderer: TableBuilderDataDisplayHeaderComponent
             }
         ],
+        [
+            "age",
+            {
+                label: "Age",
+                renderer: TableBuilderDataDisplayHeaderComponent
+            }
+        ],
+        [
+            "maidenName",
+            {
+                label: "Maiden name",
+                renderer: TableBuilderDataDisplayHeaderComponent
+            }
+        ],
+        [
+            "height",
+            {
+                label: "Height",
+                renderer: TableBuilderDataDisplayHeaderComponent
+            }
+        ],
+        [
+            "weight",
+            {
+                label: "Weight",
+                renderer: TableBuilderDataDisplayHeaderComponent
+            }
+        ],
+        [
+            "eyeColor",
+            {
+                label: "Eye Color",
+                renderer: TableBuilderDataDisplayHeaderComponent
+            }
+        ],
+        [
+            "birthDate",
+            {
+                label: "Birth date",
+                renderer: TableBuilderDataDisplayHeaderComponent
+            }
+        ],
     ]);
 
 export const demoAppCmsUserListTableBuilderMapper: Map<keyof IUserAdapter, ITableBuilderColumnConfig>
@@ -61,6 +103,42 @@ export const demoAppCmsUserListTableBuilderMapper: Map<keyof IUserAdapter, ITabl
             "role",
             {
                 renderer: DemoAppCmsUserDisplayRole
+            }
+        ],
+        [
+            "age",
+            {
+                renderer: DataDisplayTextComponent
+            }
+        ],
+        [
+            "maidenName",
+            {
+                renderer: DataDisplayTextComponent
+            }
+        ],
+        [
+            "height",
+            {
+                renderer: DataDisplayTextComponent
+            }
+        ],
+        [
+            "weight",
+            {
+                renderer: DataDisplayTextComponent
+            }
+        ],
+        [
+            "eyeColor",
+            {
+                renderer: DataDisplayTextComponent
+            }
+        ],
+        [
+            "birthDate",
+            {
+                renderer: DataDisplayTextComponent
             }
         ],
     ]);

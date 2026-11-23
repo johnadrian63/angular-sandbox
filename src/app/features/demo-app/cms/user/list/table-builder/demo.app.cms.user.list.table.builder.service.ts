@@ -6,7 +6,7 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { DemoAppUserService } from "../../demo.app.user.service";
 import { IUserAdapter, UserAdapter } from "../../demo.app.user.model";
 import { TableBuilderService } from "../../../../../shared/table-builder";
-import { DemoAppCmsUserListSearchFormService } from "../demo.app.cms.user.list.search.form.service";
+import { DemoAppCmsUserListFilterSearchService } from "../filter/demo.app.cms.user.list.filter.search.service";
 import { DemoAppCmsUserListTableBuilderPaginationService } from "./demo.app.cms.user.list.table.builder.pagination.service";
 import { DemoAppCmsUserListTableBuilderDataAdapter, DemoAppCmsUserListTableBuilderGetUsersDataFactory } from "./demo.app.cms.user.list.table.builder.adapter";
 
@@ -16,7 +16,7 @@ export class DemoAppCmsUserListTableBuilderService extends TableBuilderService {
     private readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);
     private readonly demoAppUserService: DemoAppUserService = inject<DemoAppUserService>(DemoAppUserService);
     private readonly tableBuilderPaginationService: DemoAppCmsUserListTableBuilderPaginationService = inject<DemoAppCmsUserListTableBuilderPaginationService>(DemoAppCmsUserListTableBuilderPaginationService);
-    private readonly searchFormService: DemoAppCmsUserListSearchFormService = inject<DemoAppCmsUserListSearchFormService>(DemoAppCmsUserListSearchFormService);
+    private readonly searchFormService: DemoAppCmsUserListFilterSearchService = inject<DemoAppCmsUserListFilterSearchService>(DemoAppCmsUserListFilterSearchService);
 
     public override init(): void {
         this.activatedRoute.queryParams

@@ -65,7 +65,7 @@ export class TableBuilderComponent implements OnInit, OnDestroy {
         return Array.from(this.tableBuilderColumnHeaderService.headers.values());
     }
 
-    public get columnsToDisplay(): string[] {
+    public get columnsToDisplay(): (keyof ITableBuilderRowData)[] {
         return this.tableBuilderColumnHeaderService.columnsToDisplay;
     }
 
@@ -158,9 +158,11 @@ export class TableBuilderComponent implements OnInit, OnDestroy {
     public handleColumnDrop(event: CdkDragDrop<TableBuilderHeaderCellData[]>): void {
         const targetColumnKey = this.columnsToDisplay[event.currentIndex];
         const targetColumn = this.columns.find((column: TableBuilderHeaderCellData) => column.key === targetColumnKey);
-        // FIXME refactor this!
+
         if (targetColumn?.movable === true) {
             moveItemInArray(this.columnsToDisplay, event.previousIndex, event.currentIndex);
+
+            this.tableBuilderColumnHeaderService.handleColumnOrder(this.columnsToDisplay);
         }
     }
 

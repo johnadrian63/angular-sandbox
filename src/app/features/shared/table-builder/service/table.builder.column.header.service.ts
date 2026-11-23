@@ -28,7 +28,11 @@ export abstract class TableBuilderColumnHeaderService<T extends ITableBuilderRow
             throw new Error("column headers are not defined");
         }
 
-        this.columnsToDisplay = [...this.headers.keys()];
+        this.resolveColumnKeys([...this.headers.keys()]);
+
+        if (!this.columnsToDisplay.length) {
+            throw new Error("columns should not be empty.");
+        }
     }
 
     public handle(vcr: ViewContainerRef, column: ITableBuilderHeaderCellData): void {
@@ -38,4 +42,10 @@ export abstract class TableBuilderColumnHeaderService<T extends ITableBuilderRow
 
         componentRef.changeDetectorRef.detectChanges();
     }
+
+    protected resolveColumnKeys(columnKeys: (keyof T)[]): void {
+        this.columnsToDisplay = columnKeys;
+    }
+
+    public abstract handleColumnOrder(columns: (keyof T)[]): void;
 }
