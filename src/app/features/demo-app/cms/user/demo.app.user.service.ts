@@ -3,6 +3,7 @@ import { inject, Service } from "@angular/core";
 import { Observable } from "rxjs";
 
 import { IUser, IUserCollection } from "./demo.app.user.model";
+import { IUserDefaultFilter, IUserFieldFilter, IUserSearchFilter } from "./demo.app.user.filter.model";
 
 @Service()
 export class DemoAppUserService {
@@ -10,30 +11,32 @@ export class DemoAppUserService {
 
     private readonly httpClient: HttpClient = inject<HttpClient>(HttpClient);
 
-    public getUsers(skip: number, limit: number): Observable<IUserCollection> {
+    public getUsers(filter: IUserDefaultFilter): Observable<IUserCollection> {
         return this.httpClient.get<IUserCollection>(this.apiUrl, {
             params: {
-                skip: limit * skip,
-                limit: limit
+                ...filter,
+                skip: filter.limit * filter.skip,
+                limit: filter.limit
             }
         });
     }
 
-    public searchUsers(searchText: string, skip: number, limit: number): Observable<IUserCollection> {
+    public searchUsers(filter: IUserSearchFilter): Observable<IUserCollection> {
         return this.httpClient.get<IUserCollection>(`${this.apiUrl}/search`, {
             params: {
-                q: searchText,
-                skip: limit * skip,
-                limit: limit
+                ...filter,
+                skip: filter.limit * filter.skip,
+                limit: filter.limit
             }
         });
     }
 
-    public filterUsers(key: string, value: string): Observable<IUserCollection> {
+    public filterUsers(filter: IUserFieldFilter): Observable<IUserCollection> {
         return this.httpClient.get<IUserCollection>(`${this.apiUrl}/filter`, {
             params: {
-                key,
-                value
+                ...filter,
+                skip: filter.limit * filter.skip,
+                limit: filter.limit
             }
         });
     }

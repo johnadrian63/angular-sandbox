@@ -15,13 +15,12 @@ export class DemoAppCmsUserListTableBuilderColumnHeaderService extends TableBuil
             const key = header[0];
             const label = header[1].label;
 
-            let sortable = false;
+            let sortable = true;
             let movable = true;
             let freezed = false;
             let width = "";
 
             if (["fullName", "email", "university", "companyName"].includes(key)) {
-                // freezed = true;
                 width = "220px";
             } else {
                 width = "170px";
@@ -42,10 +41,10 @@ export class DemoAppCmsUserListTableBuilderColumnHeaderService extends TableBuil
         const cachedColumns = localStorage.getItem(this.userListColumnKeys);
 
         if (cachedColumns) {
-            // this.columnsToDisplay = JSON.parse(cachedColumns);
+            this.columnsToDisplay = JSON.parse(cachedColumns);
         } else {
+            this.columnsToDisplay = columnKeys;
         }
-        this.columnsToDisplay = columnKeys;
     }
 
     public override handleColumnOrder(columns: (keyof IUserAdapter)[]): void {

@@ -33,8 +33,7 @@ export class DemoAppCmsUserListTableBuilderService extends TableBuilderService {
             this.setLoading(true);
 
             const params = this.activatedRoute.snapshot.queryParams;
-            const factory = DemoAppCmsUserListTableBuilderGetUsersDataFactory
-                .create(params, this.tableBuilderPaginationService, this.searchFormService);
+            const factory = DemoAppCmsUserListTableBuilderGetUsersDataFactory.create(params, this.tableBuilderPaginationService, this.searchFormService);
             const visitor = new DemoAppCmsUserListTableBuilderDataAdapter(this.demoAppUserService);
             const result = await lastValueFrom(factory.accept(visitor));
 
@@ -48,6 +47,7 @@ export class DemoAppCmsUserListTableBuilderService extends TableBuilderService {
 
             return users;
         } catch (error) {
+            console.warn(error);
             return [];
         } finally {
             this.setLoading(false);

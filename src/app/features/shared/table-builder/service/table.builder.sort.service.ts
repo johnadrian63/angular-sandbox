@@ -19,8 +19,7 @@ export abstract class TableBuilderSortService {
         return this._sort;
     }
 
-    // FIXME refactor this!
-    public _sort: Sort = {
+    private readonly _sort: Sort = {
         columnKey: null,
         direction: null
     };
