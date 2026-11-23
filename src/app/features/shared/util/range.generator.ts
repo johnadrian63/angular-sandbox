@@ -1,3 +1,3 @@
-export function getRange(range: number): number[] {
+export function generateRange(range: number): number[] {
     return [...Array(range).keys()];
 }

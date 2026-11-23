@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { getRange } from "../../shared/util/range.generator";
+import { generateRange } from "../../shared/util/range.generator";
 
 @Component({
     imports: [],
@@ -9,6 +9,6 @@ import { getRange } from "../../shared/util/range.generator";
 })
 export class FlexJustify {
     public getRange(range: number): number[] {
-        return getRange(range);
+        return generateRange(range);
     }
 }
