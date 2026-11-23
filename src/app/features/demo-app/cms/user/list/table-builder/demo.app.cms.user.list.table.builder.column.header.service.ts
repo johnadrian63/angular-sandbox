@@ -21,7 +21,7 @@ export class DemoAppCmsUserListTableBuilderColumnHeaderService extends TableBuil
             let width = "";
 
             if (["fullName", "email", "university", "companyName"].includes(key)) {
-                freezed = true;
+                // freezed = true;
                 width = "220px";
             } else {
                 width = "170px";
