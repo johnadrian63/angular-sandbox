@@ -5,6 +5,7 @@ import { faComment, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { DemoAppCmsPostViewService } from "./demo.app.cms.post.view.service";
 import { IPostCommentAdapter } from "./demo.app.cms.post.view.comments.adapter";
 import { DataDisplayTextComponent } from "../../../../../shared/data-display/text";
+import { DemoAppCmsPostViewCommentsSkeleton } from "./skeleton/demo.app.cms.post.view.comments.skeleton";
 
 @Component({
     selector: "app-demo-cms-app-post-view-comments",
@@ -12,9 +13,15 @@ import { DataDisplayTextComponent } from "../../../../../shared/data-display/tex
     imports: [
         DataDisplayTextComponent,
         FaIconComponent,
+        DemoAppCmsPostViewCommentsSkeleton
     ]
 })
 export class DemoAppCmsPostViewComments {
+
+    public get totalComments(): number {
+        return this.comments.value()?.length ?? 0;
+    }
+
     public readonly postId = input.required<number>();
     public readonly commentIcon = faComment;
     public readonly likeIcon = faThumbsUp;
