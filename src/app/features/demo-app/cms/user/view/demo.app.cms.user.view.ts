@@ -15,7 +15,7 @@ import { DemoAppCmsUserDisplayRole } from "../display/role/demo.app.cms.user.dis
         DataDisplayTextComponent,
         DemoAppCmsUserDisplayRole,
         DataDisplayThumbnailComponent,
-        DataDisplayLinkComponent
+        DataDisplayLinkComponent,
     ]
 })
 export class DemoAppCmsUserView {
