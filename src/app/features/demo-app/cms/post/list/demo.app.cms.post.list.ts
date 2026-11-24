@@ -5,11 +5,12 @@ import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 import { SearchForm } from "../../../../shared/search-form/search.form";
 import { DemoAppCmsPostListView } from "./view/demo.app.cms.post.list.view";
 import { SearchFormService } from "../../../../shared/search-form/search.form.service";
-import { TableBuilderService, TableBuilderSortService } from "../../../../shared/table-builder";
 import { TABLE_BUILDER_REFRESHER_PROVIDER } from "../../../../shared/table-builder/table.builder.token";
 import { DemoAppCmsPostListFilterSearchService } from "./filter/demo.app.cms.post.list.filter.search.service";
 import { DemoAppCmsPostListTableBuilderService } from "./table-builder/demo.app.cms.post.list.table.builder.service";
+import { TableBuilderColumnService, TableBuilderService, TableBuilderSortService } from "../../../../shared/table-builder";
 import { DemoAppCmsPostListTableBuilderSortService } from "./table-builder/demo.app.cms.post.list.table.builder.sort.service";
+import { DemoAppCmsPostListTableBuilderColumnService } from "./table-builder/demo.app.cms.post.list.table.builder.column.service";
 import { TableBuilderPaginationBaseService } from "../../../../shared/table-builder/service/table.builder.pagination.base.service";
 import { DemoAppCmsPostListTableBuilderPaginationService } from "./table-builder/demo.app.cms.post.list.table.builder.pagination.service";
 
@@ -41,6 +42,11 @@ import { DemoAppCmsPostListTableBuilderPaginationService } from "./table-builder
         {
             provide: TableBuilderSortService,
             useExisting: DemoAppCmsPostListTableBuilderSortService
+        },
+        DemoAppCmsPostListTableBuilderColumnService,
+        {
+            provide: TableBuilderColumnService,
+            useExisting: DemoAppCmsPostListTableBuilderColumnService,
         },
         TABLE_BUILDER_REFRESHER_PROVIDER
     ]

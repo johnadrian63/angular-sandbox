@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Service } from "@angular/core";
 import { Observable } from "rxjs";
 
+import { ITag } from "../model/tag.model";
 import { IPostDefaultFilter, IPostSearchFilter } from "./model/post.filter.model";
 import { IPostCollection, IPost, IPostCommentsCollection } from "./demo.app.cms.post.model";
 
@@ -45,5 +46,9 @@ export class DemoAppCmsPostService {
 
     public getComments(postId: number): Observable<IPostCommentsCollection> {
         return this.httpClient.get<IPostCommentsCollection>(`${this.apiUrl}/${postId}/comments`);
+    }
+
+    public getPostTags(): Observable<ITag[]> {
+        return this.httpClient.get<ITag[]>(`${this.apiUrl}/tags`);
     }
 }
