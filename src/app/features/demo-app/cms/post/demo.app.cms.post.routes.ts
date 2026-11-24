@@ -17,7 +17,7 @@ export const demoAppCmsPostRoutes: Routes = [
             },
             {
                 path: "view/:id",
-                loadComponent: () => import("./view/demo.app.cms.post.view").then((c) => c.DemoAppCmsPointView),
+                loadComponent: () => import("./view/demo.app.cms.post.view").then((c) => c.DemoAppCmsPostView),
                 resolve: {
                     post: postResolver,
                 }

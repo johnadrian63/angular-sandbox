@@ -5,7 +5,7 @@ import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 import { TableBuilderComponent } from "../../../../shared/table-builder";
 import { SearchForm } from "../../../../shared/search-form/search.form";
 import { SearchFormService } from "../../../../shared/search-form/search.form.service";
-import { DemoAppCmsPostListSearchFormService } from "./demo.app.cms.post.list.search.form.service";
+import { DemoAppCmsPostListFilterSearchService } from "./filter/demo.app.cms.post.list.filter.search.service";
 import { getDemoAppCmsPostListTableBuilderProviders } from "./table-builder/demo.app.cms.post.list.table.builder.providers";
 
 @Component({
@@ -17,10 +17,10 @@ import { getDemoAppCmsPostListTableBuilderProviders } from "./table-builder/demo
         SearchForm
     ],
     providers: [
-        DemoAppCmsPostListSearchFormService,
+        DemoAppCmsPostListFilterSearchService,
         {
             provide: SearchFormService,
-            useExisting: DemoAppCmsPostListSearchFormService
+            useExisting: DemoAppCmsPostListFilterSearchService
         },
         ...getDemoAppCmsPostListTableBuilderProviders()
     ]

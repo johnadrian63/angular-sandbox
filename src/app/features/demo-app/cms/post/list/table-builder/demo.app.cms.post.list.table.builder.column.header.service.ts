@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { IPostAdapter } from "../../demo.app.cms.post.model";
+import { IPostAdapter } from "../../demo.app.cms.post.model.adapter";
 import { demoAppCmsPostListTableBuilderHeaderMapper } from "./demo.app.cms.post.list.table.builder.config";
 import { TableBuilderColumnHeaderService, TableBuilderHeaderCellData } from "../../../../../shared/table-builder";
 
@@ -13,7 +13,7 @@ export class DemoAppCmsPostListTableBuilderColumnHeaderService extends TableBuil
             const key = header[0];
             const label = header[1].label;
 
-            let sortable = false;
+            let sortable = true;
             let movable = false;
             let freezed = false;
             let width = "";

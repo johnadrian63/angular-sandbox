@@ -1,4 +1,4 @@
-import { ITableBuilderRowData } from "../../../shared/table-builder";
+import { IUser } from "../user/model/user.model";
 
 export interface IPost {
     id: number;
@@ -22,42 +22,21 @@ export interface IReaction {
     dislikes: number;
 }
 
-export interface IPostAdapter extends ITableBuilderRowData, IPost { }
+export interface ICommentAuthor extends Pick<IUser, "id" | "username"> {
+    fullName: string;
+}
 
-export class PostAdapter implements IPostAdapter {
+export interface IPostComment {
+    id: number;
+    postId: number;
+    body: string;
+    likes: number;
+    user: ICommentAuthor;
+}
 
-    public get rowId(): string | number {
-        return this.data.id;
-    }
-
-    public get id(): number {
-        return this.data.id;
-    }
-    public get title(): string {
-        return this.data.title;
-    }
-
-    public get body(): string {
-        return this.data.body;
-    }
-
-    public get tags(): string[] {
-        return this.data.tags;
-    }
-
-    public get reactions(): IReaction {
-        return this.data.reactions;
-    }
-
-    public get views(): number {
-        return this.data.views;
-    }
-
-    public get userId(): number {
-        return this.data.userId;
-    }
-
-    constructor(
-        private readonly data: IPost
-    ) { }
+export interface IPostCommentsCollection {
+    comments: IPostComment[];
+    limit: number;
+    skip: number;
+    total: number;
 }

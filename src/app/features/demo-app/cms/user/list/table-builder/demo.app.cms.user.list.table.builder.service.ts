@@ -4,8 +4,8 @@ import { lastValueFrom, skip } from "rxjs";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 import { DemoAppCmsUserService } from "../../demo.app.cms.user.service";
-import { IUserAdapter, UserAdapter } from "../../demo.app.cms.user.model";
 import { TableBuilderService } from "../../../../../shared/table-builder";
+import { IUserAdapter, UserAdapter } from "../../demo.app.cms.user.model.adapter";
 import { DemoAppCmsUserListFilterSearchService } from "../filter/demo.app.cms.user.list.filter.search.service";
 import { DemoAppCmsUserListTableBuilderPaginationService } from "./demo.app.cms.user.list.table.builder.pagination.service";
 import { DemoAppCmsUserListTableBuilderDataAdapter, DemoAppCmsUserListTableBuilderGetUsersDataFactory } from "./demo.app.cms.user.list.table.builder.adapter";

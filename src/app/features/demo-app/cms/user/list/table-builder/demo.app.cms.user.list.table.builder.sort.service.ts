@@ -20,6 +20,6 @@ export class DemoAppCmsUserListTableBuilderSortService extends TableBuilderSortS
     }
 
     public override reset(): void {
-        throw new Error("Method not implemented.");
+        // cleanup logic here
     }
 }

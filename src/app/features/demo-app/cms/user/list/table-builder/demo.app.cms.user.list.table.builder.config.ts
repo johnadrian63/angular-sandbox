@@ -1,4 +1,4 @@
-import { IUserAdapter } from "../../demo.app.cms.user.model";
+import { IUserAdapter } from "../../demo.app.cms.user.model.adapter";
 import { DataDisplayTextComponent } from "../../../../../shared/data-display/text";
 import { DemoAppCmsUserDisplayRole } from "../../display/role/demo.app.cms.user.display.role";
 import { DemoAppCmsUserDisplayFullName } from "../../display/full-name/demo.app.cms.user.display.full.name";

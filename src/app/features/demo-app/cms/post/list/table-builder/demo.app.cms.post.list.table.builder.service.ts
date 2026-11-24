@@ -4,9 +4,9 @@ import { lastValueFrom, skip } from "rxjs";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 import { DemoAppCmsPostService } from "../../demo.app.cms.post.service";
-import { IPostAdapter, PostAdapter } from "../../demo.app.cms.post.model";
+import { IPostAdapter, PostAdapter } from "../../demo.app.cms.post.model.adapter";
 import { TableBuilderService } from "../../../../../shared/table-builder";
-import { DemoAppCmsPostListSearchFormService } from "../demo.app.cms.post.list.search.form.service";
+import { DemoAppCmsPostListFilterSearchService } from "../filter/demo.app.cms.post.list.filter.search.service";
 import { DemoAppCmsPostListTableBuilderPaginationService } from "./demo.app.cms.post.list.table.builder.pagination.service";
 import { DemoAppCmsPostListTableBuilderDataAdapter, DemoAppCmsPostListTableBuilderGetPostsDataFactory } from "./demo.app.cms.post.list.table.builder.adapter";
 
@@ -16,7 +16,7 @@ export class DemoAppCmsPostListTableBuilderService extends TableBuilderService {
     private readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);
     private readonly postService: DemoAppCmsPostService = inject<DemoAppCmsPostService>(DemoAppCmsPostService);
     private readonly tableBuilderPaginationService: DemoAppCmsPostListTableBuilderPaginationService = inject<DemoAppCmsPostListTableBuilderPaginationService>(DemoAppCmsPostListTableBuilderPaginationService);
-    private readonly searchFormService: DemoAppCmsPostListSearchFormService = inject<DemoAppCmsPostListSearchFormService>(DemoAppCmsPostListSearchFormService);
+    private readonly searchFormService: DemoAppCmsPostListFilterSearchService = inject<DemoAppCmsPostListFilterSearchService>(DemoAppCmsPostListFilterSearchService);
 
     public override init(): void {
         this.activatedRoute.queryParams

@@ -5,7 +5,9 @@
         [ngClass]="classes"
         [url]="imageUrl()"
     ></app-data-display-thumbnail>
-    <a class="hover:underline" [routerLink]="url()"
-        ><app-data-display-text [text]="name()"></app-data-display-text
-    ></a>
+    <app-data-display-link
+        [text]="name()"
+        [url]="url()"
+        [returnUrlEnabled]="true"
+    ></app-data-display-link>
 </div>

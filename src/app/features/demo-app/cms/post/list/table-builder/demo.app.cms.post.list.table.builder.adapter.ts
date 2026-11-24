@@ -1,9 +1,12 @@
 import { Params } from "@angular/router";
 import { Observable } from "rxjs";
 
+import { IPageOptions } from "../../../model/filter.model";
+import { pickDefined } from "../../../../../shared/util/pick";
 import { IPostCollection } from "../../demo.app.cms.post.model";
 import { DemoAppCmsPostService } from "../../demo.app.cms.post.service";
 import { SearchFormService } from "../../../../../shared/search-form/search.form.service";
+import { IPostDefaultFilter, IPostSearchFilter } from "../../model/post.filter.model";
 import { TableBuilderPaginationRouteService } from "../../../../../shared/table-builder/service/table.builder.pagination.route.service";
 
 export interface IDemoAppCmsPostListTableBuilderDataAdapter<T> {
@@ -16,10 +19,7 @@ export interface IDemoAppCmsPostListTableBuilderDataHandler {
 }
 
 export class DemoAppCmsPostListTableBuilderGetPostsDataHandler implements IDemoAppCmsPostListTableBuilderDataHandler {
-    constructor(
-        public readonly skip: number,
-        public readonly limit: number
-    ) { }
+    constructor(public readonly filter: IPostDefaultFilter) { }
 
     public accept<T>(visitor: IDemoAppCmsPostListTableBuilderDataAdapter<T>): T {
         return visitor.visitGetPosts(this);
@@ -27,11 +27,7 @@ export class DemoAppCmsPostListTableBuilderGetPostsDataHandler implements IDemoA
 }
 
 export class DemoAppCmsPostListTableBuilderSearchPostsDataHandler implements IDemoAppCmsPostListTableBuilderDataHandler {
-    constructor(
-        public readonly searchText: string,
-        public readonly skip: number,
-        public readonly limit: number
-    ) { }
+    constructor(public readonly filter: IPostSearchFilter) { }
 
     public accept<T>(visitor: IDemoAppCmsPostListTableBuilderDataAdapter<T>): T {
         return visitor.visitSearchPosts(this);
@@ -44,18 +40,27 @@ export class DemoAppCmsPostListTableBuilderGetPostsDataFactory {
         tableBuilderPaginationService: TableBuilderPaginationRouteService,
         searchFormService: SearchFormService
     ): IDemoAppCmsPostListTableBuilderDataHandler {
-        const searchText = params["search"];
+        const paginationOptions: IPageOptions = {
+            skip: tableBuilderPaginationService.page,
+            limit: tableBuilderPaginationService.pageSize
+        };
 
-        const skip = tableBuilderPaginationService.page;
-        const limit = tableBuilderPaginationService.pageSize;
+        const searchFilter: IPostSearchFilter = pickDefined(params, ["q", "sortBy", "order", "skip", "limit"]);
 
-        if (searchText) {
-            searchFormService.setValue(searchText);
+        if (searchFilter.q) {
+            searchFormService.setValue(searchFilter.q);
 
-            return new DemoAppCmsPostListTableBuilderSearchPostsDataHandler(searchText, skip, limit);
+            const filter = { ...searchFilter, ...paginationOptions };
+
+            searchFormService.setValue(searchFilter.q);
+
+            return new DemoAppCmsPostListTableBuilderSearchPostsDataHandler(filter);
         }
 
-        return new DemoAppCmsPostListTableBuilderGetPostsDataHandler(skip, limit);
+        const defaultFilter: IPostDefaultFilter = pickDefined(params, ["sortBy", "order", "skip", "limit"]);
+        const filter = { ...defaultFilter, ...paginationOptions };
+
+        return new DemoAppCmsPostListTableBuilderGetPostsDataHandler(filter);
     }
 }
 
@@ -63,11 +68,10 @@ export class DemoAppCmsPostListTableBuilderDataAdapter implements IDemoAppCmsPos
     constructor(private readonly postService: DemoAppCmsPostService) { }
 
     public visitGetPosts(handler: DemoAppCmsPostListTableBuilderGetPostsDataHandler): Observable<IPostCollection> {
-        return this.postService.getPosts(handler.skip, handler.limit);
+        return this.postService.getPosts(handler.filter);
     }
 
     public visitSearchPosts(handler: DemoAppCmsPostListTableBuilderSearchPostsDataHandler): Observable<IPostCollection> {
-        return this.postService.searchPosts(handler.searchText, handler.skip, handler.limit);
-
+        return this.postService.searchPosts(handler.filter);
     }
 }

@@ -1,6 +1,6 @@
 import { Injectable, ViewContainerRef } from "@angular/core";
 
-import { IPostAdapter } from "../../demo.app.cms.post.model";
+import { IPostAdapter } from "../../demo.app.cms.post.model.adapter";
 import { TableBuilderColumnService } from "../../../../../shared/table-builder";
 import { DataDisplayTextComponent } from "../../../../../shared/data-display/text";
 import { DataDisplayButtonComponent } from "../../../../../shared/data-display/button";
@@ -67,7 +67,14 @@ class DemoAppCmsPostListTableBuilderColumnDataVisitor
 
     public visitTags(component: DemoAppCmsPostDisplayTags): void {
         component.tags.set(this.row.tags);
-        component.classes = "border border-gray-200 inline-flex  p-2 rounded-3xl mr-1 text-xs";
+    }
+
+    public visitLink(component: DataDisplayLinkComponent): void {
+        const value = <string>this.row[this.columnKey];
+
+        component.url.set(`../view/${this.row.id}`);
+        component.returnUrlEnabled.set(true);
+        component.text.set(value);
     }
 
     public visitRadioButton(component: DataDisplayRadioButtonComponent): void {
@@ -80,13 +87,6 @@ class DemoAppCmsPostListTableBuilderColumnDataVisitor
 
     public visitCheckbox(component: DataDisplayCheckboxComponent): void {
         throw new Error("Method not implemented.");
-    }
-
-    public visitLink(component: DataDisplayLinkComponent): void {
-        const value = <string>this.row[this.columnKey];
-
-        component.url.set(`../view/${this.row.id}`);
-        component.text.set(value);
     }
 
     public visitButton(component: DataDisplayButtonComponent): void {
