@@ -35,6 +35,14 @@ export class DemoAppCmsPostService {
         return this.httpClient.get<IPost>(`${this.apiUrl}/${postId}`);
     }
 
+    public getUserPosts(userId: number, filter: IPostDefaultFilter): Observable<IPostCollection> {
+        return this.httpClient.get<IPostCollection>(`${this.apiUrl}/user/${userId}`, {
+            params: {
+                ...filter
+            }
+        });
+    }
+
     public getComments(postId: number): Observable<IPostCommentsCollection> {
         return this.httpClient.get<IPostCommentsCollection>(`${this.apiUrl}/${postId}/comments`);
     }

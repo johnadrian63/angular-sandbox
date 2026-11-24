@@ -404,86 +404,16 @@
         <div class="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <div>
                 <h3 class="text-base font-semibold">Posts</h3>
-                <p class="mt-1 text-sm">Posts published by Emily Johnson.</p>
+                <p class="mt-1 text-sm">
+                    Posts published by
+                    <app-data-display-text [text]="user().fullName"></app-data-display-text>
+                </p>
             </div>
-
-            <span class="w-fit rounded-full px-3 py-1 text-xs font-medium"> 3 posts </span>
         </div>
 
         <!-- Posts Table -->
-        <div class="overflow-x-auto">
-            <table class="w-full min-w-[650px] text-left text-sm">
-                <thead class="border-y border-gray-200 text-xs uppercase">
-                    <tr>
-                        <th class="px-4 py-3 font-medium">Post</th>
-                        <th class="px-4 py-3 font-medium">Tags</th>
-                        <th class="px-4 py-3 font-medium">Likes</th>
-                        <th class="px-4 py-3 font-medium">Dislikes</th>
-                        <th class="px-4 py-3 font-medium">Views</th>
-                    </tr>
-                </thead>
-
-                <tbody class="divide-y divide-gray-100">
-                    <tr>
-                        <td class="px-4 py-4">
-                            <p class="font-medium">His mother had always taught him</p>
-                            <p class="mt-1 text-xs">Post #1</p>
-                        </td>
-                        <td class="px-4 py-4">
-                            <div class="flex flex-wrap gap-1">
-                                <span class="rounded-full px-2 py-1 text-xs">history</span>
-                                <span class="rounded-full px-2 py-1 text-xs">american</span>
-                                <span class="rounded-full px-2 py-1 text-xs">crime</span>
-                            </div>
-                        </td>
-                        <td class="px-4 py-4">192</td>
-                        <td class="px-4 py-4">25</td>
-                        <td class="px-4 py-4">305</td>
-                    </tr>
-
-                    <tr>
-                        <td class="px-4 py-4">
-                            <p class="font-medium">The importance of learning</p>
-                            <p class="mt-1 text-xs">Post #2</p>
-                        </td>
-                        <td class="px-4 py-4">
-                            <div class="flex flex-wrap gap-1">
-                                <span class="rounded-full px-2 py-1 text-xs">education</span>
-                                <span class="rounded-full px-2 py-1 text-xs">learning</span>
-                            </div>
-                        </td>
-                        <td class="px-4 py-4">84</td>
-                        <td class="px-4 py-4">12</td>
-                        <td class="px-4 py-4">120</td>
-                    </tr>
-
-                    <tr>
-                        <td class="px-4 py-4">
-                            <p class="font-medium">A journey through history</p>
-                            <p class="mt-1 text-xs">Post #3</p>
-                        </td>
-                        <td class="px-4 py-4">
-                            <div class="flex flex-wrap gap-1">
-                                <span class="rounded-full px-2 py-1 text-xs">history</span>
-                                <span class="rounded-full px-2 py-1 text-xs">travel</span>
-                            </div>
-                        </td>
-                        <td class="px-4 py-4">56</td>
-                        <td class="px-4 py-4">8</td>
-                        <td class="px-4 py-4">98</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div
-            class="mt-4 flex flex-col gap-3 border-t border-gray-200 pt-4 sm:flex-row sm:items-center sm:justify-between"
-        >
-            <p class="text-sm text-gray-500">Showing 3 of 3 posts</p>
-
-            <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-700">
-                View all posts →
-            </a>
+        <div class="overflow-x-auto users-post-list">
+            <app-demo-app-cms-user-view-post [userId]="user().id"></app-demo-app-cms-user-view-post>
         </div>
     </section>
 </div>

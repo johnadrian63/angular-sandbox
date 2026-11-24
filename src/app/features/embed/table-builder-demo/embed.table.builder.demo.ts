@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { EmbedTableBuilderService } from "./table-builder/embed.table.builder.demo.service";
+import { TABLE_BUILDER_REFRESHER_PROVIDER } from "../../shared/table-builder/table.builder.token";
 import { EmbedTableBuilderSortService } from "./table-builder/embed.table.builder.demo.sort.service";
 import { EmbedTableBuilderColumnService } from "./table-builder/embed.table.builder.demo.column.service";
 import { EmbedTableBuilderSelectionService } from "./table-builder/embed.table.builder.demo.selection.service";
@@ -45,7 +46,8 @@ import { TableBuilderComponent, TableBuilderService, TableBuilderColumnHeaderSer
         {
             provide: TableBuilderColumnService,
             useExisting: EmbedTableBuilderColumnService,
-        }
+        },
+        TABLE_BUILDER_REFRESHER_PROVIDER
     ]
 })
 export class EmbedTableBuilderDemo { }

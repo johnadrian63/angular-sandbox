@@ -5,8 +5,9 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { lastValueFrom, skip } from "rxjs";
 
 import { TableBuilderService } from "../../../shared/table-builder";
-import { IUserAdapter, IUserCollection, UserAdapter } from "../../../poc/table-builder/poc.table.builder.model";
 import { EmbedTableBuilderPaginationService } from "./embed.table.builder.demo.pagination.service";
+import { IUserAdapter, IUserCollection, UserAdapter } from "../../../poc/table-builder/poc.table.builder.model";
+import { TABLE_BUILDER_REFRESH_TOKEN, TableBuilderRefresher } from "../../../shared/table-builder/table.builder.token";
 
 @Injectable()
 export class EmbedTableBuilderService extends TableBuilderService {
@@ -14,6 +15,7 @@ export class EmbedTableBuilderService extends TableBuilderService {
     private readonly tableBuilderPaginationService: EmbedTableBuilderPaginationService = inject<EmbedTableBuilderPaginationService>(EmbedTableBuilderPaginationService);
     private readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);
     private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
+    private readonly refresher: TableBuilderRefresher = inject<TableBuilderRefresher>(TABLE_BUILDER_REFRESH_TOKEN);
 
     public override init(): void {
         this.activatedRoute.queryParams
@@ -21,7 +23,7 @@ export class EmbedTableBuilderService extends TableBuilderService {
                 skip(1),
                 takeUntilDestroyed(this.destroyRef)
             ).subscribe(async () => {
-                this.refresh();
+                this.refresher.refresh();
             });
     }
 

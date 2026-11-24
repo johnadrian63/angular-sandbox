@@ -1,29 +1,19 @@
 import { Injectable, Signal, signal, WritableSignal } from "@angular/core";
-import { Observable, Subject } from "rxjs";
 
 import { ITableBuilderRowData } from "../model/interface";
 
 @Injectable()
 export abstract class TableBuilderService {
 
-    public get onRefresh(): Observable<void> {
-        return this.refreshSubject.asObservable();
-    }
-
     public get loading(): Signal<boolean> {
         return this.loadingSignal.asReadonly();
     }
 
     private readonly loadingSignal: WritableSignal<boolean> = signal(false);
-    private readonly refreshSubject: Subject<void> = new Subject<void>();
 
-    public abstract reset(): void;
     public abstract init(): void;
     public abstract getData(): Promise<ITableBuilderRowData[]>;
-
-    public refresh(): void {
-        this.refreshSubject.next();
-    }
+    public abstract reset(): void;
 
     public setLoading(loading: boolean): void {
         this.loadingSignal.set(loading);
