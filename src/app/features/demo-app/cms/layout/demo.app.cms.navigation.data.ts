@@ -19,7 +19,19 @@ export const demoAppCmsNavigationData: ICmsMenuItem[] = [
     {
         label: "post",
         text: "Posts Management",
-        path: "/demo/cms/posts"
+        path: "/demo/cms/posts",
+        children: [
+            {
+                label: "post_list",
+                text: "List",
+                path: "/demo/cms/posts/list",
+            },
+            {
+                label: "post_tags",
+                text: "Tags",
+                path: "/demo/cms/posts/tags",
+            }
+        ]
     }
 ];
 

@@ -45,7 +45,7 @@ export interface IAddress {
 
 export interface IBankAccount {
     cardExpire: string;
-    carNumber: string;
+    cardNumber: string;
     cardType: string;
     currency: string;
     iban: string;

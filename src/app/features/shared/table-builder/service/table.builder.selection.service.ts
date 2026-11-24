@@ -14,7 +14,7 @@ export interface ITableBuilderSelection {
 @Injectable()
 export class TableBuilderSelectionService {
 
-    public get selection$(): Observable<ITableBuilderSelection> {
+    public get onSelect(): Observable<ITableBuilderSelection> {
         return this.selectionSubject.asObservable();
     }
 

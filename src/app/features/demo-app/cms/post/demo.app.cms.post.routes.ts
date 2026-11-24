@@ -22,6 +22,10 @@ export const demoAppCmsPostRoutes: Routes = [
                     post: postResolver,
                 }
             },
+            {
+                path: "tags",
+                loadComponent: () => import("./tags/demo.app.cms.post.tags").then((c) => c.DemoAppCmsPostTags),
+            }
         ]
     }
 ];

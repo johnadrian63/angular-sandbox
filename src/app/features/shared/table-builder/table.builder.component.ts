@@ -16,29 +16,16 @@ import { MatRadioModule } from "@angular/material/radio";
 import { MatTableModule } from "@angular/material/table";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatSortModule, Sort } from "@angular/material/sort";
-import {
-    CdkDragDrop,
-    DragDropModule,
-    moveItemInArray
-} from "@angular/cdk/drag-drop";
+import { CdkDragDrop, DragDropModule, moveItemInArray } from "@angular/cdk/drag-drop";
 
-import {
-    ITableBuilderRowData,
-    TableBuilderHeaderCellData,
-} from "./model";
-import {
-    TableBuilderService,
-    TableBuilderColumnHeaderService,
-    TableBuilderRowService,
-    TableBuilderSortService,
-    TableBuilderSelectionService,
-    SortDirection
-} from "./service";
+import { ITableBuilderRowData, TableBuilderHeaderCellData, } from "./model";
 import { UiPaginatorComponent } from "../ui/paginator/ui.paginator.component";
+import { TABLE_BUILDER_REFRESH_TOKEN, TableBuilderRefresher } from "./table.builder.token";
 import { TableBuilderPaginationBaseService } from "./service/table.builder.pagination.base.service";
 import { TableBuilderMasterSelectionComponent } from "./component/selection/table.builder.master.selection.component";
-import { TableBuilderDataDisplayHeaderRendererComponent } from "./component/data-display/table.builder.data.display.header.renderer.component";
 import { TableBuilderDataDisplayRendererComponent } from "./component/data-display/table.builder.data.display.renderer.component";
+import { TableBuilderDataDisplayHeaderRendererComponent } from "./component/data-display/table.builder.data.display.header.renderer.component";
+import { TableBuilderService, TableBuilderColumnHeaderService, TableBuilderRowService, TableBuilderSortService, TableBuilderSelectionService, SortDirection } from "./service";
 
 @Component({
     selector: "app-table-builder",
@@ -57,7 +44,7 @@ import { TableBuilderDataDisplayRendererComponent } from "./component/data-displ
         TableBuilderMasterSelectionComponent,
         TableBuilderDataDisplayRendererComponent,
         TableBuilderDataDisplayHeaderRendererComponent,
-    ]
+    ],
 })
 export class TableBuilderComponent implements OnInit, OnDestroy {
 
@@ -108,16 +95,18 @@ export class TableBuilderComponent implements OnInit, OnDestroy {
     private readonly tableBuilderColumnHeaderService: TableBuilderColumnHeaderService<ITableBuilderRowData> = inject<TableBuilderColumnHeaderService<ITableBuilderRowData>>(TableBuilderColumnHeaderService);
     private readonly tableBuilderSortService: TableBuilderSortService = inject<TableBuilderSortService>(TableBuilderSortService);
     private readonly tableBuilderSelectionService: TableBuilderSelectionService = inject<TableBuilderSelectionService>(TableBuilderSelectionService);
+    private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
     private readonly tableBuilderRowService: TableBuilderRowService | null = inject<TableBuilderRowService>(TableBuilderRowService, {
         optional: true
     });
-
-    private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
+    private readonly refresher: TableBuilderRefresher | null = inject<TableBuilderRefresher>(TABLE_BUILDER_REFRESH_TOKEN, {
+        optional: true
+    });
 
     public async ngOnInit(): Promise<void> {
-        this.tableBuilderService.onRefresh
-            .pipe(takeUntilDestroyed(this.destroyRef))
-            .subscribe(() => {
+        this.refresher?.onRefresh
+            ?.pipe(takeUntilDestroyed(this.destroyRef))
+            ?.subscribe(() => {
                 this.updateSource();
             });
 

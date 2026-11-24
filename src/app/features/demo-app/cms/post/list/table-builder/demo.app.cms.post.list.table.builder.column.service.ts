@@ -3,17 +3,17 @@ import { Injectable, ViewContainerRef } from "@angular/core";
 import { IPostAdapter } from "../../demo.app.cms.post.model.adapter";
 import { TableBuilderColumnService } from "../../../../../shared/table-builder";
 import { DataDisplayTextComponent } from "../../../../../shared/data-display/text";
+import { DataDisplayLinkComponent } from "../../../../../shared/data-display/link";
 import { DataDisplayButtonComponent } from "../../../../../shared/data-display/button";
+import { DataDisplayNumberComponent } from "../../../../../shared/data-display/number";
+import { DataDisplayTextboxComponent } from "../../../../../shared/data-display/textbox";
 import { DataDisplayCheckboxComponent } from "../../../../../shared/data-display/checkbox";
 import { DataDisplayDateTimeComponent } from "../../../../../shared/data-display/date-time";
-import { DataDisplayLinkComponent } from "../../../../../shared/data-display/link";
-import { DataDisplayNumberComponent } from "../../../../../shared/data-display/number";
-import { DataDisplayRadioButtonComponent } from "../../../../../shared/data-display/radio-button";
 import { DataDisplaySelectionComponent } from "../../../../../shared/data-display/selection";
-import { DataDisplayTextboxComponent } from "../../../../../shared/data-display/textbox";
 import { DataDisplayThumbnailComponent } from "../../../../../shared/data-display/thumbnail";
-import { IDataDisplayVisitor } from "../../../../../shared/data-display/data.display.visitor.interface";
+import { DataDisplayRadioButtonComponent } from "../../../../../shared/data-display/radio-button";
 import { demoAppCmsPostListTableBuilderMapper } from "./demo.app.cms.post.list.table.builder.config";
+import { IDataDisplayVisitor } from "../../../../../shared/data-display/data.display.visitor.interface";
 import { DemoAppCmsPostDisplayView, IDemoAppCmsPostDisplayViewVisitor } from "../../display/view/demo.app.cms.post.display.view";
 import { DemoAppCmsPostDisplayTags, IDemoAppCmsPostDisplayTagsVisitor } from "../../display/tags/demo.app.cms.post.display.tags";
 import { DemoAppCmsPostDisplayReaction, IDemoAppCmsPostDisplayReactionVisitor } from "../../display/reaction/demo.app.cms.post.display.reaction";
@@ -35,15 +35,15 @@ export class DemoAppCmsPostListTableBuilderColumnService extends TableBuilderCol
     }
 }
 
-class DemoAppCmsPostListTableBuilderColumnDataVisitor
+export class DemoAppCmsPostListTableBuilderColumnDataVisitor
     implements IDataDisplayVisitor<void>,
     IDemoAppCmsPostDisplayReactionVisitor<void>,
     IDemoAppCmsPostDisplayViewVisitor<void>,
     IDemoAppCmsPostDisplayTextPreviewVisitor<void>,
     IDemoAppCmsPostDisplayTagsVisitor<void> {
     constructor(
-        private readonly columnKey: keyof IPostAdapter,
-        private readonly row: IPostAdapter
+        protected readonly columnKey: keyof IPostAdapter,
+        protected readonly row: IPostAdapter
     ) { }
 
     public visitText(component: DataDisplayTextComponent): void {

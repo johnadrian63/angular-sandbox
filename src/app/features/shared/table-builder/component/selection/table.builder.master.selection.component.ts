@@ -36,7 +36,7 @@ export class TableBuilderMasterSelectionComponent {
     private readonly cdr: ChangeDetectorRef = inject<ChangeDetectorRef>(ChangeDetectorRef);
 
     constructor() {
-        this.tableBuilderSelectionService.selection$
+        this.tableBuilderSelectionService.onSelect
             .pipe(takeUntilDestroyed())
             .subscribe(() => {
                 this.cdr.detectChanges();

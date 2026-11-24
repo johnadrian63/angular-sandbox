@@ -44,4 +44,8 @@ export class DemoAppCmsUserService {
     public getUser(userId: string): Observable<IUser> {
         return this.httpClient.get<IUser>(`${this.apiUrl}/${userId}`);
     }
+
+    public getUserPosts(userId: string): Observable<IUser> {
+        return this.httpClient.get<IUser>(`${this.apiUrl}/${userId}`);
+    }
 }

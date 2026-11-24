@@ -1,6 +1,7 @@
 import { Provider } from "@angular/core";
 
 import { DemoAppCmsUserListTableBuilderService } from "./demo.app.cms.user.list.table.builder.service";
+import { TABLE_BUILDER_REFRESHER_PROVIDER } from "../../../../../shared/table-builder/table.builder.token";
 import { DemoAppCmsUserListTableBuilderSortService } from "./demo.app.cms.user.list.table.builder.sort.service";
 import { DemoAppCmsUserListTableBuilderColumnService } from "./demo.app.cms.user.list.table.builder.column.service";
 import { DemoAppCmsUserListTableBuilderPaginationService } from "./demo.app.cms.user.list.table.builder.pagination.service";
@@ -40,6 +41,7 @@ export function getDemoAppCmsUserListTableBuilderProviders(): Provider[] {
         {
             provide: TableBuilderColumnService,
             useExisting: DemoAppCmsUserListTableBuilderColumnService,
-        }
+        },
+        TABLE_BUILDER_REFRESHER_PROVIDER
     ];
 }

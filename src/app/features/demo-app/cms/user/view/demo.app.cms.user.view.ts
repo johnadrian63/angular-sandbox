@@ -3,6 +3,7 @@ import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute, Data } from "@angular/router";
 
 import { UserAdapter } from "../demo.app.cms.user.model.adapter";
+import { DemoAppCmsUserViewPost } from "./post/demo.app.cms.user.view.post";
 import { DataDisplayTextComponent } from "../../../../shared/data-display/text";
 import { DataDisplayLinkComponent } from "../../../../shared/data-display/link";
 import { DataDisplayThumbnailComponent } from "../../../../shared/data-display/thumbnail";
@@ -10,13 +11,15 @@ import { DemoAppCmsUserDisplayRole } from "../display/role/demo.app.cms.user.dis
 
 @Component({
     selector: "app-demo-app-cms-user-view",
+    styleUrl: "./demo.app.cms.user.view.css",
     templateUrl: "./demo.app.cms.user.view.html",
     imports: [
         DataDisplayTextComponent,
         DemoAppCmsUserDisplayRole,
         DataDisplayThumbnailComponent,
-        DataDisplayLinkComponent
-    ]
+        DataDisplayLinkComponent,
+        DemoAppCmsUserViewPost
+    ],
 })
 export class DemoAppCmsUserView {
     public readonly user: Signal<UserAdapter> = computed(() => {

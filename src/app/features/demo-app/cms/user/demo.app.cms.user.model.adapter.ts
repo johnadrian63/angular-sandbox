@@ -3,6 +3,8 @@ import { IAddress, IBankAccount, ICompany, ICrypto, IHair, IUser } from "./model
 
 export interface IUserAdapter extends ITableBuilderRowData, IUser {
     fullName: string;
+    coordinatesInfo: string;
+    hairInfo: string;
     companyName: string;
 }
 
@@ -94,6 +96,10 @@ export class UserAdapter implements IUserAdapter {
 
     public get address(): IAddress {
         return this.data.address;
+    }
+
+    public get coordinatesInfo(): string {
+        return `${this.address.coordinates.lat},${this.address.coordinates.lng}`;
     }
 
     public get macAddress(): string {

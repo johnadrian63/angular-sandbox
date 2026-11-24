@@ -8,6 +8,6 @@ export interface IPaginationMeta extends IPageOptions {
 }
 
 export interface ISort {
-    sortBy: string;
-    order: string;
+    sortBy?: string;
+    order?: string;
 }

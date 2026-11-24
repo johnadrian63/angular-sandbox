@@ -1,9 +1,8 @@
 <div class="space-y-6">
     <!-- Header -->
     <div class="flex items-center justify-between">
-        <div>
-            <h1 class="text-2xl font-semibold">User Profile</h1>
-        </div>
+        <h1 class="text-2xl font-semibold">User Profile</h1>
+
         <app-data-display-link
             text="Back"
             url="../../"
@@ -13,403 +12,408 @@
         ></app-data-display-link>
     </div>
 
-    <!-- Main Layout -->
-    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        <!-- Profile Card -->
-        <aside class="h-fit rounded-xl border border-gray-200 p-6">
-            <div class="flex flex-col items-center text-center">
+    <!-- Profile Header -->
+    <section class="rounded-xl border border-gray-200 p-6 shadow-sm">
+        <div class="flex flex-col gap-6 md:flex-row md:items-center">
+            <!-- Avatar and Basic Information -->
+            <div class="flex flex-1 items-center gap-5">
                 <app-data-display-thumbnail
                     [url]="user().image"
-                    classes="h-24 w-24 rounded-full object-cover"
+                    classes="h-20 w-20 rounded-full object-cover"
                 ></app-data-display-thumbnail>
 
-                <h2 class="mt-4 text-xl font-semibold">
-                    <app-data-display-text [text]="user().fullName"></app-data-display-text>
-                </h2>
-                <p class="mt-1 text-sm text-gray-500">
-                    <app-data-display-text [text]="user().email"></app-data-display-text>
-                </p>
+                <div class="min-w-0 space-y-2">
+                    <h2 class="text-xl font-semibold">
+                        <app-data-display-text [text]="user().fullName"></app-data-display-text>
+                    </h2>
+                    <p class="text-sm">
+                        <app-data-display-text
+                            [text]="`@${user().username}`"
+                        ></app-data-display-text>
+                    </p>
+                    <p class="break-all text-sm">
+                        <app-data-display-text [text]="user().email"></app-data-display-text>
+                    </p>
+
+                    <app-demo-app-cms-user-display-role
+                        [role]="user().role"
+                    ></app-demo-app-cms-user-display-role>
+                </div>
             </div>
 
-            <div class="my-6 border-t border-gray-200"></div>
-
-            <div class="space-y-4 text-sm">
+            <!-- Quick Information -->
+            <div
+                class="grid flex-1 grid-cols-2 gap-5 border-t border-gray-200 pt-5 md:border-l md:border-t-0 md:pl-6 md:pt-0"
+            >
                 <div>
-                    <p class="text-gray-500">User ID</p>
+                    <p class="text-xs">User ID</p>
                     <p class="mt-1 font-medium">
                         <app-data-display-text [text]="user().id"></app-data-display-text>
                     </p>
                 </div>
 
                 <div>
-                    <p class="text-gray-500">Username</p>
+                    <p class="text-xs">Username</p>
                     <p class="mt-1 font-medium">
                         <app-data-display-text [text]="user().username"></app-data-display-text>
                     </p>
                 </div>
 
                 <div>
-                    <p class="text-gray-500">Role</p>
-                    <p class="mt-1 font-medium">
-                        <app-demo-app-cms-user-display-role
-                            [role]="user().role"
-                        ></app-demo-app-cms-user-display-role>
-                    </p>
-                </div>
-
-                <div>
-                    <p class="text-gray-500">Phone</p>
+                    <p class="text-xs">Phone</p>
                     <p class="mt-1 font-medium">
                         <app-data-display-text [text]="user().phone"></app-data-display-text>
                     </p>
                 </div>
+
+                <div>
+                    <p class="text-xs">Age</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text [text]="user().age"></app-data-display-text>
+                    </p>
+                </div>
             </div>
-        </aside>
-
-        <!-- User Information -->
-        <div class="space-y-6 lg:col-span-2">
-            <!-- Personal Information -->
-            <section class="rounded-xl border border-gray-200 p-6">
-                <h3 class="text-base font-semibold">Personal Information</h3>
-
-                <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
-                    <div>
-                        <p class="text-sm text-gray-500">First Name</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text
-                                [text]="user().firstName"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">Middle Name</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text
-                                [text]="user().maidenName"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">Last Name</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text [text]="user().lastName"></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">Age</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text [text]="user().age"></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">Gender</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text [text]="user().gender"></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">Birth Date</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text
-                                [text]="user().birthDate"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">Blood Group</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text
-                                [text]="user().bloodGroup"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">Height</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text [text]="user().height"></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">Weight</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text [text]="user().weight"></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">Eye Color</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text [text]="user().eyeColor"></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">Hair</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text [text]="user().hairInfo"></app-data-display-text>
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Address -->
-            <section class="rounded-xl border border-gray-200 p-6">
-                <h3 class="text-base font-semibold">Address Information</h3>
-
-                <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
-                    <div>
-                        <p class="text-sm text-gray-500">Street Address</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text
-                                [text]="user().address.address"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">City</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text
-                                [text]="user().address.city"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">State</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text
-                                [text]="user().address.state"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">Postal Code</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text
-                                [text]="user().address.postalCode"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">Country</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text
-                                [text]="user().address.country"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">Coordinates</p>
-                        <p class="mt-1 font-medium">
-                            22.815468, 115.608581
-                            <app-data-display-text
-                                [text]="`${user().address.coordinates.lat}/${user().address.coordinates.lng}`"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Company -->
-            <section class="rounded-xl border border-gray-200 p-6">
-                <h3 class="text-base font-semibold">Company Information</h3>
-
-                <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
-                    <div>
-                        <p class="text-sm text-gray-500">Company</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text
-                                [text]="user().company.name"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">Department</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text
-                                [text]="user().company.department"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">Job Title</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text
-                                [text]="user().company.title"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">University</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text
-                                [text]="user().university"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="mt-6 border-t border-gray-200 pt-5">
-                    <h4 class="text-sm font-semibold">Company Address</h4>
-
-                    <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
-                        <div>
-                            <p class="text-sm text-gray-500">Street Address</p>
-                            <p class="mt-1 font-medium">
-                                <app-data-display-text
-                                    [text]="user().company.address.address"
-                                ></app-data-display-text>
-                            </p>
-                        </div>
-
-                        <div>
-                            <p class="text-sm text-gray-500">City</p>
-                            <p class="mt-1 font-medium">
-                                <app-data-display-text
-                                    [text]="user().company.address.city"
-                                ></app-data-display-text>
-                            </p>
-                        </div>
-
-                        <div>
-                            <p class="text-sm text-gray-500">State</p>
-                            <p class="mt-1 font-medium">
-                                <app-data-display-text
-                                    [text]="user().company.address.state"
-                                ></app-data-display-text>
-                            </p>
-                        </div>
-
-                        <div>
-                            <p class="text-sm text-gray-500">Postal Code</p>
-                            <p class="mt-1 font-medium">
-                                <app-data-display-text
-                                    [text]="user().company.address.postalCode"
-                                ></app-data-display-text>
-                            </p>
-                        </div>
-
-                        <div>
-                            <p class="text-sm text-gray-500">Country</p>
-                            <p class="mt-1 font-medium">
-                                <app-data-display-text
-                                    [text]="user().company.address.country"
-                                ></app-data-display-text>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Bank Information -->
-            <section class="rounded-xl border border-gray-200 p-6">
-                <h3 class="text-base font-semibold">Bank Information</h3>
-
-                <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
-                    <div>
-                        <p class="text-sm text-gray-500">Card Type</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text
-                                [text]="user().bank.cardType"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">Currency</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text
-                                [text]="user().bank.currency"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">Card Number</p>
-                        <p class="mt-1 font-medium">
-                            <!-- •••• •••• •••• 3665 -->
-                            <app-data-display-text
-                                [text]="user().bank.carNumber"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">Card Expiry</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text
-                                [text]="user().bank.cardExpire"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div class="sm:col-span-2">
-                        <p class="text-sm text-gray-500">IBAN</p>
-                        <p class="mt-1 font-medium">
-                            <!-- DE26 •••• •••• •••• 5865 -->
-                            <app-data-display-text
-                                [text]="user().bank.iban"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Additional Information -->
-            <section class="rounded-xl border border-gray-200 p-6">
-                <h3 class="text-base font-semibold">Additional Information</h3>
-
-                <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
-                    <div>
-                        <p class="text-sm text-gray-500">IP Address</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text [text]="user().ip"></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">MAC Address</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text
-                                [text]="user().macAddress"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">Crypto Coin</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text
-                                [text]="user().crypto.coin"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-500">Crypto Network</p>
-                        <p class="mt-1 font-medium">
-                            <app-data-display-text
-                                [text]="user().crypto.network"
-                            ></app-data-display-text>
-                        </p>
-                    </div>
-                </div>
-            </section>
         </div>
+    </section>
+
+    <!-- Information Panels -->
+    <div class="grid grid-cols-1 gap-6 xl:grid-cols-2">
+        <!-- Personal Information -->
+        <section class="rounded-xl border border-gray-200 p-6 shadow-sm">
+            <h3 class="text-base font-semibold">Personal Information</h3>
+
+            <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
+                <div>
+                    <p class="text-sm">First Name</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text [text]="user().firstName"></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">Middle Name</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text [text]="user().maidenName"></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">Last Name</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text [text]="user().lastName"></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">Age</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text [text]="user().age"></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">Gender</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text [text]="user().gender"></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">Birth Date</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text [text]="user().birthDate"></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-s">Blood Group</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text [text]="user().bloodGroup"></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">Height</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text [text]="user().height"></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">Weight</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text [text]="user().weight"></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">Eye Color</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text [text]="user().eyeColor"></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">Hair</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text [text]="user().hairInfo"></app-data-display-text>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Address Information -->
+        <section class="rounded-xl border border-gray-200 p-6 shadow-sm">
+            <h3 class="text-base font-semibold">Address Information</h3>
+
+            <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
+                <div>
+                    <p class="text-sm">Street Address</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text
+                            [text]="user().address.address"
+                        ></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">City</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text [text]="user().address.city"></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">State</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text
+                            [text]="user().address.state"
+                        ></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">Postal Code</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text
+                            [text]="user().address.postalCode"
+                        ></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">Country</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text
+                            [text]="user().address.country"
+                        ></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">Coordinates</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text
+                            [text]="user().coordinatesInfo"
+                        ></app-data-display-text>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Company Information -->
+        <section class="rounded-xl border border-gray-200 p-6 shadow-sm">
+            <h3 class="text-base font-semibold">Company Information</h3>
+
+            <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
+                <div>
+                    <p class="text-sm">Company</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text [text]="user().company.name"></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">Department</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text
+                            [text]="user().company.department"
+                        ></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">Job Title</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text
+                            [text]="user().company.title"
+                        ></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">University</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text [text]="user().university"></app-data-display-text>
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-6 border-t border-gray-200 pt-5">
+                <h4 class="text-sm font-semibold">Company Address</h4>
+
+                <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+                    <div>
+                        <p class="text-sm">Street Address</p>
+                        <p class="mt-1 font-medium">
+                            <app-data-display-text
+                                [text]="user().company.address.address"
+                            ></app-data-display-text>
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="text-sm">City</p>
+                        <p class="mt-1 font-medium">
+                            <app-data-display-text
+                                [text]="user().company.address.city"
+                            ></app-data-display-text>
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="text-sm">State</p>
+                        <p class="mt-1 font-medium">
+                            <app-data-display-text
+                                [text]="user().company.address.state"
+                            ></app-data-display-text>
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="text-sm">Postal Code</p>
+                        <p class="mt-1 font-medium">
+                            <app-data-display-text
+                                [text]="user().company.address.postalCode"
+                            ></app-data-display-text>
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="text-sm">Country</p>
+                        <p class="mt-1 font-medium">
+                            <app-data-display-text
+                                [text]="user().company.address.country"
+                            ></app-data-display-text>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bank Information -->
+        <section class="rounded-xl border border-gray-200 p-6 shadow-sm">
+            <h3 class="text-base font-semibold">Bank Information</h3>
+
+            <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
+                <div>
+                    <p class="text-sm">Card Type</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text
+                            [text]="user().bank.cardType"
+                        ></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">Currency</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text
+                            [text]="user().bank.currency"
+                        ></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">Card Number</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text
+                            [text]="user().bank.cardNumber"
+                        ></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">Card Expiry</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text
+                            [text]="user().bank.cardExpire"
+                        ></app-data-display-text>
+                    </p>
+                </div>
+
+                <div class="sm:col-span-2">
+                    <p class="text-sm">IBAN</p>
+                    <p class="mt-1 break-all font-medium">
+                        <app-data-display-text [text]="user().bank.iban"></app-data-display-text>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional Information -->
+        <section class="rounded-xl border border-gray-200 p-6 shadow-sm xl:col-span-2">
+            <h3 class="text-base font-semibold">Additional Information</h3>
+
+            <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                <div>
+                    <p class="text-sm">IP Address</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text [text]="user().ip"></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">MAC Address</p>
+                    <p class="mt-1 break-all font-medium">
+                        <app-data-display-text [text]="user().macAddress"></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">Crypto Coin</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text [text]="user().crypto.coin"></app-data-display-text>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-sm">Crypto Network</p>
+                    <p class="mt-1 font-medium">
+                        <app-data-display-text
+                            [text]="user().crypto.network"
+                        ></app-data-display-text>
+                    </p>
+                </div>
+            </div>
+        </section>
     </div>
+
+    <!-- User Posts -->
+    <section class="rounded-xl border border-gray-200 p-6 shadow-sm">
+        <div class="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+                <h3 class="text-base font-semibold">Posts</h3>
+                <p class="mt-1 text-sm">
+                    Posts published by
+                    <app-data-display-text [text]="user().fullName"></app-data-display-text>
+                </p>
+            </div>
+        </div>
+
+        <!-- Posts Table -->
+        <div class="overflow-x-auto users-post-list">
+            <app-demo-app-cms-user-view-post [userId]="user().id"></app-demo-app-cms-user-view-post>
+        </div>
+    </section>
 </div>
