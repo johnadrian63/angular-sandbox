@@ -8,5 +8,5 @@ export const postResolver: ResolveFn<IPost> = (route: ActivatedRouteSnapshot) =>
     const postService = inject(DemoAppCmsPostService);
     const userId = route.paramMap.get("id")!;
 
-    return postService.getPost(userId);
+    return postService.getPost(+userId);
 };

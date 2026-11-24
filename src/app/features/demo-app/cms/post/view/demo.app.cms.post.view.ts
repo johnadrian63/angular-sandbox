@@ -4,9 +4,10 @@ import { ActivatedRoute } from "@angular/router";
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 import { faEye, faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
-import { PostAdapter } from "../../post/demo.app.cms.post.model";
+import { PostAdapter } from "../demo.app.cms.post.model.adapter";
 import { DataDisplayTextComponent } from "../../../../shared/data-display/text";
 import { DataDisplayLinkComponent } from "../../../../shared/data-display/link";
+import { DemoAppCmsPostViewComments } from "./comments/demo.app.cms.post.view.comments";
 import { DemoAppCmsPostDisplayTags } from "../display/tags/demo.app.cms.post.display.tags";
 
 @Component({
@@ -16,10 +17,11 @@ import { DemoAppCmsPostDisplayTags } from "../display/tags/demo.app.cms.post.dis
         DataDisplayTextComponent,
         DemoAppCmsPostDisplayTags,
         FaIconComponent,
-        DataDisplayLinkComponent
+        DataDisplayLinkComponent,
+        DemoAppCmsPostViewComments
     ]
 })
-export class DemoAppCmsPointView {
+export class DemoAppCmsPostView {
     public readonly post = computed(() => {
         const data = this.data();
 

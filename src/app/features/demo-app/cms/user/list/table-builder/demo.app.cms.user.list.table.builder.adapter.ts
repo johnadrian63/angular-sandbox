@@ -2,11 +2,11 @@ import { Params } from "@angular/router";
 import { Observable } from "rxjs";
 
 import { pickDefined } from "../../../../../shared/util/pick";
-import { IUserCollection } from "../../demo.app.cms.user.model";
-import { IPaginationOptions } from "../../../model/filter.model";
+import { IUserCollection } from "../../model/user.model";
+import { IPageOptions } from "../../../model/filter.model";
 import { DemoAppCmsUserService } from "../../demo.app.cms.user.service";
 import { SearchFormService } from "../../../../../shared/search-form/search.form.service";
-import { IUserDefaultFilter, IUserFieldFilter, IUserSearchFilter } from "../../demo.app.cms.user.filter.model";
+import { IUserDefaultFilter, IUserFieldFilter, IUserSearchFilter } from "../../model/user.filter.model";
 import { TableBuilderPaginationRouteService } from "../../../../../shared/table-builder/service/table.builder.pagination.route.service";
 
 export interface IDemoAppCmsUserListTableBuilderDataAdapter<T> {
@@ -49,7 +49,7 @@ export class DemoAppCmsUserListTableBuilderGetUsersDataFactory {
         tableBuilderPaginationService: TableBuilderPaginationRouteService,
         searchFormService: SearchFormService
     ): IDemoAppCmsUserListTableBuilderDataHandler {
-        const paginationOptions: IPaginationOptions = {
+        const paginationOptions: IPageOptions = {
             skip: tableBuilderPaginationService.page,
             limit: tableBuilderPaginationService.pageSize
         };

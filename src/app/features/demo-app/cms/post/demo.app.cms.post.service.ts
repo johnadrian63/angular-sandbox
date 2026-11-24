@@ -2,8 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Service } from "@angular/core";
 import { Observable } from "rxjs";
 
-import { IPost, IPostCollection } from "./demo.app.cms.post.model";
-import { IPostDefaultFilter, IPostSearchFilter } from "./demo.app.cms.post.filter.model";
+import { IPostDefaultFilter, IPostSearchFilter } from "./model/post.filter.model";
+import { IPostCollection, IPost, IPostCommentsCollection } from "./demo.app.cms.post.model";
 
 @Service()
 export class DemoAppCmsPostService {
@@ -31,7 +31,11 @@ export class DemoAppCmsPostService {
         });
     }
 
-    public getPost(postId: string): Observable<IPost> {
+    public getPost(postId: number): Observable<IPost> {
         return this.httpClient.get<IPost>(`${this.apiUrl}/${postId}`);
+    }
+
+    public getComments(postId: number): Observable<IPostCommentsCollection> {
+        return this.httpClient.get<IPostCommentsCollection>(`${this.apiUrl}/${postId}/comments`);
     }
 }

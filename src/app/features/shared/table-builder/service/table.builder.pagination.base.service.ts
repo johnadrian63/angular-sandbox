@@ -1,16 +1,7 @@
 import { Injectable, signal, WritableSignal } from "@angular/core";
 
 import { NumberUtil } from "../../util/number.util";
-
-/**
- * @deprecated please consolidate this into one file
- */
-export enum PageSizeOptions {
-    SIZE_25 = 25,
-    SIZE_50 = 50,
-    SIZE_100 = 100,
-    SIZE_250 = 250
-}
+import { PageSizeOptions } from "../../ui/paginator/ui.paginator.component";
 
 @Injectable()
 export abstract class TableBuilderPaginationBaseService {

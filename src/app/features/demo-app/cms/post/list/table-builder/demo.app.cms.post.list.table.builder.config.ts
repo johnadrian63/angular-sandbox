@@ -1,5 +1,5 @@
 
-import { IPostAdapter } from "../../demo.app.cms.post.model";
+import { IPostAdapter } from "../../demo.app.cms.post.model.adapter";
 import { DataDisplayLinkComponent } from "../../../../../shared/data-display/link";
 import { DemoAppCmsPostDisplayTags } from "../../display/tags/demo.app.cms.post.display.tags";
 import { DemoAppCmsPostDisplayView } from "../../display/view/demo.app.cms.post.display.view";

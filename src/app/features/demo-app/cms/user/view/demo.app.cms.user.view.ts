@@ -2,7 +2,7 @@ import { Component, computed, inject, Signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute, Data } from "@angular/router";
 
-import { UserAdapter } from "../demo.app.cms.user.model";
+import { UserAdapter } from "../demo.app.cms.user.model.adapter";
 import { DataDisplayTextComponent } from "../../../../shared/data-display/text";
 import { DataDisplayLinkComponent } from "../../../../shared/data-display/link";
 import { DataDisplayThumbnailComponent } from "../../../../shared/data-display/thumbnail";

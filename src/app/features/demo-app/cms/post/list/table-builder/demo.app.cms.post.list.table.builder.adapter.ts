@@ -1,12 +1,12 @@
 import { Params } from "@angular/router";
 import { Observable } from "rxjs";
 
-import { IPostCollection } from "../../demo.app.cms.post.model";
+import { IPageOptions } from "../../../model/filter.model";
 import { pickDefined } from "../../../../../shared/util/pick";
-import { IPaginationOptions } from "../../../model/filter.model";
+import { IPostCollection } from "../../demo.app.cms.post.model";
 import { DemoAppCmsPostService } from "../../demo.app.cms.post.service";
 import { SearchFormService } from "../../../../../shared/search-form/search.form.service";
-import { IPostDefaultFilter, IPostSearchFilter } from "../../demo.app.cms.post.filter.model";
+import { IPostDefaultFilter, IPostSearchFilter } from "../../model/post.filter.model";
 import { TableBuilderPaginationRouteService } from "../../../../../shared/table-builder/service/table.builder.pagination.route.service";
 
 export interface IDemoAppCmsPostListTableBuilderDataAdapter<T> {
@@ -40,7 +40,7 @@ export class DemoAppCmsPostListTableBuilderGetPostsDataFactory {
         tableBuilderPaginationService: TableBuilderPaginationRouteService,
         searchFormService: SearchFormService
     ): IDemoAppCmsPostListTableBuilderDataHandler {
-        const paginationOptions: IPaginationOptions = {
+        const paginationOptions: IPageOptions = {
             skip: tableBuilderPaginationService.page,
             limit: tableBuilderPaginationService.pageSize
         };

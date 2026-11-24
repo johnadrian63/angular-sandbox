@@ -4,7 +4,7 @@ import { lastValueFrom, skip } from "rxjs";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 import { DemoAppCmsPostService } from "../../demo.app.cms.post.service";
-import { IPostAdapter, PostAdapter } from "../../demo.app.cms.post.model";
+import { IPostAdapter, PostAdapter } from "../../demo.app.cms.post.model.adapter";
 import { TableBuilderService } from "../../../../../shared/table-builder";
 import { DemoAppCmsPostListFilterSearchService } from "../filter/demo.app.cms.post.list.filter.search.service";
 import { DemoAppCmsPostListTableBuilderPaginationService } from "./demo.app.cms.post.list.table.builder.pagination.service";

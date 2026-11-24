@@ -1,6 +1,6 @@
 import { Injectable, ViewContainerRef } from "@angular/core";
 
-import { IPostAdapter } from "../../demo.app.cms.post.model";
+import { IPostAdapter } from "../../demo.app.cms.post.model.adapter";
 import { TableBuilderColumnService } from "../../../../../shared/table-builder";
 import { DataDisplayTextComponent } from "../../../../../shared/data-display/text";
 import { DataDisplayButtonComponent } from "../../../../../shared/data-display/button";

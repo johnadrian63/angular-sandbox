@@ -1,6 +1,6 @@
-import { ISort, IPaginationOptions } from "../model/filter.model";
+import { IPageOptions, ISort } from "../../model/filter.model";
 
-export interface IUserDefaultFilter extends ISort, IPaginationOptions { }
+export interface IUserDefaultFilter extends ISort, IPageOptions { }
 
 export interface IUserFieldFilter extends IUserDefaultFilter {
     key: string;

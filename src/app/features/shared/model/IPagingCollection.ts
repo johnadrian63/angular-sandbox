@@ -1,4 +1,4 @@
-import { PageSizeOptions } from "../table-builder/service/table.builder.pagination.base.service";
+import { PageSizeOptions } from "../ui/paginator/ui.paginator.component";
 
 export interface IPagingCollection<T> {
     collection: T[];
