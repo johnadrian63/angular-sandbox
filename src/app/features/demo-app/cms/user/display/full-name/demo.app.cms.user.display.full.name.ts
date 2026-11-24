@@ -1,8 +1,8 @@
 import { Component, inject, model, ModelSignal } from "@angular/core";
 import { NgClass } from "@angular/common";
-import { ActivatedRoute, RouterLink } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 
-import { DataDisplayTextComponent } from "../../../../../shared/data-display/text";
+import { DataDisplayLinkComponent } from "../../../../../shared/data-display/link";
 import { DataDisplayThumbnailComponent } from "../../../../../shared/data-display/thumbnail";
 import { IDataDisplayVisitor } from "../../../../../shared/data-display/data.display.visitor.interface";
 import { DataDisplayAbstractComponent } from "../../../../../shared/data-display/data.display.abstract.component";
@@ -12,9 +12,8 @@ import { DataDisplayAbstractComponent } from "../../../../../shared/data-display
     templateUrl: "./demo.app.cms.user.display.full.name.html",
     imports: [
         NgClass,
-        DataDisplayTextComponent,
         DataDisplayThumbnailComponent,
-        RouterLink
+        DataDisplayLinkComponent
     ]
 })
 export class DemoAppCmsUserDisplayFullName extends DataDisplayAbstractComponent {

@@ -7,12 +7,13 @@
         </div>
 
         <div class="flex gap-2">
-            <button
-                (click)="back()"
-                class="rounded-lg cursor-pointer border border-gray-300 px-4 py-2 text-sm font-medium"
-            >
-                Back
-            </button>
+            <app-data-display-link
+                text="Back"
+                url="../../"
+                activeClass="''"
+                [returnUrlEnabled]="true"
+                classes="rounded-lg cursor-pointer border border-gray-300 px-4 py-2 text-sm font-medium"
+            ></app-data-display-link>
         </div>
     </div>
 
@@ -44,11 +45,12 @@
 
                 <div class="flex flex-wrap">
                     <app-demo-app-cms-post-display-tags
-                        classes="rounded-full border border-gray-300 mr-1 px-3 py-1.5 text-xs font-medium"
                         [tags]="post().tags"
                     ></app-demo-app-cms-post-display-tags>
                 </div>
             </section>
+
+            
         </div>
 
         <!-- Sidebar -->

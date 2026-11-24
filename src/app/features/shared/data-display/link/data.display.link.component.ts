@@ -1,6 +1,6 @@
-import { Component, model, ModelSignal } from "@angular/core";
+import { Component, computed, effect, inject, model, ModelSignal, signal, WritableSignal } from "@angular/core";
+import { RouterLink, RouterLinkActive, ActivatedRoute, Params, Router } from "@angular/router";
 import { NgClass, NgTemplateOutlet } from "@angular/common";
-import { RouterLink, RouterLinkActive } from "@angular/router";
 
 import { IDataDisplayVisitor } from "../data.display.visitor.interface";
 import { DataDisplayAbstractComponent } from "../data.display.abstract.component";
@@ -23,12 +23,41 @@ export class DataDisplayLinkComponent extends DataDisplayAbstractComponent {
         return !!path && typeof path === "string" && /^https?:\/\//i.test(path);
     }
 
+    public get queryParams(): Params {
+        return this.activatedRoute.snapshot.queryParams;
+    }
+
     public readonly text: ModelSignal<string> = model<string>("");
     public readonly url: ModelSignal<string> = model<string>("");
+    public readonly redirectUrl = computed(() => {
+        return `${this.url()}${this.returnUrl()}`;
+    });
 
-    public activeClass: string = "underline";
-
+    public readonly returnUrlEnabled: ModelSignal<boolean> = model<boolean>(false);
     public readonly target = model<string>("_self");
+    public readonly activeClass: ModelSignal<string> = model<string>("underline");
+
+    public override classes: string = "hover:underline";
+
+    private readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);
+    private readonly router: Router = inject<Router>(Router);
+    private readonly returnUrl: WritableSignal<string> = signal<string>("");
+
+    constructor() {
+        super();
+
+        effect(() => {
+            const returnUrlEnabled = this.returnUrlEnabled();
+
+            if (returnUrlEnabled) {
+                const returnUrl = this.router.serializeUrl(
+                    this.router.createUrlTree([], { queryParams: this.queryParams })
+                );
+
+                this.returnUrl.set(returnUrl);
+            }
+        });
+    }
 
     public override accept<T>(visitor: IDataDisplayVisitor<T>): T {
         return visitor.visitLink(this);

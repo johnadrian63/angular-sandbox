@@ -1,15 +1,15 @@
-@if (!isExternal) {
-    <a
-        [routerLink]="url()"
-        [routerLinkActive]="activeClass"
-        [target]="target()"
-        class="hover:underline"
-        [ngClass]="classes"
-    >
+@if (isExternal) {
+    <a [href]="redirectUrl()" [target]="target()" [ngClass]="classes" class="hover:underline">
         <ng-container *ngTemplateOutlet="linkContent"></ng-container>
     </a>
 } @else {
-    <a [href]="url()" [target]="target()" [ngClass]="classes" class="hover:underline">
+    <a
+        [routerLink]="url()"
+        [routerLinkActive]="activeClass()"
+        [queryParams]="returnUrlEnabled() ? queryParams : {}"
+        [target]="target()"
+        [ngClass]="classes"
+    >
         <ng-container *ngTemplateOutlet="linkContent"></ng-container>
     </a>
 }

@@ -1,14 +1,6 @@
-export interface IPaging {
-    skip: number;
-    limit: number;
-}
+import { ISort, IPaginationOptions } from "../model/filter.model";
 
-export interface IUserSort {
-    sortBy: string;
-    order: string;
-}
-
-export interface IUserDefaultFilter extends IUserSort, IPaging { }
+export interface IUserDefaultFilter extends ISort, IPaginationOptions { }
 
 export interface IUserFieldFilter extends IUserDefaultFilter {
     key: string;

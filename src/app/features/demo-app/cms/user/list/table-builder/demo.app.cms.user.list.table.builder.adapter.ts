@@ -1,11 +1,12 @@
 import { Params } from "@angular/router";
 import { Observable } from "rxjs";
 
-import { IUserCollection } from "../../demo.app.cms.user.model";
 import { pickDefined } from "../../../../../shared/util/pick";
+import { IUserCollection } from "../../demo.app.cms.user.model";
+import { IPaginationOptions } from "../../../model/filter.model";
 import { DemoAppCmsUserService } from "../../demo.app.cms.user.service";
 import { SearchFormService } from "../../../../../shared/search-form/search.form.service";
-import { IPaging, IUserDefaultFilter, IUserFieldFilter, IUserSearchFilter } from "../../demo.app.cms.user.filter.model";
+import { IUserDefaultFilter, IUserFieldFilter, IUserSearchFilter } from "../../demo.app.cms.user.filter.model";
 import { TableBuilderPaginationRouteService } from "../../../../../shared/table-builder/service/table.builder.pagination.route.service";
 
 export interface IDemoAppCmsUserListTableBuilderDataAdapter<T> {
@@ -48,12 +49,9 @@ export class DemoAppCmsUserListTableBuilderGetUsersDataFactory {
         tableBuilderPaginationService: TableBuilderPaginationRouteService,
         searchFormService: SearchFormService
     ): IDemoAppCmsUserListTableBuilderDataHandler {
-        const skip = tableBuilderPaginationService.page;
-        const limit = tableBuilderPaginationService.pageSize;
-
-        const pagingOption: IPaging = {
-            skip,
-            limit
+        const paginationOptions: IPaginationOptions = {
+            skip: tableBuilderPaginationService.page,
+            limit: tableBuilderPaginationService.pageSize
         };
 
         const searchFilter: IUserSearchFilter = pickDefined(params, ["q", "sortBy", "order", "skip", "limit"]);
@@ -61,7 +59,7 @@ export class DemoAppCmsUserListTableBuilderGetUsersDataFactory {
         if (searchFilter.q) {
             searchFormService.setValue(searchFilter.q);
 
-            const filter = { ...searchFilter, ...pagingOption };
+            const filter = { ...searchFilter, ...paginationOptions };
 
             return new DemoAppCmsUserListTableBuilderSearchUsersDataHandler(filter);
         }
@@ -69,13 +67,13 @@ export class DemoAppCmsUserListTableBuilderGetUsersDataFactory {
         const fieldFilter: IUserFieldFilter = pickDefined(params, ["key", "value", "sortBy", "order", "skip", "limit"]);
 
         if (fieldFilter.key && fieldFilter.value) {
-            const filter = { ...fieldFilter, ...pagingOption };
+            const filter = { ...fieldFilter, ...paginationOptions };
 
             return new DemoAppCmsUserListTableBuilderFilterUsersDataHandler(filter);
         }
 
         const defaultFilter: IUserDefaultFilter = pickDefined(params, ["sortBy", "order", "skip", "limit"]);
-        const filter = { ...defaultFilter, ...pagingOption };
+        const filter = { ...defaultFilter, ...paginationOptions };
 
         return new DemoAppCmsUserListTableBuilderGetUsersDataHandler(filter);
     }

@@ -3,6 +3,7 @@ import { inject, Service } from "@angular/core";
 import { Observable } from "rxjs";
 
 import { IPost, IPostCollection } from "./demo.app.cms.post.model";
+import { IPostDefaultFilter, IPostSearchFilter } from "./demo.app.cms.post.filter.model";
 
 @Service()
 export class DemoAppCmsPostService {
@@ -10,21 +11,22 @@ export class DemoAppCmsPostService {
 
     private readonly httpClient: HttpClient = inject<HttpClient>(HttpClient);
 
-    public getPosts(skip: number, limit: number): Observable<IPostCollection> {
+    public getPosts(filter: IPostDefaultFilter): Observable<IPostCollection> {
         return this.httpClient.get<IPostCollection>(this.apiUrl, {
             params: {
-                skip: limit * skip,
-                limit: limit
+                ...filter,
+                skip: filter.limit * filter.skip,
+                limit: filter.limit
             }
         });
     }
 
-    public searchPosts(searchText: string, skip: number, limit: number): Observable<IPostCollection> {
+    public searchPosts(filter: IPostSearchFilter): Observable<IPostCollection> {
         return this.httpClient.get<IPostCollection>(`${this.apiUrl}/search`, {
             params: {
-                q: searchText,
-                skip: limit * skip,
-                limit: limit
+                ...filter,
+                skip: filter.limit * filter.skip,
+                limit: filter.limit
             }
         });
     }

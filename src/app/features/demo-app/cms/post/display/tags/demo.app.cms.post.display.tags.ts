@@ -11,6 +11,7 @@ import { DataDisplayAbstractComponent } from "../../../../../shared/data-display
 })
 export class DemoAppCmsPostDisplayTags extends DataDisplayAbstractComponent {
     public readonly tags: ModelSignal<string[]> = model.required<string[]>();
+    public override classes: string = "border border-gray-200 inline-flex  p-2 rounded-3xl mr-1 text-xs";
 
     public override accept<T>(visitor: IDemoAppCmsPostDisplayTagsVisitor<T>): T {
         return visitor.visitTags(this);

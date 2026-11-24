@@ -13,7 +13,7 @@ export class DemoAppCmsPostListTableBuilderColumnHeaderService extends TableBuil
             const key = header[0];
             const label = header[1].label;
 
-            let sortable = false;
+            let sortable = true;
             let movable = false;
             let freezed = false;
             let width = "";

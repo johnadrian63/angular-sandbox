@@ -6,7 +6,7 @@ import { faEye, faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-ico
 
 import { PostAdapter } from "../../post/demo.app.cms.post.model";
 import { DataDisplayTextComponent } from "../../../../shared/data-display/text";
-import { NavigationService } from "../../../../shared/util/navigation.service";
+import { DataDisplayLinkComponent } from "../../../../shared/data-display/link";
 import { DemoAppCmsPostDisplayTags } from "../display/tags/demo.app.cms.post.display.tags";
 
 @Component({
@@ -15,7 +15,8 @@ import { DemoAppCmsPostDisplayTags } from "../display/tags/demo.app.cms.post.dis
     imports: [
         DataDisplayTextComponent,
         DemoAppCmsPostDisplayTags,
-        FaIconComponent
+        FaIconComponent,
+        DataDisplayLinkComponent
     ]
 })
 export class DemoAppCmsPointView {
@@ -29,11 +30,6 @@ export class DemoAppCmsPointView {
     public readonly likeIcon = faThumbsUp;
     public readonly dislikeIcon = faThumbsDown;
 
-    private readonly route: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);
-    private readonly data = toSignal(this.route.data, { requireSync: true });
-    private readonly location: NavigationService = inject<NavigationService>(NavigationService);
-
-    public back(): void {
-        this.location.back();
-    }
+    private readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);
+    private readonly data = toSignal(this.activatedRoute.data, { requireSync: true });
 }
