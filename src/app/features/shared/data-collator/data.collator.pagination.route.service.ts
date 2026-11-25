@@ -22,10 +22,14 @@ export abstract class DataCollatorPaginationRouteService extends DataCollatorPag
     }
 
     public override init(): void {
-        const currentPage = this.activatedRoute.snapshot.queryParamMap.get(this.pageKey)!;
-        const currentPageSize = this.activatedRoute.snapshot.queryParamMap.get(this.pageSizeKey)!;
+        this.activatedRoute
+            .queryParams
+            .subscribe(() => {
+                const currentPage = this.activatedRoute.snapshot.queryParamMap.get(this.pageKey)!;
+                const currentPageSize = this.activatedRoute.snapshot.queryParamMap.get(this.pageSizeKey)!;
 
-        super.setPaging(parseInt(currentPage), parseInt(currentPageSize));
+                super.setPaging(parseInt(currentPage), parseInt(currentPageSize));
+            });
     }
 
     public override handlePageChange(page: number, pageSize: number): void {

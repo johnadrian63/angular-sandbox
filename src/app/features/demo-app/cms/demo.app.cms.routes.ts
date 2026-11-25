@@ -3,6 +3,7 @@ import { Routes } from "@angular/router";
 import { demoAppCmsUserRoutes } from "./user/demo.app.cms.user.routes";
 import { demoAppCmsPostRoutes } from "./post/demo.app.cms.post.routes";
 import { demoAppCmsQuoteRoutes } from "./quote/demo.app.cms.quote.routes";
+import { demoAppCmsRecipeRoutes } from "./recipe/demo.app.cms.recipe.routes";
 
 export const demoAppCmsRoutes: Routes = [
     {
@@ -23,6 +24,12 @@ export const demoAppCmsRoutes: Routes = [
                 path: "posts",
                 children: [
                     ...demoAppCmsPostRoutes
+                ]
+            },
+            {
+                path: "recipes",
+                children: [
+                    ...demoAppCmsRecipeRoutes
                 ]
             },
             {

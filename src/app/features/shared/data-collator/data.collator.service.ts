@@ -14,7 +14,7 @@ export abstract class DataCollatorService<T extends IDataCollatorRowData> implem
         return this.loadingSignal.asReadonly();
     }
 
-    public dataSource: WritableSignal<T[]> = signal<T[]>([]);
+    public readonly dataSource: WritableSignal<T[]> = signal<T[]>([]);
 
     private readonly loadingSignal: WritableSignal<boolean> = signal(false);
     private readonly refreshSubject: Subject<void> = new Subject<void>();
@@ -26,10 +26,9 @@ export abstract class DataCollatorService<T extends IDataCollatorRowData> implem
         });
     }
 
-    public abstract reset(): void;
     public abstract init(): void;
-
     protected abstract request(): Promise<T[]>;
+    public abstract reset(): void;
 
     public async loadRequest(): Promise<T[]> {
         const result = await this.request();
