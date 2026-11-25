@@ -5,8 +5,8 @@ import { IPageOptions } from "../../../model/filter.model";
 import { pickDefined } from "../../../../../shared/util/pick";
 import { IPostCollection } from "../../demo.app.cms.post.model";
 import { DemoAppCmsPostService } from "../../demo.app.cms.post.service";
-import { SearchFormService } from "../../../../../shared/search-form/search.form.service";
 import { IPostDefaultFilter, IPostSearchFilter } from "../../model/post.filter.model";
+import { SearchFormService } from "../../../../../shared/search-form/search.form.service";
 import { TableBuilderPaginationRouteService } from "../../../../../shared/table-builder/service/table.builder.pagination.route.service";
 
 export interface IDemoAppCmsPostListTableBuilderDataAdapter<T> {
@@ -40,9 +40,11 @@ export class DemoAppCmsPostListTableBuilderGetPostsDataFactory {
         tableBuilderPaginationService: TableBuilderPaginationRouteService,
         searchFormService: SearchFormService
     ): IDemoAppCmsPostListTableBuilderDataHandler {
+        const limit = tableBuilderPaginationService.pageSize;
+        const skip = limit * tableBuilderPaginationService.page;
         const paginationOptions: IPageOptions = {
-            skip: tableBuilderPaginationService.page,
-            limit: tableBuilderPaginationService.pageSize
+            skip,
+            limit
         };
 
         const searchFilter: IPostSearchFilter = pickDefined(params, ["q", "sortBy", "order", "skip", "limit"]);

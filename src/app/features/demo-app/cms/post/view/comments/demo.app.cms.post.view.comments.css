@@ -1,0 +1,7 @@
+@reference "tailwindcss";
+
+.load-more {
+    &:hover {
+        background-color: var(--hover-color);
+    }
+}

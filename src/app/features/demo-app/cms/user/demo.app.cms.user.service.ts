@@ -15,7 +15,7 @@ export class DemoAppCmsUserService {
         return this.httpClient.get<IUserCollection>(this.apiUrl, {
             params: {
                 ...filter,
-                skip: filter.limit * filter.skip,
+                skip: filter.skip,
                 limit: filter.limit
             }
         });
@@ -25,7 +25,7 @@ export class DemoAppCmsUserService {
         return this.httpClient.get<IUserCollection>(`${this.apiUrl}/search`, {
             params: {
                 ...filter,
-                skip: filter.limit * filter.skip,
+                skip: filter.skip,
                 limit: filter.limit
             }
         });
@@ -35,7 +35,7 @@ export class DemoAppCmsUserService {
         return this.httpClient.get<IUserCollection>(`${this.apiUrl}/filter`, {
             params: {
                 ...filter,
-                skip: filter.limit * filter.skip,
+                skip: filter.skip,
                 limit: filter.limit
             }
         });

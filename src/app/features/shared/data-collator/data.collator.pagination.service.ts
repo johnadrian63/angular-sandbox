@@ -23,6 +23,14 @@ export abstract class DataCollatorPaginationService implements IDataCollatorServ
         return this._totalPages();
     }
 
+    public get hasNext(): boolean {
+        return this.page < this.totalPages - 1;
+    }
+
+    public get hasPrevious(): boolean {
+        return this.page > 0;
+    }
+
     public get pageSizeOptions(): Array<PageSizeOptions> {
         return [
             PageSizeOptions.SIZE_25,

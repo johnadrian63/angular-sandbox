@@ -49,9 +49,12 @@ export class DemoAppCmsUserListTableBuilderGetUsersDataFactory {
         tableBuilderPaginationService: TableBuilderPaginationRouteService,
         searchFormService: SearchFormService
     ): IDemoAppCmsUserListTableBuilderDataHandler {
+        const limit = tableBuilderPaginationService.pageSize;
+        const skip = limit * tableBuilderPaginationService.page;
+
         const paginationOptions: IPageOptions = {
-            skip: tableBuilderPaginationService.page,
-            limit: tableBuilderPaginationService.pageSize
+            skip,
+            limit
         };
 
         const searchFilter: IUserSearchFilter = pickDefined(params, ["q", "sortBy", "order", "skip", "limit"]);
