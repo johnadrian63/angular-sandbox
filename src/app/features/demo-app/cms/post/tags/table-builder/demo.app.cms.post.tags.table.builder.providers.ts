@@ -7,7 +7,7 @@ import { DemoAppCmsPostTagsTableBuilderSelectionService } from "./demo.app.cms.p
 import { DemoAppCmsPostTagsTableBuilderPaginationService } from "./demo.app.cms.post.tags.table.builder.pagination.service";
 import { DemoAppCmsPostTagsTableBuilderColumnHeaderService } from "./demo.app.cms.post.tags.table.builder.column.header.service";
 import { TableBuilderPaginationBaseService } from "../../../../../shared/table-builder/service/table.builder.pagination.base.service";
-import { TableBuilderService, TableBuilderColumnHeaderService, TableBuilderColumnService, TableBuilderSelectionService, TableBuilderSortService } from "../../../../../shared/table-builder";
+import { TableBuilderService, TableBuilderColumnHeaderService, TableBuilderColumnService, TableBuilderSelectionService, TableBuilderSortBaseService } from "../../../../../shared/table-builder";
 
 export function getDemoAppCmsPostTagsTableBuilderProviders(): Provider[] {
     return [
@@ -38,7 +38,7 @@ export function getDemoAppCmsPostTagsTableBuilderProviders(): Provider[] {
         },
         DemoAppCmsPostTagsTableBuilderSortService,
         {
-            provide: TableBuilderSortService,
+            provide: TableBuilderSortBaseService,
             useExisting: DemoAppCmsPostTagsTableBuilderSortService
         }
     ];

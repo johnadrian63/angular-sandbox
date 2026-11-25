@@ -1,40 +1,28 @@
 <!-- Comments Skeleton -->
 <section class="rounded-xl border border-gray-200 p-6 shadow-sm">
-    <!-- Header -->
-    <div class="flex items-center justify-between">
-        <div class="space-y-2">
-            <div class="h-4 w-20 rounded bg-gray-200"></div>
-            <div class="h-3 w-36 rounded bg-gray-200"></div>
-        </div>
-
-        <div class="h-6 w-20 rounded-full bg-gray-200"></div>
-    </div>
-
-    <div class="my-5 border-t border-gray-100"></div>
-
     <!-- Comment Items -->
     <div class="space-y-6">
         @for (item of [1, 2, 3]; track item) {
             <div class="flex gap-3">
                 <!-- Avatar -->
-                <div class="h-10 w-10 shrink-0 rounded-full bg-gray-200"></div>
+                <div class="h-10 w-10 shrink-0 rounded-full item-placeholder"></div>
 
                 <!-- Comment Details -->
                 <div class="min-w-0 flex-1 space-y-3">
                     <!-- User -->
                     <div class="space-y-2">
-                        <div class="h-3 w-32 rounded bg-gray-200"></div>
-                        <div class="h-3 w-24 rounded bg-gray-200"></div>
+                        <div class="h-3 w-32 rounded item-placeholder"></div>
+                        <div class="h-3 w-24 rounded item-placeholder"></div>
                     </div>
 
                     <!-- Body -->
                     <div class="space-y-2">
-                        <div class="h-3 w-full rounded bg-gray-200"></div>
-                        <div class="h-3 w-3/4 rounded bg-gray-200"></div>
+                        <div class="h-3 w-full rounded item-placeholder"></div>
+                        <div class="h-3 w-3/4 rounded item-placeholder"></div>
                     </div>
 
                     <!-- Likes -->
-                    <div class="h-3 w-16 rounded bg-gray-200"></div>
+                    <div class="h-3 w-16 rounded item-placeholder"></div>
                 </div>
             </div>
         }

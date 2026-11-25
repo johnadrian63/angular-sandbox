@@ -3,10 +3,11 @@ import { Observable } from "rxjs";
 
 import { pickDefined } from "../../../../../shared/util/pick";
 import { IUserCollection } from "../../model/user.model";
-import { IPageOptions } from "../../../model/filter.model";
+import { IPageOptions, ISort } from "../../../model/filter.model";
 import { DemoAppCmsUserService } from "../../demo.app.cms.user.service";
 import { SearchFormService } from "../../../../../shared/search-form/search.form.service";
 import { IUserDefaultFilter, IUserFieldFilter, IUserSearchFilter } from "../../model/user.filter.model";
+import { TableBuilderSortRouteService } from "../../../../../shared/table-builder/service/table.builder.sort.route.service";
 import { TableBuilderPaginationRouteService } from "../../../../../shared/table-builder/service/table.builder.pagination.route.service";
 
 export interface IDemoAppCmsUserListTableBuilderDataAdapter<T> {
@@ -47,35 +48,49 @@ export class DemoAppCmsUserListTableBuilderGetUsersDataFactory {
     public static create(
         params: Params,
         tableBuilderPaginationService: TableBuilderPaginationRouteService,
+        tableBuilderSortService: TableBuilderSortRouteService,
         searchFormService: SearchFormService
     ): IDemoAppCmsUserListTableBuilderDataHandler {
-        const paginationOptions: IPageOptions = {
-            skip: tableBuilderPaginationService.page,
-            limit: tableBuilderPaginationService.pageSize
+        const limit = tableBuilderPaginationService.pageSize;
+        const skip = limit * tableBuilderPaginationService.page;
+        const defaultFilter: IPageOptions & ISort = {
+            skip,
+            limit
         };
 
-        const searchFilter: IUserSearchFilter = pickDefined(params, ["q", "sortBy", "order", "skip", "limit"]);
+        const sortBy = tableBuilderSortService.sort.column!;
+        const order = tableBuilderSortService.sort.direction!;
+
+        if (sortBy && order) {
+            defaultFilter.sortBy = sortBy;
+            defaultFilter.order = order;
+        }
+
+        const searchFilter: IUserSearchFilter = pickDefined(params, ["q"]);
 
         if (searchFilter.q) {
             searchFormService.setValue(searchFilter.q);
 
-            const filter = { ...searchFilter, ...paginationOptions };
+            const filter = {
+                ...searchFilter,
+                ...defaultFilter
+            };
 
             return new DemoAppCmsUserListTableBuilderSearchUsersDataHandler(filter);
         }
 
-        const fieldFilter: IUserFieldFilter = pickDefined(params, ["key", "value", "sortBy", "order", "skip", "limit"]);
+        const fieldFilter: IUserFieldFilter = pickDefined(params, ["key", "value"]);
 
         if (fieldFilter.key && fieldFilter.value) {
-            const filter = { ...fieldFilter, ...paginationOptions };
+            const filter = {
+                ...fieldFilter,
+                ...defaultFilter
+            };
 
             return new DemoAppCmsUserListTableBuilderFilterUsersDataHandler(filter);
         }
 
-        const defaultFilter: IUserDefaultFilter = pickDefined(params, ["sortBy", "order", "skip", "limit"]);
-        const filter = { ...defaultFilter, ...paginationOptions };
-
-        return new DemoAppCmsUserListTableBuilderGetUsersDataHandler(filter);
+        return new DemoAppCmsUserListTableBuilderGetUsersDataHandler(defaultFilter);
     }
 }
 
@@ -83,7 +98,7 @@ export class DemoAppCmsUserListTableBuilderDataAdapter implements IDemoAppCmsUse
     constructor(private readonly userService: DemoAppCmsUserService) { }
 
     public visitGetUsers(handler: DemoAppCmsUserListTableBuilderGetUsersDataHandler): Observable<IUserCollection> {
-        return this.userService.getUsers(handler.filter);
+        return this.userService.getList(handler.filter);
     }
 
     public visitSearchUsers(handler: DemoAppCmsUserListTableBuilderSearchUsersDataHandler): Observable<IUserCollection> {

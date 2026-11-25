@@ -1,5 +1,5 @@
 import { IDataCollatorRowData } from "../../../../../shared/data-collator";
-import { ICommentAuthor, IPostComment } from "../../demo.app.cms.post.model";
+import { ICommentAuthor, IPostComment } from "../../model/post.model";
 
 export interface IPostCommentAdapter extends IDataCollatorRowData, IPostComment { }
 

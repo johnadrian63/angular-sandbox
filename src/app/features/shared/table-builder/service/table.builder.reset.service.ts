@@ -4,7 +4,7 @@ import {
 } from "@angular/core";
 import { Observable, Subject } from "rxjs";
 
-import { TableBuilderSortService } from "./table.builder.sort.service";
+import { TableBuilderSortBaseService } from "./table.builder.sort.base.service";
 import { TableBuilderPaginationBaseService } from "./table.builder.pagination.base.service";
 
 @Injectable()
@@ -17,7 +17,7 @@ export abstract class TableBuilderResetService {
     private readonly resetSubject: Subject<boolean> = new Subject<boolean>();
 
     protected readonly tableBuilderPaginationService: TableBuilderPaginationBaseService = inject<TableBuilderPaginationBaseService>(TableBuilderPaginationBaseService);
-    protected readonly tableBuilderSortService: TableBuilderSortService = inject<TableBuilderSortService>(TableBuilderSortService);
+    protected readonly tableBuilderSortService: TableBuilderSortBaseService = inject<TableBuilderSortBaseService>(TableBuilderSortBaseService);
 
     public reset(): void {
         this.tableBuilderPaginationService.reset();

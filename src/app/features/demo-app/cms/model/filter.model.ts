@@ -1,6 +1,6 @@
 export interface IPageOptions {
-    skip: number;
-    limit: number;
+    skip?: number;
+    limit?: number;
 }
 
 export interface IPaginationMeta extends IPageOptions {

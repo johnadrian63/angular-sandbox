@@ -1,10 +1,10 @@
-import { Injectable, Signal, WritableSignal, signal } from "@angular/core";
+import { DestroyRef, Injectable, Signal, WritableSignal, inject, signal } from "@angular/core";
 import { Observable, Subject } from "rxjs";
 
 import { IDataCollatorRowData, IDataCollatorService } from "./data-collator.interface";
 
 @Injectable()
-export abstract class DataCollatorService implements IDataCollatorService {
+export abstract class DataCollatorService<T extends IDataCollatorRowData> implements IDataCollatorService {
 
     public get onRefresh(): Observable<void> {
         return this.refreshSubject.asObservable();
@@ -14,12 +14,30 @@ export abstract class DataCollatorService implements IDataCollatorService {
         return this.loadingSignal.asReadonly();
     }
 
+    public dataSource: WritableSignal<T[]> = signal<T[]>([]);
+
     private readonly loadingSignal: WritableSignal<boolean> = signal(false);
     private readonly refreshSubject: Subject<void> = new Subject<void>();
+    private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
+
+    constructor() {
+        this.destroyRef.onDestroy(() => {
+            this.reset();
+        });
+    }
 
     public abstract reset(): void;
     public abstract init(): void;
-    public abstract getData(): Promise<IDataCollatorRowData[]>;
+
+    protected abstract request(): Promise<T[]>;
+
+    public async loadRequest(): Promise<T[]> {
+        const result = await this.request();
+
+        this.dataSource.set(result);
+
+        return this.dataSource();
+    }
 
     public refresh(): void {
         this.refreshSubject.next();

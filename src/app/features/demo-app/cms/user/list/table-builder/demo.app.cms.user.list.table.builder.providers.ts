@@ -8,7 +8,7 @@ import { DemoAppCmsUserListTableBuilderPaginationService } from "./demo.app.cms.
 import { DemoAppCmsUserListTableBuilderSelectionService } from "./demo.app.cms.user.list.table.builder.selection.service";
 import { DemoAppCmsUserListTableBuilderColumnHeaderService } from "./demo.app.cms.user.list.table.builder.column.header.service";
 import { TableBuilderPaginationBaseService } from "../../../../../shared/table-builder/service/table.builder.pagination.base.service";
-import { TableBuilderService, TableBuilderColumnHeaderService, TableBuilderSortService, TableBuilderSelectionService, TableBuilderColumnService } from "../../../../../shared/table-builder";
+import { TableBuilderService, TableBuilderColumnHeaderService, TableBuilderSortBaseService, TableBuilderSelectionService, TableBuilderColumnService } from "../../../../../shared/table-builder";
 
 export function getDemoAppCmsUserListTableBuilderProviders(): Provider[] {
     return [
@@ -29,7 +29,7 @@ export function getDemoAppCmsUserListTableBuilderProviders(): Provider[] {
         },
         DemoAppCmsUserListTableBuilderSortService,
         {
-            provide: TableBuilderSortService,
+            provide: TableBuilderSortBaseService,
             useExisting: DemoAppCmsUserListTableBuilderSortService
         },
         DemoAppCmsUserListTableBuilderSelectionService,

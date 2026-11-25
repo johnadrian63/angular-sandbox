@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 
-import { TableBuilderSortService } from "../../../shared/table-builder";
+import { TableBuilderSortRouteService } from "../../../shared/table-builder/service/table.builder.sort.route.service";
 
 @Injectable()
-export class EmbedTableBuilderSortService extends TableBuilderSortService {
+export class EmbedTableBuilderSortService extends TableBuilderSortRouteService {
     public override reset(): void {
-        throw new Error("Method not implemented.");
+        // do nothing
     }
 }

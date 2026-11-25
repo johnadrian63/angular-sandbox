@@ -1,9 +1,13 @@
 import { Injectable } from "@angular/core";
 
-import { TableBuilderSortService } from "../../../../../shared/table-builder";
+import { TableBuilderSortBaseService } from "../../../../../shared/table-builder";
 
 @Injectable()
-export class DemoAppCmsPostTagsTableBuilderSortService extends TableBuilderSortService {
+export class DemoAppCmsPostTagsTableBuilderSortService extends TableBuilderSortBaseService {
+    public override init(): void {
+        // do nothing
+    }
+
     public override reset(): void {
         // cleanup logic here
     }

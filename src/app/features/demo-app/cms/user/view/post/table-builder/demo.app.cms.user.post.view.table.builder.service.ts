@@ -7,18 +7,18 @@ import { IPostDefaultFilter } from "../../../../post/model/post.filter.model";
 import { DemoAppCmsPostService } from "../../../../post/demo.app.cms.post.service";
 import { IPostAdapter, PostAdapter } from "../../../../post/demo.app.cms.post.model.adapter";
 import { DemoAppCmsUserViewPostTableBuilderSortService } from "./demo.app.cms.user.post.view.table.builder.sort.service";
-import { DemoAppCmsUserViewPostTableBuilderPaginationService } from "./demo.app.cms.user.post.view.table.builder.pagination.service";
 import { TABLE_BUILDER_REFRESH_TOKEN, TableBuilderRefresher } from "../../../../../../shared/table-builder/table.builder.token";
+import { DemoAppCmsUserViewPostTableBuilderPaginationService } from "./demo.app.cms.user.post.view.table.builder.pagination.service";
 
 @Injectable()
 export class DemoAppCmsUserViewPostTableBuilderService extends TableBuilderService {
     public readonly userId: WritableSignal<number | undefined> = signal<number | undefined>(undefined);
 
-    private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
     private readonly postService: DemoAppCmsPostService = inject<DemoAppCmsPostService>(DemoAppCmsPostService);
     private readonly tableBuilderSortService: DemoAppCmsUserViewPostTableBuilderSortService = inject<DemoAppCmsUserViewPostTableBuilderSortService>(DemoAppCmsUserViewPostTableBuilderSortService);
     private readonly tableBuilderPaginationService: DemoAppCmsUserViewPostTableBuilderPaginationService = inject<DemoAppCmsUserViewPostTableBuilderPaginationService>(DemoAppCmsUserViewPostTableBuilderPaginationService);
     private readonly refresher = inject<TableBuilderRefresher>(TABLE_BUILDER_REFRESH_TOKEN);
+    private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
 
     public override init(): void {
         this.tableBuilderSortService.sortChanged$
@@ -43,7 +43,7 @@ export class DemoAppCmsUserViewPostTableBuilderService extends TableBuilderServi
                 limit: this.tableBuilderPaginationService.pageSize,
             };
 
-            const sortBy = this.tableBuilderSortService.sort.columnKey;
+            const sortBy = this.tableBuilderSortService.sort.column;
             const order = this.tableBuilderSortService.sort.direction;
 
             if (sortBy && order) {

@@ -7,17 +7,19 @@ import { DemoAppCmsPostService } from "../../demo.app.cms.post.service";
 import { IPostAdapter, PostAdapter } from "../../demo.app.cms.post.model.adapter";
 import { TableBuilderService } from "../../../../../shared/table-builder";
 import { DemoAppCmsPostListFilterSearchService } from "../filter/demo.app.cms.post.list.filter.search.service";
+import { DemoAppCmsPostListTableBuilderSortService } from "./demo.app.cms.post.list.table.builder.sort.service";
 import { DemoAppCmsPostListTableBuilderPaginationService } from "./demo.app.cms.post.list.table.builder.pagination.service";
+import { TABLE_BUILDER_REFRESH_TOKEN, TableBuilderRefresher } from "../../../../../shared/table-builder/table.builder.token";
 import { DemoAppCmsPostListTableBuilderDataAdapter, DemoAppCmsPostListTableBuilderGetPostsDataFactory } from "./demo.app.cms.post.list.table.builder.adapter";
-import { TABLE_BUILDER_REFRESH_TOKEN, TableBuilderRefresher } from './../../../../../shared/table-builder/table.builder.token';
 
 @Injectable()
 export class DemoAppCmsPostListTableBuilderService extends TableBuilderService {
-    private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
-    private readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);
     private readonly postService: DemoAppCmsPostService = inject<DemoAppCmsPostService>(DemoAppCmsPostService);
     private readonly tableBuilderPaginationService: DemoAppCmsPostListTableBuilderPaginationService = inject<DemoAppCmsPostListTableBuilderPaginationService>(DemoAppCmsPostListTableBuilderPaginationService);
+    private readonly tableBuilderSortService: DemoAppCmsPostListTableBuilderSortService = inject<DemoAppCmsPostListTableBuilderSortService>(DemoAppCmsPostListTableBuilderSortService);
     private readonly searchFormService: DemoAppCmsPostListFilterSearchService = inject<DemoAppCmsPostListFilterSearchService>(DemoAppCmsPostListFilterSearchService);
+    private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
+    private readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);
     private readonly refresher = inject<TableBuilderRefresher>(TABLE_BUILDER_REFRESH_TOKEN);
 
     public override init(): void {
@@ -35,7 +37,12 @@ export class DemoAppCmsPostListTableBuilderService extends TableBuilderService {
             this.setLoading(true);
 
             const params = this.activatedRoute.snapshot.queryParams;
-            const factory = DemoAppCmsPostListTableBuilderGetPostsDataFactory.create(params, this.tableBuilderPaginationService, this.searchFormService);
+            const factory = DemoAppCmsPostListTableBuilderGetPostsDataFactory.create(
+                params,
+                this.tableBuilderPaginationService,
+                this.tableBuilderSortService,
+                this.searchFormService
+            );
             const visitor = new DemoAppCmsPostListTableBuilderDataAdapter(this.postService);
             const result = await lastValueFrom(factory.accept(visitor));
 

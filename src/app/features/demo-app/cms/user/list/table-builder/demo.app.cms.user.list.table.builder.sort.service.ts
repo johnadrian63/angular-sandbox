@@ -1,25 +1,10 @@
-import { inject, Injectable } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Injectable } from "@angular/core";
 
-import { Sort, TableBuilderSortService } from "../../../../../shared/table-builder";
+import { TableBuilderSortRouteService } from "../../../../../shared/table-builder/service/table.builder.sort.route.service";
 
 @Injectable()
-export class DemoAppCmsUserListTableBuilderSortService extends TableBuilderSortService {
-    private readonly router: Router = inject<Router>(Router);
-    private readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);
-
-    public override handleSort(sort: Sort): void {
-        this.router.navigate([], {
-            queryParams: {
-                sortBy: sort.columnKey,
-                order: sort.direction
-            },
-            queryParamsHandling: "merge",
-            relativeTo: this.activatedRoute
-        });
-    }
-
+export class DemoAppCmsUserListTableBuilderSortService extends TableBuilderSortRouteService {
     public override reset(): void {
-        // cleanup logic here
+        // do nothing
     }
 }
