@@ -11,12 +11,10 @@ export class DemoAppCmsUserService {
 
     private readonly httpClient: HttpClient = inject<HttpClient>(HttpClient);
 
-    public getUsers(filter: IUserDefaultFilter): Observable<IUserCollection> {
+    public getList(filter: IUserDefaultFilter): Observable<IUserCollection> {
         return this.httpClient.get<IUserCollection>(this.apiUrl, {
             params: {
-                ...filter,
-                skip: filter.skip,
-                limit: filter.limit
+                ...filter
             }
         });
     }
@@ -24,9 +22,7 @@ export class DemoAppCmsUserService {
     public searchUsers(filter: IUserSearchFilter): Observable<IUserCollection> {
         return this.httpClient.get<IUserCollection>(`${this.apiUrl}/search`, {
             params: {
-                ...filter,
-                skip: filter.skip,
-                limit: filter.limit
+                ...filter
             }
         });
     }
@@ -34,9 +30,7 @@ export class DemoAppCmsUserService {
     public filterUsers(filter: IUserFieldFilter): Observable<IUserCollection> {
         return this.httpClient.get<IUserCollection>(`${this.apiUrl}/filter`, {
             params: {
-                ...filter,
-                skip: filter.skip,
-                limit: filter.limit
+                ...filter
             }
         });
     }

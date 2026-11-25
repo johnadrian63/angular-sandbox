@@ -2,8 +2,8 @@ import { Component, effect, inject, input, InputSignal } from "@angular/core";
 
 import { DemoAppCmsPostListView } from "../../../post/list/view/demo.app.cms.post.list.view";
 import { TABLE_BUILDER_REFRESHER_PROVIDER } from "../../../../../shared/table-builder/table.builder.token";
-import { TableBuilderColumnService, TableBuilderService, TableBuilderSortService } from "../../../../../shared/table-builder";
 import { DemoAppCmsUserViewPostTableBuilderService } from "./table-builder/demo.app.cms.user.post.view.table.builder.service";
+import { TableBuilderColumnService, TableBuilderService, TableBuilderSortBaseService } from "../../../../../shared/table-builder";
 import { TableBuilderPaginationBaseService } from "../../../../../shared/table-builder/service/table.builder.pagination.base.service";
 import { DemoAppCmsUserViewPostTableBuilderSortService } from "./table-builder/demo.app.cms.user.post.view.table.builder.sort.service";
 import { DemoAppCmsUserPostViewTableBuilderColumnService } from "./table-builder/demo.app.cms.user.post.view.table.builder.column.service";
@@ -25,7 +25,7 @@ import { DemoAppCmsUserViewPostTableBuilderPaginationService } from "./table-bui
         },
         DemoAppCmsUserViewPostTableBuilderSortService,
         {
-            provide: TableBuilderSortService,
+            provide: TableBuilderSortBaseService,
             useExisting: DemoAppCmsUserViewPostTableBuilderSortService
         },
         DemoAppCmsUserPostViewTableBuilderColumnService,

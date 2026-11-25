@@ -1,4 +1,5 @@
-import { IUser } from "../user/model/user.model";
+import { IUser } from "../../user/model/user.model";
+import { IPaginationMeta } from "../../model/filter.model";
 
 export interface IPost {
     id: number;
@@ -10,11 +11,8 @@ export interface IPost {
     userId: number;
 }
 
-export interface IPostCollection {
+export interface IPostCollection extends IPaginationMeta {
     posts: IPost[];
-    limit: number;
-    skip: number;
-    total: number;
 }
 
 export interface IReaction {
@@ -34,9 +32,6 @@ export interface IPostComment {
     user: ICommentAuthor;
 }
 
-export interface IPostCommentsCollection {
+export interface IPostCommentCollection extends IPaginationMeta {
     comments: IPostComment[];
-    limit: number;
-    skip: number;
-    total: number;
 }

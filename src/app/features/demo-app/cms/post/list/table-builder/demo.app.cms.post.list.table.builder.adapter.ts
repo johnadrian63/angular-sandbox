@@ -1,10 +1,11 @@
 import { Params } from "@angular/router";
 import { Observable } from "rxjs";
 
-import { IPageOptions } from "../../../model/filter.model";
+import { IPostCollection } from "../../model/post.model";
 import { pickDefined } from "../../../../../shared/util/pick";
-import { IPostCollection } from "../../demo.app.cms.post.model";
+import { IPageOptions, ISort } from "../../../model/filter.model";
 import { DemoAppCmsPostService } from "../../demo.app.cms.post.service";
+import { TableBuilderSortBaseService } from "../../../../../shared/table-builder";
 import { IPostDefaultFilter, IPostSearchFilter } from "../../model/post.filter.model";
 import { SearchFormService } from "../../../../../shared/search-form/search.form.service";
 import { TableBuilderPaginationRouteService } from "../../../../../shared/table-builder/service/table.builder.pagination.route.service";
@@ -38,31 +39,37 @@ export class DemoAppCmsPostListTableBuilderGetPostsDataFactory {
     public static create(
         params: Params,
         tableBuilderPaginationService: TableBuilderPaginationRouteService,
+        tableBuilderSortService: TableBuilderSortBaseService,
         searchFormService: SearchFormService
     ): IDemoAppCmsPostListTableBuilderDataHandler {
         const limit = tableBuilderPaginationService.pageSize;
         const skip = limit * tableBuilderPaginationService.page;
-        const paginationOptions: IPageOptions = {
+        const defaultFilter: IPageOptions & ISort = {
             skip,
             limit
         };
 
-        const searchFilter: IPostSearchFilter = pickDefined(params, ["q", "sortBy", "order", "skip", "limit"]);
+        const sortBy = tableBuilderSortService.sort.column!;
+        const order = tableBuilderSortService.sort.direction!;
+
+        if (sortBy && order) {
+            defaultFilter.sortBy = sortBy;
+            defaultFilter.order = order;
+        }
+
+        const searchFilter: IPostSearchFilter = pickDefined(params, ["q"]);
 
         if (searchFilter.q) {
             searchFormService.setValue(searchFilter.q);
 
-            const filter = { ...searchFilter, ...paginationOptions };
+            const filter = { ...searchFilter, ...defaultFilter };
 
             searchFormService.setValue(searchFilter.q);
 
             return new DemoAppCmsPostListTableBuilderSearchPostsDataHandler(filter);
         }
 
-        const defaultFilter: IPostDefaultFilter = pickDefined(params, ["sortBy", "order", "skip", "limit"]);
-        const filter = { ...defaultFilter, ...paginationOptions };
-
-        return new DemoAppCmsPostListTableBuilderGetPostsDataHandler(filter);
+        return new DemoAppCmsPostListTableBuilderGetPostsDataHandler(defaultFilter);
     }
 }
 
@@ -70,7 +77,7 @@ export class DemoAppCmsPostListTableBuilderDataAdapter implements IDemoAppCmsPos
     constructor(private readonly postService: DemoAppCmsPostService) { }
 
     public visitGetPosts(handler: DemoAppCmsPostListTableBuilderGetPostsDataHandler): Observable<IPostCollection> {
-        return this.postService.getPosts(handler.filter);
+        return this.postService.getList(handler.filter);
     }
 
     public visitSearchPosts(handler: DemoAppCmsPostListTableBuilderSearchPostsDataHandler): Observable<IPostCollection> {

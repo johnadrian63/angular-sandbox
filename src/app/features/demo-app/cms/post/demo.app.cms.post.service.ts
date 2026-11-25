@@ -5,19 +5,17 @@ import { Observable } from "rxjs";
 import { ITag } from "../model/tag.model";
 import { IPageOptions } from "../model/filter.model";
 import { IPostDefaultFilter, IPostSearchFilter } from "./model/post.filter.model";
-import { IPostCollection, IPost, IPostCommentsCollection } from "./demo.app.cms.post.model";
+import { IPostCollection, IPost, IPostCommentCollection } from "./model/post.model";
 
 @Service()
 export class DemoAppCmsPostService {
     private readonly apiUrl = "https://dummyjson.com/posts";
     private readonly httpClient: HttpClient = inject<HttpClient>(HttpClient);
 
-    public getPosts(filter: IPostDefaultFilter): Observable<IPostCollection> {
+    public getList(filter: IPostDefaultFilter): Observable<IPostCollection> {
         return this.httpClient.get<IPostCollection>(this.apiUrl, {
             params: {
-                ...filter,
-                skip: filter.skip,
-                limit: filter.limit
+                ...filter
             }
         });
     }
@@ -25,9 +23,7 @@ export class DemoAppCmsPostService {
     public searchPosts(filter: IPostSearchFilter): Observable<IPostCollection> {
         return this.httpClient.get<IPostCollection>(`${this.apiUrl}/search`, {
             params: {
-                ...filter,
-                skip: filter.skip,
-                limit: filter.limit
+                ...filter
             }
         });
     }
@@ -44,8 +40,8 @@ export class DemoAppCmsPostService {
         });
     }
 
-    public getComments(postId: number, filter: IPageOptions): Observable<IPostCommentsCollection> {
-        return this.httpClient.get<IPostCommentsCollection>(`${this.apiUrl}/${postId}/comments`, {
+    public getComments(postId: number, filter: IPageOptions): Observable<IPostCommentCollection> {
+        return this.httpClient.get<IPostCommentCollection>(`${this.apiUrl}/${postId}/comments`, {
             params: {
                 ...filter
             }

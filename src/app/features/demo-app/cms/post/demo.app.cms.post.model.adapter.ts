@@ -1,4 +1,4 @@
-import { IPost, IReaction } from "./demo.app.cms.post.model";
+import { IPost, IReaction } from "./model/post.model";
 import { ITableBuilderRowData } from "../../../shared/table-builder";
 
 export interface IPostAdapter extends ITableBuilderRowData, IPost { }

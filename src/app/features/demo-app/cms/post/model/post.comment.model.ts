@@ -1,12 +1,12 @@
+import { IPost } from "./post.model";
 import { IUser } from "../../user/model/user.model";
-import { IPost } from "../demo.app.cms.post.model";
 import { IPaginationMeta } from "../../model/filter.model";
 
 export interface IUserComment extends Pick<IUser, "id" | "username"> {
     fullName: string;
 }
 
-export interface IPostComments {
+export interface IPostComment {
     id: number;
     postId: number;
     body: string;

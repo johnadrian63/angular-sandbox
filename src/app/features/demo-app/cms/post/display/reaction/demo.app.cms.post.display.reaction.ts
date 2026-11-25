@@ -2,7 +2,7 @@ import { Component, model, ModelSignal } from "@angular/core";
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
-import { IReaction } from "../../demo.app.cms.post.model";
+import { IReaction } from "../../model/post.model";
 import { IDataDisplayVisitor } from "../../../../../shared/data-display/data.display.visitor.interface";
 import { DataDisplayAbstractComponent } from "../../../../../shared/data-display/data.display.abstract.component";
 

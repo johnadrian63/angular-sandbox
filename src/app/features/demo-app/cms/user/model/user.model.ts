@@ -63,12 +63,12 @@ export interface ICoordinate {
     lng: number;
 }
 
-
 export interface ICrypto {
     coin: string;
     wallet: string;
     network: string;
 }
+
 export interface IUserCollection {
     users: IUser[];
     limit: number;

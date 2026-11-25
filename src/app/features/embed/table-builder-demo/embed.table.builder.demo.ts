@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+
 import { EmbedTableBuilderService } from "./table-builder/embed.table.builder.demo.service";
 import { TABLE_BUILDER_REFRESHER_PROVIDER } from "../../shared/table-builder/table.builder.token";
 import { EmbedTableBuilderSortService } from "./table-builder/embed.table.builder.demo.sort.service";
@@ -7,7 +8,7 @@ import { EmbedTableBuilderSelectionService } from "./table-builder/embed.table.b
 import { EmbedTableBuilderPaginationService } from "./table-builder/embed.table.builder.demo.pagination.service";
 import { EmbedTableBuilderColumnHeaderService } from "./table-builder/embed.table.builder.demo.column.header.service";
 import { TableBuilderPaginationBaseService } from "../../shared/table-builder/service/table.builder.pagination.base.service";
-import { TableBuilderComponent, TableBuilderService, TableBuilderColumnHeaderService, TableBuilderSortService, TableBuilderSelectionService, TableBuilderColumnService } from "../../shared/table-builder";
+import { TableBuilderComponent, TableBuilderService, TableBuilderColumnHeaderService, TableBuilderSortBaseService, TableBuilderSelectionService, TableBuilderColumnService } from "../../shared/table-builder";
 
 @Component({
     selector: "app-embed-table-builder-demo",
@@ -34,7 +35,7 @@ import { TableBuilderComponent, TableBuilderService, TableBuilderColumnHeaderSer
         },
         EmbedTableBuilderSortService,
         {
-            provide: TableBuilderSortService,
+            provide: TableBuilderSortBaseService,
             useExisting: EmbedTableBuilderSortService
         },
         EmbedTableBuilderSelectionService,

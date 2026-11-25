@@ -8,7 +8,7 @@ import { SearchFormService } from "../../../../shared/search-form/search.form.se
 import { TABLE_BUILDER_REFRESHER_PROVIDER } from "../../../../shared/table-builder/table.builder.token";
 import { DemoAppCmsPostListFilterSearchService } from "./filter/demo.app.cms.post.list.filter.search.service";
 import { DemoAppCmsPostListTableBuilderService } from "./table-builder/demo.app.cms.post.list.table.builder.service";
-import { TableBuilderColumnService, TableBuilderService, TableBuilderSortService } from "../../../../shared/table-builder";
+import { TableBuilderColumnService, TableBuilderService, TableBuilderSortBaseService } from "../../../../shared/table-builder";
 import { DemoAppCmsPostListTableBuilderSortService } from "./table-builder/demo.app.cms.post.list.table.builder.sort.service";
 import { DemoAppCmsPostListTableBuilderColumnService } from "./table-builder/demo.app.cms.post.list.table.builder.column.service";
 import { TableBuilderPaginationBaseService } from "../../../../shared/table-builder/service/table.builder.pagination.base.service";
@@ -40,7 +40,7 @@ import { DemoAppCmsPostListTableBuilderPaginationService } from "./table-builder
         },
         DemoAppCmsPostListTableBuilderSortService,
         {
-            provide: TableBuilderSortService,
+            provide: TableBuilderSortBaseService,
             useExisting: DemoAppCmsPostListTableBuilderSortService
         },
         DemoAppCmsPostListTableBuilderColumnService,
