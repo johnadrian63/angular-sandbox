@@ -1,4 +1,4 @@
-import { IconDefinition, faUsers, faQuoteLeft, faFilePen, faTags, faTableList } from "@fortawesome/free-solid-svg-icons";
+import { IconDefinition, faUsers, faQuoteLeft, faFilePen, faTags, faTableList, faUtensils } from "@fortawesome/free-solid-svg-icons";
 
 import { IMenuItem } from "../../../shared/navigation/navigation.model";
 import { LayoutDisplayThemeSwitcherHandler } from "../../../../layout/shared/display/theme-switcher/layout.display.theme.switcher.handler";
@@ -37,11 +37,17 @@ export const demoAppCmsNavigationData: ICmsMenuItem[] = [
         ]
     },
     {
+        label: "recipes",
+        text: "Recipes",
+        path: "/demo/cms/recipes",
+        icon: faUtensils
+    },
+    {
         label: "quotes",
         text: "Quotes",
         path: "/demo/cms/quotes",
         icon: faQuoteLeft
-    }
+    },
 ];
 
 export const demoAppCmsProfileNavigationData: IMenuItem[] = [
