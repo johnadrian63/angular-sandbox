@@ -1,11 +1,14 @@
-import { Injectable, ResourceRef } from "@angular/core";
+import { Injectable, Resource, ResourceRef } from "@angular/core";
+
+import { withPreviousValue } from "../../../shared/util/withpreviousvalue";
 
 @Injectable()
 export abstract class DataCollatorService<T> {
     protected abstract resource: ResourceRef<T | undefined>;
+    private previousView?: Resource<T | undefined>;
 
     public get dataSource(): T | undefined {
-        return this.resource.hasValue() ? this.resource.value() : undefined;
+        return this.view.hasValue() ? this.view.value() : undefined;
     }
 
     public isLoading(): boolean {
@@ -18,6 +21,10 @@ export abstract class DataCollatorService<T> {
 
     public error(): Error | undefined {
         return this.resource.error();
+    }
+
+    private get view(): Resource<T | undefined> {
+        return (this.previousView ??= withPreviousValue(this.resource));
     }
 }
 
