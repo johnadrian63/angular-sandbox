@@ -45,8 +45,6 @@ export abstract class DataCollatorPaginationService {
 
     public abstract reset(): void;
 
-    public init(): void { }
-
     public setPaging(page: number, pageSize: number): void {
         const currentPage = NumberUtil.isPositive(page) ? page : 0;
         this._page.set(currentPage);

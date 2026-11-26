@@ -2,6 +2,8 @@ import { effect, inject, Service, Signal, signal, WritableSignal } from "@angula
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
+import { OverlayService } from "../../../features/shared/util/overlay.service";
+
 @Service()
 export class SidebarTogglerService {
 
@@ -12,13 +14,26 @@ export class SidebarTogglerService {
     private readonly toggleSignal: WritableSignal<boolean> = signal<boolean>(true);
     private readonly toggleKey: string = "sidebarTogglerKey";
     private readonly breakpointObserver: BreakpointObserver = inject<BreakpointObserver>(BreakpointObserver);
+    private readonly overlayService: OverlayService = inject<OverlayService>(OverlayService);
 
+    private element!: HTMLElement;
     constructor() {
-
         effect(() => {
             const toggled = this.toggleSignal();
 
             this.storeCache(toggled);
+
+            if (toggled) {
+                this.element = this.overlayService.create();
+
+                this.element.addEventListener('click', () => {
+                    this.toggle();
+                });
+            }
+
+            if (!toggled && this.element) {
+                this.overlayService.remove(this.element);
+            }
         });
 
         this.breakpointObserver.observe([
