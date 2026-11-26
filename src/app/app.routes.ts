@@ -53,12 +53,6 @@ export const routes: Routes = [
                 ]
             },
             {
-                path: "demo-app",
-                children: [
-                    ...demoAppRoutes
-                ]
-            },
-            {
                 path: "ng",
                 children: [
                     ...ngRoutes
@@ -75,6 +69,11 @@ export const routes: Routes = [
                 children: [
                     ...pocRoutes
                 ]
+            },
+            {
+                path: "demo",
+                pathMatch: "full",
+                redirectTo: "/demo/cms",
             },
             {
                 path: "not-found",
@@ -136,9 +135,8 @@ export const routes: Routes = [
                         ]
                     }
                 ]
-            }
+            },
         ]
-
     },
     {
         path: "**",
