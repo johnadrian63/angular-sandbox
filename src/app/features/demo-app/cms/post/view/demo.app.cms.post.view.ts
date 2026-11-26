@@ -7,7 +7,7 @@ import { faEye, faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-ico
 import { PostAdapter } from "../demo.app.cms.post.model.adapter";
 import { DataDisplayTextComponent } from "../../../../shared/data-display/text";
 import { DataDisplayLinkComponent } from "../../../../shared/data-display/link";
-import { DemoAppCmsPostViewComments } from "./comments/demo.app.cms.post.view.comments";
+import { DemoAppCmsPostViewComment } from "./comments/demo.app.cms.post.view.comment";
 import { DemoAppCmsPostDisplayTags } from "../display/tags/demo.app.cms.post.display.tags";
 
 @Component({
@@ -18,7 +18,7 @@ import { DemoAppCmsPostDisplayTags } from "../display/tags/demo.app.cms.post.dis
         DemoAppCmsPostDisplayTags,
         FaIconComponent,
         DataDisplayLinkComponent,
-        DemoAppCmsPostViewComments
+        DemoAppCmsPostViewComment
     ]
 })
 export class DemoAppCmsPostView {
