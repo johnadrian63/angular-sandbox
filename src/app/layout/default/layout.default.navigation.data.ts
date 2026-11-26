@@ -32,8 +32,20 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
             },
             {
                 label: "resource_service",
-                text: "Resource Service",
-                path: "/poc/resource-service"
+                text: "Data Collator",
+                path: "/poc/resource-service",
+                children: [
+                    {
+                        label: "resource_service",
+                        text: "Basic",
+                        path: "/poc/data-collator-basic"
+                    },
+                    {
+                        label: "resource_service",
+                        text: "Advance",
+                        path: "/poc/data-collator-advance"
+                    },
+                ]
             },
             // TODO: disable for now. Investigate why WebSocket doesn't work on Vercel.
             // {

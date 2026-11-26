@@ -1,21 +1,21 @@
 import { Component, inject } from "@angular/core";
 import { JsonPipe } from "@angular/common";
 
-import { ITodoAdapter } from "./model.adapter";
-import { PocResourceCollatorService } from "./poc.resource.collator.service";
+import { ITodoAdapter } from "../model.adapter";
+import { PocResourceBasicCollatorService } from "./poc.resource.basic.collator.service";
 
 @Component({
-    selector: "app-poc-resource",
-    templateUrl: "./poc.resource.html",
+    selector: "app-poc-resource-basic",
+    templateUrl: "./poc.resource.basic.html",
     imports: [
         JsonPipe
     ],
     providers: [
-        PocResourceCollatorService
+        PocResourceBasicCollatorService
     ]
 })
-export class PocResource {
-    private readonly collatorService = inject<PocResourceCollatorService>(PocResourceCollatorService);
+export class PocResourceBasic {
+    private readonly collatorService = inject<PocResourceBasicCollatorService>(PocResourceBasicCollatorService);
 
     public get dataSource(): ITodoAdapter | undefined {
         return this.collatorService.dataSource;

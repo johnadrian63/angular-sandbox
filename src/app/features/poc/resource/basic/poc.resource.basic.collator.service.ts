@@ -3,27 +3,17 @@ import { HttpClient } from "@angular/common/http";
 import { rxResource } from "@angular/core/rxjs-interop";
 import { lastValueFrom } from "rxjs";
 
-import { ITodoAdapter, TodoAdapter } from "./model.adapter";
-import { DataCollatorService } from "./data.collator.service";
+import { ITodoAdapter, TodoAdapter } from "../model.adapter";
+import { DataCollatorService } from "../data-collator/data.collator.service";
 
 @Injectable()
-export class PocResourceCollatorService extends DataCollatorService<ITodoAdapter> {
+export class PocResourceBasicCollatorService extends DataCollatorService<ITodoAdapter> {
     protected resource: ResourceRef<ITodoAdapter | undefined> = rxResource({
         params: () => {
             return { id: this.id() };
         },
         stream: ({ params }) => this.httpClient.get<ITodoAdapter>(`${this.apiUrl}/${params.id}`),
     });
-
-    /**
-     *  @description promise-based resource using resource()
-     * */
-    // protected resource: ResourceRef<ITodoAdapter | undefined> = resource({
-    //     params: () => {
-    //         return { id: this.id() };
-    //     },
-    //     loader: ({ params, abortSignal }) => this.fetchUser(params, abortSignal)
-    // });
 
     public readonly id: WritableSignal<number> = signal<number>(1);
 

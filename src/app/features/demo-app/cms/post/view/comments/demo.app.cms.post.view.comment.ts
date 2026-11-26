@@ -5,7 +5,7 @@ import { faComment, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { IPostCommentAdapter } from "./demo.app.cms.post.view.comment.adapter";
 import { DataDisplayTextComponent } from "../../../../../shared/data-display/text";
 import { DemoAppCmsPostViewCommentService } from "./demo.app.cms.post.view.comment.service";
-import { DemoAppCmsPostViewCommentsSkeleton } from "./skeleton/demo.app.cms.post.view.comments.skeleton";
+import { DemoAppCmsPostViewCommentSkeleton } from "./skeleton/demo.app.cms.post.view.comment.skeleton";
 import { DemoAppCmsPostViewPaginationService } from "./demo.app.cms.post.view.comment.pagination.service";
 
 @Component({
@@ -15,7 +15,7 @@ import { DemoAppCmsPostViewPaginationService } from "./demo.app.cms.post.view.co
     imports: [
         FaIconComponent,
         DataDisplayTextComponent,
-        DemoAppCmsPostViewCommentsSkeleton
+        DemoAppCmsPostViewCommentSkeleton
     ],
     providers: [
         DemoAppCmsPostViewCommentService,

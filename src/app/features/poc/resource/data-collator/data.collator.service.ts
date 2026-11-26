@@ -20,3 +20,8 @@ export abstract class DataCollatorService<T> {
         return this.resource.error();
     }
 }
+
+// data.collator.pagination.service (x)
+// data.collator.pagination.route.service
+// data.collator.sort.service
+// data.collator.sort.route.service
