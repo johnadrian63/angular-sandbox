@@ -11,7 +11,6 @@ export class SidebarTogglerPanel {
 
     private readonly elementRef: ElementRef = inject<ElementRef>(ElementRef);
     private readonly renderer: Renderer2 = inject<Renderer2>(Renderer2);
-
     private readonly sidebarToggleService: SidebarTogglerService = inject<SidebarTogglerService>(SidebarTogglerService);
 
     constructor() {

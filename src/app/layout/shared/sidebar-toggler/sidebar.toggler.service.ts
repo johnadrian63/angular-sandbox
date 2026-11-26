@@ -1,4 +1,6 @@
-import { effect, Service, Signal, signal, WritableSignal } from "@angular/core";
+import { effect, inject, Service, Signal, signal, WritableSignal } from "@angular/core";
+import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 @Service()
 export class SidebarTogglerService {
@@ -9,14 +11,29 @@ export class SidebarTogglerService {
 
     private readonly toggleSignal: WritableSignal<boolean> = signal<boolean>(true);
     private readonly toggleKey: string = "sidebarTogglerKey";
+    private readonly breakpointObserver: BreakpointObserver = inject<BreakpointObserver>(BreakpointObserver);
 
     constructor() {
-        const toggled = this.getToggledCache();
-
-        this.toggleSignal.set(toggled);
 
         effect(() => {
             this.storeCache(this.toggleSignal());
+        });
+
+        this.breakpointObserver.observe([
+            Breakpoints.Handset,
+            "(max-width: 768px)"
+        ]).pipe(
+            takeUntilDestroyed()
+        ).subscribe((result) => {
+            const isMobile = result.matches;
+
+            if (isMobile) {
+                this.toggleSignal.set(false);
+            } else {
+                const toggled = this.getToggledCache();
+
+                this.toggleSignal.set(toggled);
+            }
         });
     }
 
