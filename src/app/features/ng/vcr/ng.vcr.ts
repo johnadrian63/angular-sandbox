@@ -4,10 +4,10 @@ import { NgVcrExampleTemplate } from "./example-template/ng.vcr.example.template
 
 
 @Component({
-    imports: [],
-    selector: "app-ng.vcr",
+    selector: "app-ng-vcr",
     styleUrl: "./ng.vcr.css",
     templateUrl: "./ng.vcr.html",
+    imports: [],
 })
 export class NgVcr {
     public template = viewChild("template", { read: ViewContainerRef });
