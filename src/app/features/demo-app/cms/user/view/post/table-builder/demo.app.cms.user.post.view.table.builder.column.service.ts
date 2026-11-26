@@ -26,7 +26,7 @@ class DemoAppCmsUserPostViewTableBuilderColumnDataVisitor extends DemoAppCmsPost
     public override visitLink(component: DataDisplayLinkComponent): void {
         const value = <string>this.row[this.columnKey];
 
-        component.url.set(`../../../posts/view/${this.row.id}`);
+        component.url.set(`../posts/view/${this.row.id}`);
         component.returnUrlEnabled.set(true);
         component.text.set(value);
     }
