@@ -28,5 +28,12 @@ export class TodoAdapter implements ITodoAdapter {
         return this.data.userId;
     }
 
-    constructor(private readonly data: ITodoAdapter) { }
+    constructor(private readonly data: ITodo) { }
+}
+
+export interface ITodoFilter {
+    limit: number;
+    skip: number;
+    sortBy?: string;
+    order?: string;
 }

@@ -4,11 +4,11 @@ import { lastValueFrom } from "rxjs";
 import { IPageOptions } from "../../../model/filter.model";
 import { DemoAppCmsPostService } from "../../demo.app.cms.post.service";
 import { DataCollatorService } from "../../../../../shared/data-collator";
-import { DemoAppCmsPostViewPaginationService } from "./demo.app.cms.post.view.pagination.service";
-import { IPostCommentAdapter, PostCommentAdapter } from "./demo.app.cms.post.view.comments.adapter";
+import { IPostCommentAdapter, PostCommentAdapter } from "./demo.app.cms.post.view.comment.adapter";
+import { DemoAppCmsPostViewPaginationService } from "./demo.app.cms.post.view.comment.pagination.service";
 
 @Injectable()
-export class DemoAppCmsPostViewService extends DataCollatorService<IPostCommentAdapter> {
+export class DemoAppCmsPostViewCommentService extends DataCollatorService<IPostCommentAdapter> {
     public readonly postId: WritableSignal<number | undefined> = signal<number | undefined>(undefined);
 
     private readonly postService: DemoAppCmsPostService = inject<DemoAppCmsPostService>(DemoAppCmsPostService);

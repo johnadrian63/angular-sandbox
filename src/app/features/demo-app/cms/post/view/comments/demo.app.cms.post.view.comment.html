@@ -78,7 +78,7 @@
         }
 
         @if (commentsResource.isLoading()) {
-            <app-demo-cms-app-post-view-comments-skeleton></app-demo-cms-app-post-view-comments-skeleton>
+            <app-demo-cms-app-post-view-comment-skeleton></app-demo-cms-app-post-view-comment-skeleton>
         }
 
         @if (!commentsResource.isLoading() && totalComments === 0) {

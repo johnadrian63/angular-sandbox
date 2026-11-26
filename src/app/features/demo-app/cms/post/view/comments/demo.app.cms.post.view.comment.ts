@@ -2,27 +2,27 @@ import { Component, effect, inject, input, resource, ResourceRef } from "@angula
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 import { faComment, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
-import { DemoAppCmsPostViewService } from "./demo.app.cms.post.view.service";
-import { IPostCommentAdapter } from "./demo.app.cms.post.view.comments.adapter";
+import { IPostCommentAdapter } from "./demo.app.cms.post.view.comment.adapter";
 import { DataDisplayTextComponent } from "../../../../../shared/data-display/text";
-import { DemoAppCmsPostViewPaginationService } from "./demo.app.cms.post.view.pagination.service";
-import { DemoAppCmsPostViewCommentsSkeleton } from "./skeleton/demo.app.cms.post.view.comments.skeleton";
+import { DemoAppCmsPostViewCommentService } from "./demo.app.cms.post.view.comment.service";
+import { DemoAppCmsPostViewCommentSkeleton } from "./skeleton/demo.app.cms.post.view.comment.skeleton";
+import { DemoAppCmsPostViewPaginationService } from "./demo.app.cms.post.view.comment.pagination.service";
 
 @Component({
-    selector: "app-demo-cms-app-post-view-comments",
-    templateUrl: "./demo.app.cms.post.view.comments.html",
-    styleUrl: "./demo.app.cms.post.view.comments.css",
+    selector: "app-demo-cms-app-post-view-comment",
+    templateUrl: "./demo.app.cms.post.view.comment.html",
+    styleUrl: "./demo.app.cms.post.view.comment.css",
     imports: [
-        DataDisplayTextComponent,
         FaIconComponent,
-        DemoAppCmsPostViewCommentsSkeleton
+        DataDisplayTextComponent,
+        DemoAppCmsPostViewCommentSkeleton
     ],
     providers: [
-        DemoAppCmsPostViewService,
+        DemoAppCmsPostViewCommentService,
         DemoAppCmsPostViewPaginationService
     ]
 })
-export class DemoAppCmsPostViewComments {
+export class DemoAppCmsPostViewComment {
 
     public get hasNext(): boolean {
         return this.paginationService.hasNext;
@@ -41,7 +41,7 @@ export class DemoAppCmsPostViewComments {
         loader: () => this.postViewService.loadRequest()
     });
 
-    private readonly postViewService: DemoAppCmsPostViewService = inject<DemoAppCmsPostViewService>(DemoAppCmsPostViewService);
+    private readonly postViewService: DemoAppCmsPostViewCommentService = inject<DemoAppCmsPostViewCommentService>(DemoAppCmsPostViewCommentService);
     private readonly paginationService: DemoAppCmsPostViewPaginationService = inject<DemoAppCmsPostViewPaginationService>(DemoAppCmsPostViewPaginationService);
 
     constructor() {
