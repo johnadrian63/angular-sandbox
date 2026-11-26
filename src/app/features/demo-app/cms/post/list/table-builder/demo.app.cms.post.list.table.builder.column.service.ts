@@ -72,7 +72,7 @@ export class DemoAppCmsPostListTableBuilderColumnDataVisitor
     public visitLink(component: DataDisplayLinkComponent): void {
         const value = <string>this.row[this.columnKey];
 
-        component.url.set(`../view/${this.row.id}`);
+        component.url.set(`view/${this.row.id}`);
         component.returnUrlEnabled.set(true);
         component.text.set(value);
     }
