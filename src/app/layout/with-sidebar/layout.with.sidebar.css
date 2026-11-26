@@ -6,7 +6,8 @@ header {
 
     @media (width >=theme(--breakpoint-md)) {
         & {
-            @apply sticky top-0 z-10;
+            @apply sticky top-0;
+            z-index: 53;
         }
     }
 }
