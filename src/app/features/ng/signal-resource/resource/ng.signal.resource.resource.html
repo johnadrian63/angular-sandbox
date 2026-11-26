@@ -1,6 +1,11 @@
+<h2 class="text-center font-bold">Fetch API Using resource()</h2>
 <div class="mb-2">
     <button (click)="fetchRandomUser()" class="btn-primary cursor-pointer">
-        Fetch Random User
+        @if (userResource.isLoading()) {
+            Fetching User...
+        } @else {
+            Fetch Random User
+        }
     </button>
 </div>
 
