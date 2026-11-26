@@ -1,0 +1,15 @@
+@for (counter of maxRatings; track $index) {
+    @let ratingIndex = $index + 1;
+
+    @if (ratingIndex >= rating()) {
+        @if (ratingIndex === rating()) {
+            <fa-icon [icon]="fullStarIcon" class="text-amber-500"></fa-icon>
+        } @else {
+            <fa-icon [icon]="halfStarIcon" class="text-amber-500"></fa-icon>
+        }
+    } @else {
+        <fa-icon [icon]="fullStarIcon" class="text-amber-500"></fa-icon>
+    }
+}
+
+<app-data-display-text classes="font-semibold ml-1" [text]="rating()"></app-data-display-text>

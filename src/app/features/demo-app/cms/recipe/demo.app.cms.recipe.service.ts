@@ -2,7 +2,7 @@ import { inject, Service } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
-import { IRecipeCollection } from "./model/recipe.model";
+import { IRecipe, IRecipeCollection } from "./model/recipe.model";
 import { IRecipeDefaultFilter } from "./model/recipe.filter.model";
 
 @Service()
@@ -16,5 +16,9 @@ export class DemoAppCmsRecipeService {
                 ...filter
             }
         });
+    }
+
+    public getRecipe(recipeId: number): Observable<IRecipe> {
+        return this.httpClient.get<IRecipe>(`${this.apiUrl}/${recipeId}`);
     }
 }
