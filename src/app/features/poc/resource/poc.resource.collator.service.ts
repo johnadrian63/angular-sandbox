@@ -8,17 +8,16 @@ import { DataCollatorService } from "./data.collator.service";
 
 @Injectable()
 export class PocResourceCollatorService extends DataCollatorService<ITodoAdapter | undefined> {
-    private readonly apiUrl = "https://dummyjson.com/todos";
 
     public override get dataSource(): ITodoAdapter | undefined {
         return this.resource.value();
     }
 
     public readonly resource = this.createResource();
+    public readonly id: WritableSignal<number> = signal<number>(1);
 
     private readonly httpClient = inject<HttpClient>(HttpClient);
-
-    public readonly id: WritableSignal<number> = signal<number>(1);
+    private readonly apiUrl = "https://dummyjson.com/todos";
 
     /**
      * @description observable-based resource using rxResource()
