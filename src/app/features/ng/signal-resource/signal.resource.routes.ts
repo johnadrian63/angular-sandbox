@@ -10,4 +10,8 @@ export const signalResourceRoutes: Routes = [
         path: "resource",
         loadComponent: () => import("./resource/ng.signal.resource.resource").then((c) => c.NgSignalResourceResource),
     },
+    {
+        path: "http",
+        loadComponent: () => import("./http/ng.signal.resource.http").then((c) => c.NgSignalResourceHttp),
+    },
 ];

@@ -1,0 +1,25 @@
+<h2 class="text-center font-bold">Fetch API Using httpResource()</h2>
+<div class="mb-2">
+    <button (click)="fetchRandomPost()" class="btn-primary cursor-pointer">
+        @if (postResource.isLoading()) {
+            Fetching Post...
+        } @else {
+            Fetch Random Post
+        }
+    </button>
+</div>
+
+<div class="border-2 border-gray-400 border-dashed p-2">
+    <div class="flex items-center gap-x-2 border-b border-gray-300 mb-2 py-2">
+        <div>
+            <span class="font-semibold mr-1">Fetch Post ID:</span>
+            <span class="font-bold text-red-500">{{ postId() }}</span>
+        </div>
+        <div>
+            <span class="font-semibold mr-1">Loading:</span>
+            <span class="font-bold text-red-500">{{ postResource.isLoading() }}</span>
+        </div>
+    </div>
+    <h4>Output</h4>
+    <pre>{{ postResource.value() | json }}</pre>
+</div>

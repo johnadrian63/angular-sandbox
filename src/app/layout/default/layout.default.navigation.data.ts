@@ -15,11 +15,6 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
                 text: "Table Builder (Basic)",
                 path: "/poc/table-builder"
             },
-            // {
-            //     label: "table_builder_advance",
-            //     text: "Table Builder (Advance)",
-            //     path: "/poc/table-builder"
-            // },
             {
                 label: "dynamic_navigation",
                 text: "Dynamic Navigation",
@@ -35,7 +30,11 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
                 text: "Nested Handler",
                 path: "/poc/nested-handler"
             },
-
+            {
+                label: "resource_service",
+                text: "Resource Service",
+                path: "/poc/resource-service"
+            },
             // TODO: disable for now. Investigate why WebSocket doesn't work on Vercel.
             // {
             //     label: "websocket",
@@ -135,7 +134,25 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
     {
         label: "ng",
         text: "NG",
-        path: "/ng"
+        path: "/ng",
+        handler: NavigationHorizontalCdkDropdownLinkDisplayHandler,
+        children: [
+            {
+                label: "signal_forms",
+                text: "Signal Forms",
+                path: "/ng/signal-form/using-submit",
+            },
+            {
+                label: "vcr",
+                text: "ViewContainerRef",
+                path: "/ng/vcr",
+            },
+            {
+                label: "signal_resource",
+                text: "Signal Resource",
+                path: "/ng/signal-resource",
+            },
+        ]
     },
     {
         label: "material",
