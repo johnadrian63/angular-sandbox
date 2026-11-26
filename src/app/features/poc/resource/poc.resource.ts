@@ -1,4 +1,4 @@
-import { Component, inject, ResourceRef } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { JsonPipe } from "@angular/common";
 
 import { ITodoAdapter } from "./model.adapter";
@@ -17,8 +17,12 @@ import { PocResourceCollatorService } from "./poc.resource.collator.service";
 export class PocResource {
     private readonly collatorService = inject<PocResourceCollatorService>(PocResourceCollatorService);
 
-    public get resource(): ResourceRef<ITodoAdapter | undefined> {
-        return this.collatorService.resource;
+    public get dataSource(): ITodoAdapter | undefined {
+        return this.collatorService.dataSource;
+    }
+
+    public get isLoading(): boolean {
+        return this.collatorService.isLoading();
     }
 
     public get id(): number {

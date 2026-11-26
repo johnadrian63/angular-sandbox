@@ -1,14 +1,22 @@
 import { Injectable, ResourceRef } from "@angular/core";
 
-export interface IDataCollatorRow {
-    rowId: string | number;
-}
-
-
 @Injectable()
 export abstract class DataCollatorService<T> {
+    protected abstract resource: ResourceRef<T | undefined>;
 
-    public abstract get dataSource(): T;
+    public get dataSource(): T | undefined {
+        return this.resource.value();
+    }
 
-    public abstract createResource(): ResourceRef<T | undefined>;
+    public isLoading(): boolean {
+        return this.resource.isLoading();
+    }
+
+    public reload(): void {
+        this.resource.reload();
+    }
+
+    public error(): Error | undefined {
+        return this.resource.error();
+    }
 }

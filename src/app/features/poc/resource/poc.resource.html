@@ -10,9 +10,9 @@
         </div>
         <div>
             <span class="font-semibold mr-1">Loading:</span>
-            <span class="font-bold text-red-500">{{ resource.isLoading() }}</span>
+            <span class="font-bold text-red-500">{{ isLoading }}</span>
         </div>
     </div>
     <h4>Output</h4>
-    <pre>{{ resource.value() | json }}</pre>
+    <pre>{{ dataSource | json }}</pre>
 </div>
