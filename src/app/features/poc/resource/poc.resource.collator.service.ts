@@ -7,12 +7,12 @@ import { ITodoAdapter, TodoAdapter } from "./model.adapter";
 import { DataCollatorService } from "./data.collator.service";
 
 @Injectable()
-export class PocResourceCollatorService extends DataCollatorService<ITodoAdapter | undefined> {
+export class PocResourceCollatorService extends DataCollatorService<ITodoAdapter> {
     protected resource: ResourceRef<ITodoAdapter | undefined> = rxResource({
         params: () => {
             return { id: this.id() };
         },
-        stream: ({ params }) => this.httpClient.get<ITodoAdapter | undefined>(`${this.apiUrl}/${params.id}`)
+        stream: ({ params }) => this.httpClient.get<ITodoAdapter>(`${this.apiUrl}/${params.id}`),
     });
 
     /**

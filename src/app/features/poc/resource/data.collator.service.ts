@@ -5,7 +5,7 @@ export abstract class DataCollatorService<T> {
     protected abstract resource: ResourceRef<T | undefined>;
 
     public get dataSource(): T | undefined {
-        return this.resource.value();
+        return this.resource.hasValue() ? this.resource.value() : undefined;
     }
 
     public isLoading(): boolean {
