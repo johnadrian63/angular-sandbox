@@ -31,6 +31,6 @@ export class DemoAppCmsRecipeViewService extends DataCollatorService<IRecipeAdap
     }
 
     public override reset(): void {
-        throw new Error("Method not implemented.");
+        // do nothing
     }
 }

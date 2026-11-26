@@ -8,13 +8,13 @@
             </p>
         </div>
 
-        <a
-            href="../../"
-            class="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
-        >
-            <span>&larr;</span>
-            Back to Recipes
-        </a>
+        <app-data-display-link
+            text="Back to Recipes"
+            url="../../"
+            activeClass="''"
+            [returnUrlEnabled]="true"
+            classes="rounded-lg cursor-pointer border border-gray-300 px-4 py-2 text-sm font-medium"
+        ></app-data-display-link>
     </div>
 
     <!-- Recipe Overview -->

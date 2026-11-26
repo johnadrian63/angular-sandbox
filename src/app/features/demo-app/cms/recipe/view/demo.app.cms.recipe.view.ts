@@ -2,6 +2,7 @@ import { Component, inject, resource } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
 
+import { DataDisplayLinkComponent } from "../../../../shared/data-display/link";
 import { DemoAppCmsRecipeViewService } from "./demo.app.cms.recipe.view.service";
 
 @Component({
@@ -9,7 +10,8 @@ import { DemoAppCmsRecipeViewService } from "./demo.app.cms.recipe.view.service"
     templateUrl: "./demo.app.cms.recipe.view.html",
     providers: [
         DemoAppCmsRecipeViewService
-    ]
+    ],
+    imports: [DataDisplayLinkComponent]
 })
 export class DemoAppCmsRecipeView {
     public readonly activatedRoute = inject<ActivatedRoute>(ActivatedRoute);
