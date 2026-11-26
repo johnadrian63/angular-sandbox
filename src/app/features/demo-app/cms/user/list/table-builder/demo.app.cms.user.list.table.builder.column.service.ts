@@ -56,7 +56,7 @@ class DemoAppCmsUserListTableBuilderDataVisitor implements
     public visitFullName(component: DemoAppCmsUserDisplayFullName): void {
         component.name.set(this.row.fullName);
         component.imageUrl.set(this.row.image);
-        component.url.set(`../view/${this.row.id}`);
+        component.url.set(`view/${this.row.id}`);
         component.classes = "rounded-full border-2 overflow-hidden";
     }
 
