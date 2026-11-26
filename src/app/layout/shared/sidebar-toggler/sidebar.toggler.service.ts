@@ -12,6 +12,7 @@ export class SidebarTogglerService {
     }
 
     private readonly toggleSignal: WritableSignal<boolean> = signal<boolean>(true);
+    private readonly isMobile: WritableSignal<boolean> = signal<boolean>(true);
     private readonly toggleKey: string = "sidebarTogglerKey";
     private readonly breakpointObserver: BreakpointObserver = inject<BreakpointObserver>(BreakpointObserver);
     private readonly overlayService: OverlayService = inject<OverlayService>(OverlayService);
@@ -23,16 +24,18 @@ export class SidebarTogglerService {
 
             this.storeCache(toggled);
 
-            if (toggled) {
-                this.element = this.overlayService.create();
+            if (this.isMobile()) {
+                if (toggled) {
+                    this.element = this.overlayService.create();
 
-                this.element.addEventListener('click', () => {
-                    this.toggle();
-                });
-            }
+                    this.element.addEventListener('click', () => {
+                        this.toggle();
+                    });
+                }
 
-            if (!toggled && this.element) {
-                this.overlayService.remove(this.element);
+                if (!toggled && this.element) {
+                    this.overlayService.remove(this.element);
+                }
             }
         });
 
@@ -42,9 +45,9 @@ export class SidebarTogglerService {
         ]).pipe(
             takeUntilDestroyed()
         ).subscribe((result) => {
-            const isMobile = result.matches;
+            this.isMobile.set(result.matches);
 
-            if (isMobile) {
+            if (this.isMobile()) {
                 this.toggleSignal.set(false);
             } else {
                 const toggled = this.getToggledCache();
