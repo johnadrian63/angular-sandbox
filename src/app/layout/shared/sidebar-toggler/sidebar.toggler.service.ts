@@ -16,7 +16,9 @@ export class SidebarTogglerService {
     constructor() {
 
         effect(() => {
-            this.storeCache(this.toggleSignal());
+            const toggled = this.toggleSignal();
+
+            this.storeCache(toggled);
         });
 
         this.breakpointObserver.observe([

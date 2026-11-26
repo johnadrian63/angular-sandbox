@@ -7,7 +7,6 @@ import { NavigationHorizontalCdkService } from "../../shared/navigation/horizont
 
 @Component({
     selector: "app-poc-dynamic-navigation",
-    styleUrl: "./poc.dynamic.navigation.css",
     templateUrl: "./poc.dynamic.navigation.html",
     imports: [NavigationHorizontalCdk],
     providers: [

@@ -27,9 +27,13 @@ export const pocRoutes: Routes = [
                 loadComponent: () => import("./nested-handler/poc.nested.handler").then((c) => c.PocNestedHandler),
             },
             {
+                path: "resource-service",
+                loadComponent: () => import("./resource/poc.resource").then((c) => c.PocResource),
+            },
+            {
                 path: "websocket",
                 loadComponent: () => import("./websocket/poc.websocket").then((c) => c.PocWebsocket),
-            }
+            },
         ]
     }
 ];

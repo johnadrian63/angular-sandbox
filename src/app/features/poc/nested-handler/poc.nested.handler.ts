@@ -7,7 +7,6 @@ import { PocNestedHandlerNavigationBaseService } from "./navigation/poc.nested.h
 
 @Component({
     selector: "app-poc-nested-handler",
-    styleUrl: "./poc.nested.handler.css",
     templateUrl: "./poc.nested.handler.html",
     imports: [PocNestedHandlerNavigation],
     providers: [

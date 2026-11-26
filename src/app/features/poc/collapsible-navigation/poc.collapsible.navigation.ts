@@ -8,7 +8,6 @@ import { NavigationCollapsibleService } from "../../shared/navigation/collapsibl
 @Component({
     imports: [NavigationCollapsible],
     selector: "app-poc.collapsible.navigation",
-    styleUrl: "./poc.collapsible.navigation.css",
     templateUrl: "./poc.collapsible.navigation.html",
     providers: [
         PocCollapsibleNavigationResolverService,
