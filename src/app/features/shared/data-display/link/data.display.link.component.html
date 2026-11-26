@@ -8,6 +8,7 @@
         [routerLinkActive]="activeClass()"
         [queryParams]="returnUrlEnabled() ? queryParams : {}"
         [target]="target()"
+        [relativeTo]="activatedRoute.parent"
         [ngClass]="classes"
     >
         <ng-container *ngTemplateOutlet="linkContent"></ng-container>

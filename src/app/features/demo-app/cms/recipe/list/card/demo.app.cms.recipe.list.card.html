@@ -1,0 +1,72 @@
+<div
+    class="group overflow-hidden rounded-xl border border-gray-200 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+>
+    <div class="relative aspect-16/10 overflow-hidden">
+        <img
+            [src]="recipe().image"
+            class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+        />
+
+        <app-data-display-difficulty
+            class="absolute left-3 top-3 text-xs font-semibold"
+            [value]="recipe().difficulty"
+        ></app-data-display-difficulty>
+        <app-data-display-text
+            [text]="recipe().cuisine"
+            classes="absolute right-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-medium text-gray-700 shadow-sm"
+        ></app-data-display-text>
+    </div>
+
+    <div class="space-y-4 p-5">
+        <div>
+            <h3 class="text-lg font-semibold">
+                <app-data-display-text [text]="recipe().name"></app-data-display-text>
+            </h3>
+            <p class="mt-1 line-clamp-2 text-sm leading-5 text-gray-500">
+                <span class="font-medium mr-1">Ingredients:</span>
+                @for (ingredient of recipe().ingredients; track ingredient) {
+                    <app-data-display-text
+                        [text]="ingredient"
+                        classes="mr-1"
+                    ></app-data-display-text>
+                }
+            </p>
+        </div>
+
+        <div class="flex items-center justify-between text-sm">
+            <div class="flex items-center gap-1.5">
+                <app-data-display-rating [rating]="recipe().rating"></app-data-display-rating>
+                <app-data-display-text [text]="`(${recipe().reviewCount})`"></app-data-display-text>
+            </div>
+            <app-data-display-text
+                [text]="`${recipe().caloriesPerServing} kcal`"
+            ></app-data-display-text>
+        </div>
+
+        <div class="flex items-center gap-4 border-t border-gray-100 pt-4 text-xs">
+            <div class="flex items-center">
+                <fa-icon [icon]="cookingTimeIcon" class="mr-1"></fa-icon>
+                <app-data-display-text
+                    [text]="`${recipe().cookTimeMinutes} min`"
+                ></app-data-display-text>
+            </div>
+            <div class="flex items-center">
+                <fa-icon [icon]="servingsIcon" class="mr-1 text-red-400"></fa-icon>
+                <app-data-display-text
+                    [text]="`${recipe().servings} servings`"
+                ></app-data-display-text>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
+            <!-- <a href="/recipes/1" class="text-sm font-semibold text-indigo-600 hover:text-indigo-700"
+                >View Details →</a
+            > -->
+            <app-data-display-link
+                [url]="url"
+                text="View Details"
+                classes="text-sm font-semibold text-cyan-600 hover:text-cyan-700"
+            ></app-data-display-link>
+        </div>
+    </div>
+</div>

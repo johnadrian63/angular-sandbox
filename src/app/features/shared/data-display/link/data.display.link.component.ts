@@ -39,7 +39,7 @@ export class DataDisplayLinkComponent extends DataDisplayAbstractComponent {
 
     public override classes: string = "hover:underline";
 
-    private readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);
+    public readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);
     private readonly router: Router = inject<Router>(Router);
     private readonly returnUrl: WritableSignal<string> = signal<string>("");
 
