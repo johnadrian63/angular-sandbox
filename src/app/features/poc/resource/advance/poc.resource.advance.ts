@@ -3,18 +3,21 @@ import { Component, inject } from "@angular/core";
 import { ITodoAdapter } from "../model.adapter";
 import { PocResourceAdvanceCollatorService } from "./poc.resource.advance.collator.service";
 import { PocResourceCollatorPaginationService } from "./poc.resource.advance.collator.pagination.service";
+import { PocResourceCollatorPaginationRouteService } from "./poc.resource.advance.collator.pagination.route.service";
 
 @Component({
     selector: "app-poc-resource-advance",
     templateUrl: "./poc.resource.advance.html",
     providers: [
         PocResourceAdvanceCollatorService,
-        PocResourceCollatorPaginationService,
+        // PocResourceCollatorPaginationService,
+        PocResourceCollatorPaginationRouteService,
     ]
 })
 export class PocResourceAdvance {
     private readonly collatorService = inject<PocResourceAdvanceCollatorService>(PocResourceAdvanceCollatorService);
-    private readonly paginationService = inject<PocResourceCollatorPaginationService>(PocResourceCollatorPaginationService);
+    // private readonly paginationService = inject<PocResourceCollatorPaginationService>(PocResourceCollatorPaginationService);
+    private readonly paginationService = inject<PocResourceCollatorPaginationRouteService>(PocResourceCollatorPaginationRouteService);
 
     public get dataSource(): ITodoAdapter[] | undefined {
         return this.collatorService.dataSource;
