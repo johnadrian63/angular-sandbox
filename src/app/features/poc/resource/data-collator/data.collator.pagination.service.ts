@@ -1,4 +1,5 @@
-import { Injectable, signal, WritableSignal } from "@angular/core";
+import { DestroyRef, inject, Injectable, signal, WritableSignal } from "@angular/core";
+
 import { NumberUtil } from "../../../shared/util/number.util";
 import { PageSizeOptions } from "../../../shared/ui/paginator/ui.paginator.component";
 
@@ -42,6 +43,13 @@ export abstract class DataCollatorPaginationService {
     private _page: WritableSignal<number> = signal<number>(0);
     private _totalPages: WritableSignal<number> = signal<number>(0);
     private _count: WritableSignal<number> = signal<number>(0);
+    private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
+
+    constructor() {
+        this.destroyRef.onDestroy(() => {
+            this.reset();
+        });
+    }
 
     public abstract reset(): void;
 

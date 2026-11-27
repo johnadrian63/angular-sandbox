@@ -1,4 +1,4 @@
-import { Injectable, Resource, ResourceRef } from "@angular/core";
+import { DestroyRef, inject, Injectable, Resource, ResourceRef } from "@angular/core";
 
 import { withPreviousValue } from "../../../shared/util/withpreviousvalue";
 
@@ -10,6 +10,16 @@ export abstract class DataCollatorService<T> {
     public get dataSource(): T | undefined {
         return this.view.hasValue() ? this.view.value() : undefined;
     }
+
+    private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
+
+    constructor() {
+        this.destroyRef.onDestroy(() => {
+            this.reset();
+        });
+    }
+
+    public abstract reset(): void;
 
     public isLoading(): boolean {
         return this.resource.isLoading();
@@ -27,8 +37,3 @@ export abstract class DataCollatorService<T> {
         return (this.previousView ??= withPreviousValue(this.resource));
     }
 }
-
-// data.collator.pagination.service (x)
-// data.collator.pagination.route.service
-// data.collator.sort.service
-// data.collator.sort.route.service

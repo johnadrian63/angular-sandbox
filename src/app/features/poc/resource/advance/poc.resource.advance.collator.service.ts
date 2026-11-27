@@ -1,12 +1,12 @@
-import { inject, Injectable, resource, ResourceRef, signal, WritableSignal } from "@angular/core";
+import { inject, Injectable, ResourceRef } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { rxResource } from "@angular/core/rxjs-interop";
 import { map, Observable } from "rxjs";
 
 import { DataCollatorService } from "../data-collator/data.collator.service";
 import { ITodoAdapter, ITodoCollection, ITodoFilter, TodoAdapter } from "../model.adapter";
+import { PocResourceCollatorSortService } from "./poc.resource.advance.collator.sort.service";
 import { PocResourceCollatorPaginationService } from "./poc.resource.advance.collator.pagination.service";
-import { PocResourceCollatorPaginationRouteService } from "./poc.resource.advance.collator.pagination.route.service";
 
 @Injectable()
 export class PocResourceAdvanceCollatorService extends DataCollatorService<ITodoAdapter[]> {
@@ -14,9 +14,12 @@ export class PocResourceAdvanceCollatorService extends DataCollatorService<ITodo
         params: () => {
             const limit = this.paginationService.pageSize;
             const skip = limit * this.paginationService.page;
+            const sortValues = this.sortService.value();
+
             const filter: ITodoFilter = {
                 skip,
                 limit,
+                ...sortValues
             };
 
             return filter;
@@ -26,8 +29,8 @@ export class PocResourceAdvanceCollatorService extends DataCollatorService<ITodo
 
     private readonly apiUrl = "https://dummyjson.com/todos";
     private readonly httpClient = inject<HttpClient>(HttpClient);
-    // private readonly paginationService: PocResourceCollatorPaginationService = inject<PocResourceCollatorPaginationService>(PocResourceCollatorPaginationService);
-    private readonly paginationService: PocResourceCollatorPaginationRouteService = inject<PocResourceCollatorPaginationRouteService>(PocResourceCollatorPaginationRouteService);
+    private readonly paginationService: PocResourceCollatorPaginationService = inject<PocResourceCollatorPaginationService>(PocResourceCollatorPaginationService);
+    private readonly sortService: PocResourceCollatorSortService = inject<PocResourceCollatorSortService>(PocResourceCollatorSortService);
 
     public fetchData(filter: ITodoFilter): Observable<ITodoAdapter[]> {
         return this.httpClient.get<ITodoCollection>(`${this.apiUrl}`, {
@@ -48,5 +51,9 @@ export class PocResourceAdvanceCollatorService extends DataCollatorService<ITodo
 
             return todos;
         }));
+    }
+
+    public override reset(): void {
+        // do nothing
     }
 }
