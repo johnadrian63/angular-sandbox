@@ -3,6 +3,10 @@ import { DestroyRef, inject, Injectable, signal, WritableSignal } from "@angular
 import { NumberUtil } from "../../../shared/util/number.util";
 import { PageSizeOptions } from "../../../shared/ui/paginator/ui.paginator.component";
 
+/**
+ * @deprecated
+ * @description move to /shared
+ */
 @Injectable()
 export abstract class DataCollatorPaginationService {
 

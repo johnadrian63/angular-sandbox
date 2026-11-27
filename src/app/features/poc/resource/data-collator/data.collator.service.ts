@@ -2,6 +2,10 @@ import { DestroyRef, inject, Injectable, Resource, ResourceRef } from "@angular/
 
 import { withPreviousValue } from "../../../shared/util/withpreviousvalue";
 
+/**
+ * @deprecated
+ * @description move to /shared
+ */
 @Injectable()
 export abstract class DataCollatorService<T> {
     protected abstract resource: ResourceRef<T | undefined>;

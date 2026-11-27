@@ -5,6 +5,10 @@ import { map } from "rxjs";
 
 import { DataCollatorSortService, IDataCollatorSort } from "./data.collator.sort.service";
 
+/**
+ * @deprecated
+ * @description move to /shared
+ */
 @Injectable()
 export abstract class DataCollatorSortRouteService extends DataCollatorSortService {
 

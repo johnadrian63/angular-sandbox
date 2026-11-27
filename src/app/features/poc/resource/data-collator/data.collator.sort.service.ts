@@ -1,12 +1,24 @@
 import { DestroyRef, inject, Injectable, signal, WritableSignal } from "@angular/core";
 
+/**
+ * @deprecated
+ * @description move to /shared
+ */
 export type DataCollatorSortOrder = "asc" | "desc";
 
+/**
+ * @deprecated
+ * @description move to /shared
+ */
 export interface IDataCollatorSort {
     sortBy: string;
     order: string;
 }
 
+/**
+ * @deprecated
+ * @description move to /shared
+ */
 @Injectable()
 export abstract class DataCollatorSortService {
     protected abstract sortableKeys: string[];

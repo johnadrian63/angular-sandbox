@@ -7,6 +7,10 @@ import { NumberUtil } from "../../../shared/util/number.util";
 import { DataCollatorPaginationService } from "./data.collator.pagination.service";
 import { PageSizeOptions } from "../../../shared/ui/paginator/ui.paginator.component";
 
+/**
+ * @deprecated
+ * @description move to /shared
+ */
 @Injectable()
 export abstract class DataCollatorPaginationRouteService extends DataCollatorPaginationService {
     private readonly activatedRoute: ActivatedRoute = inject<ActivatedRoute>(ActivatedRoute);

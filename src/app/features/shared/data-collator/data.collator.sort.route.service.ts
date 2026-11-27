@@ -1,7 +1,7 @@
 import { inject, Injectable } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 
-import { DataCollatorSort, DataCollatorSortBaseService, DataCollatorSortDirection } from "./data.collator.sort.base.service";
+import { DataCollatorSort, DataCollatorSortBaseService, DataCollatorSortDirection } from "./data.collator.sort.service";
 
 @Injectable()
 export abstract class DataCollatorSortRouteService extends DataCollatorSortBaseService {
