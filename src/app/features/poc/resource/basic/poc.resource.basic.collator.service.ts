@@ -25,4 +25,8 @@ export class PocResourceBasicCollatorService extends DataCollatorService<ITodoAd
 
         return new TodoAdapter(result);
     }
+
+    public override reset(): void {
+        // do nothing
+    }
 }

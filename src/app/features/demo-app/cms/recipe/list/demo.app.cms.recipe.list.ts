@@ -1,7 +1,6 @@
 import { Component, inject } from "@angular/core";
 
 import { IRecipeAdapter } from "../demo.app.cms.model.adapter";
-import { DataCollator } from "../../../../shared/data-collator/data.collator";
 import { DataDisplayTextComponent } from "../../../../shared/data-display/text";
 import { DemoAppCmsRecipeListCard } from "./card/demo.app.cms.recipe.list.card";
 import { DemoAppCmsRecipeListService } from "./demo.app.cms.recipe.list.service";
@@ -29,7 +28,7 @@ import { DataCollatorService, DataCollatorSortBaseService, DataCollatorPaginatio
             useExisting: DemoAppCmsRecipeListPaginationService
         }
     ],
-    imports: [DataCollator, DemoAppCmsRecipeListCard]
+    imports: [DemoAppCmsRecipeListCard]
 })
 export class DemoAppCmsRecipeList {
 
