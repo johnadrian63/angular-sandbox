@@ -1,120 +1,124 @@
-<div class="space-y-6">
-    <!-- Page Header -->
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-            <h1 class="text-2xl font-semibold">Recipes</h1>
-            <p class="mt-1 text-sm">Discover and manage your collection of recipes.</p>
-        </div>
+@if (isLoading) {
+    <app-demo-app-cms-recipe-list-skeleton></app-demo-app-cms-recipe-list-skeleton>
+} @else {
+    <div class="space-y-6">
+        <!-- Page Header -->
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+                <h1 class="text-2xl font-semibold">Recipes</h1>
+                <p class="mt-1 text-sm">Discover and manage your collection of recipes.</p>
+            </div>
 
-        <!-- <button
+            <!-- <button
                 class="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-indigo-700"
             >
                 <span class="text-lg leading-none">+</span>
                 Add Recipe
             </button> -->
-    </div>
+        </div>
 
-    <!-- Filters -->
-    <div class="rounded-xl border border-gray-200 p-4 shadow-sm">
-        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            <div class="sm:col-span-2">
-                <label class="mb-1.5 block text-xs font-medium">Search Recipes</label>
-                <div class="relative">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2">⌕</span>
-                    <input
-                        type="text"
-                        placeholder="Search by recipe name..."
-                        class="w-full rounded-lg border border-gray-300 py-2.5 pl-9 pr-3 text-sm outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
-                    />
+        <!-- Filters -->
+        <div class="rounded-xl border border-gray-200 p-4 shadow-sm">
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="sm:col-span-2">
+                    <label class="mb-1.5 block text-xs font-medium">Search Recipes</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2">⌕</span>
+                        <input
+                            type="text"
+                            placeholder="Search by recipe name..."
+                            class="w-full rounded-lg border border-gray-300 py-2.5 pl-9 pr-3 text-sm outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                        />
+                    </div>
+                </div>
+
+                <div>
+                    <label class="mb-1.5 block text-xs font-medium">Cuisine</label>
+                    <select
+                        class="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                    >
+                        <option>All Cuisines</option>
+                        <option>Italian</option>
+                        <option>Asian</option>
+                        <option>Mexican</option>
+                        <option>American</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="mb-1.5 block text-xs font-medium">Difficulty</label>
+                    <select
+                        class="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                    >
+                        <option>All Levels</option>
+                        <option>Easy</option>
+                        <option>Medium</option>
+                        <option>Hard</option>
+                    </select>
                 </div>
             </div>
-
-            <div>
-                <label class="mb-1.5 block text-xs font-medium">Cuisine</label>
-                <select
-                    class="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
-                >
-                    <option>All Cuisines</option>
-                    <option>Italian</option>
-                    <option>Asian</option>
-                    <option>Mexican</option>
-                    <option>American</option>
-                </select>
-            </div>
-
-            <div>
-                <label class="mb-1.5 block text-xs font-medium">Difficulty</label>
-                <select
-                    class="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
-                >
-                    <option>All Levels</option>
-                    <option>Easy</option>
-                    <option>Medium</option>
-                    <option>Hard</option>
-                </select>
-            </div>
         </div>
-    </div>
 
-    <!-- Results Summary -->
-    <div class="flex flex-wrap items-center justify-between gap-2">
-        <p class="text-sm">Showing <span class="font-semibold">6</span> recipes</p>
+        <!-- Results Summary -->
+        <div class="flex flex-wrap items-center justify-between gap-2">
+            <p class="text-sm">Showing <span class="font-semibold">6</span> recipes</p>
 
-        <select
-            class="rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-indigo-500"
+            <select
+                class="rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-indigo-500"
+            >
+                <option>Newest First</option>
+                <option>Oldest First</option>
+                <option>Highest Rated</option>
+                <option>Lowest Rated</option>
+            </select>
+        </div>
+
+        <!-- Recipe Cards -->
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+            @for (recipe of recipes; track recipe.id) {
+                <!-- Recipe 1 -->
+                <app-demo-app-cms-recipe-list-card
+                    [recipe]="recipe"
+                ></app-demo-app-cms-recipe-list-card>
+            }
+        </div>
+
+        <!-- Pagination -->
+        <div
+            class="flex flex-col items-center justify-between gap-4 rounded-xl border border-gray-200 px-5 py-4 sm:flex-row"
         >
-            <option>Newest First</option>
-            <option>Oldest First</option>
-            <option>Highest Rated</option>
-            <option>Lowest Rated</option>
-        </select>
-    </div>
+            <p class="text-sm">
+                Showing <span class="font-medium">1–6</span> of
+                <span class="font-medium">50</span> recipes
+            </p>
 
-    <!-- Recipe Cards -->
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
-        @for (recipe of recipes; track recipe.id) {
-            <!-- Recipe 1 -->
-            <app-demo-app-cms-recipe-list-card
-                [recipe]="recipe"
-            ></app-demo-app-cms-recipe-list-card>
-        }
-    </div>
-
-    <!-- Pagination -->
-    <div
-        class="flex flex-col items-center justify-between gap-4 rounded-xl border border-gray-200 px-5 py-4 sm:flex-row"
-    >
-        <p class="text-sm">
-            Showing <span class="font-medium">1–6</span> of
-            <span class="font-medium">50</span> recipes
-        </p>
-
-        <div class="flex items-center gap-2">
-            <button
-                disabled
-                class="rounded-lg border border-gray-200 px-3 py-2 text-sm font-medium"
-            >
-                Previous
-            </button>
-            <button class="rounded-lg bg-indigo-600 px-3.5 py-2 text-sm font-medium text-white">
-                1
-            </button>
-            <button
-                class="rounded-lg border border-gray-200 px-3.5 py-2 text-sm font-medium hover:bg-gray-50"
-            >
-                2
-            </button>
-            <button
-                class="rounded-lg border border-gray-200 px-3.5 py-2 text-sm font-medium hover:bg-gray-50"
-            >
-                3
-            </button>
-            <span class="px-1">...</span>
-            <button
-                class="rounded-lg border border-gray-200 px-3.5 py-2 text-sm font-medium hover:bg-gray-50"
-            >
-                Next
-            </button>
+            <div class="flex items-center gap-2">
+                <button
+                    disabled
+                    class="rounded-lg border border-gray-200 px-3 py-2 text-sm font-medium"
+                >
+                    Previous
+                </button>
+                <button class="rounded-lg bg-indigo-600 px-3.5 py-2 text-sm font-medium text-white">
+                    1
+                </button>
+                <button
+                    class="rounded-lg border border-gray-200 px-3.5 py-2 text-sm font-medium hover:bg-gray-50"
+                >
+                    2
+                </button>
+                <button
+                    class="rounded-lg border border-gray-200 px-3.5 py-2 text-sm font-medium hover:bg-gray-50"
+                >
+                    3
+                </button>
+                <span class="px-1">...</span>
+                <button
+                    class="rounded-lg border border-gray-200 px-3.5 py-2 text-sm font-medium hover:bg-gray-50"
+                >
+                    Next
+                </button>
+            </div>
         </div>
     </div>
-</div>
+}
