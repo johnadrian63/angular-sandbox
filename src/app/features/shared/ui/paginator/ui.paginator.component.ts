@@ -13,6 +13,7 @@ import {
  * @deprecated please consolidate this into one enum
  */
 export enum PageSizeOptions {
+    SIZE_1 = 1, // for testing small records only
     SIZE_25 = 25,
     SIZE_50 = 50,
     SIZE_100 = 100,

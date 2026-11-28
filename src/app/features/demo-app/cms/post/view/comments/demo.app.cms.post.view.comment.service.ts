@@ -1,4 +1,4 @@
-import { inject, Injectable, InputSignal, resource, ResourceRef } from "@angular/core";
+import { inject, Injectable, InputSignal, resource, ResourceRef, signal, WritableSignal } from "@angular/core";
 import { lastValueFrom } from "rxjs";
 
 import { createRegistry } from "../../../../../shared/util/registry";
@@ -39,9 +39,10 @@ export class DemoAppCmsPostViewCommentService extends DataCollatorService<IPostC
         loader: ({ params, abortSignal }) => this.fetchData(params, abortSignal)
     });
 
+    private readonly registry = createRegistry<IInputDeps>();
     private readonly postService: DummyJsonPostService = inject<DummyJsonPostService>(DummyJsonPostService);
     private readonly paginationService: DemoAppCmsPostViewPaginationService = inject<DemoAppCmsPostViewPaginationService>(DemoAppCmsPostViewPaginationService);
-    private readonly registry = createRegistry<IInputDeps>();
+    private readonly commentsSignal: WritableSignal<IPostCommentAdapter[]> = signal<IPostCommentAdapter[]>([]);
 
     private async fetchData(params: IPOstCommentResourceParam, abortSignal: AbortSignal): Promise<IPostCommentAdapter[]> {
         const pageOptions = params.pageOptions;
@@ -59,7 +60,12 @@ export class DemoAppCmsPostViewCommentService extends DataCollatorService<IPostC
             comments.push(new PostCommentAdapter(comment));
         }
 
-        return comments;
+        this.commentsSignal.update((currentComments: IPostCommentAdapter[]) => [
+            ...currentComments,
+            ...comments
+        ]);
+
+        return this.commentsSignal();
     }
 
     public registerSignalDeps(deps: IInputDeps): void {

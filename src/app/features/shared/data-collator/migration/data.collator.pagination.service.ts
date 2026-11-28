@@ -36,6 +36,7 @@ export abstract class DataCollatorPaginationService {
 
     public get pageSizeOptions(): Array<PageSizeOptions> {
         return [
+            // PageSizeOptions.SIZE_1,
             PageSizeOptions.SIZE_25,
             PageSizeOptions.SIZE_50,
             PageSizeOptions.SIZE_100,
