@@ -1,16 +1,16 @@
 import { inject, Injectable } from "@angular/core";
 import { lastValueFrom } from "rxjs";
 
-import { IRecipeDefaultFilter } from "../model/recipe.filter.model";
 import { DataCollatorService } from "../../../../shared/data-collator";
-import { DemoAppCmsRecipeService } from "../demo.app.cms.recipe.service";
 import { IRecipeAdapter, RecipeAdapter } from "../demo.app.cms.model.adapter";
 import { DemoAppCmsRecipeListSortService } from "./demo.app.cms.recipe.list.sort.service";
 import { DemoAppCmsRecipeListPaginationService } from "./demo.app.cms.recipe.list.pagination.service";
+import { DummyJsonRecipeService } from "../../../../shared/external-api/dummyjson/dummyjson.recipe.service";
+import { IRecipeDefaultFilter } from "../../../../shared/external-api/dummyjson/model/recipe/recipe.filter.model";
 
 @Injectable()
 export class DemoAppCmsRecipeListService extends DataCollatorService<IRecipeAdapter> {
-    private readonly recipeService: DemoAppCmsRecipeService = inject<DemoAppCmsRecipeService>(DemoAppCmsRecipeService);
+    private readonly recipeService: DummyJsonRecipeService = inject<DummyJsonRecipeService>(DummyJsonRecipeService);
     private readonly paginationService: DemoAppCmsRecipeListPaginationService = inject<DemoAppCmsRecipeListPaginationService>(DemoAppCmsRecipeListPaginationService);
     private readonly sortService: DemoAppCmsRecipeListSortService = inject<DemoAppCmsRecipeListSortService>(DemoAppCmsRecipeListSortService);
 

@@ -2,13 +2,14 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Service } from "@angular/core";
 import { Observable } from "rxjs";
 
-import { ITag } from "../model/tag.model";
-import { IPageOptions } from "../model/filter.model";
-import { IPostDefaultFilter, IPostSearchFilter } from "./model/post.filter.model";
-import { IPostCollection, IPost, IPostCommentCollection } from "./model/post.model";
+
+import { ITag } from "./model/tag.model";
+import { IPageOptions } from "./model/filter.model";
+import { IPostDefaultFilter, IPostSearchFilter } from "./model/post/post.filter.model";
+import { IPostCollection, IPost, IPostCommentCollection } from "./model/post/post.model";
 
 @Service()
-export class DemoAppCmsPostService {
+export class DummyJsonPostService {
     private readonly apiUrl = "https://dummyjson.com/posts";
     private readonly httpClient: HttpClient = inject<HttpClient>(HttpClient);
 

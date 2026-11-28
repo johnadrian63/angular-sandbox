@@ -35,6 +35,10 @@ export const pocRoutes: Routes = [
                 loadComponent: () => import("./resource/advance/poc.resource.advance").then((c) => c.PocResourceAdvance),
             },
             {
+                path: "input-service-bridge",
+                loadComponent: () => import("./input-service-bridge/poc.input.service.bridge").then((c) => c.PocResourceInputServiceBridge),
+            },
+            {
                 path: "websocket",
                 loadComponent: () => import("./websocket/poc.websocket").then((c) => c.PocWebsocket),
             },

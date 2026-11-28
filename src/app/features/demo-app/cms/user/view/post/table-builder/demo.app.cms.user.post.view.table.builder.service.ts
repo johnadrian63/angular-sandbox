@@ -3,9 +3,9 @@ import { lastValueFrom } from "rxjs";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 import { TableBuilderService } from "../../../../../../shared/table-builder";
-import { IPostDefaultFilter } from "../../../../post/model/post.filter.model";
-import { DemoAppCmsPostService } from "../../../../post/demo.app.cms.post.service";
 import { IPostAdapter, PostAdapter } from "../../../../post/demo.app.cms.post.model.adapter";
+import { DummyJsonPostService } from "../../../../../../shared/external-api/dummyjson/dummyjson.post.service";
+import { IPostDefaultFilter } from "../../../../../../shared/external-api/dummyjson/model/post/post.filter.model";
 import { DemoAppCmsUserViewPostTableBuilderSortService } from "./demo.app.cms.user.post.view.table.builder.sort.service";
 import { TABLE_BUILDER_REFRESH_TOKEN, TableBuilderRefresher } from "../../../../../../shared/table-builder/table.builder.token";
 import { DemoAppCmsUserViewPostTableBuilderPaginationService } from "./demo.app.cms.user.post.view.table.builder.pagination.service";
@@ -14,7 +14,7 @@ import { DemoAppCmsUserViewPostTableBuilderPaginationService } from "./demo.app.
 export class DemoAppCmsUserViewPostTableBuilderService extends TableBuilderService {
     public readonly userId: WritableSignal<number | undefined> = signal<number | undefined>(undefined);
 
-    private readonly postService: DemoAppCmsPostService = inject<DemoAppCmsPostService>(DemoAppCmsPostService);
+    private readonly postService: DummyJsonPostService = inject<DummyJsonPostService>(DummyJsonPostService);
     private readonly tableBuilderSortService: DemoAppCmsUserViewPostTableBuilderSortService = inject<DemoAppCmsUserViewPostTableBuilderSortService>(DemoAppCmsUserViewPostTableBuilderSortService);
     private readonly tableBuilderPaginationService: DemoAppCmsUserViewPostTableBuilderPaginationService = inject<DemoAppCmsUserViewPostTableBuilderPaginationService>(DemoAppCmsUserViewPostTableBuilderPaginationService);
     private readonly refresher = inject<TableBuilderRefresher>(TABLE_BUILDER_REFRESH_TOKEN);

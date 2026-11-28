@@ -1,5 +1,5 @@
-import { IQuote } from "./model/quote.model";
 import { ITableBuilderRowData } from "../../../shared/table-builder";
+import { IQuote } from "../../../shared/external-api/dummyjson/model/quote/quote.model";
 
 export interface IQuoteAdapter extends ITableBuilderRowData, IQuote { }
 

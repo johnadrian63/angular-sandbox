@@ -2,13 +2,13 @@ import { Params } from "@angular/router";
 import { Observable } from "rxjs";
 
 import { pickDefined } from "../../../../../shared/util/pick";
-import { IUserCollection } from "../../model/user.model";
-import { IPageOptions, ISort } from "../../../model/filter.model";
-import { DemoAppCmsUserService } from "../../demo.app.cms.user.service";
 import { SearchFormService } from "../../../../../shared/search-form/search.form.service";
-import { IUserDefaultFilter, IUserFieldFilter, IUserSearchFilter } from "../../model/user.filter.model";
+import { IUserCollection } from "../../../../../shared/external-api/dummyjson/model/user/user.model";
+import { IPageOptions, ISort } from "../../../../../shared/external-api/dummyjson/model/filter.model";
+import { DummyJsonUserService } from "../../../../../shared/external-api/dummyjson/dummyjson.user.service";
 import { TableBuilderSortRouteService } from "../../../../../shared/table-builder/service/table.builder.sort.route.service";
 import { TableBuilderPaginationRouteService } from "../../../../../shared/table-builder/service/table.builder.pagination.route.service";
+import { IUserDefaultFilter, IUserFieldFilter, IUserSearchFilter } from "../../../../../shared/external-api/dummyjson/model/user/user.filter.model";
 
 export interface IDemoAppCmsUserListTableBuilderDataAdapter<T> {
     visitGetUsers(handler: DemoAppCmsUserListTableBuilderGetUsersDataHandler): T;
@@ -95,7 +95,7 @@ export class DemoAppCmsUserListTableBuilderGetUsersDataFactory {
 }
 
 export class DemoAppCmsUserListTableBuilderDataAdapter implements IDemoAppCmsUserListTableBuilderDataAdapter<Observable<IUserCollection>> {
-    constructor(private readonly userService: DemoAppCmsUserService) { }
+    constructor(private readonly userService: DummyJsonUserService) { }
 
     public visitGetUsers(handler: DemoAppCmsUserListTableBuilderGetUsersDataHandler): Observable<IUserCollection> {
         return this.userService.getList(handler.filter);

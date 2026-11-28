@@ -1,4 +1,4 @@
-import { Component, effect, inject, input, resource, ResourceRef } from "@angular/core";
+import { Component, inject, input } from "@angular/core";
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 import { faComment, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
@@ -24,34 +24,37 @@ import { DemoAppCmsPostViewPaginationService } from "./demo.app.cms.post.view.co
 })
 export class DemoAppCmsPostViewComment {
 
-    public get hasNext(): boolean {
-        return this.paginationService.hasNext;
+    public get comments(): IPostCommentAdapter[] | undefined {
+        return this.viewCommentService.dataSource;
     }
 
     public get totalComments(): number {
         return this.paginationService.count;
     }
 
+    public get hasNext(): boolean {
+        return this.paginationService.hasNext;
+    }
+
+    public get isLoading(): boolean {
+        return this.viewCommentService.isLoading();
+    }
+
     public readonly postId = input.required<number>();
     public readonly commentIcon = faComment;
     public readonly likeIcon = faThumbsUp;
 
-    public readonly commentsResource: ResourceRef<IPostCommentAdapter[] | undefined> = resource({
-        params: () => this.postViewService.postId(),
-        loader: () => this.postViewService.loadRequest()
-    });
-
-    private readonly postViewService: DemoAppCmsPostViewCommentService = inject<DemoAppCmsPostViewCommentService>(DemoAppCmsPostViewCommentService);
+    private readonly viewCommentService: DemoAppCmsPostViewCommentService = inject<DemoAppCmsPostViewCommentService>(DemoAppCmsPostViewCommentService);
     private readonly paginationService: DemoAppCmsPostViewPaginationService = inject<DemoAppCmsPostViewPaginationService>(DemoAppCmsPostViewPaginationService);
 
     constructor() {
-        effect(() => {
-            this.postViewService.postId.set(this.postId());
+        this.viewCommentService.registerSignalDeps({
+            postId: this.postId
         });
     }
 
     public loadMore(): void {
-        if (this.commentsResource.isLoading()) {
+        if (this.viewCommentService.isLoading()) {
             return;
         }
 
@@ -60,8 +63,6 @@ export class DemoAppCmsPostViewComment {
             const pageSize = this.paginationService.pageSize;
 
             this.paginationService.setPaging(page, pageSize);
-
-            this.commentsResource.reload();
         }
     }
 }

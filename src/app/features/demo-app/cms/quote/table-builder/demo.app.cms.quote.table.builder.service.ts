@@ -3,17 +3,17 @@ import { ActivatedRoute } from "@angular/router";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { lastValueFrom, skip } from "rxjs";
 
-import { IQuoteFilter } from "../model/quote.filter.model";
-import { DemoAppCmsQuoteService } from "../demo.app.cms.quote.service";
 import { TableBuilderService } from "../../../../shared/table-builder";
 import { IQuoteAdapter, QuoteAdapter } from "../demo.app.cms.quote.adapter";
+import { IQuoteFilter } from "../../../../shared/external-api/dummyjson/model/quote/quote.filter.model";
+import { DummyJsonQuoteService } from "../../../../shared/external-api/dummyjson/dummyjson.quote.service";
 import { DemoAppCmsQuoteTableBuilderSortService } from "./demo.app.cms.quote.table.builder.sort.service";
 import { DemoAppCmsQuoteTableBuilderPaginationService } from "./demo.app.cms.quote.table.builder.pagination.service";
 import { TableBuilderRefresher, TABLE_BUILDER_REFRESH_TOKEN } from "../../../../shared/table-builder/table.builder.token";
 
 @Injectable()
 export class DemoAppCmsQuoteTableBuilderService extends TableBuilderService {
-    private readonly quoteService: DemoAppCmsQuoteService = inject<DemoAppCmsQuoteService>(DemoAppCmsQuoteService);
+    private readonly quoteService: DummyJsonQuoteService = inject<DummyJsonQuoteService>(DummyJsonQuoteService);
     private readonly tableBuilderPaginationService: DemoAppCmsQuoteTableBuilderPaginationService = inject<DemoAppCmsQuoteTableBuilderPaginationService>(DemoAppCmsQuoteTableBuilderPaginationService);
     private readonly tableBuilderSortService: DemoAppCmsQuoteTableBuilderSortService = inject<DemoAppCmsQuoteTableBuilderSortService>(DemoAppCmsQuoteTableBuilderSortService);
     private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);

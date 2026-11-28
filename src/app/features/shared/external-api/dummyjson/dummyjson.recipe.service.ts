@@ -2,11 +2,11 @@ import { inject, Service } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
-import { IRecipe, IRecipeCollection } from "./model/recipe.model";
-import { IRecipeDefaultFilter } from "./model/recipe.filter.model";
+import { IRecipe, IRecipeCollection } from "./model/recipe/recipe.model";
+import { IRecipeDefaultFilter } from "./model/recipe/recipe.filter.model";
 
 @Service()
-export class DemoAppCmsRecipeService {
+export class DummyJsonRecipeService {
     private readonly apiUrl = "https://dummyjson.com/recipes";
     private readonly httpClient: HttpClient = inject<HttpClient>(HttpClient);
 

@@ -3,9 +3,9 @@ import { HttpClient } from "@angular/common/http";
 import { rxResource } from "@angular/core/rxjs-interop";
 import { map, Observable } from "rxjs";
 
-import { DataCollatorService } from "../data-collator/data.collator.service";
 import { ITodoAdapter, ITodoCollection, ITodoFilter, TodoAdapter } from "../model.adapter";
 import { PocResourceCollatorSortService } from "./poc.resource.advance.collator.sort.service";
+import { DataCollatorService } from "../../../shared/data-collator/migration/data.collator.service";
 import { PocResourceCollatorPaginationService } from "./poc.resource.advance.collator.pagination.service";
 
 @Injectable()
@@ -13,7 +13,7 @@ export class PocResourceAdvanceCollatorService extends DataCollatorService<ITodo
     protected readonly resource: ResourceRef<ITodoAdapter[] | undefined> = rxResource({
         params: () => {
             const limit = this.paginationService.pageSize;
-            const skip = limit * this.paginationService.page;
+            const skip = this.paginationService.page;
             const sortValues = this.sortService.value();
 
             const filter: ITodoFilter = {
@@ -35,7 +35,8 @@ export class PocResourceAdvanceCollatorService extends DataCollatorService<ITodo
     public fetchData(filter: ITodoFilter): Observable<ITodoAdapter[]> {
         return this.httpClient.get<ITodoCollection>(`${this.apiUrl}`, {
             params: {
-                ...filter
+                ...filter,
+                skip: filter.limit * filter.skip,
             }
         }).pipe(map((result: ITodoCollection) => {
             this.paginationService.setCount(result.total);

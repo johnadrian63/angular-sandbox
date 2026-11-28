@@ -3,9 +3,9 @@ import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { map } from "rxjs";
 
-import { NumberUtil } from "../../../shared/util/number.util";
+import { NumberUtil } from "../../util/number.util";
 import { DataCollatorPaginationService } from "./data.collator.pagination.service";
-import { PageSizeOptions } from "../../../shared/ui/paginator/ui.paginator.component";
+import { PageSizeOptions } from "../../ui/paginator/ui.paginator.component";
 
 /**
  * @deprecated

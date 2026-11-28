@@ -3,9 +3,9 @@ import { ActivatedRoute } from "@angular/router";
 import { lastValueFrom, skip } from "rxjs";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
-import { DemoAppCmsUserService } from "../../demo.app.cms.user.service";
 import { TableBuilderService } from "../../../../../shared/table-builder";
 import { IUserAdapter, UserAdapter } from "../../demo.app.cms.user.model.adapter";
+import { DummyJsonUserService } from "../../../../../shared/external-api/dummyjson/dummyjson.user.service";
 import { DemoAppCmsUserListFilterSearchService } from "../filter/demo.app.cms.user.list.filter.search.service";
 import { DemoAppCmsUserListTableBuilderSortService } from "./demo.app.cms.user.list.table.builder.sort.service";
 import { DemoAppCmsUserListTableBuilderPaginationService } from "./demo.app.cms.user.list.table.builder.pagination.service";
@@ -14,7 +14,7 @@ import { DemoAppCmsUserListTableBuilderDataAdapter, DemoAppCmsUserListTableBuild
 
 @Injectable()
 export class DemoAppCmsUserListTableBuilderService extends TableBuilderService {
-    private readonly userService: DemoAppCmsUserService = inject<DemoAppCmsUserService>(DemoAppCmsUserService);
+    private readonly userService: DummyJsonUserService = inject<DummyJsonUserService>(DummyJsonUserService);
     private readonly tableBuilderPaginationService: DemoAppCmsUserListTableBuilderPaginationService = inject<DemoAppCmsUserListTableBuilderPaginationService>(DemoAppCmsUserListTableBuilderPaginationService);
     private readonly tableBuilderSortService: DemoAppCmsUserListTableBuilderSortService = inject<DemoAppCmsUserListTableBuilderSortService>(DemoAppCmsUserListTableBuilderSortService);
     private readonly searchFormService: DemoAppCmsUserListFilterSearchService = inject<DemoAppCmsUserListFilterSearchService>(DemoAppCmsUserListFilterSearchService);

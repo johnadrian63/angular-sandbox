@@ -1,4 +1,4 @@
-import { IPageOptions, ISort } from "../../model/filter.model";
+import { IPageOptions, ISort } from "../filter.model";
 
 export interface IUserDefaultFilter extends ISort, IPageOptions { }
 

@@ -3,12 +3,12 @@ import { lastValueFrom } from "rxjs";
 
 import { IRecipeAdapter, RecipeAdapter } from "../demo.app.cms.model.adapter";
 import { DataCollatorService } from "../../../../shared/data-collator";
-import { DemoAppCmsRecipeService } from "../demo.app.cms.recipe.service";
+import { DummyJsonRecipeService } from "../../../../shared/external-api/dummyjson/dummyjson.recipe.service";
 
 @Injectable()
 export class DemoAppCmsRecipeViewService extends DataCollatorService<IRecipeAdapter> {
     public readonly recipeId: WritableSignal<number | undefined> = signal<number | undefined>(undefined);
-    private readonly recipeService: DemoAppCmsRecipeService = inject<DemoAppCmsRecipeService>(DemoAppCmsRecipeService);
+    private readonly recipeService: DummyJsonRecipeService = inject<DummyJsonRecipeService>(DummyJsonRecipeService);
 
     public override init(): void {
         // do nothing

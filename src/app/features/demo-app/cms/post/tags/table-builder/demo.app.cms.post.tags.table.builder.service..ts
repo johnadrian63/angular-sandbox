@@ -1,14 +1,14 @@
 import { inject, Injectable } from "@angular/core";
 import { lastValueFrom } from "rxjs";
 
-import { DemoAppCmsPostService } from "../../demo.app.cms.post.service";
 import { TableBuilderService } from "../../../../../shared/table-builder";
 import { IPostTagAdapter, PostTagAdapter } from "../demo.app.cms.post.tags.adapter";
+import { DummyJsonPostService } from "../../../../../shared/external-api/dummyjson/dummyjson.post.service";
 import { DemoAppCmsPostTagsTableBuilderPaginationService } from "./demo.app.cms.post.tags.table.builder.pagination.service";
 
 @Injectable()
 export class DemoAppCmsPostTagsTableBuilderService extends TableBuilderService {
-    private readonly postService: DemoAppCmsPostService = inject<DemoAppCmsPostService>(DemoAppCmsPostService);
+    private readonly postService: DummyJsonPostService = inject<DummyJsonPostService>(DummyJsonPostService);
     private readonly tableBuilderPaginationService: DemoAppCmsPostTagsTableBuilderPaginationService = inject<DemoAppCmsPostTagsTableBuilderPaginationService>(DemoAppCmsPostTagsTableBuilderPaginationService);
 
     public override init(): void {

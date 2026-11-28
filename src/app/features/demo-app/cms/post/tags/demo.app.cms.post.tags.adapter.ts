@@ -1,5 +1,5 @@
-import { ITag } from "../../model/tag.model";
 import { ITableBuilderRowData } from "../../../../shared/table-builder";
+import { ITag } from "../../../../shared/external-api/dummyjson/model/tag.model";
 
 export interface IPostTagAdapter extends ITableBuilderRowData, ITag { }
 

@@ -1,7 +1,7 @@
 import { DestroyRef, inject, Injectable, signal, WritableSignal } from "@angular/core";
 
-import { NumberUtil } from "../../../shared/util/number.util";
-import { PageSizeOptions } from "../../../shared/ui/paginator/ui.paginator.component";
+import { NumberUtil } from "../../util/number.util";
+import { PageSizeOptions } from "../../ui/paginator/ui.paginator.component";
 
 /**
  * @deprecated

@@ -1,5 +1,5 @@
-import { IPost, IReaction } from "./model/post.model";
 import { ITableBuilderRowData } from "../../../shared/table-builder";
+import { IPost, IReaction } from "../../../shared/external-api/dummyjson/model/post/post.model";
 
 export interface IPostAdapter extends ITableBuilderRowData, IPost { }
 
