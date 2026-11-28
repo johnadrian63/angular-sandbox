@@ -1,24 +1,16 @@
-import { DestroyRef, Injectable, Signal, WritableSignal, inject, signal } from "@angular/core";
-import { Observable, Subject } from "rxjs";
+import { DestroyRef, inject, Injectable, Resource, ResourceRef } from "@angular/core";
 
-import { IDataCollatorRowData, IDataCollatorService } from "./data-collator.interface";
+import { withPreviousValue } from "../util/withpreviousvalue";
 
 @Injectable()
-export abstract class DataCollatorService<T extends IDataCollatorRowData> implements IDataCollatorService {
+export abstract class DataCollatorService<T> {
 
-    public get onRefresh(): Observable<void> {
-        return this.refreshSubject.asObservable();
+    public get dataSource(): T | undefined {
+        return this.view.hasValue() ? this.view.value() : undefined;
     }
 
-    public get loading(): Signal<boolean> {
-        return this.loadingSignal.asReadonly();
-    }
-
-    public readonly dataSource: WritableSignal<T[]> = signal<T[]>([]);
-
-    private readonly loadingSignal: WritableSignal<boolean> = signal(false);
-    private readonly refreshSubject: Subject<void> = new Subject<void>();
     private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
+    private previousView?: Resource<T | undefined>;
 
     constructor() {
         this.destroyRef.onDestroy(() => {
@@ -26,23 +18,23 @@ export abstract class DataCollatorService<T extends IDataCollatorRowData> implem
         });
     }
 
-    public abstract init(): void;
-    protected abstract request(): Promise<T[]>;
+    protected abstract resource: ResourceRef<T | undefined>;
+
     public abstract reset(): void;
 
-    public async loadRequest(): Promise<T[]> {
-        const result = await this.request();
-
-        this.dataSource.set(result);
-
-        return this.dataSource();
+    public isLoading(): boolean {
+        return this.resource.isLoading();
     }
 
-    public refresh(): void {
-        this.refreshSubject.next();
+    public reload(): void {
+        this.resource.reload();
     }
 
-    public setLoading(loading: boolean): void {
-        this.loadingSignal.set(loading);
+    public error(): Error | undefined {
+        return this.resource.error();
+    }
+
+    private get view(): Resource<T | undefined> {
+        return (this.previousView ??= withPreviousValue(this.resource));
     }
 }

@@ -1,0 +1,45 @@
+<div class="space-y-6">
+    <!-- Filters -->
+    <div class="rounded-xl border border-gray-200 p-4 shadow-sm">
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="sm:col-span-2">
+                <label class="mb-1.5 block text-xs font-medium">Search Recipes</label>
+                <div class="relative">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2">⌕</span>
+                    <input
+                        type="text"
+                        placeholder="Search by recipe name..."
+                        class="w-full rounded-lg border border-gray-300 py-2.5 pl-9 pr-3 text-sm outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                    />
+                </div>
+            </div>
+
+            <div>
+                <label class="mb-1.5 block text-xs font-medium">Cuisine</label>
+                <select
+                    class="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 cursor-pointer"
+                >
+                    <option>All Cuisines</option>
+                    <option>Italian</option>
+                    <option>Asian</option>
+                    <option>Mexican</option>
+                    <option>American</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Summary -->
+    <div class="flex flex-wrap items-center justify-between gap-2">
+        <p class="text-sm">Showing <span class="font-semibold">4</span> recipes</p>
+
+        <select
+            class="rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-indigo-500 cursor-pointer"
+        >
+            <option>Highest Rated</option>
+            <!-- sortBy reviewCount desc-->
+            <option>Lowest Rated</option>
+            <!-- sortBy reviewCount asc-->
+        </select>
+    </div>
+</div>

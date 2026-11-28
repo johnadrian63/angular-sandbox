@@ -3,9 +3,9 @@ import { lastValueFrom } from "rxjs";
 
 import { createRegistry } from "../../../../../shared/util/registry";
 import { IPageOptions } from "../../../../../shared/external-api/dummyjson/model/filter.model";
+import { DataCollatorService } from "../../../../../shared/data-collator/data.collator.service";
 import { IPostCommentAdapter, PostCommentAdapter } from "./demo.app.cms.post.view.comment.adapter";
 import { DemoAppCmsPostViewPaginationService } from "./demo.app.cms.post.view.comment.pagination.service";
-import { DataCollatorService } from "../../../../../shared/data-collator/migration/data.collator.service";
 import { DummyJsonPostService } from "../../../../../shared/external-api/dummyjson/dummyjson.post.service";
 
 interface IInputDeps {

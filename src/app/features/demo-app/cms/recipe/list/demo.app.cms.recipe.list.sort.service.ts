@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { DataCollatorSortRouteService } from "../../../../shared/data-collator/migration/data.collator.sort.route.service";
+import { DataCollatorSortRouteService } from "../../../../shared/data-collator/data.collator.sort.route.service";
 
 @Injectable()
 export class DemoAppCmsRecipeListSortService extends DataCollatorSortRouteService {

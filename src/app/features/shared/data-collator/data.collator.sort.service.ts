@@ -1,50 +1,97 @@
-import { Injectable } from "@angular/core";
-import { Observable, Subject } from "rxjs";
+import { DestroyRef, inject, Injectable, signal, WritableSignal } from "@angular/core";
 
-export type DataCollatorSortDirection = "asc" | "desc";
+export type DataCollatorSortOrder = "asc" | "desc";
 
-export interface DataCollatorSort {
-    column: string | null;
-    direction: DataCollatorSortDirection | null;
+export interface IDataCollatorSort {
+    sortBy: string;
+    order: string;
 }
 
 @Injectable()
-export abstract class DataCollatorSortBaseService {
+export abstract class DataCollatorSortService {
+    protected abstract sortableKeys: string[];
 
-    public get columnKey(): keyof Pick<DataCollatorSort, "column"> {
-        return "column";
+    public get sortBy(): string {
+        return this._sortSignal()[this.sortByKey];
     }
 
-    public get directionKey(): keyof Pick<DataCollatorSort, "direction"> {
-        return "direction";
+    public get order(): string {
+        return this._sortSignal()[this.orderKey];
     }
 
-    public get sortChanged$(): Observable<DataCollatorSort> {
-        return this.sortSubject.asObservable();
+    public get sortByKey(): keyof Pick<IDataCollatorSort, "sortBy"> {
+        return "sortBy";
     }
 
-    public get sort(): DataCollatorSort {
-        return this._sort;
+    public get orderKey(): keyof Pick<IDataCollatorSort, "order"> {
+        return "order";
     }
 
-    private readonly _sort: DataCollatorSort = {
-        [this.columnKey]: null,
-        [this.directionKey]: null
-    };
+    private readonly _sortSignal: WritableSignal<IDataCollatorSort> = signal<IDataCollatorSort>({
+        [this.sortByKey]: "",
+        [this.orderKey]: "",
+    });
+    private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
 
-    private readonly sortSubject: Subject<DataCollatorSort> = new Subject<DataCollatorSort>();
-
-    public handleSort(sort: DataCollatorSort): void {
-        this.setSort(sort[this.columnKey]!, sort[this.directionKey]!);
-
-        this.sortSubject.next(this._sort);
-    }
-
-    public setSort(field: string, direction: DataCollatorSortDirection): void {
-        this._sort[this.columnKey] = field;
-        this._sort[this.directionKey] = direction;
+    constructor() {
+        this.destroyRef.onDestroy(() => {
+            this.reset();
+        });
     }
 
     public abstract init(): void;
     public abstract reset(): void;
+
+    public handleSort(sort: IDataCollatorSort): void {
+        this.setSort(sort[this.sortByKey], sort[this.orderKey]);
+    }
+
+    public setSort(sortBy: string, order: string): void {
+        const sort: IDataCollatorSort = {
+            sortBy: "",
+            order: ""
+        };
+
+        if (this.isValidSortBy(sortBy) && this.isValidSortOrder(order)) {
+            sort.sortBy = sortBy;
+            sort.order = order;
+        }
+
+        this._sortSignal.update(() => sort);
+    }
+
+    public value(): IDataCollatorSort | undefined {
+        if (this.isValidSortBy(this.sortBy) && this.isValidSortOrder(this.order)) {
+            return {
+                sortBy: this.sortBy,
+                order: this.order
+            } satisfies IDataCollatorSort;
+        }
+
+        return undefined;
+    }
+
+    protected isValidSortBy(sortBy: string): boolean {
+        if (!sortBy) {
+            return false;
+        }
+
+        this.ASSERT_SORTABLE_KEYS();
+
+        return this.sortableKeys.includes(sortBy);
+    }
+
+    protected isValidSortOrder(order: string): boolean {
+        if (!order) {
+            return false;
+        }
+
+        return order === "asc" || order === "desc";
+    }
+
+    private ASSERT_SORTABLE_KEYS(): void {
+        if (!this.sortableKeys) {
+            throw new Error("sortable keys must be set.");
+        }
+    }
 }

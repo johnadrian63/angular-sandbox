@@ -4,16 +4,16 @@
     <div class="relative aspect-16/10 overflow-hidden">
         <img
             [src]="recipe().image"
+            loading="lazy"
             class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
         />
-
         <app-data-display-difficulty
             class="absolute left-3 top-3 text-xs font-semibold"
             [value]="recipe().difficulty"
         ></app-data-display-difficulty>
         <app-data-display-text
             [text]="recipe().cuisine"
-            classes="absolute right-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-medium shadow-sm"
+            classes="absolute right-3 top-3 rounded-full bg-white/95 text-gray-700 px-3 py-1 text-xs font-medium shadow-sm"
         ></app-data-display-text>
     </div>
 

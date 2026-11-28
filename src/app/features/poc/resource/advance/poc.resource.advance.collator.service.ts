@@ -5,7 +5,7 @@ import { map, Observable } from "rxjs";
 
 import { ITodoAdapter, ITodoCollection, ITodoFilter, TodoAdapter } from "../model.adapter";
 import { PocResourceCollatorSortService } from "./poc.resource.advance.collator.sort.service";
-import { DataCollatorService } from "../../../shared/data-collator/migration/data.collator.service";
+import { DataCollatorService } from "../../../shared/data-collator/data.collator.service";
 import { PocResourceCollatorPaginationService } from "./poc.resource.advance.collator.pagination.service";
 
 @Injectable()

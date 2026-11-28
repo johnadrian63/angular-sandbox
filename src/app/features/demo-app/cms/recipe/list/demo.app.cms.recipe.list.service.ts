@@ -3,8 +3,8 @@ import { lastValueFrom } from "rxjs";
 
 import { IRecipeAdapter, RecipeAdapter } from "../demo.app.cms.model.adapter";
 import { DemoAppCmsRecipeListSortService } from "./demo.app.cms.recipe.list.sort.service";
+import { DataCollatorService } from "../../../../shared/data-collator/data.collator.service";
 import { DemoAppCmsRecipeListPaginationService } from "./demo.app.cms.recipe.list.pagination.service";
-import { DataCollatorService } from "../../../../shared/data-collator/migration/data.collator.service";
 import { DummyJsonRecipeService } from "../../../../shared/external-api/dummyjson/dummyjson.recipe.service";
 import { IRecipeDefaultFilter } from "../../../../shared/external-api/dummyjson/model/recipe/recipe.filter.model";
 
@@ -27,7 +27,7 @@ export class DemoAppCmsRecipeListService extends DataCollatorService<IRecipeAdap
 
             return params;
         },
-        loader: ({ params, abortSignal }) => this.fetchData(params)
+        loader: ({ params }) => this.fetchData(params)
     })
     private readonly recipeService: DummyJsonRecipeService = inject<DummyJsonRecipeService>(DummyJsonRecipeService);
     private readonly paginationService: DemoAppCmsRecipeListPaginationService = inject<DemoAppCmsRecipeListPaginationService>(DemoAppCmsRecipeListPaginationService);

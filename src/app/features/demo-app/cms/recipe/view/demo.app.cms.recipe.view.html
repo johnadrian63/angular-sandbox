@@ -41,11 +41,18 @@
 
                 <!-- Recipe Information -->
                 <div class="flex flex-col justify-center p-6 sm:p-8 lg:p-10">
-                    <div class="mb-4 flex flex-wrap gap-2">
+                    <div class="mb-4 flex flex-wrap items-center gap-2">
                         <app-data-display-text
                             classes="rounded-full bg-orange-50 px-3 py-1 text-xs font-medium text-orange-700"
                             [text]="recipe?.cuisine!"
                         ></app-data-display-text>
+
+                        @for (mealType of recipe?.mealType; track mealType) {
+                            <app-data-display-text
+                                classes="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600"
+                                [text]="mealType"
+                            ></app-data-display-text>
+                        }
                     </div>
 
                     <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">
@@ -174,7 +181,7 @@
                     @for (instruction of recipe?.instructions; track instruction) {
                         @let index = $index + 1;
 
-                        <div class="flex gap-4">
+                        <div class="flex gap-4 items-center">
                             <div
                                 class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-indigo-50 text-sm font-semibold text-indigo-600"
                             >

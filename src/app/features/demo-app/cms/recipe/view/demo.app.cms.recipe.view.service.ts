@@ -5,7 +5,7 @@ import { lastValueFrom } from "rxjs";
 
 import { createRegistry } from "../../../../shared/util/registry";
 import { IRecipeAdapter, RecipeAdapter } from "../demo.app.cms.model.adapter";
-import { DataCollatorService } from "../../../../shared/data-collator/migration/data.collator.service";
+import { DataCollatorService } from "../../../../shared/data-collator/data.collator.service";
 import { DummyJsonRecipeService } from "../../../../shared/external-api/dummyjson/dummyjson.recipe.service";
 
 interface IRecipeResourceParam {

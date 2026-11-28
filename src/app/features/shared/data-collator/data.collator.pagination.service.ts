@@ -1,11 +1,10 @@
-import { Injectable, signal, WritableSignal } from "@angular/core";
+import { DestroyRef, inject, Injectable, signal, WritableSignal } from "@angular/core";
 
 import { NumberUtil } from "../util/number.util";
-import { IDataCollatorService } from "./data-collator.interface";
 import { PageSizeOptions } from "../ui/paginator/ui.paginator.component";
 
 @Injectable()
-export abstract class DataCollatorPaginationService implements IDataCollatorService {
+export abstract class DataCollatorPaginationService {
 
     public get page(): number {
         return this._page();
@@ -33,6 +32,7 @@ export abstract class DataCollatorPaginationService implements IDataCollatorServ
 
     public get pageSizeOptions(): Array<PageSizeOptions> {
         return [
+            // PageSizeOptions.SIZE_1,
             PageSizeOptions.SIZE_25,
             PageSizeOptions.SIZE_50,
             PageSizeOptions.SIZE_100,
@@ -40,35 +40,26 @@ export abstract class DataCollatorPaginationService implements IDataCollatorServ
         ];
     }
 
-    /**
-     *  @usageNotes
-     *  override this to enable/disable first and list button
-     */
-    public get firstAndLastButtonsEnabled(): boolean {
-        return true;
-    }
-
-    /**
-     *  @usageNotes
-     *  override this to enable/disable pagination
-     */
-    public get paginationEnabled(): boolean {
-        return true;
-    }
-
     private _pageSize: WritableSignal<number> = signal<number>(PageSizeOptions.SIZE_25);
     private _page: WritableSignal<number> = signal<number>(0);
     private _totalPages: WritableSignal<number> = signal<number>(0);
     private _count: WritableSignal<number> = signal<number>(0);
+    private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
+
+    constructor() {
+        this.destroyRef.onDestroy(() => {
+            this.reset();
+        });
+    }
 
     public abstract reset(): void;
-    public abstract handlePageChange(page: number, pageSize: number): void;
-
-    public init(): void { }
 
     public setPaging(page: number, pageSize: number): void {
-        this._page.set(NumberUtil.isPositive(page) ? page : 0);
-        this._pageSize.set(NumberUtil.isPositive(pageSize) && this.pageSizeOptions.includes(pageSize) ? pageSize : PageSizeOptions.SIZE_25);
+        const currentPage = NumberUtil.isPositive(page) ? page : 0;
+        this._page.set(currentPage);
+
+        const currentPageSize = NumberUtil.isPositive(pageSize) && this.pageSizeOptions.includes(pageSize) ? pageSize : PageSizeOptions.SIZE_25;
+        this._pageSize.set(currentPageSize);
     }
 
     public resetPage(): void {
