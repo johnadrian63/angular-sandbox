@@ -1,11 +1,14 @@
-<h2 class="text-center font-bold my-3">Input Service Bridge</h2>
-<div class="mb-2">
-    <button (click)="updatePostId()" class="btn-primary cursor-pointer mr-1">Update PostID</button>
-    <button (click)="updateUserId()" class="btn-primary cursor-pointer mr-1">Update UserID</button>
+<h2 class="text-center font-bold my-3">Bridging Angular Input Signals with Service-Level Resource API</h2>
+<div class="mb-1">
+    <button (click)="nextTodo()" class="btn-primary cursor-pointer">Get Next Todo</button>
 </div>
-<div class="w-full">
-    <app-poc-input-service-bridge-view
-        [postId]="postId()"
-        [userId]="userId()"
-    ></app-poc-input-service-bridge-view>
+<div class="box mb-2 border-2 border-dashed border-gray-400 p-3">
+    <app-poc-input-service-bridge-todo [todoId]="todoId()"></app-poc-input-service-bridge-todo>
+</div>
+
+<div class="mb-1">
+    <button (click)="nextPost()" class="btn-primary cursor-pointer">Get Next Post</button>
+</div>
+<div class="border-2 border-dashed border-gray-400 p-3">
+    <app-poc-input-service-bridge-post [postId]="postId()"></app-poc-input-service-bridge-post>
 </div>

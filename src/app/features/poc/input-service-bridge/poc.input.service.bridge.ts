@@ -1,22 +1,22 @@
-import { Component, signal } from "@angular/core";
+import { Component, signal, WritableSignal } from "@angular/core";
 
-import { PocResourceInputServiceBridgeView } from "./view/poc.input.service.bridge.view";
+import { PocResourceInputServiceBridgeTodo } from "./todo/poc.input.service.bridge.todo";
+import { PocResourceInputServiceBridgePost } from "./post/poc.input.service.bridge.post";
 
 @Component({
     selector: "app-poc-input-service-bridge",
     templateUrl: "./poc.input.service.bridge.html",
-    imports: [PocResourceInputServiceBridgeView]
+    imports: [PocResourceInputServiceBridgeTodo, PocResourceInputServiceBridgePost]
 })
 export class PocResourceInputServiceBridge {
-    public readonly postId = signal<number>(0);
-    public readonly userId = signal<number>(0);
-    public readonly testId = signal<number>(0);
+    public readonly todoId: WritableSignal<number> = signal<number>(1);
+    public readonly postId: WritableSignal<number> = signal<number>(1);
 
-    public updatePostId(): void {
-        this.postId.update((id: number) => id + 1);
+    public nextTodo(): void {
+        this.todoId.update((todoId: number) => todoId + 1);
     }
 
-    public updateUserId(): void {
-        this.userId.update((id: number) => id + 1);
+    public nextPost(): void {
+        this.postId.update((postId: number) => postId + 1);
     }
 }
