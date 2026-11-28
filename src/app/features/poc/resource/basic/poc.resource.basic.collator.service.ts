@@ -4,7 +4,7 @@ import { rxResource } from "@angular/core/rxjs-interop";
 import { lastValueFrom } from "rxjs";
 
 import { ITodoAdapter, TodoAdapter } from "../model.adapter";
-import { DataCollatorService } from "../data-collator/data.collator.service";
+import { DataCollatorService } from "../../../shared/data-collator/migration/data.collator.service";
 
 @Injectable()
 export class PocResourceBasicCollatorService extends DataCollatorService<ITodoAdapter> {

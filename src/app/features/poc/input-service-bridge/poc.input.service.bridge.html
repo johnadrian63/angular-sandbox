@@ -1,0 +1,11 @@
+<h2 class="text-center font-bold my-3">Input Service Bridge</h2>
+<div class="mb-2">
+    <button (click)="updatePostId()" class="btn-primary cursor-pointer mr-1">Update PostID</button>
+    <button (click)="updateUserId()" class="btn-primary cursor-pointer mr-1">Update UserID</button>
+</div>
+<div class="w-full">
+    <app-poc-input-service-bridge-view
+        [postId]="postId()"
+        [userId]="userId()"
+    ></app-poc-input-service-bridge-view>
+</div>

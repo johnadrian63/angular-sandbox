@@ -1,11 +1,11 @@
 import { ResolveFn, ActivatedRouteSnapshot } from "@angular/router";
 import { inject } from "@angular/core";
 
-import { IPost } from "./model/post.model";
-import { DemoAppCmsPostService } from "./demo.app.cms.post.service";
+import { IPost } from "../../../shared/external-api/dummyjson/model/post/post.model";
+import { DummyJsonPostService } from "../../../shared/external-api/dummyjson/dummyjson.post.service";
 
 export const postResolver: ResolveFn<IPost> = (route: ActivatedRouteSnapshot) => {
-    const postService = inject(DemoAppCmsPostService);
+    const postService = inject(DummyJsonPostService);
     const userId = route.paramMap.get("id")!;
 
     return postService.getPost(+userId);

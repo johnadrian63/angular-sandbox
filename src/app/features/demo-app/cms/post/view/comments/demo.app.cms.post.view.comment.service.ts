@@ -1,63 +1,78 @@
-import { inject, Injectable, signal, WritableSignal } from "@angular/core";
+import { inject, Injectable, InputSignal, resource, ResourceRef, signal, WritableSignal } from "@angular/core";
 import { lastValueFrom } from "rxjs";
 
-import { IPageOptions } from "../../../model/filter.model";
-import { DemoAppCmsPostService } from "../../demo.app.cms.post.service";
-import { DataCollatorService } from "../../../../../shared/data-collator";
+import { createRegistry } from "../../../../../shared/util/registry";
+import { IPageOptions } from "../../../../../shared/external-api/dummyjson/model/filter.model";
 import { IPostCommentAdapter, PostCommentAdapter } from "./demo.app.cms.post.view.comment.adapter";
 import { DemoAppCmsPostViewPaginationService } from "./demo.app.cms.post.view.comment.pagination.service";
+import { DataCollatorService } from "../../../../../shared/data-collator/migration/data.collator.service";
+import { DummyJsonPostService } from "../../../../../shared/external-api/dummyjson/dummyjson.post.service";
+
+interface IInputDeps {
+    postId: InputSignal<number>;
+}
+
+interface IPOstCommentResourceParam {
+    postId: number;
+    pageOptions: IPageOptions;
+}
 
 @Injectable()
-export class DemoAppCmsPostViewCommentService extends DataCollatorService<IPostCommentAdapter> {
-    public readonly postId: WritableSignal<number | undefined> = signal<number | undefined>(undefined);
+export class DemoAppCmsPostViewCommentService extends DataCollatorService<IPostCommentAdapter[]> {
+    protected override resource: ResourceRef<IPostCommentAdapter[] | undefined> = resource({
+        params: () => {
+            const inputDeps = this.registry.read();
 
-    private readonly postService: DemoAppCmsPostService = inject<DemoAppCmsPostService>(DemoAppCmsPostService);
-    private readonly paginationService: DemoAppCmsPostViewPaginationService = inject<DemoAppCmsPostViewPaginationService>(DemoAppCmsPostViewPaginationService);
-
-    public override init(): void {
-        // do nothing
-    }
-
-    public override async request(): Promise<IPostCommentAdapter[]> {
-        try {
-            const limit = this.paginationService.pageSize;
-            const skip = limit * this.paginationService.page;
-            const filter: IPageOptions = {
-                skip,
-                limit
-            };
-
-            const postId = this.postId()!;
-            const request = this.postService.getComments(postId, filter);
-            const result = await lastValueFrom(request);
-
-            this.paginationService.setCount(result.total);
-
-            const users: IPostCommentAdapter[] = [];
-
-            for (let comment of result.comments) {
-                users.push(new PostCommentAdapter(comment));
+            if (!inputDeps) {
+                return undefined;
             }
 
-            return users;
-        } catch (error) {
-            console.warn(error);
-            return [];
+            return {
+                postId: inputDeps.postId(),
+                pageOptions: {
+                    skip: this.paginationService.page,
+                    limit: this.paginationService.pageSize,
+                },
+            } satisfies IPOstCommentResourceParam;
+
+        },
+        loader: ({ params, abortSignal }) => this.fetchData(params, abortSignal)
+    });
+
+    private readonly registry = createRegistry<IInputDeps>();
+    private readonly postService: DummyJsonPostService = inject<DummyJsonPostService>(DummyJsonPostService);
+    private readonly paginationService: DemoAppCmsPostViewPaginationService = inject<DemoAppCmsPostViewPaginationService>(DemoAppCmsPostViewPaginationService);
+    private readonly commentsSignal: WritableSignal<IPostCommentAdapter[]> = signal<IPostCommentAdapter[]>([]);
+
+    private async fetchData(params: IPOstCommentResourceParam, abortSignal: AbortSignal): Promise<IPostCommentAdapter[]> {
+        const pageOptions = params.pageOptions;
+        const request = this.postService.getComments(params.postId, {
+            ...params.pageOptions,
+            skip: pageOptions.limit! * pageOptions.skip!
+        });
+        const result = await lastValueFrom(request);
+
+        this.paginationService.setCount(result.total);
+
+        const comments: IPostCommentAdapter[] = [];
+
+        for (let comment of result.comments) {
+            comments.push(new PostCommentAdapter(comment));
         }
-    }
 
-    public override async loadRequest(): Promise<IPostCommentAdapter[]> {
-        const result = await this.request();
-
-        this.dataSource.update((dataSource) => [
-            ...dataSource,
-            ...result
+        this.commentsSignal.update((currentComments: IPostCommentAdapter[]) => [
+            ...currentComments,
+            ...comments
         ]);
 
-        return this.dataSource();
+        return this.commentsSignal();
     }
 
-    public override reset(): void {
+    public registerSignalDeps(deps: IInputDeps): void {
+        this.registry.register(deps);
+    }
+
+    public reset(): void {
         // cleanup logic
     }
 }

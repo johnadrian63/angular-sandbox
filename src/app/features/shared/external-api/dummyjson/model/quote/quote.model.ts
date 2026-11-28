@@ -1,4 +1,4 @@
-import { IPaginationMeta } from "../../model/filter.model";
+import { IPaginationMeta } from "../filter.model";
 
 export interface IQuote {
     id: string;

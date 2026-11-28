@@ -1,5 +1,5 @@
-import { IRecipe } from "./model/recipe.model";
 import { ITableBuilderRowData } from "../../../shared/table-builder";
+import { IRecipe } from "../../../shared/external-api/dummyjson/model/recipe/recipe.model";
 
 export interface IRecipeAdapter extends ITableBuilderRowData, IRecipe { }
 

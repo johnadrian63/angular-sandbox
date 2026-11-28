@@ -1,5 +1,5 @@
 import { ITableBuilderRowData } from "../../../shared/table-builder";
-import { IAddress, IBankAccount, ICompany, ICrypto, IHair, IUser } from "./model/user.model";
+import { IAddress, IBankAccount, ICompany, ICrypto, IHair, IUser } from "../../../shared/external-api/dummyjson/model/user/user.model";
 
 export interface IUserAdapter extends ITableBuilderRowData, IUser {
     fullName: string;

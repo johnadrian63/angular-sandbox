@@ -1,5 +1,5 @@
-import { IUser } from "../../user/model/user.model";
-import { IPaginationMeta } from "../../model/filter.model";
+import { IUser } from "../user/user.model";
+import { IPaginationMeta } from "../filter.model";
 
 export interface IPost {
     id: number;

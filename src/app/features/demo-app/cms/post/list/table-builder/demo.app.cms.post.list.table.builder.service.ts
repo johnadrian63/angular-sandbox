@@ -3,9 +3,9 @@ import { ActivatedRoute } from "@angular/router";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { lastValueFrom, skip } from "rxjs";
 
-import { DemoAppCmsPostService } from "../../demo.app.cms.post.service";
-import { IPostAdapter, PostAdapter } from "../../demo.app.cms.post.model.adapter";
 import { TableBuilderService } from "../../../../../shared/table-builder";
+import { IPostAdapter, PostAdapter } from "../../demo.app.cms.post.model.adapter";
+import { DummyJsonPostService } from "../../../../../shared/external-api/dummyjson/dummyjson.post.service";
 import { DemoAppCmsPostListFilterSearchService } from "../filter/demo.app.cms.post.list.filter.search.service";
 import { DemoAppCmsPostListTableBuilderSortService } from "./demo.app.cms.post.list.table.builder.sort.service";
 import { DemoAppCmsPostListTableBuilderPaginationService } from "./demo.app.cms.post.list.table.builder.pagination.service";
@@ -14,7 +14,7 @@ import { DemoAppCmsPostListTableBuilderDataAdapter, DemoAppCmsPostListTableBuild
 
 @Injectable()
 export class DemoAppCmsPostListTableBuilderService extends TableBuilderService {
-    private readonly postService: DemoAppCmsPostService = inject<DemoAppCmsPostService>(DemoAppCmsPostService);
+    private readonly postService: DummyJsonPostService = inject<DummyJsonPostService>(DummyJsonPostService);
     private readonly tableBuilderPaginationService: DemoAppCmsPostListTableBuilderPaginationService = inject<DemoAppCmsPostListTableBuilderPaginationService>(DemoAppCmsPostListTableBuilderPaginationService);
     private readonly tableBuilderSortService: DemoAppCmsPostListTableBuilderSortService = inject<DemoAppCmsPostListTableBuilderSortService>(DemoAppCmsPostListTableBuilderSortService);
     private readonly searchFormService: DemoAppCmsPostListFilterSearchService = inject<DemoAppCmsPostListFilterSearchService>(DemoAppCmsPostListFilterSearchService);

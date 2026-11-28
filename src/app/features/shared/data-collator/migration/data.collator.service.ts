@@ -1,6 +1,6 @@
 import { DestroyRef, inject, Injectable, Resource, ResourceRef } from "@angular/core";
 
-import { withPreviousValue } from "../../../shared/util/withpreviousvalue";
+import { withPreviousValue } from "../../util/withpreviousvalue";
 
 /**
  * @deprecated
@@ -8,20 +8,21 @@ import { withPreviousValue } from "../../../shared/util/withpreviousvalue";
  */
 @Injectable()
 export abstract class DataCollatorService<T> {
-    protected abstract resource: ResourceRef<T | undefined>;
-    private previousView?: Resource<T | undefined>;
 
     public get dataSource(): T | undefined {
         return this.view.hasValue() ? this.view.value() : undefined;
     }
 
     private readonly destroyRef: DestroyRef = inject<DestroyRef>(DestroyRef);
+    private previousView?: Resource<T | undefined>;
 
     constructor() {
         this.destroyRef.onDestroy(() => {
             this.reset();
         });
     }
+
+    protected abstract resource: ResourceRef<T | undefined>;
 
     public abstract reset(): void;
 

@@ -1,4 +1,4 @@
-import { IPaginationMeta } from "../../demo-app/cms/model/filter.model";
+import { IPaginationMeta } from "../../shared/external-api/dummyjson/model/filter.model";
 
 export interface ITodo {
     id: number;

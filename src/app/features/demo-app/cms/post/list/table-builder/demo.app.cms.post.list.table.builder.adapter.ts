@@ -1,13 +1,13 @@
 import { Params } from "@angular/router";
 import { Observable } from "rxjs";
 
-import { IPostCollection } from "../../model/post.model";
 import { pickDefined } from "../../../../../shared/util/pick";
-import { IPageOptions, ISort } from "../../../model/filter.model";
-import { DemoAppCmsPostService } from "../../demo.app.cms.post.service";
 import { TableBuilderSortBaseService } from "../../../../../shared/table-builder";
-import { IPostDefaultFilter, IPostSearchFilter } from "../../model/post.filter.model";
 import { SearchFormService } from "../../../../../shared/search-form/search.form.service";
+import { IPostCollection } from "../../../../../shared/external-api/dummyjson/model/post/post.model";
+import { IPageOptions, ISort } from "../../../../../shared/external-api/dummyjson/model/filter.model";
+import { DummyJsonPostService } from "../../../../../shared/external-api/dummyjson/dummyjson.post.service";
+import { IPostDefaultFilter, IPostSearchFilter } from "../../../../../shared/external-api/dummyjson/model/post/post.filter.model";
 import { TableBuilderPaginationRouteService } from "../../../../../shared/table-builder/service/table.builder.pagination.route.service";
 
 export interface IDemoAppCmsPostListTableBuilderDataAdapter<T> {
@@ -74,7 +74,7 @@ export class DemoAppCmsPostListTableBuilderGetPostsDataFactory {
 }
 
 export class DemoAppCmsPostListTableBuilderDataAdapter implements IDemoAppCmsPostListTableBuilderDataAdapter<Observable<IPostCollection>> {
-    constructor(private readonly postService: DemoAppCmsPostService) { }
+    constructor(private readonly postService: DummyJsonPostService) { }
 
     public visitGetPosts(handler: DemoAppCmsPostListTableBuilderGetPostsDataHandler): Observable<IPostCollection> {
         return this.postService.getList(handler.filter);

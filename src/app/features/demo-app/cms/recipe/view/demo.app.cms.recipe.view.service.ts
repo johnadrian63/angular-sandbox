@@ -1,33 +1,53 @@
-import { inject, Injectable, signal, WritableSignal } from "@angular/core";
+import { inject, Injectable, InputSignal, resource, ResourceRef } from "@angular/core";
+import { toSignal } from "@angular/core/rxjs-interop";
+import { ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 
+import { createRegistry } from "../../../../shared/util/registry";
 import { IRecipeAdapter, RecipeAdapter } from "../demo.app.cms.model.adapter";
-import { DataCollatorService } from "../../../../shared/data-collator";
-import { DemoAppCmsRecipeService } from "../demo.app.cms.recipe.service";
+import { DataCollatorService } from "../../../../shared/data-collator/migration/data.collator.service";
+import { DummyJsonRecipeService } from "../../../../shared/external-api/dummyjson/dummyjson.recipe.service";
+
+interface IRecipeResourceParam {
+    recipeId: number;
+}
+
+interface IInputDeps {
+    recipeId: InputSignal<number>;
+}
 
 @Injectable()
 export class DemoAppCmsRecipeViewService extends DataCollatorService<IRecipeAdapter> {
-    public readonly recipeId: WritableSignal<number | undefined> = signal<number | undefined>(undefined);
-    private readonly recipeService: DemoAppCmsRecipeService = inject<DemoAppCmsRecipeService>(DemoAppCmsRecipeService);
 
-    public override init(): void {
-        // do nothing
+    protected override resource: ResourceRef<IRecipeAdapter | undefined> = resource({
+        params: () => {
+            const recipeId = this.params()["id"];
+
+            if (!recipeId) {
+                return undefined;
+            }
+
+            return { recipeId };
+        },
+        loader: ({ params }) => this.fetchData(params)
+    });
+
+    private readonly recipeService: DummyJsonRecipeService = inject<DummyJsonRecipeService>(DummyJsonRecipeService);
+    private readonly registry = createRegistry<IInputDeps>();
+    public readonly activatedRoute = inject<ActivatedRoute>(ActivatedRoute);
+    public readonly params = toSignal(this.activatedRoute.params, {
+        initialValue: { id: undefined }
+    });
+
+    protected async fetchData(params: IRecipeResourceParam): Promise<IRecipeAdapter> {
+        const request = this.recipeService.getRecipe(params.recipeId);
+        const result = await lastValueFrom(request);
+
+        return new RecipeAdapter(result);
     }
 
-    protected override  async request(): Promise<IRecipeAdapter[]> {
-        throw new Error("not yet implemented.");
-        // try {
-        //     const request = this.recipeService.getRecipe(this.recipeId()!);
-        //     const result = await lastValueFrom(request);
-
-        //     return new RecipeAdapter(result)];
-        // } catch (error) {
-        //     console.error("error", error);
-
-        //     return null;
-        // } finally {
-
-        // }
+    public registerSignalDeps(deps: IInputDeps): void {
+        this.registry.register(deps);
     }
 
     public override reset(): void {

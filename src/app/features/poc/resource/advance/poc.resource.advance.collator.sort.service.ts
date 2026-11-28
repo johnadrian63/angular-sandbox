@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 
 import { ITodo } from "../model";
-import { DataCollatorSortService } from "../data-collator/data.collator.sort.service";
-import { DataCollatorSortRouteService } from "../data-collator/data.collator.sort.route.service";
+import { DataCollatorSortService } from "../../../shared/data-collator/migration/data.collator.sort.service";
+import { DataCollatorSortRouteService } from "../../../shared/data-collator/migration/data.collator.sort.route.service";
 
 @Injectable()
 export class PocResourceCollatorSortService extends DataCollatorSortService {

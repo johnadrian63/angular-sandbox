@@ -47,6 +47,11 @@ export const layoutDefaultNavigationData: IMenuItem[] = [
                     },
                 ]
             },
+            {
+                label: "input_service_bridge",
+                text: "Input Service Bridge",
+                path: "/poc/input-service-bridge",
+            }
             // TODO: disable for now. Investigate why WebSocket doesn't work on Vercel.
             // {
             //     label: "websocket",
